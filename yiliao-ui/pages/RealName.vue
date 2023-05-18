@@ -10,7 +10,14 @@
 			>
 		</van-nav-bar>
 		<view class="wrap">
-			
+			<view>
+				<label>姓名</label>
+				<input type="text" style="display: inline-block;" placeholder="请输入真实姓名"/>
+			</view>
+			<view>
+				<label>身份证号码</label>
+				<input type="text" placeholder="请输入身份证号码"/>
+			</view>
 		</view>
 	</view>
 </template>
@@ -19,7 +26,6 @@
 	export default {
 		data() {
 			return {
-				
 			}
 		},
 		methods: {
