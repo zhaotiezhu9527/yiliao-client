@@ -177,4 +177,14 @@ public class RedisKeyUtil {
         String template = "reg:kaptcha:{}";
         return StrUtil.format(template, uuid);
     }
+
+    /**
+     * 用户签到
+     * @param userName
+     * @return
+     */
+    public static String UserSignKey(String userName) {
+        String template = "user:sign:{}:{}";
+        return StrUtil.format(template, DateUtil.today(), userName);
+    }
 }
