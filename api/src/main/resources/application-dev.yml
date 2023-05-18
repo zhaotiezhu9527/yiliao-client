@@ -18,3 +18,4 @@ login:
     urls:
       - /user/register
       - /user/login
+      - /system/config
