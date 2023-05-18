@@ -96,22 +96,22 @@ function request(params) {
       header: params.header,
       success: (res) => {
         uni.hideLoading();
-        if (res.data.code != 0) {
-          uni.showToast({
-            title: res.data.msg,
-            duration: 2000,
-            icon: "none",
-          });
-        }
-        if (res.data.code == -2) {
-          uni.redirectTo({
-            url: "/pages/login",
-          });
-          uni.removeStorageSync("token");
-          uni.removeStorageSync("phone");
-          uni.removeStorageSync("info");
-          uni.removeStorageSync("areaCode");
-        }
+        // if (res.data.code != 0) {
+        //   uni.showToast({
+        //     title: res.data.msg,
+        //     duration: 2000,
+        //     icon: "none",
+        //   });
+        // }
+        // if (res.data.code == -2) {
+        //   uni.redirectTo({
+        //     url: "/pages/login",
+        //   });
+        //   uni.removeStorageSync("token");
+        //   uni.removeStorageSync("phone");
+        //   uni.removeStorageSync("info");
+        //   uni.removeStorageSync("areaCode");
+        // }
         resolve(res);
       },
       fail: () => {
@@ -161,13 +161,13 @@ const authorityPage = (that) => {
     ];
     let path = that.$route.path;
     let token = uni.getStorageSync("token");
-    if (!WHILE_LIST.includes(path) && !token) {
-      uni.redirectTo({
-        url: "/pages/login",
-      });
-    } else {
-      resolve();
-    }
+    // if (!WHILE_LIST.includes(path) && !token) {
+    //   uni.redirectTo({
+    //     url: "/pages/login",
+    //   });
+    // } else {
+    //   resolve();
+    // }
   });
 };
 

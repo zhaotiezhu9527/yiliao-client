@@ -1,98 +1,104 @@
 <template>
   <view class="page">
-    <van-nav-bar title="Personal" :border="false" fixed safe-area-inset-top>
+    <van-nav-bar title="个人中心" :border="false" fixed safe-area-inset-top>
     </van-nav-bar>
     <view class="wrap">
-      <view class="user">
-        <!-- <image class="image" mode="widthFix" src="../static/images/1.jpg" /> -->
-        <view class="name">{{ items.recommend }}</view>
-        <view class="txt">{{ items.userPhone }}</view>
-        <view class="txt">ID:{{ items.userId }}</view>
-        <image
-          v-if="!items.signInAbility"
-          mode="widthFix"
-          class="close"
-          src="../static/images/d13.png"
-        />
-        <image
-          v-else
-          mode="widthFix"
-          class="close"
-          src="../static/images/d3.png"
-          @click="sign"
-        />
-      </view>
-      <view class="clip">
-        <view class="item">
-          <view class="title">
-            Total assets（USDT）
-            <image
-              @click="padChange"
-              class="look"
-              mode="widthFix"
-              src="../static/images/d11.png"
-            />
-          </view>
-          <view class="txt"> {{ pwd ? "****" : items.balance }} </view>
+      <!-- 头部 -->
+      <view class="head">
+        <view class="head-text">
+          <label>我的账户：test08</label>
+          <label>用户登记：普通会员</label>
         </view>
-        <view class="item">
-          <view class="title">Accumulated income</view>
-          <view class="txt">
-            {{ pwd ? "****" : items.accumulatedIncome }}
-          </view>
+        <view class="head-money">
+          319022
+        </view>
+        <view class="head-integral">
+          账户余额（元）账户积分（0）
         </view>
       </view>
-      <view class="other">
-        <view class="item" @click="change('/pages/promote')">
-          <image
-            class="image"
-            mode="widthFix"
-            src="../static/images/depositapp.png"
-          />
-          <view class="text">Deposit</view>
-          <van-icon name="arrow" color="#ffffff" size="36upx" />
+      <view class="money">
+        <view class="interest">
+          <view>0</view>
+          <view>待收利息（元）</view>
         </view>
-        <view class="item" @click="change('/pages/addmoney')">
-          <image
-            class="image"
-            mode="widthFix"
-            src="../static/images/withdrawapp.png"
-          />
-          <view class="text">Withdraw</view>
-          <van-icon name="arrow" color="#ffffff" size="36upx" />
+        <view class="principal">
+          <view>0</view>
+          <view>待收本金（元）</view>
         </view>
       </view>
-      <view class="row">
-        <view
-          class="list van-hairline--bottom"
-          v-for="(item, index) in list"
-          :key="index"
-          @click="change(item.path)"
-        >
-          <view class="title van-ellipsis">
-            <image
-              class="icon"
-              mode="widthFix"
-              :src="`../static/images/${item.icon}.png`"
-            />
-            <view class="txt">{{ item.name }}</view>
-          </view>
-          <view class="value">
-            <van-icon name="arrow" color="#969799" size="30upx" />
-          </view>
+      <!-- 按钮 -->
+      <view class="button-box">
+        <van-button class="button-class">充值</van-button>
+        <van-button class="button-class">提现</van-button>
+      </view>
+      <!-- 列表 -->
+      <view class="list">
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/bian_app_icon.png" />
+          <label>币安安卓下载</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/icon_app_huobi.png" />
+          <label>火币APP下载</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_qiandao.png" />
+          <label>每日签到</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_zijin.png" />
+          <label>资金明细</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_touzi.png" />
+          <label>投资记录</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_shouyi.png" />
+          <label>收益记录</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_chongzhi.png" />
+          <label>充值记录</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_tixian.png" />
+          <label>提现记录</label>
+          <viem class="icon"></viem>
         </view>
       </view>
-      <view class="btns">
-        <van-button
-          color="#4b80af"
-          round
-          block
-          @click="signOut"
-          :loading="loading"
-        >
-          sign out
-        </van-button>
+      <view class="list">
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_anquan.png" />
+          <label>账户安全</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
+          <label>银行卡绑定</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_shiming.png" />
+          <label>实名认证</label>
+          <viem class="icon"></viem>
+        </view>
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/mine_func_usdt.png" />
+          <label>USDT绑定地址</label>
+          <!-- <image class="icon" src="../static/img/bian_app_icon.png" /> -->
+          <viem class="icon"></viem>
+        </view>
       </view>
+      <!-- 退出登录 -->
+      <van-button class="logout">退出登录</van-button>
     </view>
   </view>
 </template>
@@ -149,197 +155,135 @@ export default {
     };
   },
   onTabItemTap(e) {
-    this.$base.authorityPage(this);
   },
   onLoad() {
-    this.pwd = uni.getStorageSync("pwd");
-    this.$base.authorityPage(this).then(() => {
-      uni.showLoading();
-      this.$api.user_info().then((res) => {
-        if (res.data.code == 0) {
-          this.items = res.data.data;
-          this.$base.storage("phone", this.items.userPhone);
-          this.$base.storage("info", this.items);
-        } else {
-          this.$base.show(res.data.msg);
-        }
-      });
-    });
+    
   },
   methods: {
-    padChange() {
-      this.$base.storage("pwd", !uni.getStorageSync("pwd"));
-      this.pwd = uni.getStorageSync("pwd");
-    },
-    PathRouter() {
-      uni.navigateTo({
-        url: "notice",
-      });
-    },
-    sign() {
-      this.$api.user_sign().then((res) => {
-        if (res.data.code == 0) {
-          this.items.signInAbility = false;
-        }
-        this.$base.show(res.data.msg);
-      });
-    },
-    signOut() {
-      this.loading = true;
-      this.$api.user_logout().then((res) => {
-        this.loading = false;
-        if (res.data.code == 0) {
-          this.$base.show(res.data.msg, "success");
-          uni.removeStorage({
-            key: "token",
-            success() {
-              uni.switchTab({
-                url: "/pages/index",
-              });
-            },
-          });
-        }
-      });
-    },
-    change(url) {
-      if (url === "/pages/notice" || url === "/pages/memberPlan") {
-        this.$base.storage("path", "/pages/personal");
-      }
-      uni.navigateTo({
-        url,
-      });
-    },
+   
   },
 };
 </script>
 
 <style scoped lang="scss">
 .wrap {
-  padding-top: 126upx;
-  .user {
-    text-align: center;
-    position: relative;
-    padding-bottom: 40upx;
-    .close {
-      width: 45upx;
-      position: absolute;
-      top: 20upx;
-      right: 30upx;
+  padding-top: 104upx;
+  background-color: #f8f8f9;
+  padding-bottom: 40upx;
+  .head{
+    height: 258upx;
+    background-image: linear-gradient(#759dd6, #5d80b9);
+    color: #fff;
+    .head-text{
+      padding: 16upx;
+      font-size: 26upx;
+      label{
+        margin-right: 20upx;
+      }
     }
-    .image {
-      width: 110upx;
-      height: 110upx;
-      border-radius: 50%;
-      border: 1upx solid #4b80af;
-      overflow: hidden;
+    .head-money{
+      width: 100%;
+      font-size: 60upx;
+      line-height: 60upx;
+      text-align: center;
+      font-weight: 600;
+      margin-top: 5px;
     }
-    .name,
-    .txt {
-      padding-top: 10upx;
-      color: #333;
+    .head-integral{
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+  .money{
+    width: 100%;
+    height: 90upx;
+    background-color: #5874a9;
+    font-size: 24upx;
+    color: #fff;
+    align-items: center;
+    vertical-align: middle;
+    display: flex;
+    .interest{
+      border-right: 1px solid #ccc;
+      flex: 1;
+      text-align: center;
+    }
+    .principal{
+      flex: 1;
+      text-align: center;
+    }
+  }
+  .button-box{
+    width: 100%;
+    margin: auto;
+    margin-top: 10upx;
+    .button-class{
+      background-color: #5780ab;
+      color: #fff;
+      font-weight: blod;
       font-size: 28upx;
+      border-radius: 15upx;
+      width: 48%;
+      height: 90upx;
+      line-height: 90upx;
+      margin: 0 1%;
     }
   }
-  .row {
-    margin: 0 20upx;
-  }
-  .list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    line-height: 90upx;
-    padding: 10upx 16upx;
-    .title {
+  .list{
+    width: 92%;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 20upx;
+    margin-top: 24upx;
+    color: #666;
+    .list-item{
       display: flex;
       align-items: center;
-      .txt {
-        font-size: 24upx;
-        width: 65%;
-        padding-left: 30upx;
+      vertical-align: middle;
+      font-size: 24upx;
+      font-weight: 600;
+      height: 116upx;
+      margin: 0 30upx;
+      border-bottom: 1px solid #eee;
+      &:last-child{
+        border: none;
       }
-      .icon {
-        width: 38upx;
+      .icon-img{
+        width: 40upx;
+        height: 40upx;
+        margin-right: 20upx;
       }
-    }
-    .value {
-      width: 35%;
-      text-align: right;
-    }
-  }
-  .btns {
-    padding: 60upx 0 140upx 0;
-    width: 80%;
-    margin: 0 auto;
-    .van-button {
-      height: 80upx;
-      font-size: 30upx;
-    }
-  }
-  .clip {
-    margin: 0 20upx 20upx 20upx;
-    width: calc(100% - 40upx);
-    border-radius: 10upx;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    background-color: #4b80af;
-    padding: 40upx 0upx;
-    .item {
-      width: 50%;
-      position: relative;
-      &:nth-child(1)::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        background: #596785;
-        height: 100%;
-        width: 1upx;
+      label{
+        flex: 1;
       }
-      .title {
-        color: #fff;
-        font-size: 28upx;
-        padding-bottom: 30upx;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .txt {
-        color: #fff;
-        font-size: 30upx;
-        padding-bottom: 10upx;
-      }
-      .look {
-        width: 30upx;
-        margin-left: 10upx;
+      .icon{
+        width: 10px;
+        height: 10px;
+        position: relative;
+        &:after{
+          content: '';
+          width: 8px;
+          height: 8px;
+          position: absolute;
+          right: 5px;
+          bottom: 5px;
+          border-left: 2px solid #666;
+          border-bottom: 2px solid #666;
+          transform: translate(0,50%) rotate(-135deg);
+          -webkit-transform: translate(0,50%) rotate(-135deg);
+        }
       }
     }
   }
-  .other {
-    width: calc(100% - 40upx);
-    margin: 0 20upx 20upx;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .item {
-      width: calc(50% - 10upx);
-      padding: 20upx 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #4b80af;
-      border-radius: 10upx;
-      .image {
-        width: 120upx;
-      }
-      .text {
-        font-size: 30upx;
-        color: #fff;
-        padding: 0 10upx;
-      }
-    }
+  .logout{
+    display: block;
+    width: 92%;
+    height: 84upx;
+    margin: 30upx auto;
+    border-radius: 40upx;
+    color: #fff;
+    background-color: #e15241;
   }
 }
 </style>

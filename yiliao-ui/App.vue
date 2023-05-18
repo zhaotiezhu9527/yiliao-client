@@ -25,7 +25,7 @@ export default {
   font-size: 28upx;
 }
 .van-nav-bar__content {
-  height: 92upx;
+  height: 104upx;
 }
 .van-nav-bar {
   background: #4b80af;
@@ -35,7 +35,7 @@ export default {
   color: #ffffff;
 }
 .van-nav-bar__title {
-  font-size: 36upx;
+  font-size: 32upx;
 }
 .uni-app--showleftwindow + .uni-tabbar-bottom {
   display: block !important;
