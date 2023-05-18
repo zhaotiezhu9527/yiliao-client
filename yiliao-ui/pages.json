@@ -32,6 +32,12 @@
     },
     {
       "path": "pages/RechargeRecord"
+    },
+    {
+      "path": "pages/WithdrawalRecords"
+    },
+    {
+      "path": "pages/RealName"
     }
   ],
   "tabBar": {
