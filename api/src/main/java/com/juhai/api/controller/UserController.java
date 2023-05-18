@@ -1,18 +1,20 @@
 package com.juhai.api.controller;
-import java.math.BigDecimal;
-import java.util.Date;
 
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.extra.servlet.ServletUtil;
+import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.api.controller.request.LoginRequest;
 import com.juhai.api.controller.request.UserRegisterRequest;
 import com.juhai.api.utils.JwtUtils;
+import com.juhai.commons.entity.Account;
 import com.juhai.commons.entity.User;
 import com.juhai.commons.entity.UserLog;
+import com.juhai.commons.service.AccountService;
 import com.juhai.commons.service.ParamterService;
 import com.juhai.commons.service.UserLogService;
 import com.juhai.commons.service.UserService;
@@ -26,12 +28,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -52,7 +58,74 @@ public class UserController {
     private UserLogService userLogService;
 
     @Autowired
+    private AccountService accountService;
+
+    @Autowired
     private StringRedisTemplate redisTemplate;
+
+    @ApiOperation(value = "用户信息")
+    @GetMapping("/info")
+    public R info(HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+        User user = userService.getUserByName(userName);
+        JSONObject temp = new JSONObject();
+        temp.put("userId", user.getId());
+        temp.put("userName", user.getUserName());
+        temp.put("balance", user.getBalance());
+        temp.put("realName", user.getRealName());
+        temp.put("idCard", user.getIdCard());
+        temp.put("inviteCode", user.getInviteCode());
+        temp.put("walletAddr", user.getWalletAddr());
+        temp.put("bankCardNum", user.getBankCardNum());
+        temp.put("bankName", user.getBankName());
+        temp.put("bankAddr", user.getBankAddr());
+        temp.put("userLevelName", "普通用户");
+        temp.put("isRealName", user.getIsRealName());
+        return R.ok().put("data", temp);
+    }
+
+    @Transactional
+    @ApiOperation(value = "用户签到")
+    @GetMapping("/sign")
+    public R sign(HttpServletRequest httpServletRequest) throws Exception {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+
+        String key = "user:sign:lock:" + userName;
+        Boolean lock = redisTemplate.opsForValue().setIfAbsent(key, "lock");
+        redisTemplate.expire(key, 5, TimeUnit.SECONDS);
+        if (lock) {
+            String signKey = RedisKeyUtil.UserSignKey(userName);
+            // 已经完成签到
+            if (redisTemplate.hasKey(signKey)) {
+                return R.error(MsgUtil.get("system.user.sign.exist"));
+            }
+            Map<String, String> paramMap = paramterService.getAllParamByMap();
+            // 签到金额小于等于0
+            Double signAmount = MapUtil.getDouble(paramMap, "sign_amount", 0.0);
+            if (signAmount.doubleValue() > 0) {
+                User user = userService.getUserByName(userName);
+                // 给用户加钱
+                userService.updateUserBalance(userName, new BigDecimal(signAmount));
+                // 添加流水记录
+                Account account = new Account();
+                account.setUserName(user.getUserName());
+                account.setOptAmount(new BigDecimal(signAmount));
+                account.setBeforeAmount(user.getBalance());
+                account.setAfterAmount(NumberUtil.add(user.getBalance(), signAmount));
+                account.setType(1);
+                account.setOptType(6);
+                account.setOptTime(new Date());
+                account.setUserAgent(user.getUserAgent());
+                account.setRefNo(null);
+                account.setRemark("每日签到,获得奖励" + signAmount + "元");
+                accountService.save(account);
+                // 设置为今日已签到
+                redisTemplate.opsForValue().set(signKey, "sign", 1, TimeUnit.DAYS);
+            }
+        }
+        redisTemplate.delete(key);
+        return R.ok(MsgUtil.get("system.user.sign.success"));
+    }
 
     @ApiOperation(value = "注册")
     @PostMapping("/register")

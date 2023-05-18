@@ -38,6 +38,12 @@ public class Paramter implements Serializable {
     @TableField(value = "param_value")
     private String paramValue;
 
+    /**
+     * 是否展示前端(0:是 1:否)
+     */
+    @TableField(value = "is_show")
+    private String isShow;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

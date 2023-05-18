@@ -1,5 +1,8 @@
 package com.juhai.api.controller;
 
+import cn.hutool.core.collection.CollStreamUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.juhai.commons.entity.Paramter;
 import com.juhai.commons.service.ParamterService;
 import com.juhai.commons.utils.R;
 import io.swagger.annotations.Api;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -26,13 +30,7 @@ public class SiteConfigController {
     @ApiOperation(value = "获取系统配置")
     @GetMapping("/config")
     public R config(HttpServletRequest httpServletRequest) {
-        Map<String, String> paramsMap = paramterService.getAllParamByMap();
-
-        Map<String, String> data = new HashMap<>();
-        data.put("bian_download_url", paramsMap.get("bian_download_url"));
-        data.put("huobi_download_url", paramsMap.get("huobi_download_url"));
-        data.put("online_service", paramsMap.get("online_service"));
-        data.put("home_notice", paramsMap.get("home_notice"));
-        return R.ok().put("data", data);
+        List<Paramter> list = paramterService.list(new LambdaQueryWrapper<Paramter>().eq(Paramter::getIsShow, 0));
+        return R.ok().put("data", CollStreamUtil.toMap(list, Paramter::getParamKey, Paramter::getParamValue));
     }
 }
