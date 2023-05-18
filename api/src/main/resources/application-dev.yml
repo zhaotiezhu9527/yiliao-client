@@ -20,3 +20,4 @@ login:
       - /user/login
       - /system/config
       - /project/list
+      - /project/detail/*
