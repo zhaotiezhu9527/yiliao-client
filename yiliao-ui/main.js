@@ -38,8 +38,8 @@ Vue.component("Tabs", tabs);
 
 Vue.use(Vant);
 
-import base from "plugins/base.js";
-import api from "plugins/api.js";
+import * as base from "plugins/base.js";
+import * as api from "plugins/api.js";
 import store from "plugins/store.js";
 
 Vue.prototype.$api = api;
