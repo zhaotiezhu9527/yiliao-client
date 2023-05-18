@@ -1,72 +1,42 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      title="login"
-      left-arrow
-      :border="false"
-      fixed
-      safe-area-inset-top
-      @click-left="$base.BackPage('/pages/index')"
-    >
+    <van-nav-bar left-arrow :border="false" fixed safe-area-inset-top>
+      <template #left><text class="title">登录</text></template>
     </van-nav-bar>
     <view class="wrap">
+      <view class="logo">
+        <image
+          class="img"
+          mode="widthFix"
+          src="../static/img/login_zhenhsi_logo.png"
+        />
+      </view>
       <view class="from">
         <view class="input">
-          <van-field v-model="userPhone" type="tel" placeholder="Phone">
-            <template slot="label">
-              <image :src="icon" mode="widthFix" class="image" />
-              <view class="lable" @click="show = true"> + {{ areaCode }} </view>
-              <van-icon
-                @click="show = true"
-                style="padding-left: 10upx"
-                name="arrow-down"
-              />
-            </template>
+          <van-field
+            v-model="userPhone"
+            type="tel"
+            placeholder="请输入登录账号"
+            label="账号"
+          >
           </van-field>
         </view>
         <view class="input">
           <van-field
             v-model="password"
+            label="密码"
             type="password"
-            label="Password"
-            placeholder="Password"
+            placeholder="请输入登录密码"
           />
         </view>
         <view class="btns">
           <van-button color="#4b80af" block @click="login" :loading="loading">
-            Login
+            登录
           </van-button>
-          <van-button color="#e6a23c" block @click="register">
-            Register
-          </van-button>
-          <!-- <van-button color="#073441" block @click="pawClcik">
-            Reset login password
-          </van-button> -->
+          <view class="register" @click="register"> 注册账号 </view>
         </view>
       </view>
     </view>
-    <van-popup v-model="show" position="bottom">
-      <van-picker
-        title="Nation"
-        show-toolbar
-        :columns="columns"
-        value-key="name"
-        @cancel="show = false"
-        @confirm="onConfirm"
-        confirm-button-text="Confirm"
-        cancel-button-text="Cancel"
-      >
-        <template #option="item">
-          <view class="item">
-            <view class="content">
-              <image mode="widthFix" class="icon" :src="item.img" />
-              <view class="code">{{ item.name }}</view>
-            </view>
-            <view class="code">+{{ item.code }}</view>
-          </view>
-        </template>
-      </van-picker>
-    </van-popup>
   </view>
 </template>
 
@@ -83,39 +53,11 @@ export default {
       loading: false,
     };
   },
-  onLoad() {
-    let date = null;
-    date = setInterval(() => {
-      uni.getStorage({
-        key: "config",
-        success: (val) => {
-          if (val.data.contrys) {
-            clearInterval(date);
-            this.columns = val.data.contrys;
-            if (this.columns.length) {
-              this.areaCode = this.columns[0].code;
-              this.icon = this.columns[0].img;
-            }
-          }
-        },
-      });
-    }, 500);
-  },
+  onLoad() {},
   methods: {
-    onConfirm(value, index) {
-      this.areaCode = value.code;
-      this.$store.code = value.code;
-      this.icon = value.img;
-      this.show = false;
-    },
     register() {
       uni.navigateTo({
         url: "/pages/register",
-      });
-    },
-    pawClcik() {
-      uni.navigateTo({
-        url: "/pages/setloginpwd",
       });
     },
     login() {
@@ -147,71 +89,53 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.logo {
+  display: flex;
+  justify-content: center;
+  padding-top: 60upx;
+  .img {
+    width: 50%;
+  }
+}
+.title {
+  font-size: 32upx;
+  color: #fff;
+}
 /deep/.van-field__label {
   display: flex;
   align-items: center;
-  color: #fff;
-  .image {
-    width: 50upx;
-    padding-right: 10upx;
-  }
-}
-/deep/.van-field__right-icon {
-  color: #fff;
-  font-size: 32upx;
-}
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40upx;
-  width: 100%;
-  box-sizing: border-box;
-  .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .code {
-      padding-left: 20upx;
-    }
-  }
-  .icon {
-    width: 60upx;
-  }
-  .code {
-    font-size: 28upx;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  width: 100upx;
 }
 .btns {
+  text-align: center;
   padding: 40upx 40upx 0;
   .van-button {
     border-radius: 10upx;
     margin-bottom: 20upx;
   }
   .van-button__content span {
-    font-size: 30upx;
+    font-size: 32upx;
+  }
+  .register {
+    color: #4b80af;
+    font-size: 32upx;
+    margin-top: 40upx;
   }
 }
 .from {
-  padding: 40upx 20upx;
+  padding: 40upx 0;
   width: 100%;
   box-sizing: border-box;
   .input {
     padding-top: 20upx;
   }
-  .van-cell {
-    background: #4b80af;
-  }
   /deep/.van-field__label {
     span {
-      color: #fff;
+      font-size: 32upx;
     }
   }
   /deep/.van-field__control {
-    color: #fff;
+    font-size: 32upx;
   }
   .image {
     height: 60upx;

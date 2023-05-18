@@ -126,9 +126,9 @@ export const request = (params) => {
 export const BackPage = (url) => {
   if (
     url === "/pages/index" ||
-    url === "/pages/trades" ||
+    url === "/pages/investor" ||
     url === "/pages/personal" ||
-    url === "/pages/contact" ||
+    url === "/pages/about" ||
     url === "/"
   ) {
     uni.switchTab({

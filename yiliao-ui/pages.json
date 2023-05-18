@@ -1,10 +1,16 @@
 {
   "pages": [
     {
-      "path": "pages/personal"
+      "path": "pages/index"
     },
     {
-      "path": "pages/index"
+      "path": "pages/about"
+    },
+    {
+      "path": "pages/investor"
+    },
+    {
+      "path": "pages/personal"
     },
     {
       "path": "pages/login"
@@ -13,72 +19,58 @@
       "path": "pages/register"
     },
     {
-      "path": "pages/setloginpwd"
-    },
-    {
-      "path": "pages/loginPwd"
-    },
-    {
-      "path": "pages/resetPayPwd"
-    }
-    ,
-    {
       "path": "pages/fundDetails"
-    }
-    ,
+    },
     {
       "path": "pages/InvestmentRecords"
-    }
-    ,
+    },
     {
       "path": "pages/InvestmentDetails"
-    }
-    ,
+    },
     {
       "path": "pages/RevenueRecords"
-    }
-    ,
+    },
     {
       "path": "pages/RechargeRecord"
     }
-    ],
+  ],
   "tabBar": {
-    "color": "#cfcfcf",
-    "selectedColor": "#073441",
+    "color": "#666974",
+    "selectedColor": "#4b80af",
     "borderStyle": "white",
-    "backgroundColor": "#efefef",
-    "fontSize": "12px",
-    "iconWidth": "20px",
+    "backgroundColor": "#ffffff",
+    "fontSize": "10px",
+    "iconWidth": "16px",
     "list": [
       {
         "pagePath": "pages/index",
         "iconPath": "./static/images/home.png",
         "selectedIconPath": "./static/images/home_active.png",
-        "text": "Home"
+        "text": "首页"
       },
       {
-        "pagePath": "pages/trades",
+        "pagePath": "pages/investor",
         "iconPath": "./static/images/qian.png",
         "selectedIconPath": "./static/images/qian_active.png",
-        "text": "Trades"
+        "text": "投资"
+      },
+      {
+        "pagePath": "pages/about",
+        "iconPath": "./static/images/user.png",
+        "selectedIconPath": "./static/images/user_active.png",
+        "text": "发现"
       },
       {
         "pagePath": "pages/personal",
-        "iconPath": "./static/images/user.png",
-        "selectedIconPath": "./static/images/user_active.png",
-        "text": "Personal"
-      },
-      {
-        "pagePath": "pages/contact",
         "iconPath": "./static/images/kefu.png",
         "selectedIconPath": "./static/images/kefu_active.png",
-        "text": "Contact"
+        "text": "我的"
       }
     ]
   },
   "globalStyle": {
     "navigationStyle": "custom",
-    "navigationBarTitleText": "Bambu"
+    "navigationBarTitleText": "安科生物"
   },
   "networkTimeout": {
     "request": 10000

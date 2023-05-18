@@ -8,13 +8,11 @@ const guard = new UniRouteGuards();
 const WHILE_LIST = [
   "/",
   "/pages/index",
-  "/pages/trades",
+  "/pages/investor",
   "/pages/about",
   "/pages/contact",
   "/pages/register",
-  "/pages/setloginpwd",
-  "/pages/info",
-  "/pages/fundDetails",
+  "/pages/login",
 ];
 
 // 跳过路由白名单拦截
@@ -33,9 +31,6 @@ guard.beforeEach((to, from, next) => {
 guard.afterEach((to, from, next) => {});
 
 import Vant from "vant";
-
-import tabs from "./components/tabs.vue";
-Vue.component("Tabs", tabs);
 
 Vue.use(Vant);
 
