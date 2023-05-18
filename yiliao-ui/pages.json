@@ -1,34 +1,10 @@
 {
   "pages": [
     {
-      "path": "pages/index"
-    },
-    {
-      "path": "pages/withdraw"
-    },
-    {
-      "path": "pages/addmoney"
-    },
-    {
-      "path": "pages/usdtadd"
-    },
-    {
-      "path": "pages/interest"
-    },
-    {
       "path": "pages/personal"
     },
     {
-      "path": "pages/info"
-    },
-    {
-      "path": "pages/record"
-    },
-    {
-      "path": "pages/fundRecord"
-    },
-    {
-      "path": "pages/accountDetails"
+      "path": "pages/index"
     },
     {
       "path": "pages/login"
@@ -40,22 +16,10 @@
       "path": "pages/setloginpwd"
     },
     {
-      "path": "pages/investment"
-    },
-    {
       "path": "pages/loginPwd"
     },
     {
       "path": "pages/resetPayPwd"
-    },
-    {
-      "path": "pages/memberPlan"
-    },
-    {
-      "path": "pages/promote"
-    },
-    {
-      "path": "pages/detail"
     }
   ],
   "tabBar": {

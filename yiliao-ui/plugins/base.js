@@ -2,7 +2,7 @@ import { metadata, PhoneNumberUtil } from "google-libphonenumber";
 import Vue from "vue";
 import store from "plugins/store.js";
 Vue.prototype.$store = store;
-const phone = (value) => {
+export const phone = (value) => {
   try {
     const phoneUtil = PhoneNumberUtil.getInstance();
     let isValite = false;
@@ -25,31 +25,33 @@ const phone = (value) => {
 };
 
 //设置缓存内容
-function storage(name, value) {
+export const storage = (name, value) => {
   uni.setStorage({
     key: name,
     data: value,
   });
-}
+};
 //通用提示
-function show(title, icon = "none") {
+export const show = (title, icon = "none") => {
   uni.showToast({
     title: title,
     duration: 2000,
     icon: icon,
   });
-}
+};
 //loading
-function loading(title) {
+export const loading = (title) => {
   uni.showLoading({
     title: title,
   });
-}
+};
 // 西班牙
 const PATH_URL =
-  process.env.NODE_ENV === "development" ? "http://47.243.237.139:8522/" : "https://api.bambu.cc/";
+  process.env.NODE_ENV === "development"
+    ? "http://47.243.237.139:8522/"
+    : "https://api.bambu.cc/";
 
-function upload(params) {
+export const upload = (params) => {
   let header = {
     token: uni.getStorageSync("token"),
   };
@@ -65,9 +67,9 @@ function upload(params) {
       },
     });
   });
-}
+};
 //请求
-function request(params) {
+export const request = (params) => {
   let str = params.method.toUpperCase();
   if (str == "POST") {
     params.header = {
@@ -85,9 +87,9 @@ function request(params) {
     };
   }
   uni.showLoading({
-  	title: "loading",
-  	mask: true
-  })
+    title: "loading",
+    mask: true,
+  });
   return new Promise((resolve, reject) => {
     uni.request({
       url: PATH_URL + params.url,
@@ -119,9 +121,9 @@ function request(params) {
       },
     });
   });
-}
+};
 //返回上一页
-const BackPage = (url) => {
+export const BackPage = (url) => {
   if (
     url === "/pages/index" ||
     url === "/pages/trades" ||
@@ -147,6 +149,7 @@ const BackPage = (url) => {
   });
 };
 
+<<<<<<< HEAD
 const authorityPage = (that) => {
   return new Promise((resolve, reject) => {
     const WHILE_LIST = [
@@ -171,11 +174,13 @@ const authorityPage = (that) => {
   });
 };
 
+=======
+>>>>>>> 98f75e66caafbc62efd118920ff167fa898c0a8a
 const gettimeFn = (value) => {
   return value < 10 ? "0" + value : value;
 };
 
-const getdateTimeFn = (time) => {
+export const getdateTimeFn = (time) => {
   let data = {};
   let defaultTimeStamp = time;
   let dayA = defaultTimeStamp % (24 * 3600);
@@ -193,14 +198,3 @@ const getdateTimeFn = (time) => {
   };
   return data;
 };
-
-module.exports.gettimeFn = gettimeFn;
-module.exports.getdateTimeFn = getdateTimeFn;
-module.exports.phone = phone;
-module.exports.authorityPage = authorityPage;
-module.exports.BackPage = BackPage;
-module.exports.upload = upload;
-module.exports.loading = loading;
-module.exports.show = show;
-module.exports.storage = storage;
-module.exports.request = request;

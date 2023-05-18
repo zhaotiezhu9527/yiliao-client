@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Mark sunlightcs@gmail.com
  */
 @Configuration
-@MapperScan({"com.juhai.commons.dao"})
+@MapperScan({"com.juhai.commons.mapper"})
 public class MybatisPlusConfig {
 
     /**

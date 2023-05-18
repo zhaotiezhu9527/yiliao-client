@@ -1,16 +1,6 @@
 <script>
 export default {
-  onLaunch: function () {
-    this.$base.authorityPage(this);
-    this.$base.storage("config", {});
-    this.$api.sys_config().then((res) => {
-      if (res.data.code == 0) {
-        this.$base.storage("config", res.data.data);
-      } else {
-        this.$base.show(res.data.msg);
-      }
-    });
-  },
+  onLaunch: function () {},
   onShow: function () {},
   onHide: function () {},
 };
