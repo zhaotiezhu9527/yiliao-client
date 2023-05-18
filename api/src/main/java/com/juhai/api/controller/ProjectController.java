@@ -97,7 +97,7 @@ public class ProjectController {
 
         String userName = JwtUtils.getUserName(httpServletRequest);
         User user = userService.getUserByName(userName);
-        temp.put("userBalance", user);
+        temp.put("userBalance", user.getBalance());
 
         return R.ok().put("data", temp);
     }

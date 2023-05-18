@@ -1,11 +1,10 @@
 package com.juhai.api.controller;
-import java.math.BigDecimal;
-import java.util.Date;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.extra.servlet.ServletUtil;
+import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.api.controller.request.LoginRequest;
@@ -27,11 +26,14 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -53,6 +55,27 @@ public class UserController {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+    @ApiOperation(value = "用户信息")
+    @GetMapping("/info")
+    public R list(HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+        User user = userService.getUserByName(userName);
+        JSONObject temp = new JSONObject();
+        temp.put("userId", user.getId());
+        temp.put("userName", user.getUserName());
+        temp.put("balance", user.getBalance());
+        temp.put("realName", user.getRealName());
+        temp.put("idCard", user.getIdCard());
+        temp.put("inviteCode", user.getInviteCode());
+        temp.put("walletAddr", user.getWalletAddr());
+        temp.put("bankCardNum", user.getBankCardNum());
+        temp.put("bankName", user.getBankName());
+        temp.put("bankAddr", user.getBankAddr());
+        temp.put("userLevelName", "普通用户");
+        temp.put("isRealName", user.getIsRealName());
+        return R.ok().put("data", temp);
+    }
 
     @ApiOperation(value = "注册")
     @PostMapping("/register")
