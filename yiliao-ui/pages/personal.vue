@@ -68,7 +68,7 @@
           <label>充值记录</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goWithdrawalRecords">
           <image class="icon-img" src="../static/img/mine_func_tixian.png" />
           <label>提现记录</label>
           <view class="icon"></view>
@@ -85,7 +85,7 @@
           <label>银行卡绑定</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goRealName">
           <image class="icon-img" src="../static/img/mine_func_shiming.png" />
           <label>实名认证</label>
           <view class="icon"></view>
@@ -178,6 +178,16 @@ export default {
     goRechargeRecord(){
       uni.navigateTo({
         url: "/pages/RechargeRecord",
+      });
+    },
+    goWithdrawalRecords(){
+      uni.navigateTo({
+        url: "/pages/WithdrawalRecords",
+      });
+    },
+    goRealName(){
+      uni.navigateTo({
+        url: "/pages/RealName",
       });
     }
   },
