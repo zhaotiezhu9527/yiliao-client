@@ -56,7 +56,7 @@
       <view class="btns">
         <van-button
           :disabled="!form.addr"
-          color="#5ec0b3"
+          color="#4b80af"
           round
           block
           @click="submit"
@@ -66,8 +66,8 @@
       </view>
       <van-divider
         :style="{
-          color: '#5ec0b3',
-          borderColor: '#5ec0b3',
+          color: '#4b80af',
+          borderColor: '#4b80af',
           padding: '0 32upx',
           'font-size': '30upx',
           margin: '0',
@@ -229,7 +229,7 @@ export default {
       text-align: right;
       padding-right: 30rpx;
       font-weight: 700;
-      color: #5ec0b3;
+      color: #4b80af;
       box-sizing: border-box;
     }
   }

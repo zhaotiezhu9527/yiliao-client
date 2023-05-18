@@ -43,7 +43,7 @@
         <van-progress
           :show-pivot="false"
           stroke-width="14upx"
-          color="linear-gradient(90deg,#5ec0b3,#aedfd9)"
+          color="linear-gradient(90deg,#4b80af,#aedfd9)"
           :percentage="items.schedule"
           track-color="#ffffff"
         />
@@ -68,9 +68,7 @@
       <view class="msg">
         <view class="name">Trading statistics </view>
         <view class="content">
-          <view class="text"
-            >Project amount:$ {{ items.totalAmount }}</view
-          >
+          <view class="text">Project amount:$ {{ items.totalAmount }}</view>
           <view class="text">
             Mode of repayment:Return principal and profit at the end of the
             project
@@ -80,8 +78,7 @@
             {{ items.maxAmount }}$</view
           >
           <view class="text"
-            >Release cycle: {{ items.period }}
-            {{ items.unit | time }}</view
+            >Release cycle: {{ items.period }} {{ items.unit | time }}</view
           >
           <view class="text" v-if="time === 1">
             Estimated income：{{ (items.interest * 100) | ceil }}%*{{
@@ -96,7 +93,7 @@
         </view>
       </view>
       <view class="btns">
-        <van-button color="#5ec0b3" round block @click="link">
+        <van-button color="#4b80af" round block @click="link">
           Investimento agora
         </van-button>
       </view>

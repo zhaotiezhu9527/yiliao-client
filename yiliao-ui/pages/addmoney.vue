@@ -67,7 +67,7 @@
       </view>
       <view class="btns">
         <van-button
-          color="#5ec0b3"
+          color="#4b80af"
           round
           block
           :loading="loading"
@@ -81,7 +81,7 @@
       v-model="show"
       showCancelButton
       confirmButtonText="confirm"
-      confirmButtonColor="#5ec0b3"
+      confirmButtonColor="#4b80af"
       cancelButtonText="cancel"
       @confirm="confirm"
       @cancel="cancel"
@@ -173,9 +173,7 @@ export default {
       if (this.form.money === "") {
         return this.$base.show("Please enter the withdraw quantity");
       } else if (this.form.withdrawPwd.length !== 4) {
-        return this.$base.show(
-          "Please enter your payment password"
-        );
+        return this.$base.show("Please enter your payment password");
       }
       // else if (this.form.verificationCode.length < 6) {
       //   return this.$base.show("Código de verificación del teléfono");

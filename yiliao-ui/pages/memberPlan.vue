@@ -193,7 +193,7 @@ export default {
       width: 30%;
       text-align: right;
       font-size: 30upx;
-      color: #5ec0b3;
+      color: #4b80af;
       font-weight: 700;
     }
   }

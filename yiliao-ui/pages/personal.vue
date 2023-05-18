@@ -84,7 +84,7 @@
       </view>
       <view class="btns">
         <van-button
-          color="#5ec0b3"
+          color="#4b80af"
           round
           block
           @click="signOut"
@@ -230,7 +230,7 @@ export default {
       width: 110upx;
       height: 110upx;
       border-radius: 50%;
-      border: 1upx solid #5ec0b3;
+      border: 1upx solid #4b80af;
       overflow: hidden;
     }
     .name,
@@ -283,7 +283,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    background-color: #5ec0b3;
+    background-color: #4b80af;
     padding: 40upx 0upx;
     .item {
       width: 50%;
@@ -329,7 +329,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #5ec0b3;
+      background-color: #4b80af;
       border-radius: 10upx;
       .image {
         width: 120upx;

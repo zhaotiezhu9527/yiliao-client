@@ -28,7 +28,7 @@
 
       <view class="btns">
         <van-button
-          color="#5ec0b3"
+          color="#4b80af"
           round
           block
           @click="submit"
@@ -61,9 +61,7 @@ export default {
       } else if (this.form.newPassword === "") {
         return this.$base.show("Please enter a new password");
       } else if (this.form.confirmPassword !== this.form.newPassword) {
-        return this.$base.show(
-          "Please enter a confirmation password"
-        );
+        return this.$base.show("Please enter a confirmation password");
       }
       this.loading = true;
       this.$api.user_update_password(this.form).then((res) => {

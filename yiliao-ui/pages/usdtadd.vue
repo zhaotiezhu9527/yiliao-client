@@ -50,7 +50,7 @@
       </van-field> -->
       <view class="btns">
         <van-button
-          color="#5ec0b3"
+          color="#4b80af"
           round
           block
           :loading="loading"
@@ -61,7 +61,7 @@
       </view>
       <view class="footer">
         <view class="text">
-			The TRC20 transfer fee is 1USDT per transaction.
+          The TRC20 transfer fee is 1USDT per transaction.
         </view>
         <!-- <view class="text">
           A taxa de transferência ERC20 é de 30USDT por transacção.
@@ -137,10 +137,10 @@ export default {
     submit() {
       if (this.form.addr === "") {
         return this.$base.show("Withdraw address");
-      } 
-	  // else if (this.form.verificationCode.length < 6) {
-   //      return this.$base.show("Phone verification code");
-   //    }
+      }
+      // else if (this.form.verificationCode.length < 6) {
+      //      return this.$base.show("Phone verification code");
+      //    }
       this.loading = true;
       this.$api.user_bindAddr(this.form).then((res) => {
         this.loading = false;

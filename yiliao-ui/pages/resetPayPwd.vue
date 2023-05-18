@@ -42,7 +42,7 @@
 
       <view class="btns">
         <van-button
-          color="#5ec0b3"
+          color="#4b80af"
           round
           block
           @click="submit"
@@ -105,15 +105,13 @@ export default {
     },
     submit() {
       if (this.form.confirmPassword === "") {
-        return this.$base.show(
-          "Please enter a confirmation password"
-        );
+        return this.$base.show("Please enter a confirmation password");
       } else if (this.form.newPassword === "") {
         return this.$base.show("Please enter a new password");
-      } 
-	  // else if (this.form.verificationCode.length < 6) {
-   //      return this.$base.show("Phone verification code");
-   //    }
+      }
+      // else if (this.form.verificationCode.length < 6) {
+      //      return this.$base.show("Phone verification code");
+      //    }
       this.loading = true;
       this.$api.user_update_withdraw_pwd(this.form).then((res) => {
         this.loading = false;

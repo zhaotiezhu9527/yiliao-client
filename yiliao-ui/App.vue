@@ -28,7 +28,7 @@ export default {
   height: 92upx;
 }
 .van-nav-bar {
-  background: #5ec0b3;
+  background: #4b80af;
 }
 .van-nav-bar__title,
 .van-nav-bar .van-icon {

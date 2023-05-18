@@ -33,7 +33,7 @@
           />
         </view>
         <view class="btns">
-          <van-button color="#5ec0b3" block @click="login" :loading="loading">
+          <van-button color="#4b80af" block @click="login" :loading="loading">
             Login
           </van-button>
           <van-button color="#e6a23c" block @click="register">
@@ -123,9 +123,7 @@ export default {
       if (this.areaCode === "") {
         return this.$base.show("Please select a country");
       } else if (!this.$base.phone(this.userPhone)) {
-        return this.$base.show(
-          "Please enter correctly Phone"
-        );
+        return this.$base.show("Please enter correctly Phone");
       } else if (this.password === "") {
         return this.$base.show("Please enter Password");
       }
@@ -205,7 +203,7 @@ export default {
     padding-top: 20upx;
   }
   .van-cell {
-    background: #5ec0b3;
+    background: #4b80af;
   }
   /deep/.van-field__label {
     span {
