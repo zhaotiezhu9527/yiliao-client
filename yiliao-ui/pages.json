@@ -21,7 +21,11 @@
     {
       "path": "pages/resetPayPwd"
     }
-  ],
+    ,
+    {
+      "path": "pages/fundDetails"
+    }
+    ],
   "tabBar": {
     "color": "#cfcfcf",
     "selectedColor": "#073441",

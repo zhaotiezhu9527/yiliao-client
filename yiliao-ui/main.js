@@ -14,6 +14,7 @@ const WHILE_LIST = [
   "/pages/register",
   "/pages/setloginpwd",
   "/pages/info",
+  "/pages/fundDetails",
 ];
 
 // 跳过路由白名单拦截

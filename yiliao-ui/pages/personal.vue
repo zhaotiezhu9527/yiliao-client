@@ -36,65 +36,65 @@
         <view class="list-item">
           <image class="icon-img" src="../static/img/bian_app_icon.png" />
           <label>币安安卓下载</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/icon_app_huobi.png" />
           <label>火币APP下载</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_qiandao.png" />
           <label>每日签到</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goFundDetails">
           <image class="icon-img" src="../static/img/mine_func_zijin.png" />
           <label>资金明细</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_touzi.png" />
           <label>投资记录</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_shouyi.png" />
           <label>收益记录</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_chongzhi.png" />
           <label>充值记录</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_tixian.png" />
           <label>提现记录</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
       </view>
       <view class="list">
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_anquan.png" />
           <label>账户安全</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
           <label>银行卡绑定</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_shiming.png" />
           <label>实名认证</label>
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/mine_func_usdt.png" />
           <label>USDT绑定地址</label>
           <!-- <image class="icon" src="../static/img/bian_app_icon.png" /> -->
-          <viem class="icon"></viem>
+          <view class="icon"></view>
         </view>
       </view>
       <!-- 退出登录 -->
@@ -160,7 +160,11 @@ export default {
     
   },
   methods: {
-   
+    goFundDetails() {
+      uni.navigateTo({
+        url: "/pages/fundDetails",
+      });
+    },
   },
 };
 </script>
