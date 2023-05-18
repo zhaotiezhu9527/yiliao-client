@@ -1,0 +1,111 @@
+{
+  "pages": [
+    {
+      "path": "pages/index"
+    },
+    {
+      "path": "pages/buy"
+    },
+    {
+      "path": "pages/download"
+    },
+    {
+      "path": "pages/info"
+    },
+    {
+      "path": "pages/fundRecord"
+    },
+    {
+      "path": "pages/record"
+    },
+    {
+      "path": "pages/accountDetails"
+    },
+    {
+      "path": "pages/personal"
+    },
+    {
+      "path": "pages/login"
+    },
+    {
+      "path": "pages/register"
+    },
+    {
+      "path": "pages/setloginpwd"
+    },
+    {
+      "path": "pages/interest"
+    },
+    {
+      "path": "pages/investment"
+    },
+    {
+      "path": "pages/set"
+    },
+    {
+      "path": "pages/loginPwd"
+    },
+    {
+      "path": "pages/resetPayPwd"
+    },
+    {
+      "path": "pages/usdtadd"
+    },
+    {
+      "path": "pages/addmoney"
+    },
+    {
+      "path": "pages/memberPlan"
+    },
+    {
+      "path": "pages/promote"
+    },
+    {
+      "path": "pages/detail"
+    },
+    {
+      "path": "pages/withdraw"
+    }
+  ],
+  "tabBar": {
+    "color": "#cfcfcf",
+    "selectedColor": "#073441",
+    "borderStyle": "white",
+    "backgroundColor": "#efefef",
+    "fontSize": "12px",
+    "iconWidth": "20px",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "iconPath": "./static/images/home.png",
+        "selectedIconPath": "./static/images/home_active.png",
+        "text": "Home"
+      },
+      {
+        "pagePath": "pages/trades",
+        "iconPath": "./static/images/qian.png",
+        "selectedIconPath": "./static/images/qian_active.png",
+        "text": "Trades"
+      },
+      {
+        "pagePath": "pages/personal",
+        "iconPath": "./static/images/user.png",
+        "selectedIconPath": "./static/images/user_active.png",
+        "text": "Personal"
+      },
+      {
+        "pagePath": "pages/contact",
+        "iconPath": "./static/images/kefu.png",
+        "selectedIconPath": "./static/images/kefu_active.png",
+        "text": "Contact"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "Bambu"
+  },
+  "networkTimeout": {
+    "request": 10000
+  }
+}
