@@ -1,0 +1,32 @@
+server:
+  port: 9522
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://rm-3ns9lrie2ytup10ry.mysql.rds.aliyuncs.com:3306/sengre?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowMultiQueries=true
+      username: tiezhu
+      password: t4Kjm$Ov^K#YavWE
+  redis:
+    host: r-3ns20icuhh8s6huarm.redis.rds.aliyuncs.com
+    port: 6379
+    password: ^AtN9HoWOt8169sC
+    database: 7
+# 不需要登录验证的url
+login:
+  auth:
+    urls:
+      - /sys/config
+      - /sys/captcha.jpg
+      - /user/register
+      - /user/login
+      - /product/list
+      - /sys/question
+      - /withdraw/callback/yypay
+      - /topup/callback/yypay
+      - /sys/version
+      - /sys/carousel/list/*
+task:
+  weekreward:
+    cron: 0/10 * * * * ?
