@@ -53,17 +53,17 @@
           <label>资金明细</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goInvestmentRecords">
           <image class="icon-img" src="../static/img/mine_func_touzi.png" />
           <label>投资记录</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goRevenueRecords">
           <image class="icon-img" src="../static/img/mine_func_shouyi.png" />
           <label>收益记录</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goRechargeRecord">
           <image class="icon-img" src="../static/img/mine_func_chongzhi.png" />
           <label>充值记录</label>
           <view class="icon"></view>
@@ -165,6 +165,21 @@ export default {
         url: "/pages/fundDetails",
       });
     },
+    goInvestmentRecords(){
+      uni.navigateTo({
+        url: "/pages/InvestmentRecords",
+      });
+    },
+    goRevenueRecords(){
+      uni.navigateTo({
+        url: "/pages/RevenueRecords",
+      });
+    },
+    goRechargeRecord(){
+      uni.navigateTo({
+        url: "/pages/RechargeRecord",
+      });
+    }
   },
 };
 </script>

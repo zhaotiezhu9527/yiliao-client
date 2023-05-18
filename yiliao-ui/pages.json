@@ -25,6 +25,22 @@
     {
       "path": "pages/fundDetails"
     }
+    ,
+    {
+      "path": "pages/InvestmentRecords"
+    }
+    ,
+    {
+      "path": "pages/InvestmentDetails"
+    }
+    ,
+    {
+      "path": "pages/RevenueRecords"
+    }
+    ,
+    {
+      "path": "pages/RechargeRecord"
+    }
     ],
   "tabBar": {
     "color": "#cfcfcf",

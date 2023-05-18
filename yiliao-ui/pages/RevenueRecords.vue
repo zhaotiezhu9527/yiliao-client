@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<van-nav-bar
-			title="资金明细"
+			title="收益记录"
 			left-arrow
 			:border="false"
 			fixed
@@ -12,17 +12,16 @@
 		<view class="wrap">
 			<table class="table-data">
 				<tr>
-					<th>摘要</th>
-					<th class="table-money">金额</th>
-					<th>时间</th>
+					<th>项目名称</th>
+					<th width="20%">收益时间</th>
+					<th width="18%">收益金额</th>
+					<th width="10%">状态</th>
 				</tr>
 				<tr>
 					<td>每日签到，获得奖励2元</td>
-					<td class="table-money">
-						<!-- <label class="green-text">+2</label> -->
-						<label class="red-text">-2</label>
-					</td>
-					<td class="table-time">2023-05-18 12:28:10</td>
+					<td class="text-left">2023-05-18 12:28:10</td>
+					<td>319020</td>
+					<td class="text-left">已完成</td>
 				</tr>
 			</table>
 		</view>
@@ -55,22 +54,8 @@
 			text-align: center;
 		}
 		th,td{
-			border-right: 1px solid #eee;
-			border-bottom: 1px solid #eee;
-		}
-		.table-money{
-			width: 20%;
-			.green-text{
-				color: green;
-			}
-			.red-text{
-				color: red;
-			}
-		}
-		.table-time{
-			width: 20%;
-			text-align: left;
-			padding: 16upx 4upx;
+			border-right: 1px solid #bbb;
+			border-bottom: 1px solid #bbb;
 		}
 	}
 }

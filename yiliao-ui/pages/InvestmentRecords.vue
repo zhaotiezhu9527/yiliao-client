@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<van-nav-bar
-			title="资金明细"
+			title="投资记录"
 			left-arrow
 			:border="false"
 			fixed
@@ -12,17 +12,25 @@
 		<view class="wrap">
 			<table class="table-data">
 				<tr>
-					<th>摘要</th>
-					<th class="table-money">金额</th>
-					<th>时间</th>
+					<th>项目名称</th>
+					<th class="table-money">投资金额</th>
+					<th>状态</th>
+					<th>详情</th>
+					<th>合同</th>
 				</tr>
 				<tr>
 					<td>每日签到，获得奖励2元</td>
 					<td class="table-money">
 						<!-- <label class="green-text">+2</label> -->
-						<label class="red-text">-2</label>
+						<label class="red-text">30000</label>
 					</td>
-					<td class="table-time">2023-05-18 12:28:10</td>
+					<td class="table-time">已完成</td>
+					<td class="table-btn">
+						<label class="blue-text" @click="goInvestmentDetails">查看</label>
+					</td>
+					<td class="table-btn">
+						<label class="grey-text">查看</label>
+					</td>
 				</tr>
 			</table>
 		</view>
@@ -37,7 +45,11 @@
 			}
 		},
 		methods: {
-			
+			goInvestmentDetails(){
+				uni.navigateTo({
+					url: "/pages/InvestmentDetails",
+				});
+    		}
 		}
 	}
 </script>
@@ -59,7 +71,7 @@
 			border-bottom: 1px solid #eee;
 		}
 		.table-money{
-			width: 20%;
+			width: 18%;
 			.green-text{
 				color: green;
 			}
@@ -68,9 +80,22 @@
 			}
 		}
 		.table-time{
-			width: 20%;
-			text-align: left;
+			width: 13%;
 			padding: 16upx 4upx;
+		}
+		.table-btn{
+			label{
+				font-size: 12px;
+				padding: 5px 5px;
+				color: #fff;
+				border-radius: 5px;
+			}
+			.grey-text{
+				background-color: #567da8;
+			}
+			.blue-text{
+				background-color: #4994ec;
+			}
 		}
 	}
 }
