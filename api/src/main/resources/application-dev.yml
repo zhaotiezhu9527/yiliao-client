@@ -16,4 +16,5 @@ spring:
 login:
   auth:
     urls:
-      - /sys/config
+      - /user/register
+      - /user/login
