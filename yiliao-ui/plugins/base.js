@@ -149,33 +149,6 @@ export const BackPage = (url) => {
   });
 };
 
-<<<<<<< HEAD
-const authorityPage = (that) => {
-  return new Promise((resolve, reject) => {
-    const WHILE_LIST = [
-      "/",
-      "/pages/index",
-      "/pages/trades",
-      "/pages/about",
-      "/pages/contact",
-      "/pages/register",
-      "/pages/setloginpwd",
-      "/pages/info",
-    ];
-    let path = that.$route.path;
-    let token = uni.getStorageSync("token");
-    // if (!WHILE_LIST.includes(path) && !token) {
-    //   uni.redirectTo({
-    //     url: "/pages/login",
-    //   });
-    // } else {
-    //   resolve();
-    // }
-  });
-};
-
-=======
->>>>>>> 98f75e66caafbc62efd118920ff167fa898c0a8a
 const gettimeFn = (value) => {
   return value < 10 ? "0" + value : value;
 };
