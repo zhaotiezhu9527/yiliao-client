@@ -71,14 +71,18 @@
 			</table>
 			<view class="date">
 				<view class="date-left">
-					<view>甲方：李建波</view>
+					<view class="marginBottom30">甲方：李建波</view>
 					<view>2023-05-18 12:28:10</view>
 				</view>
 				<view class="date-right">
-					<view>乙方：安徽安科生物工程（集团）股份有限公司</view>
+					<view class="marginBottom30">乙方：安徽安科生物工程（集团）股份有限公司</view>
 					<view>2023-05-18 12:28:10</view>
 					<canvas cancas-id="firstCanvas" id="firstCanvas" :style="{width: canvasW + 'px', height: canvasH + 'px'}"></canvas>
 				</view>
+			</view>
+			<view class="about">
+				<view>丙方：中国人民财产保险股份有限公司</view>
+				<canvas cancas-id="secondCanvas" id="secondCanvas" :style="{width: canvasW + 'px', height: canvasH + 'px'}"></canvas>
 			</view>
 		</view>
 	</view>
@@ -88,48 +92,48 @@
 	export default {
 		data() {
 			return {
-				canvasW:200,
-				canvasH:200,
+				canvasW:100,
+				canvasH:100,
 			}
 		},
 		onShow(){
 			
 		},
 		mounted(){
-			// this.$nextTick(()=>{
-			// 	this.createSeal('江西省晨尚科技有限公司','测试专用章')
-			// })
-			this.createSeal('江西省晨尚科技有限公司','测试专用章')
+			this.$nextTick(()=>{
+				this.createSeal('firstCanvas','安徽安科生物股份有限公司','安科生物')
+				this.createSeal('secondCanvas','中国人民财产保险股份有限公司','')
+			})
 		},
 		methods: {
 			//画章
-			createSeal(company,name){
-				const canvas = document.getElementById('firstCanvas').childNodes[0]
+			createSeal(id,company,name){
+				const canvas = document.getElementById(id).childNodes[0]
 				var context = canvas.getContext('2d');
 				
 				// 绘制印章边框   
-				var width=100;
-				var height=100;
-				context.lineWidth=2;
+				var width=50;
+				var height=50;
+				context.lineWidth=1;
 				context.strokeStyle="#f00";
 				context.beginPath();
-				context.arc(width,height,90,0,Math.PI*2);
+				context.arc(width,height,45,0,Math.PI*2);
 				context.stroke();
 
 				//画五角星
 				this.create5star(context,width,height,10,"#f00",0);
 
 				// 绘制印章名称   
-				context.font = '14px Helvetica';
+				context.font = '10px Helvetica';
 				context.textBaseline = 'middle';//设置文本的垂直对齐方式
 				context.textAlign = 'center'; //设置文本的水平对对齐方式
 				context.lineWidth=1;
 				context.fillStyle = '#f00';
-				context.fillText(name,width,height+65);
+				context.fillText(name,width,height+25);
 
 				// 绘制印章单位   
-				context.translate(100,100);// 平移到此位置,
-				context.font = '20px Helvetica'
+				context.translate(50,50);// 平移到此位置,
+				context.font = '10px Helvetica'
 				var count = company.length;// 字数   
 				var angle = 4*Math.PI/(3*(count - 1));// 字间角度   
 				var chars = company.split("");   
@@ -141,17 +145,16 @@
 					else
 					context.rotate(angle);
 					context.save(); 
-					context.translate(90, 0);// 平移到此位置,此时字和x轴垂直   
+					context.translate(50, 0);// 平移到此位置,此时字和x轴垂直   
 					context.rotate(Math.PI/2);// 旋转90度,让字平行于x轴   
-					context.fillText(c,0, 20);// 此点为字的中心点   
+					context.fillText(c,0, 15);// 此点为字的中心点   
 					context.restore();             
 				}
-				this.create5star(context,width,height,30,"#f00",0);
 			},
 			create5star	(context,sx,sy,radius,color,rotato)	{
 				context.save();  
 				context.fillStyle=color;  
-				context.translate(100,100);//移动坐标原点  
+				context.translate(sx,sy);//移动坐标原点  
 				context.rotate(Math.PI+rotato);//旋转  
 				context.beginPath();//创建路径  
 				var x = Math.sin(0);  
@@ -225,17 +228,29 @@
 	}
 	.date{
 		display: flex;
+		margin-top: 70upx;
+		font-size: 28upx;
+		align-items: center;
 		.date-left{
 			flex: 1;
 		}
 		.date-right{
 			flex: 1;
-			// position: relative;
-			// #canvas{
-			// 	position: absolute;
-			// 	top: 0;
-			// 	right: 0;
-			// }
+			position: relative;
+			#firstCanvas{
+				position: absolute;
+				top: -30upx;
+				right: 50upx;
+			}
+		}
+	}
+	.about{
+		position: relative;
+		margin-top: 50upx;
+		#secondCanvas{
+			position: absolute;
+			top: -50upx;
+			left: 40upx;
 		}
 	}
 }
