@@ -34,6 +34,11 @@
       <!-- 列表 -->
       <view class="list">
         <view class="list-item">
+          <image class="icon-img" src="../static/img/okx_app_icon.png" />
+          <label>欧易安卓下载</label>
+          <view class="icon"></view>
+        </view>
+        <view class="list-item">
           <image class="icon-img" src="../static/img/bian_app_icon.png" />
           <label>币安安卓下载</label>
           <view class="icon"></view>
