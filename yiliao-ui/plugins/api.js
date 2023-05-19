@@ -1,5 +1,5 @@
 import Vue from "vue";
-import base from "./base.js";
+import * as base from "plugins/base.js";
 Vue.prototype.$base = base;
 //统一API资源管理
 
