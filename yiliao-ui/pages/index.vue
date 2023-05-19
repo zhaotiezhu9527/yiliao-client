@@ -30,6 +30,7 @@
           color="#ffffff"
           background="#e15241"
           left-icon="volume-o"
+          scrollable
           text="安科生物欢迎您！"
         />
       </view>
