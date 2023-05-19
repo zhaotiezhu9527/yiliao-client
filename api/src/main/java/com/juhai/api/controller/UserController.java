@@ -15,12 +15,12 @@ import com.juhai.api.controller.request.PageBaseRequest;
 import com.juhai.api.controller.request.UserRegisterRequest;
 import com.juhai.api.utils.JwtUtils;
 import com.juhai.commons.constants.Constant;
-import com.juhai.commons.entity.Account;
-import com.juhai.commons.entity.Order;
-import com.juhai.commons.entity.User;
-import com.juhai.commons.entity.UserLog;
+import com.juhai.commons.entity.*;
 import com.juhai.commons.service.*;
-import com.juhai.commons.utils.*;
+import com.juhai.commons.utils.MsgUtil;
+import com.juhai.commons.utils.PageUtils;
+import com.juhai.commons.utils.R;
+import com.juhai.commons.utils.RedisKeyUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +41,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Api(value = "用户相关", tags = "用户")
@@ -64,6 +62,12 @@ public class UserController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private DepositService depositService;
+
+    @Autowired
+    private WithdrawService withdrawService;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -297,11 +301,118 @@ public class UserController {
         List<Account> list = (List<Account>) page.getList();
         if (CollUtil.isNotEmpty(list)) {
             JSONArray arr = new JSONArray();
-            for (Account withdraw : list) {
+            for (Account temp : list) {
                 JSONObject obj = new JSONObject();
-                obj.put("remark", withdraw.getRemark());
-                obj.put("amount", withdraw.getOptAmount());
-                obj.put("optTime", withdraw.getOptTime());
+                obj.put("remark", temp.getRemark());
+                obj.put("amount", temp.getOptAmount());
+                obj.put("optTime", temp.getOptTime());
+                arr.add(obj);
+            }
+            page.setList(arr);
+        }
+        return R.ok().put("page", page);
+    }
+
+    @ApiOperation(value = "用户投资记录列表")
+    @GetMapping("/invest/list")
+    public R investList(PageBaseRequest request, HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put(Constant.PAGE, request.getPage());
+        params.put(Constant.LIMIT, request.getLimit());
+        params.put("userName", userName);
+
+        PageUtils page = orderService.queryPage(params);
+        List<Order> list = (List<Order>) page.getList();
+        if (CollUtil.isNotEmpty(list)) {
+            JSONArray arr = new JSONArray();
+            for (Order temp : list) {
+                JSONObject obj = new JSONObject();
+                obj.put("projectName", temp.getProjectName());
+                obj.put("amount", temp.getAmount());
+                obj.put("status", temp.getStatus());
+                arr.add(obj);
+            }
+            page.setList(arr);
+        }
+        return R.ok().put("page", page);
+    }
+
+    @ApiOperation(value = "用户收益记录列表")
+    @GetMapping("/profit/list")
+    public R profitList(PageBaseRequest request, HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put(Constant.PAGE, request.getPage());
+        params.put(Constant.LIMIT, request.getLimit());
+        params.put("userName", userName);
+        params.put("status", 1);
+
+        PageUtils page = orderService.queryPage(params);
+        List<Order> list = (List<Order>) page.getList();
+        if (CollUtil.isNotEmpty(list)) {
+            JSONArray arr = new JSONArray();
+            for (Order temp : list) {
+                JSONObject obj = new JSONObject();
+                obj.put("projectName", temp.getProjectName());
+                obj.put("returnTime", temp.getActualReturnTime());
+                obj.put("status", temp.getStatus());
+                obj.put("amount", NumberUtil.add(temp.getAmount(), temp.getActualReturnAmount()));
+                arr.add(obj);
+            }
+            page.setList(arr);
+        }
+        return R.ok().put("page", page);
+    }
+
+    @ApiOperation(value = "用户充值记录列表")
+    @GetMapping("/deposit/list")
+    public R depositList(PageBaseRequest request, HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put(Constant.PAGE, request.getPage());
+        params.put(Constant.LIMIT, request.getLimit());
+        params.put("userName", userName);
+
+        PageUtils page = depositService.queryPage(params);
+        List<Deposit> list = (List<Deposit>) page.getList();
+        if (CollUtil.isNotEmpty(list)) {
+            JSONArray arr = new JSONArray();
+            for (Deposit temp : list) {
+                JSONObject obj = new JSONObject();
+                obj.put("typeStr", "系统充值");
+                obj.put("time", temp.getOptTime());
+                obj.put("status", temp.getStatus());
+                obj.put("amount", temp.getOptAmount());
+                arr.add(obj);
+            }
+            page.setList(arr);
+        }
+        return R.ok().put("page", page);
+    }
+
+    @ApiOperation(value = "用户提现记录列表")
+    @GetMapping("/withdraw/list")
+    public R withdrawList(PageBaseRequest request, HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put(Constant.PAGE, request.getPage());
+        params.put(Constant.LIMIT, request.getLimit());
+        params.put("userName", userName);
+
+        PageUtils page = withdrawService.queryPage(params);
+        List<Withdraw> list = (List<Withdraw>) page.getList();
+        if (CollUtil.isNotEmpty(list)) {
+            JSONArray arr = new JSONArray();
+            for (Withdraw temp : list) {
+                JSONObject obj = new JSONObject();
+                obj.put("time", temp.getOptTime());
+                obj.put("status", temp.getStatus());
+                obj.put("amount", temp.getOptAmount());
                 arr.add(obj);
             }
             page.setList(arr);
