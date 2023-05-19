@@ -12,12 +12,10 @@ import com.juhai.api.controller.request.LoginRequest;
 import com.juhai.api.controller.request.UserRegisterRequest;
 import com.juhai.api.utils.JwtUtils;
 import com.juhai.commons.entity.Account;
+import com.juhai.commons.entity.Order;
 import com.juhai.commons.entity.User;
 import com.juhai.commons.entity.UserLog;
-import com.juhai.commons.service.AccountService;
-import com.juhai.commons.service.ParamterService;
-import com.juhai.commons.service.UserLogService;
-import com.juhai.commons.service.UserService;
+import com.juhai.commons.service.*;
 import com.juhai.commons.utils.MsgUtil;
 import com.juhai.commons.utils.R;
 import com.juhai.commons.utils.RedisKeyUtil;
@@ -39,6 +37,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -61,6 +60,9 @@ public class UserController {
     private AccountService accountService;
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private StringRedisTemplate redisTemplate;
 
     @ApiOperation(value = "用户信息")
@@ -81,10 +83,30 @@ public class UserController {
         temp.put("bankAddr", user.getBankAddr());
         temp.put("userLevelName", "普通用户");
         temp.put("isRealName", user.getIsRealName());
+        temp.put("integral", 0);
+
+        List<Order> list = orderService.list(
+                new LambdaQueryWrapper<Order>()
+                        .select(Order::getAmount)
+                        .eq(Order::getUserName, userName)
+                        .eq(Order::getStatus, 0)
+        );
+        // 待回收利息
+        BigDecimal waitReturnInterest = new BigDecimal(0);
+        // 待回收本金
+        BigDecimal waitReturnPrincipal = new BigDecimal(0);
+        for (Order order : list) {
+            waitReturnInterest = NumberUtil.add(waitReturnInterest, order.getForecastReturnAmount());
+            waitReturnPrincipal = NumberUtil.add(waitReturnPrincipal, order.getAmount());
+        }
+        
+        temp.put("waitReturnInterest", waitReturnInterest);
+        temp.put("waitReturnPrincipal", waitReturnPrincipal);
+
         return R.ok().put("data", temp);
     }
 
-    @Transactional
+//    @Transactional
     @ApiOperation(value = "用户签到")
     @GetMapping("/sign")
     public R sign(HttpServletRequest httpServletRequest) throws Exception {
@@ -122,9 +144,10 @@ public class UserController {
                 // 设置为今日已签到
                 redisTemplate.opsForValue().set(signKey, "sign", 1, TimeUnit.DAYS);
             }
+            return R.ok(MsgUtil.get("system.user.sign.success"));
         }
         redisTemplate.delete(key);
-        return R.ok(MsgUtil.get("system.user.sign.success"));
+        return R.error(MsgUtil.get("system.user.sign.exist"));
     }
 
     @ApiOperation(value = "注册")

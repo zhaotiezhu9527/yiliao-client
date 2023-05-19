@@ -47,6 +47,16 @@
     },
     {
       "path": "pages/RealName"
+    },
+    {
+      "path": "pages/BindUSDT"
+    },
+    {
+      "path": "pages/BindBank"
+    }
+    ,
+    {
+      "path": "pages/AccountSafe"
     }
     ],
   "tabBar": {
