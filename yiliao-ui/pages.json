@@ -38,6 +38,32 @@
     },
     {
       "path": "pages/RealName"
+    },
+    {
+      "path": "pages/BindUSDT"
+    },
+    {
+      "path": "pages/BindBank"
+    }
+    ,
+    {
+      "path": "pages/AccountSafe"
+    }
+    ,
+    {
+      "path": "pages/ChangeLoginPassword"
+    }
+    ,
+    {
+      "path": "pages/ModifyPaymentPassword"
+    }
+    ,
+    {
+      "path": "pages/contract"
+    }
+    ,
+    {
+      "path": "pages/withdraw"
     }
   ],
   "tabBar": {

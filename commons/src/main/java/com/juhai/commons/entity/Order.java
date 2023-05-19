@@ -118,6 +118,12 @@ public class Order implements Serializable {
     @TableField(value = "user_agent")
     private String userAgent;
 
+    /**
+     * 订单时间
+     */
+    @TableField(value = "order_time")
+    private Date orderTime;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

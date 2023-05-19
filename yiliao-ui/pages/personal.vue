@@ -29,10 +29,15 @@
       <!-- 按钮 -->
       <view class="button-box">
         <van-button class="button-class">充值</van-button>
-        <van-button class="button-class">提现</van-button>
+        <van-button class="button-class" @click="goWithdraw">提现</van-button>
       </view>
       <!-- 列表 -->
       <view class="list">
+        <view class="list-item">
+          <image class="icon-img" src="../static/img/okx_app_icon.png" />
+          <label>欧易安卓下载</label>
+          <view class="icon"></view>
+        </view>
         <view class="list-item">
           <image class="icon-img" src="../static/img/bian_app_icon.png" />
           <label>币安安卓下载</label>
@@ -75,12 +80,12 @@
         </view>
       </view>
       <view class="list">
-        <view class="list-item">
+        <view class="list-item" @click="goAccountSafe">
           <image class="icon-img" src="../static/img/mine_func_anquan.png" />
           <label>账户安全</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goBindBank">
           <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
           <label>银行卡绑定</label>
           <view class="icon"></view>
@@ -90,10 +95,9 @@
           <label>实名认证</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goBindUSDT">
           <image class="icon-img" src="../static/img/mine_func_usdt.png" />
           <label>USDT绑定地址</label>
-          <!-- <image class="icon" src="../static/img/bian_app_icon.png" /> -->
           <view class="icon"></view>
         </view>
       </view>
@@ -189,6 +193,26 @@ export default {
       uni.navigateTo({
         url: "/pages/RealName",
       });
+    },
+    goBindUSDT(){
+      uni.navigateTo({
+        url: "/pages/BindUSDT",
+      });
+    },
+    goBindBank(){
+      uni.navigateTo({
+        url: "/pages/BindBank",
+      });
+    },
+    goAccountSafe(){
+      uni.navigateTo({
+        url: "/pages/AccountSafe",
+      });
+    },
+    goWithdraw(){
+      uni.navigateTo({
+        url: "/pages/withdraw",
+      });
     }
   },
 };
@@ -271,7 +295,7 @@ export default {
       align-items: center;
       vertical-align: middle;
       font-size: 24upx;
-      font-weight: 600;
+      font-weight: 800;
       height: 116upx;
       margin: 0 30upx;
       border-bottom: 1px solid #eee;
