@@ -10,7 +10,6 @@ const WHILE_LIST = [
   "/pages/index",
   "/pages/investor",
   "/pages/about",
-  "/pages/contact",
   "/pages/register",
   "/pages/login",
 ];
@@ -36,7 +35,7 @@ Vue.use(Vant);
 
 import * as base from "plugins/base.js";
 import * as api from "plugins/api.js";
-import store from "plugins/store.js";
+import * as store from "plugins/store.js";
 
 Vue.prototype.$api = api;
 Vue.prototype.$base = base;
@@ -51,7 +50,4 @@ const app = new Vue({
 });
 // #ifdef H5
 app.$mount();
-// #endif
-// #ifndef H5
-app.$mount(); //为了兼容小程序及app端必须这样写才有效果
 // #endif

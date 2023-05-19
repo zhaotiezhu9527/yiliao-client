@@ -1,6 +1,6 @@
 import { metadata, PhoneNumberUtil } from "google-libphonenumber";
 import Vue from "vue";
-import store from "plugins/store.js";
+import * as store from "plugins/store.js";
 Vue.prototype.$store = store;
 export const phone = (value) => {
   try {
@@ -10,7 +10,7 @@ export const phone = (value) => {
     let keys = [];
     const CODEMAP = metadata.countryCodeToRegionCodeMap;
     Object.keys(CODEMAP).forEach((item) => {
-      if (item == store.code) {
+      if (item === store.code) {
         keys = CODEMAP[item];
       }
     });
@@ -73,7 +73,7 @@ export const request = (params) => {
   let str = params.method.toUpperCase();
   if (str == "POST") {
     params.header = {
-      lang: "en_US",
+      // lang: "en_US",
       "Content-Type":
         params["Content-Type"] === undefined
           ? "application/x-www-form-urlencoded;charset=UTF-8"
@@ -82,7 +82,7 @@ export const request = (params) => {
     };
   } else {
     params.header = {
-      lang: "en_US",
+      // lang: "en_US",
       token: uni.getStorageSync("token"),
     };
   }
@@ -117,7 +117,7 @@ export const request = (params) => {
         resolve(res);
       },
       fail: () => {
-        show("Network exceptions Exist.");
+        show("存在网络异常");
       },
     });
   });
@@ -146,6 +146,27 @@ export const BackPage = (url) => {
   }
   uni.switchTab({
     url: "/pages/index",
+  });
+};
+export const authorityPage = (that) => {
+  return new Promise((resolve, reject) => {
+    const WHILE_LIST = [
+      "/",
+      "/pages/index",
+      "/pages/investor",
+      "/pages/about",
+      "/pages/register",
+      "/pages/login",
+    ];
+    let path = that.$route.path;
+    let token = uni.getStorageSync("token");
+    if (!WHILE_LIST.includes(path) && !token) {
+      uni.redirectTo({
+        url: "/pages/login",
+      });
+    } else {
+      resolve();
+    }
   });
 };
 

@@ -1,6 +1,12 @@
 <template>
   <view class="page">
-    <van-nav-bar title="个人中心" :border="false" fixed safe-area-inset-top>
+    <van-nav-bar
+      placeholder
+      title="个人中心"
+      :border="false"
+      fixed
+      safe-area-inset-top
+    >
     </van-nav-bar>
     <view class="wrap">
       <!-- 头部 -->
@@ -9,12 +15,8 @@
           <label>我的账户：test08</label>
           <label>用户登记：普通会员</label>
         </view>
-        <view class="head-money">
-          319022
-        </view>
-        <view class="head-integral">
-          账户余额（元）账户积分（0）
-        </view>
+        <view class="head-money"> 319022 </view>
+        <view class="head-integral"> 账户余额（元）账户积分（0） </view>
       </view>
       <view class="money">
         <view class="interest">
@@ -159,82 +161,80 @@ export default {
     };
   },
   onTabItemTap(e) {
+    // this.$base.authorityPage(this);
   },
-  onLoad() {
-    
-  },
+  onLoad() {},
   methods: {
     goFundDetails() {
       uni.navigateTo({
         url: "/pages/fundDetails",
       });
     },
-    goInvestmentRecords(){
+    goInvestmentRecords() {
       uni.navigateTo({
         url: "/pages/InvestmentRecords",
       });
     },
-    goRevenueRecords(){
+    goRevenueRecords() {
       uni.navigateTo({
         url: "/pages/RevenueRecords",
       });
     },
-    goRechargeRecord(){
+    goRechargeRecord() {
       uni.navigateTo({
         url: "/pages/RechargeRecord",
       });
     },
-    goWithdrawalRecords(){
+    goWithdrawalRecords() {
       uni.navigateTo({
         url: "/pages/WithdrawalRecords",
       });
     },
-    goRealName(){
+    goRealName() {
       uni.navigateTo({
         url: "/pages/RealName",
       });
     },
-    goBindUSDT(){
+    goBindUSDT() {
       uni.navigateTo({
         url: "/pages/BindUSDT",
       });
     },
-    goBindBank(){
+    goBindBank() {
       uni.navigateTo({
         url: "/pages/BindBank",
       });
     },
-    goAccountSafe(){
+    goAccountSafe() {
       uni.navigateTo({
         url: "/pages/AccountSafe",
       });
     },
-    goWithdraw(){
+    goWithdraw() {
       uni.navigateTo({
         url: "/pages/withdraw",
       });
-    }
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
 .wrap {
-  padding-top: 104upx;
   background-color: #f8f8f9;
   padding-bottom: 40upx;
-  .head{
+  .head {
     height: 258upx;
     background-image: linear-gradient(#759dd6, #5d80b9);
     color: #fff;
-    .head-text{
+    .head-text {
       padding: 16upx;
       font-size: 26upx;
-      label{
+      label {
         margin-right: 20upx;
       }
     }
-    .head-money{
+    .head-money {
       width: 100%;
       font-size: 60upx;
       line-height: 60upx;
@@ -242,13 +242,13 @@ export default {
       font-weight: 600;
       margin-top: 5px;
     }
-    .head-integral{
+    .head-integral {
       width: 100%;
       text-align: center;
       margin-top: 20px;
     }
   }
-  .money{
+  .money {
     width: 100%;
     height: 90upx;
     background-color: #5874a9;
@@ -257,21 +257,21 @@ export default {
     align-items: center;
     vertical-align: middle;
     display: flex;
-    .interest{
+    .interest {
       border-right: 1px solid #ccc;
       flex: 1;
       text-align: center;
     }
-    .principal{
+    .principal {
       flex: 1;
       text-align: center;
     }
   }
-  .button-box{
+  .button-box {
     width: 100%;
     margin: auto;
     margin-top: 10upx;
-    .button-class{
+    .button-class {
       background-color: #5780ab;
       color: #fff;
       font-weight: blod;
@@ -283,14 +283,14 @@ export default {
       margin: 0 1%;
     }
   }
-  .list{
+  .list {
     width: 92%;
     margin: auto;
     background-color: #fff;
     border-radius: 20upx;
     margin-top: 24upx;
     color: #666;
-    .list-item{
+    .list-item {
       display: flex;
       align-items: center;
       vertical-align: middle;
@@ -299,23 +299,23 @@ export default {
       height: 116upx;
       margin: 0 30upx;
       border-bottom: 1px solid #eee;
-      &:last-child{
+      &:last-child {
         border: none;
       }
-      .icon-img{
+      .icon-img {
         width: 40upx;
         height: 40upx;
         margin-right: 20upx;
       }
-      label{
+      label {
         flex: 1;
       }
-      .icon{
+      .icon {
         width: 10px;
         height: 10px;
         position: relative;
-        &:after{
-          content: '';
+        &:after {
+          content: "";
           width: 8px;
           height: 8px;
           position: absolute;
@@ -323,13 +323,13 @@ export default {
           bottom: 5px;
           border-left: 2px solid #666;
           border-bottom: 2px solid #666;
-          transform: translate(0,50%) rotate(-135deg);
-          -webkit-transform: translate(0,50%) rotate(-135deg);
+          transform: translate(0, 50%) rotate(-135deg);
+          -webkit-transform: translate(0, 50%) rotate(-135deg);
         }
       }
     }
   }
-  .logout{
+  .logout {
     display: block;
     width: 92%;
     height: 84upx;

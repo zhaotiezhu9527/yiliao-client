@@ -1,6 +1,12 @@
 <template>
   <view class="page">
-    <van-nav-bar left-arrow :border="false" fixed safe-area-inset-top>
+    <van-nav-bar
+      placeholder
+      left-arrow
+      :border="false"
+      fixed
+      safe-area-inset-top
+    >
       <template #left><text class="title">安科生物</text></template>
     </van-nav-bar>
     <view class="wrap">
@@ -35,7 +41,12 @@
         />
       </view>
       <view class="list">
-        <view class="view" v-for="(item, index) in 10" :key="index">
+        <view
+          class="view"
+          v-for="(item, index) in 10"
+          :key="index"
+          @click="routePath"
+        >
           <image class="img" src="../static/img/txt.jpg" mode="widthFix" />
           <view class="name">
             <text>保</text>
@@ -111,6 +122,11 @@ export default {
           url: path,
         });
       }
+    },
+    routePath() {
+      uni.navigateTo({
+        url: "/pages/info",
+      });
     },
   },
 };

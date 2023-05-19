@@ -4,6 +4,12 @@
       "path": "pages/index"
     },
     {
+      "path": "pages/content"
+    },
+    {
+      "path": "pages/info"
+    },
+    {
       "path": "pages/about"
     },
     {

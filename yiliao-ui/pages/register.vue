@@ -3,6 +3,7 @@
     <van-nav-bar
       left-arrow
       :border="false"
+      placeholder
       fixed
       safe-area-inset-top
       @click-left="$base.BackPage()"

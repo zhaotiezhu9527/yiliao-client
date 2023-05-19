@@ -1,6 +1,12 @@
 <template>
   <view class="page">
-    <van-nav-bar left-arrow :border="false" fixed safe-area-inset-top>
+    <van-nav-bar
+      placeholder
+      left-arrow
+      :border="false"
+      fixed
+      safe-area-inset-top
+    >
       <template #left><text class="title">登录</text></template>
     </van-nav-bar>
     <view class="wrap">
@@ -57,9 +63,9 @@ export default {
       });
     },
     login() {
-      if (this.userPhone === "") {
+      if (!this.userPhone) {
         return this.$base.show("请输入登录账号~");
-      } else if (this.password === "") {
+      } else if (!this.password) {
         return this.$base.show("请输入登录密码~");
       }
       const DATA_OBJ = {

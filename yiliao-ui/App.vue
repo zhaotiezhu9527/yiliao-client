@@ -1,6 +1,8 @@
 <script>
 export default {
-  onLaunch: function () {},
+  onLaunch: function () {
+    this.$base.authorityPage(this);
+  },
   onShow: function () {},
   onHide: function () {},
 };
@@ -8,9 +10,6 @@ export default {
 <style>
 /*每个页面公共css */
 @import url("./node_modules/vant/lib/index.css");
-.wrap {
-  padding-top: 92upx;
-}
 .van-field__control {
   font-size: 28upx;
 }
@@ -19,6 +18,7 @@ export default {
 }
 .van-nav-bar {
   background: #4b80af;
+  z-index: 1024;
 }
 .van-nav-bar__title,
 .van-nav-bar .van-icon {
