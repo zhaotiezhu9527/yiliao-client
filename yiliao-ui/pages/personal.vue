@@ -6,11 +6,11 @@
       <!-- 头部 -->
       <view class="head">
         <view class="head-text">
-          <label>我的账户：test08</label>
-          <label>用户登记：普通会员</label>
+          <label>我的账户：{{ userdata.userName }}</label>
+          <label>用户登记：{{ userdata.userLevelName }}</label>
         </view>
         <view class="head-money">
-          319022
+          {{ userdata.balance }}
         </view>
         <view class="head-integral">
           账户余额（元）账户积分（0）
@@ -18,11 +18,11 @@
       </view>
       <view class="money">
         <view class="interest">
-          <view>0</view>
+          <view>{{ userdata.waitReturnInterest }}</view>
           <view>待收利息（元）</view>
         </view>
         <view class="principal">
-          <view>0</view>
+          <view>{{ userdata.waitReturnPrincipal }}</view>
           <view>待收本金（元）</view>
         </view>
       </view>
@@ -48,7 +48,7 @@
           <label>火币APP下载</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="sign">
           <image class="icon-img" src="../static/img/mine_func_qiandao.png" />
           <label>每日签到</label>
           <view class="icon"></view>
@@ -102,57 +102,24 @@
         </view>
       </view>
       <!-- 退出登录 -->
-      <van-button class="logout">退出登录</van-button>
+      <van-button class="logout" @click="logout">退出登录</van-button>
     </view>
   </view>
 </template>
 
 <script>
+import { Dialog } from 'vant'
 export default {
   data() {
     return {
-      list: [
-        {
-          name: "Notice",
-          path: "/pages/notice",
-          icon: "d12",
-        },
-        {
-          name: "Account details",
-          path: "/pages/accountDetails",
-          icon: "d10",
-        },
-        {
-          name: "My investment",
-          path: "/pages/investment",
-          icon: "d9",
-        },
-        {
-          name: "Interest statement",
-          path: "/pages/interest",
-          icon: "d8",
-        },
-        {
-          name: "Fund flow",
-          path: "/pages/fundRecord",
-          icon: "d7",
-        },
-        {
-          name: "Membership program",
-          path: "/pages/memberPlan",
-          icon: "d6",
-        },
-        {
-          name: "Change password",
-          path: "/pages/set",
-          icon: "d5",
-        },
-        {
-          name: "Withdraw wallet address",
-          path: "/pages/usdtadd",
-          icon: "d4",
-        },
-      ],
+      userdata:{
+        userName: '',//用户名
+        userLevelName: '',//会员等级
+        balance:'',//余额
+        integral:'',//积分
+        waitReturnInterest:'',//待收利息
+        waitReturnPrincipal:'',//待收本金
+      },
       loading: false,
       items: {},
       pwd: "",
@@ -160,8 +127,8 @@ export default {
   },
   onTabItemTap(e) {
   },
-  onLoad() {
-    
+  onShow() {
+    this.getInfo()
   },
   methods: {
     goFundDetails() {
@@ -213,8 +180,47 @@ export default {
       uni.navigateTo({
         url: "/pages/withdraw",
       });
+    },
+    // 退出登陆
+    logout(){
+      Dialog.confirm({
+        title: '退出登陆',
+        message: '你确定退出吗？',
+      })
+      .then(() => {
+        // on confirm
+        this.$api.user_logout().then((res) => {
+          if (res.data.code == 0) {
+            uni.navigateTo({ url: "/pages/login" });
+          }
+        });
+      })
+      .catch(() => {
+        // on cancel
+      });
+    },
+    //用户列表数据
+    getInfo(){
+      this.$api.user_info().then((res) => {
+        if (res.data.code == 0) {
+          this.userdata = res.data.data
+        }
+      });
+    },
+    //每日签到
+    sign(){
+      this.$api.user_sign().then((res) => {
+        if (res.data.code == 0) {
+          this.$base.show(res.data.msg + "~");
+        }else{
+          this.$base.show(res.data.msg);
+        }
+      });
     }
   },
+  components: {
+    Dialog
+  }
 };
 </script>
 
