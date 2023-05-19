@@ -55,7 +55,7 @@
         </view>
         <view class="input">
           <van-field
-            v-model="password"
+            v-model="confirmLoginPwd"
             label="密码"
             type="password"
             placeholder="请确认登录密码"
@@ -71,7 +71,7 @@
         </view>
         <view class="input">
           <van-field
-            v-model="password"
+            v-model="payPwd"
             label="密码"
             type="password"
             placeholder="请输入支付密码"
@@ -87,7 +87,7 @@
         </view>
         <view class="input">
           <van-field
-            v-model="password"
+            v-model="inviteCode"
             label="密码"
             type="number"
             placeholder="推荐人ID（必填）"
@@ -118,16 +118,45 @@ export default {
     return {
       password: "",
       userPhone: "",
-      areaCode: "",
       icon: "",
       show: false,
       columns: [],
       loading: false,
+      confirmLoginPwd:'',//确认登录密码
+      payPwd:'',//支付密码
+      inviteCode:'',//推荐人id
     };
   },
   onLoad() {},
   methods: {
-    login() {},
+    login() {
+      if (this.userPhone === "") {
+        return this.$base.show("请输入登录账号~");
+      } else if (this.password === "") {
+        return this.$base.show("请输入登录密码~");
+      } else if (this.password != this.confirmLoginPwd) {
+        return this.$base.show("两次输入密码不一致~");
+      } else if (this.payPwd === "") {
+        return this.$base.show("请输入支付密码~");
+      } else if (this.inviteCode === "") {
+        return this.$base.show("请输入推荐人ID~");
+      }
+      const DATA_OBJ = {
+        loginPwd: this.password,
+        userName: this.userPhone,
+        confirmLoginPwd: this.confirmLoginPwd,
+        payPwd: this.payPwd,
+        inviteCode: this.inviteCode,
+      };
+      this.loading = true;
+      this.$api.user_register(DATA_OBJ).then((res) => {
+        this.loading = false;
+        if (res.data.code == 0) {
+          this.$base.storage("token", res.data.token);
+          uni.switchTab({ url: "/pages/personal" });
+        }
+      });
+    },
     register() {
       uni.navigateTo({
         url: "/pages/login",

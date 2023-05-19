@@ -73,7 +73,7 @@ export const request = (params) => {
   let str = params.method.toUpperCase();
   if (str == "POST") {
     params.header = {
-      // lang: "en_US",
+      lang: "zh_CN",
       "Content-Type":
         params["Content-Type"] === undefined
           ? "application/x-www-form-urlencoded;charset=UTF-8"
@@ -82,7 +82,7 @@ export const request = (params) => {
     };
   } else {
     params.header = {
-      // lang: "en_US",
+      lang: "zh_CN",
       token: uni.getStorageSync("token"),
     };
   }
@@ -146,27 +146,6 @@ export const BackPage = (url) => {
   }
   uni.switchTab({
     url: "/pages/index",
-  });
-};
-export const authorityPage = (that) => {
-  return new Promise((resolve, reject) => {
-    const WHILE_LIST = [
-      "/",
-      "/pages/index",
-      "/pages/investor",
-      "/pages/about",
-      "/pages/register",
-      "/pages/login",
-    ];
-    let path = that.$route.path;
-    let token = uni.getStorageSync("token");
-    if (!WHILE_LIST.includes(path) && !token) {
-      uni.redirectTo({
-        url: "/pages/login",
-      });
-    } else {
-      resolve();
-    }
   });
 };
 

@@ -1,8 +1,6 @@
 <script>
 export default {
-  onLaunch: function () {
-    this.$base.authorityPage(this);
-  },
+  onLaunch: function () {},
   onShow: function () {},
   onHide: function () {},
 };
