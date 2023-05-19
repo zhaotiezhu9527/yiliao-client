@@ -48,7 +48,7 @@ export const loading = (title) => {
 // 西班牙
 const PATH_URL =
   process.env.NODE_ENV === "development"
-    ? "http://http://192.168.4.85:9522/"
+    ? "http://192.168.4.85:9522/"
     : "https://api.bambu.cc/";
 
 export const upload = (params) => {

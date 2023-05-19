@@ -32,3 +32,18 @@ export const product_buy = (data) => {
       });
   });
 };
+
+//登录
+export const user_login = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/login",
+        method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};

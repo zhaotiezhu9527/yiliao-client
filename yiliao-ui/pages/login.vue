@@ -61,18 +61,14 @@ export default {
       });
     },
     login() {
-      this.$store.code = this.areaCode;
-      if (this.areaCode === "") {
-        return this.$base.show("Please select a country");
-      } else if (!this.$base.phone(this.userPhone)) {
-        return this.$base.show("Please enter correctly Phone");
+      if (this.userPhone === "") {
+        return this.$base.show("请输入登录账号~");
       } else if (this.password === "") {
-        return this.$base.show("Please enter Password");
+        return this.$base.show("请输入登录密码~");
       }
       const DATA_OBJ = {
-        password: this.password,
-        userPhone: this.userPhone,
-        areaCode: this.areaCode,
+        loginPwd: this.password,
+        userName: this.userPhone,
       };
       this.loading = true;
       this.$api.user_login(DATA_OBJ).then((res) => {
