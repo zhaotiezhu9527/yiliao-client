@@ -24,14 +24,12 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -71,7 +69,7 @@ public class OrderController {
     @Transactional
     @ApiOperation(value = "下注")
     @PostMapping("/execute")
-    public R register(@Validated OrderRequest request, HttpServletRequest httpServletRequest) throws Exception {
+    public R execute(@Validated OrderRequest request, HttpServletRequest httpServletRequest) throws Exception {
         Date now = new Date();
 
         // 查询项目信息
@@ -91,6 +89,9 @@ public class OrderController {
         // 查询用户信息
         String userName = JwtUtils.getUserName(httpServletRequest);
         User user = userService.getUserByName(userName);
+        if (user.getIsRealName().intValue() == 1) {
+            return R.error(MsgUtil.get("system.order.realname"));
+        }
         if (user.getUserStatus().intValue() == 1) {
             return R.error(MsgUtil.get("system.user.enable"));
         }
@@ -123,6 +124,7 @@ public class OrderController {
         order.setActualReturnAmount(income);
         order.setStatus(0);
         order.setUserAgent(user.getUserAgent());
+        order.setOrderTime(now);
         orderService.save(order);
         // 添加流水记录
         Account account = new Account();
@@ -138,5 +140,40 @@ public class OrderController {
         account.setRemark("投资项目:" + project.getProjectName() + ",使用余额" + amount + "元");
         accountService.save(account);
         return R.ok();
+    }
+
+
+    @ApiOperation(value = "注单详情")
+    @GetMapping("/detail/{orderNo}")
+    public R detail(HttpServletRequest httpServletRequest, @PathVariable("orderNo") String orderNo) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+        Order order = orderService.getOne(
+                new LambdaQueryWrapper<Order>()
+                        .eq(Order::getOrderNo, orderNo)
+                        .eq(Order::getUserName, userName)
+        );
+        if (order == null) {
+            return R.error(MsgUtil.get("system.order.noorder"));
+        }
+
+        User user = userService.getUserByName(userName);
+        Map<String, String> params = paramterService.getAllParamByMap();
+
+        JSONObject obj = new JSONObject();
+        obj.put("orderNo", order.getOrderNo());
+        obj.put("userName", order.getUserName());
+        obj.put("projectName", order.getProjectName());
+        obj.put("realName", order.getRealName());
+        obj.put("amount", order.getAmount());
+        obj.put("incomeRate", order.getIncomeRate());
+        obj.put("limitTime", order.getLimitTime());
+        obj.put("forecastReturnAmount", order.getForecastReturnAmount());
+        obj.put("IdCardNo", user.getIdCard());
+        obj.put("orderTime", order.getOrderTime());
+        obj.put("returnTime", order.getForecastReturnTime());
+        obj.put("guaranteeCompany", params.get("guarantee_company"));
+        obj.put("ourCompany", params.get("our_company"));
+        obj.put("status", order.getStatus());
+        return R.ok().put("data", obj);
     }
 }

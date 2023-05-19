@@ -1,24 +1,26 @@
 package com.juhai.api.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.extra.servlet.ServletUtil;
+import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.api.controller.request.LoginRequest;
+import com.juhai.api.controller.request.PageBaseRequest;
 import com.juhai.api.controller.request.UserRegisterRequest;
 import com.juhai.api.utils.JwtUtils;
+import com.juhai.commons.constants.Constant;
 import com.juhai.commons.entity.Account;
 import com.juhai.commons.entity.Order;
 import com.juhai.commons.entity.User;
 import com.juhai.commons.entity.UserLog;
 import com.juhai.commons.service.*;
-import com.juhai.commons.utils.MsgUtil;
-import com.juhai.commons.utils.R;
-import com.juhai.commons.utils.RedisKeyUtil;
+import com.juhai.commons.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Api(value = "用户相关", tags = "用户")
@@ -278,5 +281,31 @@ public class UserController {
         /** 删除密码输入错误次数 **/
         redisTemplate.delete(incKey);
         return R.ok().put("token", token);
+    }
+
+    @ApiOperation(value = "用户资金流动列表")
+    @GetMapping("/account/list")
+    public R accountList(PageBaseRequest request, HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put(Constant.PAGE, request.getPage());
+        params.put(Constant.LIMIT, request.getLimit());
+        params.put("userName", userName);
+
+        PageUtils page = accountService.queryPage(params);
+        List<Account> list = (List<Account>) page.getList();
+        if (CollUtil.isNotEmpty(list)) {
+            JSONArray arr = new JSONArray();
+            for (Account withdraw : list) {
+                JSONObject obj = new JSONObject();
+                obj.put("remark", withdraw.getRemark());
+                obj.put("amount", withdraw.getOptAmount());
+                obj.put("optTime", withdraw.getOptTime());
+                arr.add(obj);
+            }
+            page.setList(arr);
+        }
+        return R.ok().put("page", page);
     }
 }
