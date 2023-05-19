@@ -294,7 +294,7 @@ export default {
       display: flex;
       align-items: center;
       vertical-align: middle;
-      font-size: 24upx;
+      font-size: 26upx;
       font-weight: 800;
       height: 116upx;
       margin: 0 30upx;
