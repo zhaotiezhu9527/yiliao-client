@@ -295,7 +295,7 @@ export default {
       align-items: center;
       vertical-align: middle;
       font-size: 24upx;
-      font-weight: 600;
+      font-weight: 800;
       height: 116upx;
       margin: 0 30upx;
       border-bottom: 1px solid #eee;
