@@ -2,6 +2,9 @@ package com.juhai.commons.service;
 
 import com.juhai.commons.entity.Deposit;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.juhai.commons.utils.PageUtils;
+
+import java.util.Map;
 
 /**
 * @author Administrator
@@ -10,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface DepositService extends IService<Deposit> {
 
+    PageUtils queryPage(Map<String,Object> params);
 }
