@@ -44,24 +44,19 @@
     },
     {
       "path": "pages/BindBank"
-    }
-    ,
+    },
     {
       "path": "pages/AccountSafe"
-    }
-    ,
+    },
     {
       "path": "pages/ChangeLoginPassword"
-    }
-    ,
+    },
     {
       "path": "pages/ModifyPaymentPassword"
-    }
-    ,
+    },
     {
       "path": "pages/contract"
-    }
-    ,
+    },
     {
       "path": "pages/withdraw"
     }
@@ -69,33 +64,33 @@
   "tabBar": {
     "color": "#666974",
     "selectedColor": "#4b80af",
-    "borderStyle": "white",
+    "borderStyle": "#eeeeee",
     "backgroundColor": "#ffffff",
     "fontSize": "10px",
-    "iconWidth": "16px",
+    "iconWidth": "20px",
     "list": [
       {
         "pagePath": "pages/index",
-        "iconPath": "./static/images/home.png",
-        "selectedIconPath": "./static/images/home_active.png",
+        "iconPath": "./static/img/index1.png",
+        "selectedIconPath": "./static/img/index.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/investor",
-        "iconPath": "./static/images/qian.png",
-        "selectedIconPath": "./static/images/qian_active.png",
+        "iconPath": "./static/img/money1.png",
+        "selectedIconPath": "./static/img/money.png",
         "text": "投资"
       },
       {
         "pagePath": "pages/about",
-        "iconPath": "./static/images/user.png",
-        "selectedIconPath": "./static/images/user_active.png",
+        "iconPath": "./static/img/find1.png",
+        "selectedIconPath": "./static/img/find.png",
         "text": "发现"
       },
       {
         "pagePath": "pages/personal",
-        "iconPath": "./static/images/kefu.png",
-        "selectedIconPath": "./static/images/kefu_active.png",
+        "iconPath": "./static/img/user1.png",
+        "selectedIconPath": "./static/img/user.png",
         "text": "我的"
       }
     ]

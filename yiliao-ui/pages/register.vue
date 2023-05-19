@@ -26,8 +26,14 @@
             v-model="userPhone"
             type="tel"
             placeholder="请输入注册账号"
-            label="账号"
           >
+            <template #label>
+              <image
+                class="img"
+                src="../static/img/user3.png"
+                mode="widthFix"
+              />
+            </template>
           </van-field>
         </view>
         <view class="input">
@@ -36,7 +42,15 @@
             label="密码"
             type="password"
             placeholder="请输入登录密码"
-          />
+          >
+            <template #label>
+              <image
+                class="img"
+                src="../static/img/pass2.png"
+                mode="widthFix"
+              />
+            </template>
+          </van-field>
         </view>
         <view class="input">
           <van-field
@@ -44,7 +58,15 @@
             label="密码"
             type="password"
             placeholder="请确认登录密码"
-          />
+          >
+            <template #label>
+              <image
+                class="img"
+                src="../static/img/pass2.png"
+                mode="widthFix"
+              />
+            </template>
+          </van-field>
         </view>
         <view class="input">
           <van-field
@@ -52,7 +74,15 @@
             label="密码"
             type="password"
             placeholder="请输入支付密码"
-          />
+          >
+            <template #label>
+              <image
+                class="img"
+                src="../static/img/money2.png"
+                mode="widthFix"
+              />
+            </template>
+          </van-field>
         </view>
         <view class="input">
           <van-field
@@ -60,7 +90,15 @@
             label="密码"
             type="number"
             placeholder="推荐人ID（必填）"
-          />
+          >
+            <template #label>
+              <image
+                class="img2"
+                src="../static/img/user2.png"
+                mode="widthFix"
+              />
+            </template>
+          </van-field>
         </view>
         <view class="btns">
           <van-button color="#4b80af" block @click="login" :loading="loading">
@@ -169,7 +207,16 @@ export default {
   .input {
     padding-top: 15upx;
   }
+  .img {
+    width: 44upx;
+  }
+  .img2 {
+    width: 40upx;
+  }
   /deep/.van-field__label {
+    width: 60upx;
+    display: flex;
+    justify-content: center;
     span {
       font-size: 32upx;
     }

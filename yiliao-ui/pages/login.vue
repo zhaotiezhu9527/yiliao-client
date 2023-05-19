@@ -46,10 +46,6 @@ export default {
     return {
       password: "",
       userPhone: "",
-      areaCode: "",
-      icon: "",
-      show: false,
-      columns: [],
       loading: false,
     };
   },
@@ -75,7 +71,6 @@ export default {
         this.loading = false;
         if (res.data.code == 0) {
           this.$base.storage("token", res.data.token);
-          this.$base.storage("areaCode", this.areaCode);
           uni.switchTab({ url: "/pages/personal" });
         }
       });
