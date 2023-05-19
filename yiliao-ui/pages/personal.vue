@@ -29,7 +29,7 @@
       <!-- 按钮 -->
       <view class="button-box">
         <van-button class="button-class">充值</van-button>
-        <van-button class="button-class">提现</van-button>
+        <van-button class="button-class" @click="goWithdraw">提现</van-button>
       </view>
       <!-- 列表 -->
       <view class="list">
@@ -202,6 +202,11 @@ export default {
     goAccountSafe(){
       uni.navigateTo({
         url: "/pages/AccountSafe",
+      });
+    },
+    goWithdraw(){
+      uni.navigateTo({
+        url: "/pages/withdraw",
       });
     }
   },
