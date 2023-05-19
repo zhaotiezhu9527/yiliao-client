@@ -104,7 +104,7 @@ export default {
         uni.switchTab({
           url: path,
         });
-      } else if (name === "计算机") {
+      } else if (name === "计算器") {
         this.$base.show("敬请期待！！！");
       } else if (name === "免费注册") {
         uni.navigateTo({
