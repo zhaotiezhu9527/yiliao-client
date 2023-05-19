@@ -75,12 +75,12 @@
         </view>
       </view>
       <view class="list">
-        <view class="list-item">
+        <view class="list-item" @click="goAccountSafe">
           <image class="icon-img" src="../static/img/mine_func_anquan.png" />
           <label>账户安全</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goBindBank">
           <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
           <label>银行卡绑定</label>
           <view class="icon"></view>
@@ -90,10 +90,9 @@
           <label>实名认证</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view class="list-item" @click="goBindUSDT">
           <image class="icon-img" src="../static/img/mine_func_usdt.png" />
           <label>USDT绑定地址</label>
-          <!-- <image class="icon" src="../static/img/bian_app_icon.png" /> -->
           <view class="icon"></view>
         </view>
       </view>
@@ -188,6 +187,21 @@ export default {
     goRealName(){
       uni.navigateTo({
         url: "/pages/RealName",
+      });
+    },
+    goBindUSDT(){
+      uni.navigateTo({
+        url: "/pages/BindUSDT",
+      });
+    },
+    goBindBank(){
+      uni.navigateTo({
+        url: "/pages/BindBank",
+      });
+    },
+    goAccountSafe(){
+      uni.navigateTo({
+        url: "/pages/AccountSafe",
       });
     }
   },

@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<van-nav-bar
-			title="实名认证"
+			title="绑定USDT地址"
 			left-arrow
 			:border="false"
 			fixed
@@ -10,15 +10,11 @@
 			>
 		</van-nav-bar>
 		<view class="wrap">
+			<view class="usdt-title">请输入USDT钱包地址</view>
 			<view class="from-input">
-				<label>姓名</label>
-				<input type="text" class="input-text" placeholder="请输入真实姓名"/>
+				<input type="text" class="input-text" placeholder="请输入USDT钱包地址"/>
 			</view>
-			<view class="from-input">
-				<label>身份证号码</label>
-				<input type="text" class="input-text" placeholder="请输入身份证号码"/>
-			</view>
-			<view class="btn-class">实名认证</view>
+			<view class="btn-class">提交绑定</view>
 		</view>
 	</view>
 </template>
@@ -37,18 +33,21 @@
 
 <style scoped lang="scss">
 .wrap{
-	padding-top: 204upx;
+	padding-top: 104upx;
+	.usdt-title{
+		margin: 60upx 50upx;
+		color: #577fab;
+		font-weight: 600;
+		font-size: 40upx;
+	}
 	.from-input{
 		margin: 40upx;
-		display: flex;
 		height: 90upx;
-		label{
-			width: 200upx;
-			margin-right: 20upx;
-		}
 		.input-text{
-			flex: 1;
-			text-align: right;
+			height: 64upx;
+			border-bottom: 1px solid #bbb;
+			font-size: 24upx;
+			font-weight: 600;
 		}
 	}
 }
