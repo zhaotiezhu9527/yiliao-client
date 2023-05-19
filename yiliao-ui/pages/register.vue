@@ -9,7 +9,7 @@
       @click-left="$base.BackPage()"
     >
       <template #left>
-        <van-icon name="arrow-left" />
+        <van-icon name="arrow-left" size="18" />
         <text class="title">注册</text>
       </template>
     </van-nav-bar>
@@ -122,9 +122,9 @@ export default {
       show: false,
       columns: [],
       loading: false,
-      confirmLoginPwd:'',//确认登录密码
-      payPwd:'',//支付密码
-      inviteCode:'',//推荐人id
+      confirmLoginPwd: "", //确认登录密码
+      payPwd: "", //支付密码
+      inviteCode: "", //推荐人id
     };
   },
   onLoad() {},

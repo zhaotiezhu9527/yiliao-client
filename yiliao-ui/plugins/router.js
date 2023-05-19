@@ -12,8 +12,6 @@ const WHILE_LIST = [
   "/pages/investor",
   "/pages/login",
   "/pages/about",
-  "/pages/info",
-  "/pages/content",
 ];
 //全局路由前置守卫
 router.beforeEach((to, from, next) => {

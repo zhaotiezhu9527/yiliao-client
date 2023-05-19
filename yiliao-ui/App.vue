@@ -20,6 +20,9 @@ export default {
   background: #4b80af;
   z-index: 1024;
 }
+.van-nav-bar__arrow {
+  font-size: 36upx;
+}
 .van-nav-bar__title,
 .van-nav-bar .van-icon {
   color: #ffffff;

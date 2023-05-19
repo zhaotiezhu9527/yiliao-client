@@ -268,5 +268,8 @@ text {
   .van-button {
     border-radius: 10upx;
   }
+  .van-button__content span {
+    font-size: 32upx;
+  }
 }
 </style>

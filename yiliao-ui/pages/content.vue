@@ -7,7 +7,7 @@
       fixed
       title="立即投资"
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/investor')"
+      @click-left="$base.BackPage('/pages/info')"
     >
     </van-nav-bar>
     <view class="cardStyle">
@@ -119,6 +119,9 @@ text {
       width: 100%;
       display: flex;
       justify-content: flex-end;
+      .van-button__content span {
+        font-size: 32upx;
+      }
     }
     .images {
       width: 60%;
@@ -127,8 +130,8 @@ text {
       justify-content: center;
       border-bottom: 2upx solid #d3d3d3;
       .img {
-        width: 80upx;
-        height: 80upx;
+        width: 64upx;
+        height: 64upx;
       }
       /deep/.van-cell::after {
         border: 0;
@@ -188,6 +191,9 @@ text {
   box-sizing: border-box;
   .van-button {
     border-radius: 10upx;
+  }
+  .van-button__content span {
+    font-size: 32upx;
   }
 }
 </style>
