@@ -58,6 +58,18 @@
     {
       "path": "pages/AccountSafe"
     }
+    ,
+    {
+      "path": "pages/ChangeLoginPassword"
+    }
+    ,
+    {
+      "path": "pages/ModifyPaymentPassword"
+    }
+    ,
+    {
+      "path": "pages/contract"
+    }
     ],
   "tabBar": {
     "color": "#cfcfcf",

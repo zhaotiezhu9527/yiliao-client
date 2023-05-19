@@ -29,7 +29,7 @@
 						<label class="blue-text" @click="goInvestmentDetails">查看</label>
 					</td>
 					<td class="table-btn">
-						<label class="grey-text">查看</label>
+						<label class="grey-text" @click="goContract">查看</label>
 					</td>
 				</tr>
 			</table>
@@ -48,6 +48,11 @@
 			goInvestmentDetails(){
 				uni.navigateTo({
 					url: "/pages/InvestmentDetails",
+				});
+    		},
+			goContract(){
+				uni.navigateTo({
+					url: "/pages/contract",
 				});
     		}
 		}
