@@ -108,7 +108,9 @@ export default {
       ],
     };
   },
-  onLoad() {},
+  async onLoad() {
+    await this.$onLaunched;
+  },
   methods: {
     change({ name, path }) {
       if (["投资项目", "关于我们"].includes(name)) {

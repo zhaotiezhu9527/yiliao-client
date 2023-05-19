@@ -12,6 +12,8 @@
     ],
     "dependencies": {
         "@lucky-canvas/uni": "0.0.10",
-        "google-libphonenumber": "^3.2.27"
+        "google-libphonenumber": "^3.2.27",
+        "uni-read-pages": "^1.0.5",
+        "uni-simple-router": "^2.0.8-beta.4"
     }
 }

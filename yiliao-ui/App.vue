@@ -1,6 +1,8 @@
 <script>
 export default {
-  onLaunch: function () {},
+  onLaunch: function () {
+    this.$isResolve();
+  },
   onShow: function () {},
   onHide: function () {},
 };

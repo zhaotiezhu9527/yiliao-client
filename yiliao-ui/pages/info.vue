@@ -225,6 +225,8 @@ text {
 }
 .tabs {
   padding: 40upx 20upx 120upx;
+  padding-bottom: calc(120upx + constant(safe-area-inset-bottom));
+  padding-bottom: env(120upx + constant(safe-area-inset-bottom));
   .name {
     text-align: center;
     color: #4c7eaf;
@@ -255,6 +257,8 @@ text {
 }
 .btn {
   padding: 10upx 20upx;
+  padding-bottom: calc(10upx + constant(safe-area-inset-bottom));
+  padding-bottom: env(10upx + constant(safe-area-inset-bottom));
   background-color: #fff;
   position: fixed;
   bottom: 0;
