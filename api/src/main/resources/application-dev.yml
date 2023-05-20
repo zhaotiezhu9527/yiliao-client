@@ -5,13 +5,14 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/yiliao?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowMultiQueries=true
-      username: root
-      password: 123456
+      url: jdbc:mysql://rm-gs50u685c46ptsf7k3o.mysql.singapore.rds.aliyuncs.com:3306/yiliao?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowMultiQueries=true
+      username: juhai
+      password: zfGM0XAUHms6B5tY
   redis:
-    host: localhost
+    host: r-gs5nsu05rwrseovmrmpd.redis.singapore.rds.aliyuncs.com
     port: 6379
     database: 0
+    password: 30Q84d8GE4LBYzbM
 # 不需要登录验证的url
 login:
   auth:

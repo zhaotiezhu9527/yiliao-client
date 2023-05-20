@@ -1,9 +1,12 @@
 package com.juhai.api.controller;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import com.alibaba.fastjson2.JSONArray;
@@ -26,6 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -239,6 +243,10 @@ public class UserController {
             return R.error(MsgUtil.get("system.user.login.noexist"));
         }
 
+        if (user.getUserStatus().intValue() == 1) {
+            return R.error(MsgUtil.get("system.user.enable"));
+        }
+
         // 获取所有参数配置
         Map<String, String> paramsMap = paramterService.getAllParamByMap();
 
@@ -336,6 +344,7 @@ public class UserController {
             for (Order temp : list) {
                 JSONObject obj = new JSONObject();
                 obj.put("projectName", temp.getProjectName());
+                obj.put("orderNo", temp.getOrderNo());
                 obj.put("amount", temp.getAmount());
                 obj.put("status", temp.getStatus());
                 arr.add(obj);
@@ -362,6 +371,7 @@ public class UserController {
             JSONArray arr = new JSONArray();
             for (Order temp : list) {
                 JSONObject obj = new JSONObject();
+                obj.put("orderNo", temp.getOrderNo());
                 obj.put("projectName", temp.getProjectName());
                 obj.put("returnTime", temp.getActualReturnTime());
                 obj.put("status", temp.getStatus());
@@ -533,6 +543,87 @@ public class UserController {
                         .eq(User::getUserName, userName)
         );
 
+        return R.ok();
+    }
+
+    @Transactional
+    @ApiOperation(value = "用户提现")
+    @PostMapping("/withdraw")
+    public R withdraw(@Validated WithdrawRequest request, HttpServletRequest httpServletRequest) throws Exception {
+        // 验证类型
+        if (!StringUtils.equals(request.getType(), "1") && !StringUtils.equals(request.getType(), "2")) {
+            return R.error(MsgUtil.get("system.param.err"));
+        }
+
+        Date now = new Date();
+        Map<String, String> params = paramterService.getAllParamByMap();
+        // 验证时间段
+        String withdrawTimeStr = params.get("withdraw_time");
+        if (StringUtils.isNotBlank(withdrawTimeStr)) {
+            String today = DateUtil.formatDate(now);
+            String[] timeArr = withdrawTimeStr.split("-");
+            Date beginTime = DateUtil.parseDate(today + " " + timeArr[0]);
+            Date endTime = DateUtil.parseDate(today + " " + timeArr[1]);
+            if (!DateUtil.isIn(now, beginTime, endTime)) {
+                return R.error(MsgUtil.get("system.withdraw.time") + ":" + withdrawTimeStr);
+            }
+        }
+        // 验证提现金额
+        BigDecimal amount = new BigDecimal(request.getAmount());
+        Double leastWithdrawAmount = MapUtil.getDouble(params, "least_withdraw_amount", 0.0);
+        Double largestWithdrawAmount = MapUtil.getDouble(params, "largest_withdraw_amount", 0.0);
+        if (amount.doubleValue() < leastWithdrawAmount || amount.doubleValue() > largestWithdrawAmount) {
+            return R.error(StrUtil.format(MsgUtil.get("system.withdraw.limitamount"), leastWithdrawAmount, largestWithdrawAmount));
+        }
+
+        String userName = JwtUtils.getUserName(httpServletRequest);
+        User user = userService.getUserByName(userName);
+        if (user.getIsRealName().intValue() == 1) {
+            return R.error(MsgUtil.get("system.order.realname"));
+        }
+        if (user.getUserStatus().intValue() == 1) {
+            return R.error(MsgUtil.get("system.user.enable"));
+        }
+        if (user.getBalance().doubleValue() < amount.doubleValue()) {
+            return R.error(MsgUtil.get("system.order.balance"));
+        }
+        // 扣钱
+        userService.updateUserBalance(userName, amount.negate());
+
+        String orderNo = IdUtil.getSnowflakeNextIdStr();
+        // 提现记录
+        Withdraw withdraw = new Withdraw();
+        withdraw.setOrderNo(orderNo);
+        withdraw.setUserName(userName);
+        withdraw.setOptAmount(amount);
+        withdraw.setBeforeAmount(user.getBalance());
+        withdraw.setAfterAmount(NumberUtil.sub(user.getBalance(), amount));
+        withdraw.setWalletAddr(StringUtils.equals(request.getType(), "2") ? user.getWalletAddr() : null);
+        withdraw.setBankCardNum(StringUtils.equals(request.getType(), "2") ? null : user.getBankCardNum());
+        withdraw.setBankName(StringUtils.equals(request.getType(), "2") ? null : user.getBankName());
+        withdraw.setBankAddr(StringUtils.equals(request.getType(), "2") ? null : user.getBankAddr());
+        withdraw.setOptType(NumberUtils.toInt(request.getType()));
+        withdraw.setStatus(0);
+        withdraw.setOptTime(now);
+        withdraw.setCheckTime(now);
+        withdraw.setOperator(null);
+        withdraw.setUserAgent(user.getUserAgent());
+        withdraw.setRemark(null);
+        withdrawService.save(withdraw);
+
+        // 添加流水记录
+        Account account = new Account();
+        account.setUserName(userName);
+        account.setOptAmount(amount.negate());
+        account.setBeforeAmount(user.getBalance());
+        account.setAfterAmount(NumberUtil.sub(user.getBalance(), amount));
+        account.setType(2);
+        account.setOptType(3);
+        account.setOptTime(now);
+        account.setUserAgent(user.getUserAgent());
+        account.setRefNo(orderNo);
+        account.setRemark("提现金额:" + amount + "元");
+        accountService.save(account);
         return R.ok();
     }
 }

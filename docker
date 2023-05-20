@@ -1,0 +1,37 @@
+docker login --username=weijing0318 registry.cn-hangzhou.aliyuncs.com
+
+
+docker stop yiliao-api;docker rm yiliao-api;
+docker run -d -p 9522:9522 --name yiliao-api \
+-e "SPRING_PROFILES_ACTIVE=test"  \
+-e "spring.cloud.nacos.discovery.server-addr=172.16.168.146" \
+-e "spring.application.name=mgapi" \
+registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.0;
+docker logs -f -t --tail 500 yiliao-api
+
+docker push registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-api:1.0.7
+docker pull registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-api:1.0.7
+
+
+docker stop financial-admin;docker rm financial-admin;
+docker run -d -p 8533:8533 --name financial-admin \
+-e "SPRING_PROFILES_ACTIVE=prod"  \
+-e "spring.cloud.nacos.discovery.server-addr=172.16.168.146" \
+-e "spring.application.name=mgadmin" \
+registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-admin:1.0.10;
+docker logs -f -t --tail 500 financial-admin
+
+docker push registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-admin:1.0.9
+docker pull registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-admin:1.0.9
+
+
+docker stop financial-schedule;docker rm financial-schedule;
+docker run -d -p 8511:8511 --name financial-schedule \
+-e "SPRING_PROFILES_ACTIVE=prod"  \
+-e "spring.cloud.nacos.discovery.server-addr=172.16.168.146" \
+-e "spring.application.name=mgschedule" \
+registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-schedule:1.0.1;
+docker logs -f -t --tail 500 financial-schedule
+
+docker push registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-schedule:1.0.1
+docker pull registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-schedule:1.0.1
