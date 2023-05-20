@@ -89,7 +89,7 @@ export default {
       this.loading = true;
       this.$api.user_notice({ page, limit }).then(({ data }) => {
         this.loading = flase;
-        if (data.code === 0) {
+        if (data.code == 0) {
           const vim = data.page;
           this.shopGoods = this.shopGoods.concat(vim.list);
           this.totalCount = vim.totalCount ? true : false;

@@ -114,7 +114,7 @@ export default {
     await this.$onLaunched;
     // 获取产品列表
     // this.$api.shopGoods().then(({ data }) => {
-    //   if (data.code === 0) {
+    //   if (data.code == 0) {
     //     this.shopGoods = data.list;
     //   }
     // });
@@ -133,7 +133,7 @@ export default {
         });
       } else if (name === "每日签到") {
         this.$api.user_sign().then(({ data }) => {
-          if (data.code === 0) {
+          if (data.code == 0) {
             this.$base.show(data.msg + "~");
           }
         });

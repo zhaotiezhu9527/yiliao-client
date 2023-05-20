@@ -48,7 +48,7 @@ export const loading = (title) => {
 // 西班牙
 const PATH_URL =
   process.env.NODE_ENV === "development"
-    ? "http://192.168.4.85:9522/"
+    ? "http://8.222.224.10:9522/"
     : "https://api.bambu.cc/";
 
 export const upload = (params) => {
@@ -98,18 +98,20 @@ export const request = (params) => {
       header: params.header,
       success: (res) => {
         uni.hideLoading();
-        // if (res.data.code !== 0) {
-        //   uni.showToast({
-        //     title: res.data.msg,
-        //     duration: 2000,
-        //     icon: "none",
-        //   });
-        // }
-        // if (res.data.code == -2) {
-        //   uni.redirectTo({
-        //     url: "/pages/login",
-        //   });
-        // }
+        if (res.data.code !== 0) {
+          uni.showToast({
+            title: res.data.msg,
+            duration: 2000,
+            icon: "none",
+          });
+        }
+        if (res.data.code == -2) {
+          uni.redirectTo({
+            url: "/pages/login",
+          });
+          uni.removeStorageSync("token");
+          show(res.data.msg);
+        }
         resolve(res);
       },
       fail: () => {
