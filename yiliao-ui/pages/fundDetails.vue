@@ -17,13 +17,13 @@
           <th class="table-money">金额</th>
           <th>时间</th>
         </tr>
-        <tr>
-          <td>每日签到，获得奖励2元</td>
+        <tr v-for="(item,index) in list" :key="index">
+          <td>{{ item.remark }}</td>
           <td class="table-money">
             <!-- <label class="green-text">+2</label> -->
-            <label class="red-text">-2</label>
+            <label :class="item.amount < 0 ? 'red-text' : 'green-text'">{{ item.amount }}</label>
           </td>
-          <td class="table-time">2023-05-18 12:28:10</td>
+          <td class="table-time">{{ item.optTime}}</td>
         </tr>
       </table>
     </view>
@@ -33,9 +33,23 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      list:[],//列表数据
+    };
   },
-  methods: {},
+  onShow(){
+    this.getData()
+  },
+  methods: {
+    //获取数据
+    getData() {
+      this.$api.account_list().then((res) => {
+        if (res.data.code == 0) {
+          this.list = res.data.page.list
+        } 
+      });
+    },
+  },
 };
 </script>
 

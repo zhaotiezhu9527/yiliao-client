@@ -21,7 +21,7 @@
         <view class="input">
           <van-field
             v-model="userPhone"
-            type="tel"
+            type="text"
             placeholder="请输入登录账号"
             label="账号"
           >

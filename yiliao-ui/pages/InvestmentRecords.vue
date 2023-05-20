@@ -19,18 +19,17 @@
           <th>详情</th>
           <th>合同</th>
         </tr>
-        <tr>
-          <td>每日签到，获得奖励2元</td>
+        <tr v-for="(item,index) in list" :key="index">
+          <td>{{item.projectName}}</td>
           <td class="table-money">
-            <!-- <label class="green-text">+2</label> -->
-            <label class="red-text">30000</label>
+            <label class="green-text">{{ item.amount }}</label>
           </td>
-          <td class="table-time">已完成</td>
+          <td class="table-time">{{ item.status === 1 ? '已完成' : '未结算' }}</td>
           <td class="table-btn">
-            <label class="blue-text" @click="goInvestmentDetails">查看</label>
+            <label class="blue-text" @click="goInvestmentDetails(item.orderNo)">查看</label>
           </td>
           <td class="table-btn">
-            <label class="grey-text" @click="goContract">查看</label>
+            <label class="grey-text" @click="goContract(item.orderNo)">查看</label>
           </td>
         </tr>
       </table>
@@ -41,17 +40,30 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      list: [],//列表数据
+    };
+  },
+  onShow(){
+    this.getData()
   },
   methods: {
-    goInvestmentDetails() {
+    goInvestmentDetails(num) {
       uni.navigateTo({
-        url: "/pages/InvestmentDetails",
+        url: "/pages/InvestmentDetails?orderNo=" + num,
       });
     },
-    goContract() {
+    goContract(num) {
       uni.navigateTo({
-        url: "/pages/contract",
+        url: "/pages/contract?orderNo=" + num,
+      });
+    },
+    //获取数据
+    getData() {
+      this.$api.invest_list().then((res) => {
+        if (res.data.code == 0) {
+          this.list = res.data.page.list
+        } 
       });
     },
   },

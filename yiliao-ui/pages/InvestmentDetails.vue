@@ -12,10 +12,10 @@
     </van-nav-bar>
     <view class="wrap">
       <view class="details-text">
-        <view> 投资金额：300000元 </view>
-        <view> 预期收益：19020元 </view>
-        <view> 投资时间：2023-05-17 22:31:40 </view>
-        <view> 到期时间：2023-05-17 </view>
+        <view> 投资金额：{{detailsData.amount}}元 </view>
+        <view> 预期收益：{{detailsData.forecastReturnAmount}}元 </view>
+        <view> 投资时间：{{detailsData.orderTime}} </view>
+        <view> 到期时间：{{detailsData.forecastReturnTime}} </view>
         <view> 收益方式：每日返息，到期还本 </view>
       </view>
       <table class="table-data">
@@ -25,17 +25,17 @@
           <th>应收时间</th>
           <th>收益时间</th>
           <th width="15%">应收总额</th>
-          <th>已支付</th>
+          <th width="13%">已支付</th>
           <th width="10%">状态</th>
         </tr>
         <tr>
-          <td>300000</td>
-          <td>19020</td>
-          <td class="text-left">2023-05-18 12:28:10</td>
-          <td class="text-left">2023-05-18 12:28:10</td>
-          <td>319020</td>
-          <td>319020</td>
-          <td class="text-left">已完成</td>
+          <td>{{detailsData.amount}}</td>
+          <td>{{detailsData.forecastReturnAmount}}</td>
+          <td class="text-left">{{detailsData.forecastReturnTime}}</td>
+          <td class="text-left">{{detailsData.returnTime}}</td>
+          <td>{{detailsData.amount + detailsData.forecastReturnAmount}}</td>
+          <td>{{detailsData.status === 1 ? detailsData.amount + detailsData.forecastReturnAmount : 0}}</td>
+          <td class="text-left">{{detailsData.status === 1 ? '已完成' : '未结算'}}</td>
         </tr>
       </table>
     </view>
@@ -45,9 +45,31 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      detailsData: {
+        amount:'',//投资金额
+        forecastReturnAmount:'',//预期收益
+        orderTime:'',//投资时间
+        returnTime:'',//到期时间
+        forecastReturnTime:'',//到期时间，应收时间
+        status: 0,//状态，0未结算 1已完成
+      },//注单详情数据
+    };
   },
-  methods: {},
+  onLoad(option){
+    this.getData(option.orderNo)
+  },
+  methods: {
+    getData(orderNo){
+      this.$api.order_detail({
+        orderNo: orderNo
+      }).then((res) => {
+        if (res.data.code == 0) {
+          this.detailsData = res.data.data
+        } 
+      });
+    }
+  },
 };
 </script>
 

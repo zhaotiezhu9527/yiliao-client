@@ -107,3 +107,48 @@ export const user_sign = (data) => {
       });
   });
 };
+
+//资金明细
+export const account_list = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/account/list",
+        method: "get",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
+
+//投资记录
+export const invest_list = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/invest/list",
+        method: "get",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
+
+//注单详情
+export const order_detail = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "order/detail/" + data.orderNo,
+        method: "get",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
