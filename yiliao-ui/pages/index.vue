@@ -43,9 +43,9 @@
       <view class="list">
         <view
           class="view"
-          v-for="(item, index) in 10"
+          v-for="(item, index) in shopGoods"
           :key="index"
-          @click="routePath"
+          @click="routePath(item)"
         >
           <image class="img" src="../static/img/txt.jpg" mode="widthFix" />
           <view class="name">
@@ -79,6 +79,7 @@
             <view class="number">21.05%</view>
           </view>
         </view>
+        <van-empty description="暂无产品" v-if="!shopGoods.length" />
       </view>
     </view>
   </view>
@@ -106,10 +107,17 @@ export default {
         { name: "免费注册", img: img6, path: "/pages/register" },
         { name: "在线客服", img: img7 },
       ],
+      shopGoods: [],
     };
   },
   async onLoad() {
     await this.$onLaunched;
+    // 获取产品列表
+    // this.$api.shopGoods().then(({ data }) => {
+    //   if (data.code === 0) {
+    //     this.shopGoods = data.list;
+    //   }
+    // });
   },
   methods: {
     change({ name, path }) {
@@ -118,16 +126,22 @@ export default {
           url: path,
         });
       } else if (name === "计算器") {
-        this.$base.show("敬请期待！！！");
+        this.$base.show("敬请期待！");
       } else if (name === "免费注册") {
         uni.navigateTo({
           url: path,
         });
+      } else if (name === "每日签到") {
+        this.$api.user_sign().then(({ data }) => {
+          if (data.code === 0) {
+            this.$base.show(data.msg + "~");
+          }
+        });
       }
     },
-    routePath() {
+    routePath(item) {
       uni.navigateTo({
-        url: "/pages/info",
+        url: `/pages/info?id=${item.id}`,
       });
     },
   },
@@ -192,5 +206,8 @@ export default {
   margin: 30upx 30upx 0;
   border-radius: 10upx;
   overflow: hidden;
+}
+.van-empty {
+  background-color: #fafafa;
 }
 </style>

@@ -128,13 +128,22 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      items: {},
+    };
   },
-  onLoad() {},
+  onLoad(e) {
+    // 获取产品详情
+    // this.$api.user_notice({ id: e.id }).then(({ data }) => {
+    //   if (data.code === 0) {
+    //     this.items = data.data;
+    //   }
+    // });
+  },
   methods: {
     change() {
       uni.navigateTo({
-        url: "/pages/content",
+        url: `/pages/content?id=${this.items.id}`,
       });
     },
   },
