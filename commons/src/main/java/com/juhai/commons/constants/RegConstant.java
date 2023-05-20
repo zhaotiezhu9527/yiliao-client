@@ -1,8 +1,6 @@
 package com.juhai.commons.constants;
 
 
-import cn.hutool.core.util.IdcardUtil;
-
 /**
  * 常用正则表达式
  */
@@ -42,8 +40,4 @@ public class RegConstant {
      */
     public static final String WITHDRAW_PWD_REG = "^\\d{6}$";
 
-    public static void main(String[] args) {
-        boolean validCard = IdcardUtil.isValidCard("500381199304224390");
-        System.out.println(validCard);
-    }
 }

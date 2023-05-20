@@ -12,21 +12,21 @@
       <!-- 头部 -->
       <view class="head">
         <view class="head-text">
-          <label>我的账户：{{ userdata.userName }}</label>
-          <label>用户登记：{{ userdata.userLevelName }}</label>
+          <label>我的账户：{{ userData.userName }}</label>
+          <label>用户登记：{{ userData.userLevelName }}</label>
         </view>
         <view class="head-money">
-          {{ userdata.balance }}
+          {{ userData.balance }}
         </view>
         <view class="head-integral"> 账户余额（元）账户积分（0） </view>
       </view>
       <view class="money">
         <view class="interest">
-          <view>{{ userdata.waitReturnInterest }}</view>
+          <view>{{ userData.waitReturnInterest }}</view>
           <view>待收利息（元）</view>
         </view>
         <view class="principal">
-          <view>{{ userdata.waitReturnPrincipal }}</view>
+          <view>{{ userData.waitReturnPrincipal }}</view>
           <view>待收本金（元）</view>
         </view>
       </view>
@@ -89,7 +89,7 @@
           <label>账户安全</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item" @click="goBindBank">
+        <view class="list-item" @click="goBindBank(userData.bankName,userData.bankCardNum)">
           <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
           <label>银行卡绑定</label>
           <view class="icon"></view>
@@ -116,13 +116,15 @@ import { Dialog } from "vant";
 export default {
   data() {
     return {
-      userdata: {
+      userData: {
         userName: "", //用户名
         userLevelName: "", //会员等级
         balance: "", //余额
         integral: "", //积分
         waitReturnInterest: "", //待收利息
         waitReturnPrincipal: "", //待收本金
+        bankName: "",//银行名称
+        bankCardNum: "",//银行卡号
       },
       loading: false,
       items: {},
@@ -205,7 +207,7 @@ export default {
     getInfo() {
       this.$api.user_info().then((res) => {
         if (res.data.code == 0) {
-          this.userdata = res.data.data;
+          this.userData = res.data.data;
         }
       });
     },
@@ -214,6 +216,7 @@ export default {
       this.$api.user_sign().then((res) => {
         if (res.data.code == 0) {
           this.$base.show(res.data.msg + "~");
+          this.getInfo()
         } else {
           this.$base.show(res.data.msg);
         }

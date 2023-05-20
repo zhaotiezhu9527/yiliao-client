@@ -100,7 +100,9 @@ public class OrderController {
         }
 
         // 订单号
-        String orderNo = IdUtil.getSnowflakeNextIdStr();
+
+//        String orderNo = IdUtil.getSnowflakeNextIdStr();
+        String orderNo = DateUtil.format(now, "yyMMddHHmmssSSS");
         // 扣钱
         userService.updateUserBalance(userName, amount.negate());
 
@@ -170,10 +172,12 @@ public class OrderController {
         obj.put("forecastReturnAmount", order.getForecastReturnAmount());
         obj.put("IdCardNo", user.getIdCard());
         obj.put("orderTime", order.getOrderTime());
+        obj.put("forecastReturnTime", order.getForecastReturnTime());
         obj.put("returnTime", order.getForecastReturnTime());
         obj.put("guaranteeCompany", params.get("guarantee_company"));
         obj.put("ourCompany", params.get("our_company"));
         obj.put("status", order.getStatus());
+        obj.put("abbreviation", "安科生物");
         return R.ok().put("data", obj);
     }
 }
