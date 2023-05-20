@@ -152,3 +152,18 @@ export const order_detail = (data) => {
       });
   });
 };
+
+//注单详情
+export const user_bindBank = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/bindBank",
+        method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
