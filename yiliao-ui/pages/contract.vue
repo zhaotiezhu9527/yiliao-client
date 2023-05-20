@@ -121,6 +121,7 @@ export default {
         limitTime: '',//协议分钟
         incomeRate: '',//预期收益
         orderNo: '',//合同编号
+        abbreviation:'',//公司名称简称
       },//注单详情数据
     };
   },
@@ -203,7 +204,7 @@ export default {
           this.detailsData = res.data.data
           this.$nextTick(() => {
             // 画印章
-            this.createSeal("firstCanvas", this.detailsData.ourCompany, "安科生物");
+            this.createSeal("firstCanvas", this.detailsData.ourCompany, this.detailsData.abbreviation);
             this.createSeal("secondCanvas", this.detailsData.guaranteeCompany, "");
           })
         } 
