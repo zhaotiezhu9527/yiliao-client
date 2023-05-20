@@ -30,14 +30,28 @@
       <view class="li">
         <view class="name">投资金额</view>
         <view class="txt images">
-          <image class="img" src="../static/img/jian.png" mode="widthFix" />
-          <van-field placeholder="请输入金额" />
-          <image class="img" src="../static/img/jia.png" mode="widthFix" />
+          <image
+            class="img"
+            @click="add(0)"
+            src="../static/img/jian.png"
+            mode="widthFix"
+          />
+          <van-field
+            v-model="form.moeny"
+            type="number"
+            placeholder="请输入金额"
+          />
+          <image
+            class="img"
+            @click="add(1)"
+            src="../static/img/jia.png"
+            mode="widthFix"
+          />
         </view>
       </view>
       <view class="li end">
         <view class="btns">
-          <van-button color="#f34133"> 一键全投 </van-button>
+          <van-button color="#f34133" @click="fullthrow"> 一键全投 </van-button>
         </view>
       </view>
     </view>
@@ -48,24 +62,77 @@
       >即将账户可用余额<text>300000</text>元的倍数进行投资。
     </view>
     <view class="input">
-      <van-field label="支付密码" placeholder="请输入支付密码" />
+      <van-field
+        label="支付密码"
+        v-model="form.pass"
+        type="number"
+        placeholder="请输入支付密码"
+      />
     </view>
     <view class="btn">
-      <van-button color="#4b80af" block> 立即投资 </van-button>
+      <van-button color="#4b80af" block @click="investor">
+        立即投资
+      </van-button>
     </view>
   </view>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      items: {},
+      form: {
+        money: undefined,
+        pass: undefined,
+      },
+    };
   },
-  onLoad() {},
+  onLoad(e) {
+    // 获取产品详情
+    this.dataFn(e.id);
+  },
   methods: {
     change() {
       uni.navigateTo({
         url: "/pages/content",
       });
+    },
+    dataFn(id) {
+      // this.$api.user_notice({ id }).then(({ data }) => {
+      //   if (data.code === 0) {
+      //     this.items = data.data;
+      //   } else {
+      //     this.$base.show(data.msg);
+      //   }
+      // });
+    },
+    // 立即投资
+    investor() {
+      if (!this.form.moeny) {
+        this.$base.show("请输入正确的金额");
+        return false;
+      } else if (!this.form.pass && this.form.pass.length < 6) {
+        this.$base.show("请输入正确支付密码");
+        return false;
+      }
+      this.$api.user_notice({ form: this.form }).then(({ data }) => {
+        if (data.code === 0) {
+          this.$base.show(data.msg);
+          this.form = {
+            moeny: undefined,
+            pass: undefined,
+          };
+          dataFn(this.items.id);
+        }
+      });
+    },
+    // 一键全投
+    fullthrow() {
+      // this.form.moeny = this.items;
+    },
+    // 加减
+    add(type) {
+      // if(type){}
     },
   },
 };
