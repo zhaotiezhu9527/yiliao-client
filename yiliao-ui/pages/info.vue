@@ -135,7 +135,7 @@ export default {
   onLoad(e) {
     // 获取产品详情
     // this.$api.user_notice({ id: e.id }).then(({ data }) => {
-    //   if (data.code === 0) {
+    //   if (data.code == 0) {
     //     this.items = data.data;
     //   }
     // });

@@ -34,16 +34,16 @@
         @load="load"
         v-if="isArray"
       >
-      <!-- @click="change(item)" -->
+        <!-- @click="change(item)" -->
         <view
           class="list van-hairline--bottom"
           v-for="(item, index) in list"
           :key="index"
         >
           <view class="title van-ellipsis">
-            {{ item.title }}
+            {{ item.remark }}
           </view>
-          <view class="value">{{ item.createTime }}</view>
+          <view class="value">{{ item.optTime }}</view>
         </view>
       </van-list>
       <van-empty description="No more" v-else />
@@ -55,14 +55,14 @@
 export default {
   data() {
     return {
-      list:[],//列表数据
+      list: [], //列表数据
       loading: false,
       finished: false,
       isArray: true,
       page: 0,
     };
   },
-  onShow(){
+  onShow() {
     // this.getData()
   },
   onLoad() {
@@ -76,7 +76,7 @@ export default {
     //   this.$api.account_list().then((res) => {
     //     if (res.data.code == 0) {
     //       this.list = res.data.page.list
-    //     } 
+    //     }
     //   });
     // },
     load() {
@@ -88,7 +88,7 @@ export default {
         if (res.data.code == 0) {
           const vim = res.data.page;
           this.list = this.list.concat(vim.list);
-          console.log(this.list)
+          console.log(this.list);
           this.isArray = vim.totalCount ? true : false;
           if (this.page >= vim.totalPage) {
             this.finished = true;

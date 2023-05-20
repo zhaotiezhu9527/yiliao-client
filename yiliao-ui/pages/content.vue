@@ -99,7 +99,7 @@ export default {
     },
     dataFn(id) {
       // this.$api.user_notice({ id }).then(({ data }) => {
-      //   if (data.code === 0) {
+      //   if (data.code == 0) {
       //     this.items = data.data;
       //   } else {
       //     this.$base.show(data.msg);
@@ -116,7 +116,7 @@ export default {
         return false;
       }
       this.$api.user_notice({ form: this.form }).then(({ data }) => {
-        if (data.code === 0) {
+        if (data.code == 0) {
           this.$base.show(data.msg);
           this.form = {
             moeny: undefined,
