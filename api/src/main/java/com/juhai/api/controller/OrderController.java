@@ -67,7 +67,7 @@ public class OrderController {
     private StringRedisTemplate redisTemplate;
 
     @Transactional
-    @ApiOperation(value = "下注")
+    @ApiOperation(value = "投资")
     @PostMapping("/execute")
     public R execute(@Validated OrderRequest request, HttpServletRequest httpServletRequest) throws Exception {
         Date now = new Date();

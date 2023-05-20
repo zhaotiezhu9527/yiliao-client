@@ -18,13 +18,14 @@ public class RegConstant {
     /**
      * 用户名
      */
-    public static final String USER_NAME_REG = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4,12}$";
+//    public static final String USER_NAME_REG = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4,12}$";
+    public static final String USER_NAME_REG = "^[a-zA-Z0-9]{4,12}$";
 
     /**
      * 用户密码
      */
-    //public static final String USER_PWD_REG = "^[a-zA-Z0-9]{6,12}$";
-    public static final String USER_PWD_REG = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$";
+    public static final String USER_PWD_REG = "^[a-zA-Z0-9]{6,12}$";
+//    public static final String USER_PWD_REG = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$";
 
     /**
      * 手机验证码
@@ -39,7 +40,7 @@ public class RegConstant {
     /**
      * 提现密码
      */
-    public static final String WITHDRAW_PWD_REG = "^\\d{4}$";
+    public static final String WITHDRAW_PWD_REG = "^\\d{6}$";
 
     public static void main(String[] args) {
         boolean validCard = IdcardUtil.isValidCard("500381199304224390");
