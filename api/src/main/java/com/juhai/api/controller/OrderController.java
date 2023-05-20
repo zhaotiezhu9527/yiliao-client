@@ -177,7 +177,7 @@ public class OrderController {
         obj.put("guaranteeCompany", params.get("guarantee_company"));
         obj.put("ourCompany", params.get("our_company"));
         obj.put("status", order.getStatus());
-        obj.put("abbreviation", "安科生物");
+        obj.put("abbreviation", params.get("jiancheng"));
         return R.ok().put("data", obj);
     }
 }
