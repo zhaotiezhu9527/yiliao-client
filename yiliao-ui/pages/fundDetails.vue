@@ -16,7 +16,7 @@
         v-model="loading"
         :finished="finished"
         loading-text="loading..."
-        finished-text="No more"
+        finished-text="没有更多了"
         @load="load"
         v-if="isArray"
       >
