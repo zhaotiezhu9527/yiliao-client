@@ -19,11 +19,11 @@
       </view>
       <view class="name">
         乙方（管理方）：
-        <label>{{detailsData.realName}}</label>
+        <label>{{detailsData.ourCompany}}</label>
       </view>
       <view class="name">
         丙方（担保方）：
-        <label>{{detailsData.realName}}</label>
+        <label>{{detailsData.guaranteeCompany}}</label>
       </view>
       <view class="text"
         >甲乙丙双方经友好协商，本着平等自愿、诚实信用的原则，就甲方使用乙方提供的本网站所有服务的</view
@@ -33,7 +33,7 @@
       <table class="table-data">
         <tr>
           <td>产品名称</td>
-          <td width="50%">{{detailsData.realName}}</td>
+          <td width="50%">{{detailsData.projectName}}</td>
         </tr>
         <tr>
           <td>投资人姓名</td>
@@ -41,31 +41,31 @@
         </tr>
         <tr>
           <td>投资人身份证</td>
-          <td width="50%">{{detailsData.realName}}</td>
+          <td width="50%">{{detailsData.IdCardNo}}</td>
         </tr>
         <tr>
           <td>投入本金数额（下称“甲方投资本金”）</td>
-          <td>{{detailsData.realName}}元</td>
+          <td>{{detailsData.amount}}元</td>
         </tr>
         <tr>
           <td>协议期（分钟）</td>
-          <td width="50%">{{detailsData.realName}}分钟</td>
+          <td width="50%">{{detailsData.limitTime}}分钟</td>
         </tr>
         <tr>
           <td>预期收益率</td>
-          <td>{{detailsData.realName}}%</td>
+          <td>{{detailsData.incomeRate}}%</td>
         </tr>
         <tr>
           <td>起息日</td>
-          <td width="50%">{{detailsData.realName}}</td>
+          <td width="50%">{{detailsData.orderTime}}</td>
         </tr>
         <tr>
           <td>到期日</td>
-          <td>{{detailsData.realName}}</td>
+          <td>{{detailsData.returnTime}}</td>
         </tr>
         <tr>
           <td>应收本息（元）</td>
-          <td width="50%">{{detailsData.realName}}元</td>
+          <td width="50%">{{detailsData.amount + detailsData.forecastReturnAmount}}元</td>
         </tr>
         <tr>
           <td>还款方式</td>
@@ -75,13 +75,13 @@
       <view class="date">
         <view class="date-left">
           <view class="marginBottom30">甲方：{{detailsData.realName}}</view>
-          <view>{{detailsData.realName}}</view>
+          <view>{{detailsData.orderTime}}</view>
         </view>
         <view class="date-right">
           <view class="marginBottom30"
-            >乙方：{{detailsData.realName}}</view
+            >乙方：{{detailsData.ourCompany}}</view
           >
-          <view>{{detailsData.realName}}</view>
+          <view>{{detailsData.orderTime}}</view>
           <canvas
             cancas-id="firstCanvas"
             id="firstCanvas"
@@ -90,7 +90,7 @@
         </view>
       </view>
       <view class="about">
-        <view>丙方：{{detailsData.realName}}</view>
+        <view>丙方：{{detailsData.guaranteeCompany}}</view>
         <canvas
           cancas-id="secondCanvas"
           id="secondCanvas"
@@ -129,10 +129,7 @@ export default {
     this.getData(option.orderNo)
   },
   mounted() {
-    this.$nextTick(() => {
-      this.createSeal("firstCanvas", "安徽安科生物股份有限公司", "安科生物");
-      this.createSeal("secondCanvas", "中国人民财产保险股份有限公司", "");
-    });
+    
   },
   methods: {
     //画章
@@ -204,6 +201,11 @@ export default {
       }).then((res) => {
         if (res.data.code == 0) {
           this.detailsData = res.data.data
+          this.$nextTick(() => {
+            // 画印章
+            this.createSeal("firstCanvas", this.detailsData.ourCompany, "安科生物");
+            this.createSeal("secondCanvas", this.detailsData.guaranteeCompany, "");
+          })
         } 
       });
     }
