@@ -19,4 +19,9 @@ public class OrderRequest {
     @NotNull(message = "system.param.err")
     @ApiModelProperty(value = "金额", example = "30000", required = true)
     private String amount;
+
+    @NotNull(message = "validation.user.register.paypwd")
+    @Pattern(regexp = RegConstant.WITHDRAW_PWD_REG, message = "validation.user.register.paypwd")
+    @ApiModelProperty(value = "支付密码", example = "123qwe", required = true)
+    private String pwd;
 }
