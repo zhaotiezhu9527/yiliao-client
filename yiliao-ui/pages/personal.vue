@@ -214,6 +214,7 @@ export default {
       this.$api.user_sign().then((res) => {
         if (res.data.code == 0) {
           this.$base.show(res.data.msg + "~");
+          this.getInfo()
         } else {
           this.$base.show(res.data.msg);
         }
