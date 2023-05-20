@@ -122,7 +122,7 @@ export default {
     .card{
       padding: 30upx 20upx;
       height: 270upx;
-      background-image: linear-gradient(#759dd6, #5d80b9);
+      background-image: linear-gradient(#769ed6, #5375ae);
       color: #fff;
       .card-name{
         font-size: 28upx;
