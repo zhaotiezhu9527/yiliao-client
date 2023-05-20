@@ -153,12 +153,27 @@ export const order_detail = (data) => {
   });
 };
 
-//注单详情
+//绑定银行卡
 export const user_bindBank = (data) => {
   return new Promise((resolve, reject) => {
     base
       .request({
         url: "user/bindBank",
+        method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
+
+//绑定USDT
+export const user_bindUSDT = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/bindUsdt",
         method: "post",
         data: data,
       })
