@@ -1,29 +1,31 @@
 <template>
   <view class="page">
     <van-nav-bar
-      title="投资合同"
-      left-arrow
       placeholder
       :border="false"
       fixed
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/InvestmentRecords')"
     >
+      <template #left>
+        <van-icon name="arrow-left" size="18" />
+        <text class="headr_title">投资合同</text>
+      </template>
     </van-nav-bar>
     <view class="wrap">
-      <view class="title">{{detailsData.ourCompany}}投资合同书</view>
-      <view class="number">合同编号：{{detailsData.orderNo}}</view>
+      <view class="title">{{ detailsData.ourCompany }}投资合同书</view>
+      <view class="number">合同编号：{{ detailsData.orderNo }}</view>
       <view class="name">
         甲方（投资方）：
-        <label>{{detailsData.realName}}</label>
+        <label>{{ detailsData.realName }}</label>
       </view>
       <view class="name">
         乙方（管理方）：
-        <label>{{detailsData.ourCompany}}</label>
+        <label>{{ detailsData.ourCompany }}</label>
       </view>
       <view class="name">
         丙方（担保方）：
-        <label>{{detailsData.guaranteeCompany}}</label>
+        <label>{{ detailsData.guaranteeCompany }}</label>
       </view>
       <view class="text"
         >甲乙丙双方经友好协商，本着平等自愿、诚实信用的原则，就甲方使用乙方提供的本网站所有服务的</view
@@ -33,39 +35,41 @@
       <table class="table-data">
         <tr>
           <td>产品名称</td>
-          <td width="50%">{{detailsData.projectName}}</td>
+          <td width="50%">{{ detailsData.projectName }}</td>
         </tr>
         <tr>
           <td>投资人姓名</td>
-          <td>{{detailsData.realName}}</td>
+          <td>{{ detailsData.realName }}</td>
         </tr>
         <tr>
           <td>投资人身份证</td>
-          <td width="50%">{{detailsData.IdCardNo}}</td>
+          <td width="50%">{{ detailsData.IdCardNo }}</td>
         </tr>
         <tr>
           <td>投入本金数额（下称“甲方投资本金”）</td>
-          <td>{{detailsData.amount}}元</td>
+          <td>{{ detailsData.amount }}元</td>
         </tr>
         <tr>
           <td>协议期（分钟）</td>
-          <td width="50%">{{detailsData.limitTime}}分钟</td>
+          <td width="50%">{{ detailsData.limitTime }}分钟</td>
         </tr>
         <tr>
           <td>预期收益率</td>
-          <td>{{detailsData.incomeRate}}%</td>
+          <td>{{ detailsData.incomeRate }}%</td>
         </tr>
         <tr>
           <td>起息日</td>
-          <td width="50%">{{detailsData.orderTime}}</td>
+          <td width="50%">{{ detailsData.orderTime }}</td>
         </tr>
         <tr>
           <td>到期日</td>
-          <td>{{detailsData.returnTime}}</td>
+          <td>{{ detailsData.returnTime }}</td>
         </tr>
         <tr>
           <td>应收本息（元）</td>
-          <td width="50%">{{detailsData.amount + detailsData.forecastReturnAmount}}元</td>
+          <td width="50%">
+            {{ detailsData.amount + detailsData.forecastReturnAmount }}元
+          </td>
         </tr>
         <tr>
           <td>还款方式</td>
@@ -74,14 +78,12 @@
       </table>
       <view class="date">
         <view class="date-left">
-          <view class="marginBottom30">甲方：{{detailsData.realName}}</view>
-          <view>{{detailsData.orderTime}}</view>
+          <view class="marginBottom30">甲方：{{ detailsData.realName }}</view>
+          <view>{{ detailsData.orderTime }}</view>
         </view>
         <view class="date-right">
-          <view class="marginBottom30"
-            >乙方：{{detailsData.ourCompany}}</view
-          >
-          <view>{{detailsData.orderTime}}</view>
+          <view class="marginBottom30">乙方：{{ detailsData.ourCompany }}</view>
+          <view>{{ detailsData.orderTime }}</view>
           <canvas
             cancas-id="firstCanvas"
             id="firstCanvas"
@@ -90,7 +92,7 @@
         </view>
       </view>
       <view class="about">
-        <view>丙方：{{detailsData.guaranteeCompany}}</view>
+        <view>丙方：{{ detailsData.guaranteeCompany }}</view>
         <canvas
           cancas-id="secondCanvas"
           id="secondCanvas"
@@ -108,30 +110,28 @@ export default {
       canvasW: 100,
       canvasH: 100,
       detailsData: {
-        amount:'',//投资金额
-        forecastReturnAmount:'',//预期收益
-        orderTime:'',//投资时间
-        returnTime:'',//到期时间
-        forecastReturnTime:'',//到期时间，应收时间
-        status: 0,//状态，0未结算 1已完成
-        IdCardNo: '',//身份证
-        ourCompany: '',//乙方名称
-        projectName: '',//产品名称
-        guaranteeCompany: '',//丙方名称
-        limitTime: '',//协议分钟
-        incomeRate: '',//预期收益
-        orderNo: '',//合同编号
-        abbreviation:'',//公司名称简称
-      },//注单详情数据
+        amount: "", //投资金额
+        forecastReturnAmount: "", //预期收益
+        orderTime: "", //投资时间
+        returnTime: "", //到期时间
+        forecastReturnTime: "", //到期时间，应收时间
+        status: 0, //状态，0未结算 1已完成
+        IdCardNo: "", //身份证
+        ourCompany: "", //乙方名称
+        projectName: "", //产品名称
+        guaranteeCompany: "", //丙方名称
+        limitTime: "", //协议分钟
+        incomeRate: "", //预期收益
+        orderNo: "", //合同编号
+        abbreviation: "", //公司名称简称
+      }, //注单详情数据
     };
   },
   onShow() {},
-  onLoad(option){
-    this.getData(option.orderNo)
+  onLoad(option) {
+    this.getData(option.orderNo);
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     //画章
     createSeal(id, company, name) {
@@ -196,20 +196,30 @@ export default {
       context.fill();
       context.restore();
     },
-    getData(orderNo){
-      this.$api.order_detail({
-        orderNo: orderNo
-      }).then((res) => {
-        if (res.data.code == 0) {
-          this.detailsData = res.data.data
-          this.$nextTick(() => {
-            // 画印章
-            this.createSeal("firstCanvas", this.detailsData.ourCompany, this.detailsData.abbreviation);
-            this.createSeal("secondCanvas", this.detailsData.guaranteeCompany, "");
-          })
-        } 
-      });
-    }
+    getData(orderNo) {
+      this.$api
+        .order_detail({
+          orderNo: orderNo,
+        })
+        .then((res) => {
+          if (res.data.code == 0) {
+            this.detailsData = res.data.data;
+            this.$nextTick(() => {
+              // 画印章
+              this.createSeal(
+                "firstCanvas",
+                this.detailsData.ourCompany,
+                this.detailsData.abbreviation
+              );
+              this.createSeal(
+                "secondCanvas",
+                this.detailsData.guaranteeCompany,
+                ""
+              );
+            });
+          }
+        });
+    },
   },
 };
 </script>

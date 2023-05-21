@@ -1,12 +1,6 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      placeholder
-      left-arrow
-      :border="false"
-      fixed
-      safe-area-inset-top
-    >
+    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
       <template #left><text class="title">登录</text></template>
     </van-nav-bar>
     <view class="wrap">

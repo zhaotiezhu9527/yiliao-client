@@ -1,14 +1,16 @@
 <template>
   <view class="page">
     <van-nav-bar
-      left-arrow
       placeholder
       :border="false"
       fixed
-      title="立即投资"
       safe-area-inset-top
       @click-left="$base.BackPage()"
     >
+      <template #left>
+        <van-icon name="arrow-left" size="18" />
+        <text class="headr_title">立即投资</text>
+      </template>
     </van-nav-bar>
     <view class="cardStyle">
       <view class="card">

@@ -1,17 +1,16 @@
 <script>
 export default {
   onLaunch: function () {
-    // if (uni.getStorageInfoSync("token")) {
-    //   this.$api.user_info().then(({ data }) => {
-    //     this.$isResolve();
-    //     if (data.code == 0) {
-    //       this.$base.storage("infos", data.data);
-    //     }
-    //   });
-    // } else {
-    //   this.$isResolve();
-    // }
-    this.$isResolve();
+    if (uni.getStorageInfoSync("token")) {
+      this.$api.user_info().then(({ data }) => {
+        this.$isResolve();
+        if (data.code == 0) {
+          this.$base.storage("infos", data.data);
+        }
+      });
+    } else {
+      this.$isResolve();
+    }
   },
   onShow: function () {},
   onHide: function () {},
@@ -20,6 +19,11 @@ export default {
 <style>
 /*每个页面公共css */
 @import url("./node_modules/vant/lib/index.css");
+.headr_title {
+  font-size: 32upx;
+  color: #fff;
+  padding-left: 30upx;
+}
 .van-field__control {
   font-size: 28upx;
 }

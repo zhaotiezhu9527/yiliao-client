@@ -1,13 +1,7 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      placeholder
-      left-arrow
-      :border="false"
-      fixed
-      safe-area-inset-top
-    >
-      <template #left><text class="title">安科生物</text></template>
+    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
+      <template #left><text class="headr_title">安科生物</text></template>
     </van-nav-bar>
     <view class="wrap">
       <view class="banner">
@@ -115,10 +109,20 @@ export default {
         { name: "关于我们", img: img1, path: "/pages/about" },
         { name: "计算器", img: img2 },
         { name: "每日签到", img: img3 },
-        { name: "我要充值USDT", img: img4 },
-        { name: "我要提现", img: img5 },
+        {
+          name: "我要充值USDT",
+          img: img4,
+          path: "/pages/preview",
+          url: "https://www.baidu.com",
+        },
+        { name: "我要提现", img: img5, path: "/pages/withdraw" },
         { name: "免费注册", img: img6, path: "/pages/register" },
-        { name: "在线客服", img: img7 },
+        {
+          name: "在线客服",
+          img: img7,
+          path: "/pages/preview",
+          url: "https://www.baidu.com",
+        },
       ],
       shopGoods: [],
     };
@@ -132,7 +136,7 @@ export default {
     });
   },
   methods: {
-    change({ name, path }) {
+    change({ name, path, url }) {
       if (["投资项目", "关于我们"].includes(name)) {
         uni.switchTab({
           url: path,
@@ -148,6 +152,10 @@ export default {
           if (data.code == 0) {
             this.$base.show(data.msg + "~");
           }
+        });
+      } else if (["我要充值USDT", "在线客服"].includes(name)) {
+        uni.navigateTo({
+          url: `${path}?title=${name}&url=${url}`,
         });
       }
     },
@@ -167,10 +175,6 @@ export default {
 @import "../static/list.scss";
 .page {
   background-color: #fafafa;
-}
-.title {
-  font-size: 32upx;
-  color: #fff;
 }
 .banner {
   height: 280upx;

@@ -1,38 +1,65 @@
 <template>
   <view class="page">
     <van-nav-bar
-      title="投资记录"
-      left-arrow
       placeholder
       :border="false"
       fixed
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
+      <template #left>
+        <van-icon name="arrow-left" size="18" />
+        <text class="headr_title">投资记录</text>
+      </template>
     </van-nav-bar>
+
     <view class="wrap">
-      <table class="table-data">
-        <tr>
-          <th>项目名称</th>
-          <th class="table-money">投资金额</th>
-          <th>状态</th>
-          <th>详情</th>
-          <th>合同</th>
-        </tr>
-        <tr v-for="(item,index) in list" :key="index">
-          <td>{{item.projectName}}</td>
-          <td class="table-money">
-            <label class="green-text">{{ item.amount }}</label>
-          </td>
-          <td class="table-time">{{ item.status === 1 ? '已完成' : '未结算' }}</td>
-          <td class="table-btn">
-            <label class="blue-text" @click="goInvestmentDetails(item.orderNo)">查看</label>
-          </td>
-          <td class="table-btn">
-            <label class="grey-text" @click="goContract(item.orderNo)">查看</label>
-          </td>
-        </tr>
-      </table>
+      <van-list
+        :immediate-check="false"
+        v-model="loading"
+        :finished="finished"
+        loading-text="加载中..."
+        finished-text="没有更多了"
+        @load="load"
+        v-if="isArray"
+      >
+        <view class="title">
+          <view class="title-remark">项目名称</view>
+          <view class="line"></view>
+          <view class="title-amount">投资金额</view>
+          <view class="line"></view>
+          <view class="title-time">状态</view>
+          <view class="line"></view>
+          <view class="title-time">详情</view>
+          <view class="line"></view>
+          <view class="title-time">合同</view>
+        </view>
+        <view class="content" v-for="(item, index) in list" :key="index">
+          <view class="table-title">
+            {{ item.projectName }}
+          </view>
+          <view class="line"></view>
+          <view class="table-money green-text">{{ item.amount }}</view>
+          <view class="line"></view>
+          <view class="table-time">{{
+            item.status ? "已完成" : "未结算"
+          }}</view>
+          <view class="line"></view>
+          <view class="table-time">
+            <label class="blue-text" @click="goInvestmentDetails(item.orderNo)">
+              查看
+            </label>
+          </view>
+
+          <view class="line"></view>
+          <view class="table-time">
+            <label class="grey-text" @click="goContract(item.orderNo)">
+              查看
+            </label>
+          </view>
+        </view>
+      </van-list>
+      <van-empty description="没有更多了" v-else />
     </view>
   </view>
 </template>
@@ -41,11 +68,17 @@
 export default {
   data() {
     return {
-      list: [],//列表数据
+      list: [], //列表数据
+      loading: false,
+      finished: false,
+      isArray: true,
+      page: 0,
     };
   },
-  onShow(){
-    this.getData()
+  onShow() {
+    uni.showLoading();
+    this.page = 1;
+    this.dataFn();
   },
   methods: {
     goInvestmentDetails(num) {
@@ -58,12 +91,20 @@ export default {
         url: "/pages/contract?orderNo=" + num,
       });
     },
-    //获取数据
-    getData() {
-      this.$api.invest_list().then((res) => {
+    load() {
+      this.page++;
+      this.dataFn(this.page);
+    },
+    dataFn(page = 1, limit = 20) {
+      this.$api.invest_list({ page, limit }).then((res) => {
         if (res.data.code == 0) {
-          this.list = res.data.page.list
-        } 
+          const vim = res.data.page;
+          this.list = this.list.concat(vim.list);
+          this.isArray = vim.totalCount ? true : false;
+          if (this.page >= vim.totalPage) {
+            this.finished = true;
+          }
+        }
       });
     },
   },
@@ -71,48 +112,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.wrap {
-  .table-data {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 24upx;
-    text-align: center;
-    th {
-      height: 50upx;
-      text-align: center;
-    }
-    th,
-    td {
-      border-right: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-    }
-    .table-money {
-      width: 18%;
-      .green-text {
-        color: green;
-      }
-      .red-text {
-        color: red;
-      }
-    }
-    .table-time {
-      width: 13%;
-      padding: 16upx 4upx;
-    }
-    .table-btn {
-      label {
-        font-size: 12px;
-        padding: 5px 5px;
-        color: #fff;
-        border-radius: 5px;
-      }
-      .grey-text {
-        background-color: #567da8;
-      }
-      .blue-text {
-        background-color: #4994ec;
-      }
-    }
-  }
-}
+@import "../static/record.scss";
 </style>

@@ -1,21 +1,23 @@
 <template>
   <view class="page">
     <van-nav-bar
-      title="投资详情"
-      left-arrow
       placeholder
       :border="false"
       fixed
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/InvestmentRecords')"
     >
+      <template #left>
+        <van-icon name="arrow-left" size="18" />
+        <text class="headr_title">投资详情</text>
+      </template>
     </van-nav-bar>
     <view class="wrap">
       <view class="details-text">
-        <view> 投资金额：{{detailsData.amount}}元 </view>
-        <view> 预期收益：{{detailsData.forecastReturnAmount}}元 </view>
-        <view> 投资时间：{{detailsData.orderTime}} </view>
-        <view> 到期时间：{{detailsData.forecastReturnTime}} </view>
+        <view> 投资金额：{{ detailsData.amount }}元 </view>
+        <view> 预期收益：{{ detailsData.forecastReturnAmount }}元 </view>
+        <view> 投资时间：{{ detailsData.orderTime }} </view>
+        <view> 到期时间：{{ detailsData.forecastReturnTime }} </view>
         <view> 收益方式：每日返息，到期还本 </view>
       </view>
       <table class="table-data">
@@ -29,13 +31,21 @@
           <th width="10%">状态</th>
         </tr>
         <tr>
-          <td>{{detailsData.amount}}</td>
-          <td>{{detailsData.forecastReturnAmount}}</td>
-          <td class="text-left">{{detailsData.forecastReturnTime}}</td>
-          <td class="text-left">{{detailsData.returnTime}}</td>
-          <td>{{detailsData.amount + detailsData.forecastReturnAmount}}</td>
-          <td>{{detailsData.status === 1 ? detailsData.amount + detailsData.forecastReturnAmount : 0}}</td>
-          <td class="text-left">{{detailsData.status === 1 ? '已完成' : '未结算'}}</td>
+          <td>{{ detailsData.amount }}</td>
+          <td>{{ detailsData.forecastReturnAmount }}</td>
+          <td class="text-left">{{ detailsData.forecastReturnTime }}</td>
+          <td class="text-left">{{ detailsData.returnTime }}</td>
+          <td>{{ detailsData.amount + detailsData.forecastReturnAmount }}</td>
+          <td>
+            {{
+              detailsData.status === 1
+                ? detailsData.amount + detailsData.forecastReturnAmount
+                : 0
+            }}
+          </td>
+          <td class="text-left">
+            {{ detailsData.status === 1 ? "已完成" : "未结算" }}
+          </td>
         </tr>
       </table>
     </view>
@@ -47,28 +57,30 @@ export default {
   data() {
     return {
       detailsData: {
-        amount:'',//投资金额
-        forecastReturnAmount:'',//预期收益
-        orderTime:'',//投资时间
-        returnTime:'',//到期时间
-        forecastReturnTime:'',//到期时间，应收时间
-        status: 0,//状态，0未结算 1已完成
-      },//注单详情数据
+        amount: "", //投资金额
+        forecastReturnAmount: "", //预期收益
+        orderTime: "", //投资时间
+        returnTime: "", //到期时间
+        forecastReturnTime: "", //到期时间，应收时间
+        status: 0, //状态，0未结算 1已完成
+      }, //注单详情数据
     };
   },
-  onLoad(option){
-    this.getData(option.orderNo)
+  onLoad(option) {
+    this.getData(option.orderNo);
   },
   methods: {
-    getData(orderNo){
-      this.$api.order_detail({
-        orderNo: orderNo
-      }).then((res) => {
-        if (res.data.code == 0) {
-          this.detailsData = res.data.data
-        } 
-      });
-    }
+    getData(orderNo) {
+      this.$api
+        .order_detail({
+          orderNo: orderNo,
+        })
+        .then((res) => {
+          if (res.data.code == 0) {
+            this.detailsData = res.data.data;
+          }
+        });
+    },
   },
 };
 </script>

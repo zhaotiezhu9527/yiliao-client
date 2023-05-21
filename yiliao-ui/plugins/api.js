@@ -211,3 +211,89 @@ export const user_realName = (data) => {
       });
   });
 };
+
+//用户收益记录列表
+export const user_profit_list = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/profit/list",
+        method: "get",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
+
+//用户充值记录列表
+export const user_deposit_list = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/deposit/list",
+        method: "get",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
+
+//用户提现记录列表
+export const user_withdraw_list = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/withdraw/list",
+        method: "get",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
+
+//修改用户密码
+export const user_updatePwd = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/updatePwd",
+        method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+}; //修改用户支付密码
+export const user_updatePayPwd = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/updatePayPwd",
+        method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+}; //用户提现
+export const user_withdraw = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/withdraw",
+        method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};

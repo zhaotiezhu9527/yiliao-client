@@ -1,30 +1,51 @@
 <template>
   <view class="page">
     <van-nav-bar
-      title="充值记录"
       placeholder
-      left-arrow
       :border="false"
       fixed
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
+      <template #left>
+        <van-icon name="arrow-left" size="18" />
+        <text class="headr_title">充值记录</text>
+      </template>
     </van-nav-bar>
     <view class="wrap">
-      <table class="table-data">
-        <tr>
-          <th>充值金额</th>
-          <th>充值方式</th>
-          <th width="40%">充值时间</th>
-          <th>状态</th>
-        </tr>
-        <tr>
-          <td>30000</td>
-          <td>系统充值</td>
-          <td>2023-05-18 12:28:10</td>
-          <td>充值成功</td>
-        </tr>
-      </table>
+      <van-list
+        :immediate-check="false"
+        v-model="loading"
+        :finished="finished"
+        loading-text="加载中..."
+        finished-text="没有更多了"
+        @load="load"
+        v-if="isArray"
+      >
+        <view class="title">
+          <view class="title-amount">充值金额</view>
+          <view class="line"></view>
+          <view class="title-amount">充值方式</view>
+          <view class="line"></view>
+          <view class="title-remark">充值时间</view>
+          <view class="line"></view>
+          <view class="title-amount">状态</view>
+        </view>
+        <view class="content" v-for="(item, index) in list" :key="index">
+          <view class="table-money">
+            {{ item.amount }}
+          </view>
+          <view class="line"></view>
+          <view class="table-money">{{ item.typeStr }}</view>
+          <view class="line"></view>
+          <view class="table-title">{{ item.time }}</view>
+          <view class="line"></view>
+          <view class="table-money">{{
+            item.status ? "充值成功" : "充值失败"
+          }}</view>
+        </view>
+      </van-list>
+      <van-empty description="没有更多了" v-else />
     </view>
   </view>
 </template>
@@ -32,31 +53,40 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      list: [], //列表数据
+      loading: false,
+      finished: false,
+      isArray: true,
+      page: 0,
+    };
   },
-  methods: {},
+  onShow() {
+    uni.showLoading();
+    this.page = 1;
+    this.dataFn();
+  },
+  methods: {
+    load() {
+      this.page++;
+      this.dataFn(this.page);
+    },
+    dataFn(page = 1, limit = 20) {
+      this.$api.user_deposit_list({ page, limit }).then((res) => {
+        if (res.data.code == 0) {
+          const vim = res.data.page;
+          this.list = this.list.concat(vim.list);
+          this.isArray = vim.totalCount ? true : false;
+          if (this.page >= vim.totalPage) {
+            this.finished = true;
+          }
+        }
+      });
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-.wrap {
-  .table-data {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 24upx;
-    text-align: center;
-    th {
-      height: 50upx;
-      text-align: center;
-    }
-    td {
-      height: 50upx;
-    }
-    th,
-    td {
-      border-right: 1px solid #bbb;
-      border-bottom: 1px solid #bbb;
-    }
-  }
-}
+@import "../static/record.scss";
 </style>

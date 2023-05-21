@@ -1,13 +1,7 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      placeholder
-      left-arrow
-      :border="false"
-      fixed
-      safe-area-inset-top
-    >
-      <template #left><text class="title">项目投资</text></template>
+    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
+      <template #left><text class="headr_title">项目投资</text></template>
     </van-nav-bar>
     <view class="wrap">
       <view class="list" v-if="shopGoods.length">
@@ -132,10 +126,6 @@ export default {
 @import "../static/list.scss";
 .page {
   background-color: #fafafa;
-}
-.title {
-  font-size: 32upx;
-  color: #fff;
 }
 .van-empty {
   background-color: #fff;

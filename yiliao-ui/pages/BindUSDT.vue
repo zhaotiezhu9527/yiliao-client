@@ -1,34 +1,41 @@
 <template>
   <view class="page">
     <van-nav-bar
-      title="绑定USDT地址"
-      left-arrow
       :border="false"
       fixed
       placeholder
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
+      <template #left>
+        <van-icon name="arrow-left" size="18" />
+        <text class="headr_title">绑定USDT地址</text>
+      </template>
     </van-nav-bar>
     <view class="wrap">
-        <view v-if="bindStatus">
-          <view class="bind-title">我的USDT钱包地址</view>
-          <view class="bind-text">{{ addr }}</view>
+      <view v-if="bindStatus">
+        <view class="bind-title">我的USDT钱包地址</view>
+        <view class="bind-text">{{ addr }}</view>
+      </view>
+      <view v-else>
+        <view class="usdt-title">请输入USDT钱包地址</view>
+        <view class="from-input">
+          <input
+            type="text"
+            class="input-text"
+            v-model="addr"
+            placeholder="请输入USDT钱包地址"
+          />
         </view>
-        <view v-else>
-          <view class="usdt-title">请输入USDT钱包地址</view>
-          <view class="from-input">
-            <input
-              type="text"
-              class="input-text"
-              v-model="addr"
-              placeholder="请输入USDT钱包地址"
-            />
-          </view>
-          <van-button class="btn-class" block @click="changeBind" :loading="loading">
-            提交绑定
-          </van-button>
-        </view>
+        <van-button
+          class="btn-class"
+          block
+          @click="changeBind"
+          :loading="loading"
+        >
+          提交绑定
+        </van-button>
+      </view>
     </view>
   </view>
 </template>
@@ -38,30 +45,30 @@ export default {
   data() {
     return {
       loading: false,
-      addr:'',//usdt地址
-      bindStatus:'',//是否绑定地址
+      addr: "", //usdt地址
+      bindStatus: "", //是否绑定地址
     };
   },
-  onShow(){
-    this.getInfo()
+  onShow() {
+    this.getInfo();
   },
   methods: {
     // 绑定银行卡
-    changeBind(){
+    changeBind() {
       if (!this.addr) {
         return this.$base.show("请输入USDT钱包地址~");
       }
-      this.loading = true
-      this.$api.user_bindUSDT(
-        {
+      this.loading = true;
+      this.$api
+        .user_bindUSDT({
           addr: this.addr,
-        }
-      ).then((res) => {
-        this.loading = false
-        if (res.data.code == 0) {
-          this.getInfo()
-        }
-      });
+        })
+        .then((res) => {
+          this.loading = false;
+          if (res.data.code == 0) {
+            this.getInfo();
+          }
+        });
     },
     //用户列表数据
     getInfo() {
@@ -78,22 +85,22 @@ export default {
 
 <style scoped lang="scss">
 .wrap {
-  .bind-title{
+  .bind-title {
     margin: 40upx 0;
     font-size: 36upx;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
   }
-  .bind-text{
+  .bind-text {
     text-align: center;
     color: #577fab;
     font-size: 28upx;
-    font-weight: 600;
+    font-weight: 500;
   }
   .usdt-title {
     margin: 60upx 50upx;
     color: #577fab;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 40upx;
   }
   .from-input {
@@ -103,7 +110,7 @@ export default {
       height: 64upx;
       border-bottom: 1px solid #bbb;
       font-size: 24upx;
-      font-weight: 600;
+      font-weight: 500;
     }
   }
 }

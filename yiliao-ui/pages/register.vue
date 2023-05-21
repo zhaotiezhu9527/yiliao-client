@@ -1,7 +1,6 @@
 <template>
   <view class="page">
     <van-nav-bar
-      left-arrow
       :border="false"
       placeholder
       fixed
@@ -10,7 +9,7 @@
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="title">注册</text>
+        <text class="headr_title">注册</text>
       </template>
     </van-nav-bar>
     <view class="wrap">
@@ -130,14 +129,14 @@ export default {
   onLoad() {},
   methods: {
     login() {
-      if (this.userPhone === "") {
-        return this.$base.show("请输入登录账号~");
-      } else if (this.password === "") {
-        return this.$base.show("请输入登录密码~");
+      if (!this.userPhone || this.userPhone.length < 6) {
+        return this.$base.show("请输入登录账号且长度大于6~");
+      } else if (!this.password || this.password.length < 6) {
+        return this.$base.show("请输入密码且长度大于6~");
       } else if (this.password != this.confirmLoginPwd) {
         return this.$base.show("两次输入密码不一致~");
-      } else if (this.payPwd === "") {
-        return this.$base.show("请输入支付密码~");
+      } else if (!this.payPwd || this.payPwd.length < 6) {
+        return this.$base.show("请输入支付密码且长度大于6~");
       } else if (this.inviteCode === "") {
         return this.$base.show("请输入推荐人ID~");
       }
@@ -174,11 +173,6 @@ export default {
   .img {
     width: 50%;
   }
-}
-.title {
-  font-size: 32upx;
-  color: #fff;
-  padding-left: 30upx;
 }
 /deep/.van-field__label {
   display: flex;

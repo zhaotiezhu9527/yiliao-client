@@ -2,32 +2,44 @@
   <view class="page">
     <van-nav-bar
       placeholder
-      title="账户安全"
-      left-arrow
       :border="false"
       fixed
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
+      <template #left>
+        <van-icon name="arrow-left" size="18" />
+        <text class="headr_title">账户安全</text>
+      </template>
     </van-nav-bar>
     <view class="wrap">
       <view class="content">
         <view class="list">
-          <image class="icon-img" src="../static/img/mine_func_anquan.png" />
+          <view class="image">
+            <image class="icon-img2" src="../static/img/phone.png" />
+          </view>
           <label>用户名</label>
-          <view class="right-text">test08</view>
+          <view class="right-text">{{ infos.userName }}</view>
         </view>
         <view class="list margintop10 borderBottom" @click="goRealName">
-          <image class="icon-img" src="../static/img/mine_func_anquan.png" />
+          <view class="image">
+            <image class="icon-img" src="../static/img/admin.png" />
+          </view>
           <label>实名认证</label>
-          <view class="right-text">已完成</view>
+          <view class="right-text">{{
+            infos.idCard ? "已认证" : "未认证"
+          }}</view>
         </view>
         <view class="list borderBottom" @click="goChangeLoginPassword">
-          <image class="icon-img" src="../static/img/mine_func_anquan.png" />
+          <view class="image">
+            <image class="icon-img" src="../static/img/pass.png" />
+          </view>
           <label>修改登录密码</label>
         </view>
         <view class="list" @click="goModifyPaymentPassword">
-          <image class="icon-img" src="../static/img/mine_func_anquan.png" />
+          <view class="image">
+            <image class="icon-img2" src="../static/img/key.png" />
+          </view>
           <label>修改支付密码</label>
         </view>
       </view>
@@ -38,7 +50,13 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      infos: {},
+    };
+  },
+  async onShow() {
+    await this.$onLaunched;
+    this.infos = uni.getStorageSync("infos");
   },
   methods: {
     goRealName() {
@@ -74,10 +92,17 @@ export default {
       font-size: 28upx;
       height: 52upx;
       align-items: center;
+      .image {
+        margin-right: 20upx;
+      }
+      .image,
       .icon-img {
         width: 40upx;
         height: 40upx;
-        margin-right: 20upx;
+      }
+      .icon-img2 {
+        width: 36upx;
+        height: 36upx;
       }
       label {
         flex: 1;

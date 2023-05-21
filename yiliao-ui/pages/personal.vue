@@ -1,12 +1,7 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      placeholder
-      title="个人中心"
-      :border="false"
-      fixed
-      safe-area-inset-top
-    >
+    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
+      <template #left><text class="headr_title">个人中心</text></template>
     </van-nav-bar>
     <view class="wrap">
       <!-- 头部 -->
@@ -32,22 +27,31 @@
       </view>
       <!-- 按钮 -->
       <view class="button-box">
-        <van-button class="button-class">充值</van-button>
+        <van-button class="button-class" @click="pathChange">充值</van-button>
         <van-button class="button-class" @click="goWithdraw">提现</van-button>
       </view>
       <!-- 列表 -->
       <view class="list">
-        <view class="list-item">
+        <view
+          class="list-item"
+          @click="downloadChange('https://www.baidu.com')"
+        >
           <image class="icon-img" src="../static/img/okx_app_icon.png" />
           <label>欧易安卓下载</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view
+          class="list-item"
+          @click="downloadChange('https://www.baidu.com')"
+        >
           <image class="icon-img" src="../static/img/bian_app_icon.png" />
           <label>币安安卓下载</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item">
+        <view
+          class="list-item"
+          @click="downloadChange('https://www.baidu.com')"
+        >
           <image class="icon-img" src="../static/img/icon_app_huobi.png" />
           <label>火币APP下载</label>
           <view class="icon"></view>
@@ -89,7 +93,10 @@
           <label>账户安全</label>
           <view class="icon"></view>
         </view>
-        <view class="list-item" @click="goBindBank(userData.bankName,userData.bankCardNum)">
+        <view
+          class="list-item"
+          @click="goBindBank(userData.bankName, userData.bankCardNum)"
+        >
           <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
           <label>银行卡绑定</label>
           <view class="icon"></view>
@@ -123,8 +130,8 @@ export default {
         integral: "", //积分
         waitReturnInterest: "", //待收利息
         waitReturnPrincipal: "", //待收本金
-        bankName: "",//银行名称
-        bankCardNum: "",//银行卡号
+        bankName: "", //银行名称
+        bankCardNum: "", //银行卡号
       },
       loading: false,
       items: {},
@@ -135,6 +142,33 @@ export default {
     this.getInfo();
   },
   methods: {
+    pathChange() {
+      uni.navigateTo({
+        url: `/pages/preview?title=我要充值USDT&url=https://www.baidu.com&rurl=/pages/personal`,
+      });
+    },
+    downloadChange(url) {
+      // #ifdef H5
+      window.open(url);
+      // #endif
+
+      // #ifdef APP-PLUS
+      uni.downloadFile({
+        url,
+        success: (res) => {
+          if (res.statusCode === 200) {
+            uni.openDocument({
+              filePath: res.tempFilePath,
+              success: (res) => {},
+            });
+          }
+        },
+        fail(err) {
+          this.$u.toast("下载失败");
+        },
+      });
+      // #endif
+    },
     goFundDetails() {
       uni.navigateTo({
         url: "/pages/fundDetails",
@@ -208,6 +242,7 @@ export default {
       this.$api.user_info().then((res) => {
         if (res.data.code == 0) {
           this.userData = res.data.data;
+          this.$base.storage("infos", res.data.data);
         }
       });
     },
@@ -216,7 +251,7 @@ export default {
       this.$api.user_sign().then((res) => {
         if (res.data.code == 0) {
           this.$base.show(res.data.msg + "~");
-          this.getInfo()
+          this.getInfo();
         } else {
           this.$base.show(res.data.msg);
         }
@@ -249,7 +284,7 @@ export default {
       font-size: 60upx;
       line-height: 60upx;
       text-align: center;
-      font-weight: 600;
+      font-weight: 500;
       margin-top: 5px;
     }
     .head-integral {
@@ -305,7 +340,7 @@ export default {
       align-items: center;
       vertical-align: middle;
       font-size: 26upx;
-      font-weight: 800;
+      font-weight: 500;
       height: 116upx;
       margin: 0 30upx;
       border-bottom: 1px solid #eee;

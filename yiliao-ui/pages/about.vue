@@ -1,13 +1,7 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      placeholder
-      left-arrow
-      :border="false"
-      fixed
-      safe-area-inset-top
-    >
-      <template #left><text class="title">公司简介</text></template>
+    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
+      <template #left><text class="headr_title">公司简介</text></template>
     </van-nav-bar>
     <view class="wrap">
       <image
@@ -30,10 +24,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.title {
-  font-size: 32upx;
-  color: #fff;
-}
 .image {
   width: 100vw;
 }
