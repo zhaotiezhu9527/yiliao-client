@@ -606,6 +606,7 @@ public class UserController {
         withdraw.setAfterAmount(NumberUtil.sub(user.getBalance(), amount));
         withdraw.setWalletAddr(StringUtils.equals(request.getType(), "2") ? user.getWalletAddr() : null);
         withdraw.setBankCardNum(StringUtils.equals(request.getType(), "2") ? null : user.getBankCardNum());
+        withdraw.setRealName(user.getRealName());
         withdraw.setBankName(StringUtils.equals(request.getType(), "2") ? null : user.getBankName());
         withdraw.setBankAddr(StringUtils.equals(request.getType(), "2") ? null : user.getBankAddr());
         withdraw.setOptType(NumberUtils.toInt(request.getType()));

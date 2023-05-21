@@ -65,6 +65,12 @@ public class Withdraw implements Serializable {
     private String bankCardNum;
 
     /**
+     * 真实姓名
+     */
+    @TableField(value = "real_name")
+    private String realName;
+
+    /**
      * 银行名称
      */
     @TableField(value = "bank_name")
