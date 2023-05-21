@@ -89,6 +89,11 @@ public class OrderController {
         // 查询用户信息
         String userName = JwtUtils.getUserName(httpServletRequest);
         User user = userService.getUserByName(userName);
+        // 验证支付密码
+        String pwd = SecureUtil.md5(request.getPwd());
+        if (!StringUtils.equals(pwd, user.getPayPwd())) {
+            return R.error(MsgUtil.get("system.order.paypwderror"));
+        }
         if (user.getIsRealName().intValue() == 1) {
             return R.error(MsgUtil.get("system.order.realname"));
         }
@@ -177,7 +182,7 @@ public class OrderController {
         obj.put("guaranteeCompany", params.get("guarantee_company"));
         obj.put("ourCompany", params.get("our_company"));
         obj.put("status", order.getStatus());
-        obj.put("abbreviation", "安科生物");
+        obj.put("abbreviation", params.get("jiancheng"));
         return R.ok().put("data", obj);
     }
 }

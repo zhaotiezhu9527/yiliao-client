@@ -578,6 +578,12 @@ public class UserController {
 
         String userName = JwtUtils.getUserName(httpServletRequest);
         User user = userService.getUserByName(userName);
+        // 验证支付密码
+        String pwd = SecureUtil.md5(request.getPwd());
+        if (!StringUtils.equals(pwd, user.getPayPwd())) {
+            return R.error(MsgUtil.get("system.order.paypwderror"));
+        }
+
         if (user.getIsRealName().intValue() == 1) {
             return R.error(MsgUtil.get("system.order.realname"));
         }
@@ -600,6 +606,7 @@ public class UserController {
         withdraw.setAfterAmount(NumberUtil.sub(user.getBalance(), amount));
         withdraw.setWalletAddr(StringUtils.equals(request.getType(), "2") ? user.getWalletAddr() : null);
         withdraw.setBankCardNum(StringUtils.equals(request.getType(), "2") ? null : user.getBankCardNum());
+        withdraw.setRealName(user.getRealName());
         withdraw.setBankName(StringUtils.equals(request.getType(), "2") ? null : user.getBankName());
         withdraw.setBankAddr(StringUtils.equals(request.getType(), "2") ? null : user.getBankAddr());
         withdraw.setOptType(NumberUtils.toInt(request.getType()));

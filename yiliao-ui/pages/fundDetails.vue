@@ -11,42 +11,38 @@
     >
     </van-nav-bar>
     <view class="wrap">
-      <!-- <table class="table-data">
-        <tr>
-          <th>摘要</th>
-          <th class="table-money">金额</th>
-          <th>时间</th>
-        </tr>
-        <tr v-for="(item,index) in list" :key="index">
-          <td>{{ item.remark }}</td>
-          <td class="table-money">
-            <label :class="item.amount < 0 ? 'red-text' : 'green-text'">{{ item.amount }}</label>
-          </td>
-          <td class="table-time">{{ item.optTime}}</td>
-        </tr>
-      </table> -->
       <van-list
         :immediate-check="false"
         v-model="loading"
         :finished="finished"
         loading-text="loading..."
-        finished-text="No more"
+        finished-text="没有更多了"
         @load="load"
         v-if="isArray"
       >
         <!-- @click="change(item)" -->
+        <view class="title">
+          <view class="title-remark">摘要</view>
+          <view class="line"></view>
+          <view class="title-amount">金额</view>
+          <view class="line"></view>
+          <view class="title-time">时间</view>
+        </view>
         <view
-          class="list van-hairline--bottom"
+          class="content"
           v-for="(item, index) in list"
           :key="index"
         >
-          <view class="title van-ellipsis">
+          <view class="table-title">
             {{ item.remark }}
           </view>
-          <view class="value">{{ item.optTime }}</view>
+          <view class="line"></view>
+          <view class="table-money" :class="item.amount > 0 ? 'green-text' : 'red-text'">{{ item.amount }}</view>
+          <view class="line"></view>
+          <view class="table-time">{{ item.optTime }}</view>
         </view>
       </van-list>
-      <van-empty description="No more" v-else />
+      <van-empty description="没有更多了" v-else />
     </view>
   </view>
 </template>
@@ -63,7 +59,6 @@ export default {
     };
   },
   onShow() {
-    // this.getData()
   },
   onLoad() {
     uni.showLoading();
@@ -71,19 +66,11 @@ export default {
     this.dataFn();
   },
   methods: {
-    //获取数据
-    // getData() {
-    //   this.$api.account_list().then((res) => {
-    //     if (res.data.code == 0) {
-    //       this.list = res.data.page.list
-    //     }
-    //   });
-    // },
     load() {
       this.page++;
       this.dataFn(this.page);
     },
-    dataFn(page = 1, limit = 30) {
+    dataFn(page = 1, limit = 20) {
       this.$api.account_list({ page, limit }).then((res) => {
         if (res.data.code == 0) {
           const vim = res.data.page;
@@ -107,50 +94,44 @@ export default {
 
 <style scoped lang="scss">
 .wrap {
-  .table-data {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 24upx;
+  .title{
+    display: flex;
     text-align: center;
-    th {
-      height: 50upx;
-      text-align: center;
+    font-size: 24upx;
+    font-weight: 600;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    height: 60upx;
+    align-items: center;
+    .title-remark{
+      flex: 1;
     }
-    th,
-    td {
-      border-right: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-    }
-    .table-money {
+    .title-amount{
       width: 20%;
-      .green-text {
-        color: green;
-      }
-      .red-text {
-        color: red;
-      }
     }
-    .table-time {
+    .title-time{
       width: 20%;
-      text-align: left;
-      padding: 16upx 4upx;
     }
   }
-}
-.list {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  line-height: 110upx;
-  .title {
-    font-size: 30upx;
-    width: 55%;
+  .content{
+    display: flex;
+    font-size: 24upx;
+    height: 80upx;
+    align-items: center;
+    border-bottom: 1px solid #bbb;
   }
-  .value {
-    width: 45%;
-    font-size: 30upx;
-    color: #969799;
-    text-align: right;
+  .table-title{
+    text-align: center;
+    flex: 1;
+  }
+  .table-money {
+    width: 20%;
+    text-align: center;
+  }
+  .table-time {
+    width: 19%;
+    text-align: left;
+    padding-left: 1%;
   }
 }
 </style>

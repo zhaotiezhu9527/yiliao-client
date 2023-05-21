@@ -196,3 +196,18 @@ export const user_bindUSDT = (data) => {
       });
   });
 };
+
+//实名认证
+export const user_realName = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "user/realName",
+        method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
