@@ -7,43 +7,46 @@
       fixed
       title="立即投资"
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/info')"
+      @click-left="$base.BackPage()"
     >
     </van-nav-bar>
     <view class="cardStyle">
       <view class="card">
         <view class="item">
           <view>账户可用余额 (元)</view>
-          <view>￥0元</view>
+          <view>￥{{ infos.balance }}元</view>
         </view>
         <view class="item">
           <view>项目可投金额 (元)</view>
-          <view>￥667083444200元</view>
+          <view>{{ items.projectAmount }}元</view>
         </view>
       </view>
     </view>
-    <view class="money">
+    <view class="amount">
       <view class="li">
         <view class="name">起投金额</view>
-        <view class="txt">￥<text>300000</text>元</view>
+        <view class="txt"
+          >￥<text>{{ items.minAmount }}</text
+          >元</view
+        >
       </view>
       <view class="li">
         <view class="name">投资金额</view>
         <view class="txt images">
           <image
             class="img"
-            @click="add(0)"
+            @click="subtract()"
             src="../static/img/jian.png"
             mode="widthFix"
           />
           <van-field
-            v-model="form.moeny"
+            v-model="form.amount"
             type="number"
             placeholder="请输入金额"
           />
           <image
             class="img"
-            @click="add(1)"
+            @click="add()"
             src="../static/img/jia.png"
             mode="widthFix"
           />
@@ -55,16 +58,18 @@
         </view>
       </view>
     </view>
-    <view class="pass">
-      最低起投<text>300000</text>元，加一次为<text>300000</text>元,<text
-        class="other"
-        >一键全投</text
-      >即将账户可用余额<text>300000</text>元的倍数进行投资。
+    <view class="pwd">
+      最低起投<text>{{ items.minAmount }}</text
+      >元，加一次为<text>{{ items.minAmount }}</text
+      >元,<text class="other">一键全投</text>即将账户可用余额<text>
+        {{ infos.balance }} </text
+      >元的倍数进行投资。
     </view>
     <view class="input">
       <van-field
         label="支付密码"
-        v-model="form.pass"
+        v-model="form.pwd"
+        :maxlength="6"
         type="number"
         placeholder="请输入支付密码"
       />
@@ -81,13 +86,16 @@ export default {
   data() {
     return {
       items: {},
+      infos: {},
       form: {
-        money: undefined,
-        pass: undefined,
+        amount: "",
+        pwd: "",
+        projectId: 0,
       },
     };
   },
   onLoad(e) {
+    this.form.projectId = e.id;
     // 获取产品详情
     this.dataFn(e.id);
   },
@@ -98,29 +106,38 @@ export default {
       });
     },
     dataFn(id) {
-      // this.$api.user_notice({ id }).then(({ data }) => {
-      //   if (data.code == 0) {
-      //     this.items = data.data;
-      //   } else {
-      //     this.$base.show(data.msg);
-      //   }
-      // });
+      // 投资提交完成，则再一次获取信息
+      this.$api.user_info().then(({ data }) => {
+        if (data.code == 0) {
+          this.infos = data.data;
+        }
+      });
+      // 获取产品详情
+      this.$api.project_info(id).then(({ data }) => {
+        if (data.code == 0) {
+          this.items = data.data;
+        }
+      });
     },
     // 立即投资
     investor() {
-      if (!this.form.moeny) {
-        this.$base.show("请输入正确的金额");
+      if (!this.form.amount) {
+        this.$base.show("请输入金额");
         return false;
-      } else if (!this.form.pass && this.form.pass.length < 6) {
+      } else if (Number(this.form.amount) < Number(this.items.minAmount)) {
+        this.$base.show("金额必须大于起投金额");
+        return false;
+      } else if (!this.form.pwd && this.form.pwd + "".length < 6) {
         this.$base.show("请输入正确支付密码");
         return false;
       }
-      this.$api.user_notice({ form: this.form }).then(({ data }) => {
+      this.$api.order_execute(this.form).then(({ data }) => {
         if (data.code == 0) {
           this.$base.show(data.msg);
           this.form = {
-            moeny: undefined,
-            pass: undefined,
+            amount: "",
+            pwd: "",
+            projectId: this.items.projectId,
           };
           dataFn(this.items.id);
         }
@@ -128,11 +145,35 @@ export default {
     },
     // 一键全投
     fullthrow() {
-      // this.form.moeny = this.items;
+      this.form.amount = Number(this.infos.balance);
     },
     // 加减
-    add(type) {
-      // if(type){}
+    add() {
+      if (this.items.minAmount >= this.infos.balance) {
+        this.fullthrow();
+        return false;
+      } else if (this.form.amount < this.items.minAmount) {
+        this.form.amount = this.items.minAmount;
+        return false;
+      }
+      if (this.form.amount > Number(this.items.projectAmount)) {
+        this.form.amount = Number(this.items.projectAmount);
+      } else if (this.form.amount >= Number(this.infos.balance)) {
+        this.form.amount = Number(this.infos.balance);
+      } else {
+        this.form.amount =
+          Number(this.form.amount) + Number(this.items.minAmount);
+      }
+    },
+    subtract() {
+      if (this.items.minAmount >= this.infos.balance) {
+        this.fullthrow();
+        return false;
+      } else if (this.form.amount <= this.items.minAmount) {
+        this.form.amount = this.items.minAmount;
+        return false;
+      }
+      this.form.amount -= this.items.minAmount;
     },
   },
 };
@@ -165,7 +206,7 @@ text {
     }
   }
 }
-.money {
+.amount {
   padding: 0 30upx;
   .li {
     display: flex;
@@ -223,7 +264,7 @@ text {
     }
   }
 }
-.pass {
+.pwd {
   font-size: 28upx;
   padding: 50upx 0 20upx;
   margin: 0 30upx;

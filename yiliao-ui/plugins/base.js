@@ -98,7 +98,7 @@ export const request = (params) => {
       header: params.header,
       success: (res) => {
         uni.hideLoading();
-        if (res.data.code !== 0) {
+        if (res.data.code != 0) {
           uni.showToast({
             title: res.data.msg,
             duration: 2000,

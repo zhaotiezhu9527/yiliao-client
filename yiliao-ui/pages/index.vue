@@ -47,36 +47,49 @@
           :key="index"
           @click="routePath(item)"
         >
-          <image class="img" src="../static/img/txt.jpg" mode="widthFix" />
+          <image class="img" :src="item.img" mode="widthFix" />
           <view class="name">
-            <text>保</text>
-            <text>安苏萌·注射用人生长激素</text>
+            <text>{{ guaranteeCompanyFn(item.guaranteeCompany) }}</text>
+            <text>{{ item.projectName }}</text>
           </view>
           <view class="rate">
             <view class="li">
-              <view class="num"><text>5.88</text>%</view>
+              <view class="num"
+                ><text>{{ item.incomeRate }}</text>
+                %
+              </view>
               <view class="con">日化利率</view>
             </view>
             <view class="li">
-              <view class="num"><text>15</text>分钟</view>
+              <view class="num">
+                <text>{{ item.limitTime }}</text>
+                分钟
+              </view>
               <view class="con">投资期限</view></view
             >
             <view class="li">
-              <view class="num">￥<text>1000.00</text>元</view>
+              <view class="num"
+                >￥<text>{{ item.minAmount }}</text>
+                元
+              </view>
               <view class="con">起投金额</view></view
             >
           </view>
           <view class="investor">
             <view class="con">
-              <text>项目规模：20000万元</text>
+              <text>项目规模：{{ item.projectAmount }}元</text>
               <text>每日还息：到齐还本</text>
             </view>
             <view class="btn">立即投资</view>
           </view>
           <view class="progress">
             <view class="txt">项目进度：</view>
-            <van-progress class="prog" percentage="50" :show-pivot="false" />
-            <view class="number">21.05%</view>
+            <van-progress
+              class="prog"
+              :percentage="item.schedule || 0"
+              :show-pivot="false"
+            />
+            <view class="number">{{ item.schedule }}%</view>
           </view>
         </view>
         <van-empty description="暂无产品" v-if="!shopGoods.length" />
@@ -110,14 +123,13 @@ export default {
       shopGoods: [],
     };
   },
-  async onLoad() {
-    await this.$onLaunched;
+  onShow() {
     // 获取产品列表
-    // this.$api.shopGoods().then(({ data }) => {
-    //   if (data.code == 0) {
-    //     this.shopGoods = data.list;
-    //   }
-    // });
+    this.$api.project_list().then(({ data }) => {
+      if (data.code == 0) {
+        this.shopGoods = data.data;
+      }
+    });
   },
   methods: {
     change({ name, path }) {
@@ -141,8 +153,11 @@ export default {
     },
     routePath(item) {
       uni.navigateTo({
-        url: `/pages/info?id=${item.id}`,
+        url: `/pages/info?id=${item.projectId}`,
       });
+    },
+    guaranteeCompanyFn(name) {
+      return name.charAt(name.length - 1);
     },
   },
 };

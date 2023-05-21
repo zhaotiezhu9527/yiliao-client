@@ -1,6 +1,16 @@
 <script>
 export default {
   onLaunch: function () {
+    // if (uni.getStorageInfoSync("token")) {
+    //   this.$api.user_info().then(({ data }) => {
+    //     this.$isResolve();
+    //     if (data.code == 0) {
+    //       this.$base.storage("infos", data.data);
+    //     }
+    //   });
+    // } else {
+    //   this.$isResolve();
+    // }
     this.$isResolve();
   },
   onShow: function () {},
