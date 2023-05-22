@@ -23,6 +23,12 @@ public class Account implements Serializable {
     private Integer id;
 
     /**
+     * 流水号
+     */
+    @TableField(value = "account_no")
+    private String accountNo;
+
+    /**
      * 用户名
      */
     @TableField(value = "user_name")

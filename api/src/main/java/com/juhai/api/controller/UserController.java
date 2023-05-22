@@ -91,7 +91,11 @@ public class UserController {
         temp.put("bankName", user.getBankName());
         temp.put("bankAddr", user.getBankAddr());
         temp.put("userLevelName", "普通用户");
-        temp.put("isRealName", user.getIsRealName());
+        int isRealName = 1;
+        if (StringUtils.isNotBlank(user.getRealName()) && StringUtils.isNotBlank(user.getIdCard())) {
+            isRealName = 0;
+        }
+        temp.put("isRealName", isRealName);
         temp.put("integral", 0);
 
         List<Order> list = orderService.list(
@@ -139,6 +143,7 @@ public class UserController {
                 userService.updateUserBalance(userName, new BigDecimal(signAmount));
                 // 添加流水记录
                 Account account = new Account();
+                account.setAccountNo(IdUtil.getSnowflakeNextIdStr());
                 account.setUserName(user.getUserName());
                 account.setOptAmount(new BigDecimal(signAmount));
                 account.setBeforeAmount(user.getBalance());
@@ -198,7 +203,6 @@ public class UserController {
         user.setUserStatus(0);
         user.setUserLevelId(0);
         user.setUserAgent(agent.getUserName());
-        user.setIsRealName(1);
         user.setRegisterTime(new Date());
         user.setRegisterIp(clientIP);
         user.setLastTime(new Date());
@@ -485,7 +489,7 @@ public class UserController {
         String userName = JwtUtils.getUserName(httpServletRequest);
 
         User user = userService.getUserByName(userName);
-        if (user.getIsRealName().intValue() == 0) {
+        if (StringUtils.isNotBlank(user.getRealName()) && StringUtils.isNotBlank(user.getIdCard())) {
             return R.error(MsgUtil.get("system.user.realname"));
         }
 
@@ -493,10 +497,8 @@ public class UserController {
                 new UpdateWrapper<User>().lambda()
                         .set(User::getRealName, request.getRealName())
                         .set(User::getIdCard, request.getIdCardNo())
-                        .set(User::getIsRealName, 0)
                         .set(User::getModifyTime, new Date())
                         .eq(User::getUserName, userName)
-                        .eq(User::getIsRealName, 1)
         );
 
         return R.ok();
@@ -584,7 +586,7 @@ public class UserController {
             return R.error(MsgUtil.get("system.order.paypwderror"));
         }
 
-        if (user.getIsRealName().intValue() == 1) {
+        if (StringUtils.isBlank(user.getRealName()) || StringUtils.isBlank(user.getIdCard())) {
             return R.error(MsgUtil.get("system.order.realname"));
         }
         if (user.getUserStatus().intValue() == 1) {
@@ -620,6 +622,7 @@ public class UserController {
 
         // 添加流水记录
         Account account = new Account();
+        account.setAccountNo(IdUtil.getSnowflakeNextIdStr());
         account.setUserName(userName);
         account.setOptAmount(amount.negate());
         account.setBeforeAmount(user.getBalance());

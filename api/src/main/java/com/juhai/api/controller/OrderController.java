@@ -1,32 +1,26 @@
 package com.juhai.api.controller;
 
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.extra.servlet.ServletUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.api.controller.request.OrderRequest;
-import com.juhai.api.controller.request.UserRegisterRequest;
 import com.juhai.api.utils.JwtUtils;
-import com.juhai.commons.entity.*;
+import com.juhai.commons.entity.Account;
+import com.juhai.commons.entity.Order;
+import com.juhai.commons.entity.Project;
+import com.juhai.commons.entity.User;
 import com.juhai.commons.service.*;
 import com.juhai.commons.utils.MsgUtil;
 import com.juhai.commons.utils.R;
-import com.juhai.commons.utils.RedisKeyUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -34,10 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Api(value = "订单相关", tags = "订单相关")
@@ -52,9 +43,6 @@ public class OrderController {
     private ParamterService paramterService;
 
     @Autowired
-    private UserLogService userLogService;
-
-    @Autowired
     private AccountService accountService;
 
     @Autowired
@@ -62,9 +50,6 @@ public class OrderController {
 
     @Autowired
     private ProjectService projectService;
-
-    @Autowired
-    private StringRedisTemplate redisTemplate;
 
     @Transactional
     @ApiOperation(value = "投资")
@@ -94,7 +79,7 @@ public class OrderController {
         if (!StringUtils.equals(pwd, user.getPayPwd())) {
             return R.error(MsgUtil.get("system.order.paypwderror"));
         }
-        if (user.getIsRealName().intValue() == 1) {
+        if (StringUtils.isBlank(user.getRealName()) || StringUtils.isBlank(user.getIdCard())) {
             return R.error(MsgUtil.get("system.order.realname"));
         }
         if (user.getUserStatus().intValue() == 1) {
@@ -135,6 +120,7 @@ public class OrderController {
         orderService.save(order);
         // 添加流水记录
         Account account = new Account();
+        account.setAccountNo(IdUtil.getSnowflakeNextIdStr());
         account.setUserName(userName);
         account.setOptAmount(amount.negate());
         account.setBeforeAmount(user.getBalance());

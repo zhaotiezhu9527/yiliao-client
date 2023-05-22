@@ -109,8 +109,8 @@ public class User implements Serializable {
     /**
      * 是否实名(0:已实名 1:未实名)
      */
-    @TableField(value = "is_real_name")
-    private Integer isRealName;
+//    @TableField(value = "is_real_name")
+//    private Integer isRealName;
 
     /**
      * 注册时间
