@@ -80,7 +80,7 @@
             <view class="txt">项目进度：</view>
             <van-progress
               class="prog"
-              :percentage="item.schedule || 0"
+              :percentage="scheduleFn(item.schedule)"
               :show-pivot="false"
             />
             <view class="number">{{ item.schedule }}%</view>
@@ -165,7 +165,10 @@ export default {
       });
     },
     guaranteeCompanyFn(name) {
-      return name.charAt(name.length - 1);
+      return name ? name.charAt(name.length - 1) : "-";
+    },
+    scheduleFn(page) {
+      return (Number(page) > 100 ? 100 : Number(page)) || 0;
     },
   },
 };

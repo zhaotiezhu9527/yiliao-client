@@ -9,6 +9,7 @@
     border-radius: 20upx;
     background-color: #fff;
     box-shadow: 0 0 20upx 10upx #eee;
+    overflow: hidden;
   }
   .name {
     display: flex;
@@ -95,6 +96,7 @@
     }
     .prog {
       width: calc(100% - 270upx);
+      overflow: hidden;
     }
   }
 }

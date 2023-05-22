@@ -50,7 +50,7 @@
             <view class="txt">项目进度：</view>
             <van-progress
               class="prog"
-              :percentage="item.schedule || 0"
+              :percentage="scheduleFn(item.schedule)"
               :show-pivot="false"
             />
             <view class="number">{{ item.schedule }}%</view>
@@ -58,16 +58,6 @@
         </view>
         <van-empty description="暂无产品" v-if="!shopGoods.length" />
       </view>
-      <!-- <van-list
-        :immediate-check="false"
-        v-model="loading"
-        :finished="finished"
-        loading-text="加载中..."
-        finished-text="已经最底了"
-        @load="load"
-        v-if="totalCount"
-      >
-      </van-list> -->
       <van-empty description="暂无产品" v-else />
     </view>
   </view>
@@ -79,32 +69,18 @@ export default {
     return {
       shopGoods: [],
       loading: false,
-      finished: false,
-      totalCount: false,
-      page: 0,
     };
   },
   onShow() {
-    this.page = 1;
     this.dataFn();
   },
   methods: {
-    load() {
-      this.page++;
-      this.dataFn(this.page);
-    },
-    dataFn(page = 1, limit = 30) {
+    dataFn() {
       this.loading = true;
-      this.$api.project_list({ page, limit }).then(({ data }) => {
+      this.$api.project_list().then(({ data }) => {
         this.loading = false;
         if (data.code == 0) {
           this.shopGoods = data.data;
-          // const vim = data.page;
-          // this.shopGoods = this.shopGoods.concat(vim.list);
-          // this.totalCount = vim.totalCount ? true : false;
-          // if (this.page >= vim.totalPage) {
-          // this.finished = true;
-          // }
         } else {
           this.$base.show(data.msg);
         }
@@ -116,7 +92,10 @@ export default {
       });
     },
     guaranteeCompanyFn(name) {
-      return name.charAt(name.length - 1);
+      return name ? name.charAt(name.length - 1) : "-";
+    },
+    scheduleFn(page) {
+      return (Number(page) > 100 ? 100 : Number(page)) || 0;
     },
   },
 };
