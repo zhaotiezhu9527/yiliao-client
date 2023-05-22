@@ -1,7 +1,12 @@
 <template>
   <view class="page">
-    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
-      <template #left><text class="headr_title">个人中心</text></template>
+    <van-nav-bar
+      placeholder
+      title="个人中心"
+      :border="false"
+      fixed
+      safe-area-inset-top
+    >
     </van-nav-bar>
     <view class="wrap">
       <!-- 头部 -->
@@ -33,24 +38,27 @@
       <!-- 列表 -->
       <view class="list">
         <view
+          v-if="config.ouyi_download_url"
           class="list-item"
-          @click="downloadChange('https://www.baidu.com')"
+          @click="downloadChange(config.ouyi_download_url)"
         >
           <image class="icon-img" src="../static/img/okx_app_icon.png" />
           <label>欧易安卓下载</label>
           <view class="icon"></view>
         </view>
         <view
+          v-if="config.bian_download_url"
           class="list-item"
-          @click="downloadChange('https://www.baidu.com')"
+          @click="downloadChange(config.bian_download_url)"
         >
           <image class="icon-img" src="../static/img/bian_app_icon.png" />
           <label>币安安卓下载</label>
           <view class="icon"></view>
         </view>
         <view
+          v-if="config.huobi_download_url"
           class="list-item"
-          @click="downloadChange('https://www.baidu.com')"
+          @click="downloadChange(config.huobi_download_url)"
         >
           <image class="icon-img" src="../static/img/icon_app_huobi.png" />
           <label>火币APP下载</label>
@@ -136,38 +144,22 @@ export default {
       loading: false,
       items: {},
       pwd: "",
+      config: {},
     };
   },
-  onShow() {
+  async onShow() {
+    await this.$onLaunched;
+    this.config = uni.getStorageSync("system_config");
     this.getInfo();
   },
   methods: {
     pathChange() {
       uni.navigateTo({
-        url: `/pages/preview?title=我要充值USDT&url=https://www.baidu.com&rurl=/pages/personal`,
+        url: `/pages/preview?title=我要充值USDT&url=${this.config.resource_domain}&rurl=/pages/personal`,
       });
     },
     downloadChange(url) {
-      // #ifdef H5
       window.open(url);
-      // #endif
-
-      // #ifdef APP-PLUS
-      uni.downloadFile({
-        url,
-        success: (res) => {
-          if (res.statusCode === 200) {
-            uni.openDocument({
-              filePath: res.tempFilePath,
-              success: (res) => {},
-            });
-          }
-        },
-        fail(err) {
-          this.$u.toast("下载失败");
-        },
-      });
-      // #endif
     },
     goFundDetails() {
       uni.navigateTo({
@@ -224,12 +216,12 @@ export default {
       Dialog.confirm({
         title: "退出登陆",
         message: "你确定退出吗？",
+        confirmButtonColor: "#4b80af",
       })
         .then(() => {
-          // on confirm
           this.$api.user_logout().then((res) => {
             if (res.data.code == 0) {
-              uni.navigateTo({ url: "/pages/login" });
+              uni.redirectTo({ url: "/pages/login" });
             }
           });
         })
@@ -251,9 +243,10 @@ export default {
       this.$api.user_sign().then((res) => {
         if (res.data.code == 0) {
           this.$base.show(res.data.msg + "~");
-          this.getInfo();
-        } else {
-          this.$base.show(res.data.msg);
+          // 等待提示成功再进行加载
+          setTimeout(() => {
+            this.getInfo();
+          }, 2000);
         }
       });
     },

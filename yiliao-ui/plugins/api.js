@@ -270,7 +270,8 @@ export const user_updatePwd = (data) => {
         resolve(res);
       });
   });
-}; //修改用户支付密码
+};
+//修改用户支付密码
 export const user_updatePayPwd = (data) => {
   return new Promise((resolve, reject) => {
     base
@@ -283,13 +284,28 @@ export const user_updatePayPwd = (data) => {
         resolve(res);
       });
   });
-}; //用户提现
+};
+//用户提现
 export const user_withdraw = (data) => {
   return new Promise((resolve, reject) => {
     base
       .request({
         url: "user/withdraw",
         method: "post",
+        data: data,
+      })
+      .then((res) => {
+        resolve(res);
+      });
+  });
+};
+//用户提现
+export const system_config = (data) => {
+  return new Promise((resolve, reject) => {
+    base
+      .request({
+        url: "system/config",
+        method: "get",
         data: data,
       })
       .then((res) => {

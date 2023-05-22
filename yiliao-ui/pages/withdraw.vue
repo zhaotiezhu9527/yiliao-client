@@ -4,12 +4,12 @@
       placeholder
       :border="false"
       fixed
+      title="提现"
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">提现</text>
       </template>
     </van-nav-bar>
     <view class="wrap">
@@ -20,10 +20,10 @@
         </view>
       </view>
       <view class="card-num">
-        <view v-if="type === 2">
-          USDT地址<label>{{ infos.walletAddr }}</label>
+        <view style="display: flex" v-if="type === 2">
+          USDT地址<label class="van-ellipsis">{{ infos.walletAddr }}</label>
         </view>
-        <view v-else>
+        <view v-else class="van-ellipsis">
           银行卡 <label>{{ infos.idCard }}</label>
         </view>
       </view>
@@ -139,6 +139,7 @@ export default {
     box-sizing: border-box;
     label {
       margin-left: 20upx;
+      width: calc(100% - 180upx);
     }
     .flex {
       display: flex;

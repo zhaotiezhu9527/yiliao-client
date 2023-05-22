@@ -5,11 +5,11 @@
       :border="false"
       fixed
       safe-area-inset-top
-      @click-left="$base.BackPage()"
+      title="立即投资"
+      @click-left="$base.BackPage(`/pages/info?id=${form.projectId}`)"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">立即投资</text>
       </template>
     </van-nav-bar>
     <view class="cardStyle">
@@ -135,13 +135,15 @@ export default {
       }
       this.$api.order_execute(this.form).then(({ data }) => {
         if (data.code == 0) {
-          this.$base.show(data.msg);
+          this.$base.show("投资成功~");
           this.form = {
             amount: "",
             pwd: "",
             projectId: this.items.projectId,
           };
-          dataFn(this.items.id);
+          setTimeout(() => {
+            this.dataFn(this.items.projectId);
+          }, 2000);
         }
       });
     },
