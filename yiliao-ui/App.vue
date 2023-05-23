@@ -1,7 +1,6 @@
 <script>
 export default {
   onLaunch: function () {
-    console.log("....");
     let token = uni.getStorageSync("token");
     if (token) {
       this.$api.user_info().then(({ data }) => {
