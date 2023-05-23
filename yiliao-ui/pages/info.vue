@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -176,23 +176,23 @@ text {
 }
 .list {
   .view {
-    padding: 20upx;
+    padding: 20rpx;
     box-sizing: border-box;
     background-color: #fff;
   }
   .name {
     display: flex;
     align-items: center;
-    padding-bottom: 16upx;
+    padding-bottom: 16rpx;
     text {
-      font-size: 32upx;
+      font-size: 32rpx;
     }
   }
   .rate {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40upx 0;
+    padding: 40rpx 0;
     background-color: #f4f4f4;
     .li {
       width: calc(100% / 3);
@@ -200,10 +200,10 @@ text {
     }
     .con,
     .num {
-      font-size: 24upx;
+      font-size: 24rpx;
     }
     .num {
-      padding-top: 20upx;
+      padding-top: 20rpx;
     }
     .con {
       color: #a0a0a1;
@@ -222,11 +222,11 @@ text {
       flex-direction: column;
       text {
         text-align: left;
-        font-size: 26upx;
-        padding-bottom: 25upx;
+        font-size: 26rpx;
+        padding-bottom: 25rpx;
         font-weight: 500;
         &:nth-child(1) {
-          padding-top: 25upx;
+          padding-top: 25rpx;
         }
       }
     }
@@ -238,43 +238,43 @@ text {
     position: relative;
     /deep/.u-line-progress,
     /deep/.u-line-progress__background {
-      border-radius: 10upx !important;
+      border-radius: 10rpx !important;
     }
 
     .number {
       position: absolute;
       color: #fff;
-      font-size: 26upx;
-      width: 100upx;
+      font-size: 26rpx;
+      width: 100rpx;
       text-align: right;
       z-index: 2;
     }
   }
 }
 .tabs {
-  padding: 40upx 20upx 120upx;
-  padding-bottom: calc(120upx + constant(safe-area-inset-bottom));
-  padding-bottom: env(120upx + constant(safe-area-inset-bottom));
+  padding: 40rpx 20rpx 120rpx;
+  padding-bottom: calc(120rpx + constant(safe-area-inset-bottom));
+  padding-bottom: env(120rpx + constant(safe-area-inset-bottom));
   .name {
     text-align: center;
     color: #4c7eaf;
-    font-size: 32upx;
+    font-size: 32rpx;
   }
   .row {
     display: flex;
     justify-content: inherit !important;
     align-items: inherit !important;
     &:nth-child(2) {
-      margin-top: 30upx;
+      margin-top: 30rpx;
       .col {
-        border-top: 2upx solid #000;
+        border-top: 2rpx solid #000;
       }
     }
   }
   .col {
-    border: 2upx solid #000;
-    padding: 15upx 30upx;
-    font-size: 24upx;
+    border: 2rpx solid #000;
+    padding: 15rpx 30rpx;
+    font-size: 24rpx;
     line-height: 1.5;
     border-top: 0;
     &:nth-child(1) {
@@ -284,14 +284,14 @@ text {
       justify-content: center !important;
     }
     &:nth-child(2) {
-      padding: 14upx 30upx !important;
+      padding: 14rpx 30rpx !important;
     }
   }
 }
 .btn {
-  padding: 10upx 20upx;
-  padding-bottom: calc(10upx + constant(safe-area-inset-bottom));
-  padding-bottom: env(10upx + constant(safe-area-inset-bottom));
+  padding: 10rpx 20rpx;
+  padding-bottom: calc(10rpx + constant(safe-area-inset-bottom));
+  padding-bottom: env(10rpx + constant(safe-area-inset-bottom));
   background-color: #fff;
   position: fixed;
   bottom: 0;
@@ -299,7 +299,7 @@ text {
   width: 100%;
   box-sizing: border-box;
   /deep/.u-button {
-    border-radius: 10upx;
+    border-radius: 10rpx;
   }
 }
 </style>

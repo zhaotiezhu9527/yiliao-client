@@ -10,7 +10,7 @@
       safe-area-inset-top
       bgColor="#4b80af"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -263,22 +263,22 @@ export default {
 <style scoped lang="scss">
 .wrap {
   background-color: #f8f8f9;
-  padding-bottom: 40upx;
+  padding-bottom: 40rpx;
   .head {
-    height: 258upx;
+    height: 258rpx;
     background-image: linear-gradient(#759dd6, #5d80b9);
     color: #fff;
     .head-text {
-      padding: 16upx;
-      font-size: 26upx;
+      padding: 16rpx;
+      font-size: 26rpx;
       label {
-        margin-right: 20upx;
+        margin-right: 20rpx;
       }
     }
     .head-money {
       width: 100%;
-      font-size: 60upx;
-      line-height: 60upx;
+      font-size: 60rpx;
+      line-height: 60rpx;
       text-align: center;
       font-weight: 500;
       margin-top: 5px;
@@ -291,9 +291,9 @@ export default {
   }
   .money {
     width: 100%;
-    height: 90upx;
+    height: 90rpx;
     background-color: #5874a9;
-    font-size: 24upx;
+    font-size: 24rpx;
     color: #fff;
     align-items: center;
     vertical-align: middle;
@@ -311,7 +311,7 @@ export default {
   .button-box {
     width: 100%;
     margin: auto;
-    margin-top: 10upx;
+    margin-top: 10rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -319,11 +319,11 @@ export default {
       background-color: #5780ab;
       color: #fff;
       font-weight: blod;
-      font-size: 28upx;
-      border-radius: 15upx;
+      font-size: 28rpx;
+      border-radius: 15rpx;
       width: 48%;
-      height: 90upx;
-      line-height: 90upx;
+      height: 90rpx;
+      line-height: 90rpx;
       margin: 0 1%;
     }
   }
@@ -331,25 +331,25 @@ export default {
     width: 92%;
     margin: auto;
     background-color: #fff;
-    border-radius: 20upx;
-    margin-top: 24upx;
+    border-radius: 20rpx;
+    margin-top: 24rpx;
     color: #666;
     .list-item {
       display: flex;
       align-items: center;
       vertical-align: middle;
-      font-size: 26upx;
+      font-size: 26rpx;
       font-weight: 500;
-      height: 116upx;
-      margin: 0 30upx;
+      height: 116rpx;
+      margin: 0 30rpx;
       border-bottom: 1px solid #eee;
       &:last-child {
         border: none;
       }
       .icon-img {
-        width: 40upx;
-        height: 40upx;
-        margin-right: 20upx;
+        width: 40rpx;
+        height: 40rpx;
+        margin-right: 20rpx;
       }
       label {
         flex: 1;
@@ -376,11 +376,11 @@ export default {
   .logout {
     display: block;
     width: 92%;
-    height: 84upx;
+    height: 84rpx;
     text-align: center;
-    line-height: 84upx;
-    margin: 30upx auto;
-    border-radius: 40upx;
+    line-height: 84rpx;
+    margin: 30rpx auto;
+    border-radius: 40rpx;
     color: #fff;
     background-color: #e15241;
   }

@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -150,19 +150,19 @@ export default {
   background-color: #f7f8fa;
   height: 100%;
   .select {
-    margin-top: 20upx;
+    margin-top: 20rpx;
   }
   .card-num {
     width: 100%;
-    height: 80upx;
-    line-height: 80upx;
-    padding-left: 15upx;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding-left: 15rpx;
     background-color: #fff;
-    margin-top: 20upx;
+    margin-top: 20rpx;
     box-sizing: border-box;
     label {
-      margin-left: 20upx;
-      width: calc(100% - 180upx);
+      margin-left: 20rpx;
+      width: calc(100% - 180rpx);
     }
     .flex {
       display: flex;
@@ -170,52 +170,52 @@ export default {
       align-items: center;
     }
     .icon {
-      padding-right: 30upx;
+      padding-right: 30rpx;
     }
   }
   .content {
-    margin-top: 20upx;
+    margin-top: 20rpx;
     background-color: #fff;
-    padding: 15upx;
-    font-size: 24upx;
+    padding: 15rpx;
+    font-size: 24rpx;
     .money {
-      margin-top: 30upx;
-      height: 50upx;
+      margin-top: 30rpx;
+      height: 50rpx;
       display: flex;
       align-items: center;
       label {
-        width: 80upx;
-        font-size: 40upx;
+        width: 80rpx;
+        font-size: 40rpx;
         font-weight: 500;
-        margin-left: 20upx;
+        margin-left: 20rpx;
       }
       input {
-        font-size: 40upx;
+        font-size: 40rpx;
       }
     }
     .text {
-      font-size: 28upx;
+      font-size: 28rpx;
       font-weight: 500;
-      margin-top: 30upx;
+      margin-top: 30rpx;
     }
   }
   .pay {
-    margin-top: 30upx;
-    height: 80upx;
+    margin-top: 30rpx;
+    height: 80rpx;
     display: flex;
     align-items: center;
     background-color: #fff;
-    padding: 10upx;
-    margin-bottom: 66upx;
+    padding: 10rpx;
+    margin-bottom: 66rpx;
     label {
-      width: 180upx;
+      width: 180rpx;
       font-weight: 500;
-      font-size: 32upx;
-      line-height: 48upx;
+      font-size: 32rpx;
+      line-height: 48rpx;
     }
   }
 }
 .btns {
-  padding: 40upx 0 0;
+  padding: 40rpx 0 0;
 }
 </style>

@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -175,37 +175,37 @@ export default {
 .logo {
   display: flex;
   justify-content: center;
-  padding-top: 60upx;
+  padding-top: 60rpx;
   .img {
     width: 50%;
   }
 }
 .btns {
   text-align: center;
-  padding: 40upx 40upx 0;
+  padding: 40rpx 40rpx 0;
   .custom-style {
-    border-radius: 10upx;
-    margin-bottom: 20upx;
-    font-size: 32upx;
-    height: 88upx;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+    height: 88rpx;
   }
   .register {
     color: #4b80af;
-    font-size: 32upx;
-    margin-top: 40upx;
+    font-size: 32rpx;
+    margin-top: 40rpx;
   }
 }
 .form {
-  padding: 40upx 40upx 0;
+  padding: 40rpx 40rpx 0;
   width: 100%;
   box-sizing: border-box;
   .img {
-    width: 44upx;
-    margin-right: 24upx;
+    width: 44rpx;
+    margin-right: 24rpx;
   }
   .img2 {
-    margin-right: 28upx;
-    width: 40upx;
+    margin-right: 28rpx;
+    width: 40rpx;
   }
 }
 </style>

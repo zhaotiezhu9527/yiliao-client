@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -85,25 +85,25 @@ export default {
   background-color: #f7f8fa;
   min-height: 100vh;
   .content {
-    padding-top: 14upx;
+    padding-top: 14rpx;
     color: #557fab;
     .list {
       display: flex;
-      padding: 28upx 20upx;
+      padding: 28rpx 20rpx;
       background-color: #fff;
-      font-size: 28upx;
+      font-size: 28rpx;
       align-items: center;
       .image {
-        margin-right: 20upx;
+        margin-right: 20rpx;
       }
       .image,
       .icon-img {
-        width: 40upx;
-        height: 40upx;
+        width: 40rpx;
+        height: 40rpx;
       }
       .icon-img2 {
-        width: 36upx;
-        height: 36upx;
+        width: 36rpx;
+        height: 36rpx;
       }
       label {
         flex: 1;

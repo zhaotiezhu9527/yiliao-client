@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -116,35 +116,35 @@ export default {
 <style scoped lang="scss">
 .wrap {
   .usdt-title {
-    margin: 60upx 50upx;
+    margin: 60rpx 50rpx;
     color: #577fab;
     font-weight: 500;
-    font-size: 40upx;
+    font-size: 40rpx;
   }
   .from-input {
-    margin: 40upx;
-    height: 90upx;
+    margin: 40rpx;
+    height: 90rpx;
     .input-text {
-      height: 64upx;
-      font-size: 28upx;
+      height: 64rpx;
+      font-size: 28rpx;
     }
   }
   .card-box {
-    margin: 40upx 30upx;
+    margin: 40rpx 30rpx;
     .card {
-      padding: 30upx 20upx;
-      height: 270upx;
+      padding: 30rpx 20rpx;
+      height: 270rpx;
       background-image: linear-gradient(#769ed6, #5375ae);
       color: #fff;
       .card-name {
-        font-size: 28upx;
+        font-size: 28rpx;
       }
       .card-text {
         font-size: 12px;
-        line-height: 160upx;
+        line-height: 160rpx;
       }
       .card-num {
-        font-size: 50upx;
+        font-size: 50rpx;
         font-weight: 600;
       }
     }

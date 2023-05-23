@@ -10,7 +10,7 @@
       safe-area-inset-top
       bgColor="#4b80af"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -100,37 +100,37 @@ export default {
 <style scoped lang="scss">
 view,
 text {
-  font-size: 32upx;
+  font-size: 32rpx;
 }
 .logo {
   display: flex;
   justify-content: center;
-  padding-top: 60upx;
+  padding-top: 60rpx;
   .img {
     width: 50%;
   }
 }
 .btns {
   text-align: center;
-  padding: 40upx 0;
+  padding: 40rpx 0;
   .custom-style {
-    border-radius: 10upx;
-    margin-bottom: 20upx;
-    font-size: 32upx;
-    height: 88upx;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+    height: 88rpx;
   }
   .register {
     color: #4b80af;
-    font-size: 32upx;
-    margin-top: 40upx;
+    font-size: 32rpx;
+    margin-top: 40rpx;
   }
 }
 .from {
-  padding: 40upx;
+  padding: 40rpx;
   width: 100%;
   box-sizing: border-box;
   .image {
-    height: 60upx;
+    height: 60rpx;
   }
 }
 </style>

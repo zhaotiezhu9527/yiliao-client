@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -90,22 +90,22 @@ export default {
 <style scoped lang="scss">
 .wrap {
   .details-text {
-    margin-top: 30upx;
-    margin-left: 20upx;
-    line-height: 70upx;
-    font-size: 28upx;
+    margin-top: 30rpx;
+    margin-left: 20rpx;
+    line-height: 70rpx;
+    font-size: 28rpx;
   }
   .text {
-    margin-left: 20upx;
+    margin-left: 20rpx;
   }
   .table-data {
     width: 100%;
     border-collapse: collapse;
-    font-size: 24upx;
+    font-size: 24rpx;
     text-align: center;
     border-top: 1px solid #bbb;
     th {
-      height: 50upx;
+      height: 50rpx;
       text-align: center;
       background-color: #f0f0f0;
     }

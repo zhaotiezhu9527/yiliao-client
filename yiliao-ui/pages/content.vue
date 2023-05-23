@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="cardStyle">
@@ -196,11 +196,11 @@ text {
   font-weight: 500;
 }
 .cardStyle {
-  padding: 40upx 30upx;
+  padding: 40rpx 30rpx;
   .card {
     background-color: #4c80b0;
-    border-radius: 10upx;
-    padding: 40upx;
+    border-radius: 10rpx;
+    padding: 40rpx;
     box-sizing: border-box;
     display: flex;
     color: #fff;
@@ -209,24 +209,24 @@ text {
       width: 50%;
       text-align: center;
       view:nth-child(1) {
-        font-size: 26upx;
+        font-size: 26rpx;
       }
       view:nth-child(2) {
-        padding-top: 40upx;
-        font-size: 32upx;
+        padding-top: 40rpx;
+        font-size: 32rpx;
       }
     }
   }
 }
 .amount {
-  padding: 0 30upx;
+  padding: 0 30rpx;
   .li {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 20upx;
-    font-size: 32upx;
+    padding-bottom: 20rpx;
+    font-size: 32rpx;
     &:nth-child(1) {
-      border-bottom: 2upx solid #d3d3d3;
+      border-bottom: 2rpx solid #d3d3d3;
     }
     &:nth-child(2) {
       align-items: center;
@@ -235,7 +235,7 @@ text {
       color: #4c80b0;
     }
     &.end {
-      padding-top: 20upx;
+      padding-top: 20rpx;
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -245,13 +245,13 @@ text {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 2upx solid #d3d3d3;
+      border-bottom: 2rpx solid #d3d3d3;
       .img {
-        width: 64upx;
-        height: 64upx;
+        width: 64rpx;
+        height: 64rpx;
       }
       /deep/.uinput {
-        padding: 28upx 0 !important;
+        padding: 28rpx 0 !important;
         .uni-input-input,
         .input-placeholder {
           text-align: center;
@@ -259,17 +259,17 @@ text {
       }
     }
     .btns {
-      padding: 0 60upx;
-      border-radius: 10upx;
+      padding: 0 60rpx;
+      border-radius: 10rpx;
     }
   }
 }
 .pwd {
-  font-size: 28upx;
-  padding: 50upx 0 20upx;
-  margin: 0 30upx;
+  font-size: 28rpx;
+  padding: 50rpx 0 20rpx;
+  margin: 0 30rpx;
   box-sizing: border-box;
-  border-bottom: 2upx solid #d3d3d3;
+  border-bottom: 2rpx solid #d3d3d3;
   color: #ababab;
   text {
     color: #4c80b0;
@@ -280,10 +280,10 @@ text {
 }
 .input {
   display: flex;
-  padding: 28upx 40upx;
+  padding: 28rpx 40rpx;
   justify-content: space-between;
   > view {
-    font-size: 32upx;
+    font-size: 32rpx;
     color: #000;
     font-weight: 500;
   }

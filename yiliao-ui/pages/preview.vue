@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <web-view
@@ -34,7 +34,7 @@ export default {
         progress: {
           color: "#FF3333",
           width: "100vw",
-          height: "calc(100vh - var(--status-bar-height) - 104upx)",
+          height: "calc(100vh - var(--status-bar-height) - 104rpx)",
         },
       },
     };
@@ -51,7 +51,7 @@ export default {
 <style scoped lang="scss">
 .wrap {
   width: 100vw;
-  height: calc(100vh - var(--status-bar-height) - 104upx);
+  height: calc(100vh - var(--status-bar-height) - 104rpx);
   /deep/ iframe {
     width: 100% !important;
     height: 100% !important;

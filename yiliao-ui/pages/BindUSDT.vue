@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -88,30 +88,30 @@ export default {
 <style scoped lang="scss">
 .wrap {
   .bind-title {
-    margin: 40upx 0;
-    font-size: 36upx;
+    margin: 40rpx 0;
+    font-size: 36rpx;
     text-align: center;
     font-weight: 500;
   }
   .bind-text {
     text-align: center;
     color: #577fab;
-    font-size: 28upx;
+    font-size: 28rpx;
     font-weight: 500;
   }
   .usdt-title {
-    margin: 60upx 50upx;
+    margin: 60rpx 50rpx;
     color: #577fab;
     font-weight: 500;
-    font-size: 40upx;
+    font-size: 40rpx;
   }
   .from-input {
-    margin: 40upx;
-    height: 90upx;
+    margin: 40rpx;
+    height: 90rpx;
     .input-text {
-      height: 64upx;
+      height: 64rpx;
       border-bottom: 1px solid #bbb;
-      font-size: 24upx;
+      font-size: 24rpx;
       font-weight: 500;
     }
   }

@@ -2,11 +2,11 @@
   .title {
     display: flex;
     text-align: center;
-    font-size: 24upx;
+    font-size: 24rpx;
     font-weight: 600;
-    border-top: 2upx solid #bbb;
-    border-bottom: 2upx solid #bbb;
-    height: 60upx;
+    border-top: 2rpx solid #bbb;
+    border-bottom: 2rpx solid #bbb;
+    height: 60rpx;
     align-items: center;
     background-color: #fff;
     .title-remark {
@@ -24,10 +24,10 @@
   }
   .content {
     display: flex;
-    font-size: 24upx;
-    height: 80upx;
+    font-size: 24rpx;
+    height: 80rpx;
     align-items: center;
-    border-bottom: 2upx solid #bbb;
+    border-bottom: 2rpx solid #bbb;
   }
   .table-title {
     text-align: center;
@@ -56,5 +56,5 @@ label {
   background-color: #4994ec;
 }
 .scroll {
-  height: calc(100vh - 52px - var(--status-bar-height) - 60upx) !important;
+  height: calc(100vh - 52px - var(--status-bar-height) - 60rpx) !important;
 }

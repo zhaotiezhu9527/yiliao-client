@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -229,34 +229,34 @@ export default {
 <style scoped lang="scss">
 .wrap {
   .title {
-    font-size: 30upx;
+    font-size: 30rpx;
     font-weight: 500;
     width: 100%;
     text-align: center;
-    margin-top: 15upx;
+    margin-top: 15rpx;
   }
   .number {
-    margin-top: 15upx;
+    margin-top: 15rpx;
     text-align: right;
-    font-size: 28upx;
+    font-size: 28rpx;
   }
   .name {
-    margin-left: 15upx;
+    margin-left: 15rpx;
     font-weight: 600;
-    font-size: 28upx;
-    line-height: 60upx;
+    font-size: 28rpx;
+    line-height: 60rpx;
     label {
       font-weight: 400;
     }
   }
   .text {
-    margin: 0 15upx;
-    font-size: 28upx;
+    margin: 0 15rpx;
+    font-size: 28rpx;
   }
   .table-data {
     width: 100%;
     border-collapse: collapse;
-    font-size: 24upx;
+    font-size: 24rpx;
     text-align: center;
     border-top: 1px solid #bbb;
     border-left: 1px solid #bbb;
@@ -267,7 +267,7 @@ export default {
       }
     }
     td {
-      height: 56upx;
+      height: 56rpx;
     }
     th,
     td {
@@ -277,8 +277,8 @@ export default {
   }
   .date {
     display: flex;
-    margin-top: 70upx;
-    font-size: 28upx;
+    margin-top: 70rpx;
+    font-size: 28rpx;
     align-items: center;
     .date-left {
       flex: 1;
@@ -288,18 +288,18 @@ export default {
       position: relative;
       #firstCanvas {
         position: absolute;
-        top: -30upx;
-        right: 50upx;
+        top: -30rpx;
+        right: 50rpx;
       }
     }
   }
   .about {
     position: relative;
-    margin-top: 50upx;
+    margin-top: 50rpx;
     #secondCanvas {
       position: absolute;
-      top: -50upx;
-      left: 40upx;
+      top: -50rpx;
+      left: 40rpx;
     }
   }
 }

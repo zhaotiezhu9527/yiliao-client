@@ -11,7 +11,7 @@
       leftIconColor="#fff"
       leftIconSize="32"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -97,14 +97,14 @@ export default {
 
 <style scoped lang="scss">
 .wrap {
-  padding-top: 54upx;
+  padding-top: 54rpx;
   .from-input {
-    margin: 40upx;
+    margin: 40rpx;
     display: flex;
-    height: 90upx;
+    height: 90rpx;
     label {
-      width: 200upx;
-      margin-right: 20upx;
+      width: 200rpx;
+      margin-right: 20rpx;
       font-weight: 500;
     }
     .input-text {

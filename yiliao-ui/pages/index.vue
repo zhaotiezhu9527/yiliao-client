@@ -10,7 +10,7 @@
       safe-area-inset-top
       bgColor="#4b80af"
       height="52px"
-      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+      titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
     <view class="wrap">
@@ -33,7 +33,7 @@
           color="#ffffff"
           bgColor="#e15241"
           scrollable
-          fontSize="32upx"
+          fontSize="32rpx"
           :text="config.home_notice || ''"
         />
       </view>
@@ -194,35 +194,35 @@ export default {
   background-color: #fafafa;
 }
 .banner {
-  height: 280upx;
+  height: 280rpx;
   background: #4b80af;
   width: 100vw;
-  border-bottom-left-radius: 50upx;
-  border-bottom-right-radius: 50upx;
-  padding: 20upx 30upx 0;
+  border-bottom-left-radius: 50rpx;
+  border-bottom-right-radius: 50rpx;
+  padding: 20rpx 30rpx 0;
   box-sizing: border-box;
 }
 /deep/.u-swiper,
 /deep/.u-swiper__wrapper,
 .my-swipe {
-  height: 350upx !important;
-  border-radius: 20upx !important;
+  height: 350rpx !important;
+  border-radius: 20rpx !important;
   .u-swiper__wrapper__item__wrapper__image {
     height: 100% !important;
-    border-radius: 20upx !important;
+    border-radius: 20rpx !important;
   }
 }
 .content {
-  padding: 100upx 0 0;
+  padding: 100rpx 0 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   .img {
-    width: 70upx;
-    height: 70upx;
+    width: 70rpx;
+    height: 70rpx;
   }
   .item {
-    padding-top: 40upx;
+    padding-top: 40rpx;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -230,21 +230,21 @@ export default {
     width: 25%;
   }
   .txt {
-    padding-top: 10upx;
-    font-size: 24upx;
+    padding-top: 10rpx;
+    font-size: 24rpx;
   }
 }
 .notice {
-  margin: 30upx 30upx 0;
-  border-radius: 10upx;
+  margin: 30rpx 30rpx 0;
+  border-radius: 10rpx;
   overflow: hidden;
   /deep/.uicon-volume {
-    font-size: 32upx !important;
-    line-height: 32upx !important;
+    font-size: 32rpx !important;
+    line-height: 32rpx !important;
   }
 }
 .empty2 {
-  padding-top: 40upx;
+  padding-top: 40rpx;
   background-color: #fff;
 }
 </style>

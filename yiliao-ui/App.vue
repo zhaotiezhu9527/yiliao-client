@@ -1,6 +1,7 @@
 <script>
 export default {
   onLaunch: function () {
+    console.log("....");
     let token = uni.getStorageSync("token");
     if (token) {
       this.$api.user_info().then(({ data }) => {
@@ -43,21 +44,21 @@ text {
   z-index: 1024;
 }
 /deep/.u-form-item {
-  font-size: 32upx !important;
-  padding-top: 20upx !important;
+  font-size: 32rpx !important;
+  padding-top: 20rpx !important;
 }
 /deep/.u-form-item__body {
-  padding: 28upx 0 !important;
+  padding: 28rpx 0 !important;
 }
 /deep/.u-form-item__body__left__content__label {
   display: flex;
   align-items: center;
-  width: 124upx;
-  font-size: 32upx !important;
+  width: 124rpx;
+  font-size: 32rpx !important;
 }
 /deep/.uni-input-placeholder,
 /deep/.uni-input-input {
-  font-size: 32upx !important;
+  font-size: 32rpx !important;
 }
 .uni-app--showleftwindow + .uni-tabbar-bottom {
   display: block !important;
