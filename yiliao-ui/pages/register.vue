@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      :border="false"
+    <u-navbar
       placeholder
-      fixed
       title="注册"
+      :border="false"
+      autoBack
+      fixed
       safe-area-inset-top
-      @click-left="$base.BackPage()"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="logo">
         <image
@@ -20,13 +22,9 @@
           src="../static/img/login_zhenhsi_logo.png"
         />
       </view>
-      <view class="from">
-        <view class="input">
-          <van-field
-            v-model="userPhone"
-            type="tel"
-            placeholder="请输入注册账号"
-          >
+      <view class="form">
+        <u--form labelPosition="left" labelWidth="124">
+          <u-form-item>
             <template #label>
               <image
                 class="img"
@@ -34,14 +32,16 @@
                 mode="widthFix"
               />
             </template>
-          </van-field>
-        </view>
-        <view class="input">
-          <van-field
-            v-model="password"
-            type="password"
-            placeholder="请输入登录密码"
-          >
+            <u-input
+              type="text"
+              placeholder="请输入注册账号"
+              clearable
+              border="none"
+              v-model="userPhone"
+            >
+            </u-input>
+          </u-form-item>
+          <u-form-item>
             <template #label>
               <image
                 class="img"
@@ -49,14 +49,15 @@
                 mode="widthFix"
               />
             </template>
-          </van-field>
-        </view>
-        <view class="input">
-          <van-field
-            v-model="confirmLoginPwd"
-            type="password"
-            placeholder="请确认登录密码"
-          >
+            <u-input
+              password
+              placeholder="请输入登录密码"
+              clearable
+              border="none"
+              v-model="password"
+            ></u-input>
+          </u-form-item>
+          <u-form-item>
             <template #label>
               <image
                 class="img"
@@ -64,29 +65,31 @@
                 mode="widthFix"
               />
             </template>
-          </van-field>
-        </view>
-        <view class="input">
-          <van-field
-            v-model="payPwd"
-            type="password"
-            placeholder="请输入支付密码"
-          >
+            <u-input
+              password
+              placeholder="请确认登录密码"
+              clearable
+              border="none"
+              v-model="confirmLoginPwd"
+            ></u-input>
+          </u-form-item>
+          <u-form-item>
             <template #label>
               <image
-                class="img"
+                class="img2"
                 src="../static/img/money2.png"
                 mode="widthFix"
               />
             </template>
-          </van-field>
-        </view>
-        <view class="input">
-          <van-field
-            v-model="inviteCode"
-            type="number"
-            placeholder="邀请码ID（必填）"
-          >
+            <u-input
+              password
+              placeholder="请确认登录密码"
+              clearable
+              border="none"
+              v-model="payPwd"
+            ></u-input>
+          </u-form-item>
+          <u-form-item>
             <template #label>
               <image
                 class="img2"
@@ -94,14 +97,21 @@
                 mode="widthFix"
               />
             </template>
-          </van-field>
-        </view>
-        <view class="btns">
-          <van-button color="#4b80af" block @click="login" :loading="loading">
-            注册
-          </van-button>
-          <view class="register" @click="register"> 已有账号？返回登录 </view>
-        </view>
+            <u-input
+              type="number"
+              placeholder="邀请码ID（必填）"
+              clearable
+              border="none"
+              v-model="inviteCode"
+            ></u-input>
+          </u-form-item>
+        </u--form>
+      </view>
+      <view class="btns">
+        <u-button color="#4b80af" block @click="login" :loading="loading">
+          注册
+        </u-button>
+        <view class="register" @click="register"> 已有账号？返回登录 </view>
       </view>
     </view>
   </view>
@@ -170,20 +180,14 @@ export default {
     width: 50%;
   }
 }
-/deep/.van-field__label {
-  display: flex;
-  align-items: center;
-  width: 90upx;
-}
 .btns {
   text-align: center;
   padding: 40upx 40upx 0;
-  .van-button {
+  .custom-style {
     border-radius: 10upx;
     margin-bottom: 20upx;
-  }
-  .van-button__content span {
     font-size: 32upx;
+    height: 88upx;
   }
   .register {
     color: #4b80af;
@@ -191,32 +195,17 @@ export default {
     margin-top: 40upx;
   }
 }
-.from {
-  padding: 40upx 0;
+.form {
+  padding: 40upx 40upx 0;
   width: 100%;
   box-sizing: border-box;
-  .input {
-    padding-top: 15upx;
-  }
   .img {
     width: 44upx;
+    margin-right: 24upx;
   }
   .img2 {
+    margin-right: 28upx;
     width: 40upx;
-  }
-  /deep/.van-field__label {
-    width: 60upx;
-    display: flex;
-    justify-content: center;
-    span {
-      font-size: 32upx;
-    }
-  }
-  /deep/.van-field__control {
-    font-size: 32upx;
-  }
-  .image {
-    height: 60upx;
   }
 }
 </style>

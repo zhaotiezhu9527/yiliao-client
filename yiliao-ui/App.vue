@@ -1,6 +1,4 @@
 <script>
-import { system_config } from "./plugins/api";
-
 export default {
   onLaunch: function () {
     let token = uni.getStorageSync("token");
@@ -34,28 +32,36 @@ export default {
   onHide: function () {},
 };
 </script>
-<style>
+<style lang="scss">
 /*每个页面公共css */
 @import url("./node_modules/vant/lib/index.css");
+@import "@/uni_modules/uview-ui/index.scss";
+view,
+text {
+  box-sizing: border-box;
+}
 .van-field__control {
   font-size: 28upx;
 }
-.van-nav-bar__content {
-  height: 104upx;
-}
-.van-nav-bar {
-  background: #4b80af;
+/deep/.u-navbar__content {
   z-index: 1024;
 }
-.van-nav-bar__arrow {
-  font-size: 36upx;
+/deep/.u-form-item {
+  font-size: 32upx !important;
+  padding-top: 20upx !important;
 }
-.van-nav-bar__title,
-.van-nav-bar .van-icon {
-  color: #ffffff;
+/deep/.u-form-item__body {
+  padding: 28upx 0 !important;
 }
-.van-nav-bar__title {
-  font-size: 32upx;
+/deep/.u-form-item__body__left__content__label {
+  display: flex;
+  align-items: center;
+  width: 124upx;
+  font-size: 32upx !important;
+}
+/deep/.uni-input-placeholder,
+/deep/.uni-input-input {
+  font-size: 32upx !important;
 }
 .uni-app--showleftwindow + .uni-tabbar-bottom {
   display: block !important;

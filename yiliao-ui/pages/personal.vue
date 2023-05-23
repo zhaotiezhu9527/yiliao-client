@@ -1,13 +1,18 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
       title="个人中心"
       :border="false"
+      autoBack
       fixed
+      leftIconSize="0"
       safe-area-inset-top
+      bgColor="#4b80af"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <!-- 头部 -->
       <view class="head">
@@ -32,8 +37,8 @@
       </view>
       <!-- 按钮 -->
       <view class="button-box">
-        <van-button class="button-class" @click="pathChange">充值</van-button>
-        <van-button class="button-class" @click="goWithdraw">提现</van-button>
+        <u-button class="button-class" @click="pathChange">充值</u-button>
+        <u-button class="button-class" @click="goWithdraw">提现</u-button>
       </view>
       <!-- 列表 -->
       <view class="list">
@@ -121,16 +126,26 @@
         </view>
       </view>
       <!-- 退出登录 -->
-      <van-button class="logout" @click="logout">退出登录</van-button>
+      <u-button class="logout" @click="show = true">退出登录</u-button>
     </view>
+    <u-modal
+      :show="show"
+      title="退出登陆"
+      @confirm="modalChange"
+      ref="uModal"
+      content="你确定退出吗？"
+      :asyncClose="true"
+      showCancelButton
+      confirmColor="#4b80af"
+    ></u-modal>
   </view>
 </template>
 
 <script>
-import { Dialog } from "vant";
 export default {
   data() {
     return {
+      show: false,
       userData: {
         userName: "", //用户名
         userLevelName: "", //会员等级
@@ -212,22 +227,13 @@ export default {
       });
     },
     // 退出登陆
-    logout() {
-      Dialog.confirm({
-        title: "退出登陆",
-        message: "你确定退出吗？",
-        confirmButtonColor: "#4b80af",
-      })
-        .then(() => {
-          this.$api.user_logout().then((res) => {
-            if (res.data.code == 0) {
-              uni.redirectTo({ url: "/pages/login" });
-            }
-          });
-        })
-        .catch(() => {
-          // on cancel
-        });
+    modalChange() {
+      this.$api.user_logout().then((res) => {
+        if (res.data.code == 0) {
+          uni.redirectTo({ url: "/pages/login" });
+          uni.removeStorageSync("token");
+        }
+      });
     },
     //用户列表数据
     getInfo() {
@@ -250,9 +256,6 @@ export default {
         }
       });
     },
-  },
-  components: {
-    Dialog,
   },
 };
 </script>
@@ -309,6 +312,9 @@ export default {
     width: 100%;
     margin: auto;
     margin-top: 10upx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     .button-class {
       background-color: #5780ab;
       color: #fff;
@@ -371,6 +377,8 @@ export default {
     display: block;
     width: 92%;
     height: 84upx;
+    text-align: center;
+    line-height: 84upx;
     margin: 30upx auto;
     border-radius: 40upx;
     color: #fff;

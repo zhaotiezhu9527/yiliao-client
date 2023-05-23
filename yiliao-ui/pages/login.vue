@@ -1,8 +1,18 @@
 <template>
   <view class="page">
-    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
-      <template #left><text class="title">登录</text></template>
-    </van-nav-bar>
+    <u-navbar
+      placeholder
+      title="登录"
+      :border="false"
+      autoBack
+      fixed
+      leftIconSize="0"
+      safe-area-inset-top
+      bgColor="#4b80af"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
+    >
+    </u-navbar>
     <view class="wrap">
       <view class="logo">
         <image
@@ -12,34 +22,42 @@
         />
       </view>
       <view class="from">
-        <view class="input">
-          <van-field
-            v-model="userPhone"
-            type="text"
-            placeholder="请输入登录账号"
-            label="账号"
-          >
-          </van-field>
-        </view>
-        <view class="input">
-          <van-field
-            v-model="password"
-            label="密码"
-            type="password"
-            placeholder="请输入登录密码"
-          />
-        </view>
+        <u--form labelPosition="left" labelWidth="124">
+          <u-form-item label="账号">
+            <u-input
+              type="text"
+              placeholder="请输入登录账号"
+              clearable
+              border="none"
+              v-model="userPhone"
+            ></u-input>
+          </u-form-item>
+          <u-form-item label="密码">
+            <u-input
+              password
+              placeholder="请输入登录密码"
+              clearable
+              border="none"
+              v-model="password"
+            ></u-input>
+          </u-form-item>
+        </u--form>
         <view class="btns">
-          <van-button color="#4b80af" block @click="login" :loading="loading">
+          <u-button
+            class="custom-style"
+            color="#4b80af"
+            block
+            @click="login"
+            :loading="loading"
+          >
             登录
-          </van-button>
+          </u-button>
           <view class="register" @click="register"> 注册账号 </view>
         </view>
       </view>
     </view>
   </view>
 </template>
-
 <script>
 export default {
   data() {
@@ -80,6 +98,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+view,
+text {
+  font-size: 32upx;
+}
 .logo {
   display: flex;
   justify-content: center;
@@ -88,24 +110,14 @@ export default {
     width: 50%;
   }
 }
-.title {
-  font-size: 32upx;
-  color: #fff;
-}
-/deep/.van-field__label {
-  display: flex;
-  align-items: center;
-  width: 100upx;
-}
 .btns {
   text-align: center;
-  padding: 40upx 40upx 0;
-  .van-button {
+  padding: 40upx 0;
+  .custom-style {
     border-radius: 10upx;
     margin-bottom: 20upx;
-  }
-  .van-button__content span {
     font-size: 32upx;
+    height: 88upx;
   }
   .register {
     color: #4b80af;
@@ -114,20 +126,9 @@ export default {
   }
 }
 .from {
-  padding: 40upx 0;
+  padding: 40upx;
   width: 100%;
   box-sizing: border-box;
-  .input {
-    padding-top: 20upx;
-  }
-  /deep/.van-field__label {
-    span {
-      font-size: 32upx;
-    }
-  }
-  /deep/.van-field__control {
-    font-size: 32upx;
-  }
   .image {
     height: 60upx;
   }

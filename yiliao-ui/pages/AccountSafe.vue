@@ -81,7 +81,8 @@ export default {
 <style scoped lang="scss">
 .wrap {
   background-color: #f7f8fa;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   .content {
     padding-top: 14upx;
     color: #557fab;
