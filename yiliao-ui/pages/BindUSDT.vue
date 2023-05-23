@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      :border="false"
-      fixed
+    <u-navbar
       placeholder
-      safe-area-inset-top
       title="绑定USDT地址"
-      @click-left="$base.BackPage('/pages/personal')"
+      :border="false"
+      autoBack
+      fixed
+      safe-area-inset-top
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view v-if="bindStatus">
         <view class="bind-title">我的USDT钱包地址</view>
@@ -27,14 +29,14 @@
             placeholder="请输入USDT钱包地址"
           />
         </view>
-        <van-button
+        <u-button
           class="btn-class"
           block
           @click="changeBind"
           :loading="loading"
         >
           提交绑定
-        </van-button>
+        </u-button>
       </view>
     </view>
   </view>

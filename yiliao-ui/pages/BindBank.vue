@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      :border="false"
+    <u-navbar
       placeholder
-      fixed
       title="银行卡绑定"
+      :border="false"
+      autoBack
+      fixed
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/personal')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view v-if="bindStatus" class="card-box">
         <view class="card">
@@ -46,14 +48,14 @@
             placeholder="请输入储蓄卡号"
           />
         </view>
-        <van-button
+        <u-button
           class="btn-class"
           block
           @click="changeBind"
           :loading="loading"
         >
           提交绑定
-        </van-button>
+        </u-button>
       </view>
     </view>
   </view>

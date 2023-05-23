@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
-      :border="false"
       title="投资详情"
+      :border="false"
+      autoBack
       fixed
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/InvestmentRecords')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="details-text">
         <view> 投资金额：{{ detailsData.amount }}元 </view>

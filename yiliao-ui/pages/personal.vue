@@ -18,7 +18,7 @@
       <view class="head">
         <view class="head-text">
           <label>我的账户：{{ userData.userName }}</label>
-          <label>用户登记：{{ userData.userLevelName }}</label>
+          <label>用户等级：{{ userData.userLevelName }}</label>
         </view>
         <view class="head-money">
           {{ userData.balance }}
@@ -170,7 +170,7 @@ export default {
   methods: {
     pathChange() {
       uni.navigateTo({
-        url: `/pages/preview?title=我要充值USDT&url=${this.config.resource_domain}&rurl=/pages/personal`,
+        url: `/pages/preview?title=我要充值USDT&url=${this.config.online_service}&rurl=/pages/personal`,
       });
     },
     downloadChange(url) {

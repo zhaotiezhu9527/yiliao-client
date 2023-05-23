@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
+      title="立即投资"
       :border="false"
+      autoBack
       fixed
       safe-area-inset-top
-      title="立即投资"
-      @click-left="$base.BackPage(`/pages/info?id=${form.projectId}`)"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="cardStyle">
       <view class="card">
         <view class="item">
@@ -41,9 +43,11 @@
             src="../static/img/jian.png"
             mode="widthFix"
           />
-          <van-field
+          <u-input
+            class="uinput"
             v-model="form.amount"
             type="number"
+            border="nonn"
             placeholder="请输入金额"
           />
           <image
@@ -55,8 +59,10 @@
         </view>
       </view>
       <view class="li end">
-        <view class="btns">
-          <van-button color="#f34133" @click="fullthrow"> 一键全投 </van-button>
+        <view>
+          <u-button class="btns" color="#f34133" @click="fullthrow">
+            一键全投
+          </u-button>
         </view>
       </view>
     </view>
@@ -68,19 +74,18 @@
       >元的倍数进行投资。
     </view>
     <view class="input">
-      <van-field
-        label="支付密码"
+      <view>支付密码</view>
+      <u-input
         v-model="form.pwd"
         :maxlength="6"
-        type="number"
+        border="none"
+        password
         placeholder="请输入支付密码"
       />
     </view>
-    <view class="btn">
-      <van-button color="#4b80af" block @click="investor">
-        立即投资
-      </van-button>
-    </view>
+    <u-button class="btn-class" color="#4b80af" block @click="investor">
+      立即投资
+    </u-button>
   </view>
 </template>
 <script>
@@ -234,9 +239,6 @@ text {
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      .van-button__content span {
-        font-size: 32upx;
-      }
     }
     .images {
       width: 60%;
@@ -248,26 +250,17 @@ text {
         width: 64upx;
         height: 64upx;
       }
-      /deep/.van-cell::after {
-        border: 0;
-      }
-      /deep/.van-field__label {
-        span {
-          font-weight: 500;
+      /deep/.uinput {
+        padding: 28upx 0 !important;
+        .uni-input-input,
+        .input-placeholder {
+          text-align: center;
         }
-      }
-      /deep/.van-field__control {
-        font-size: 32upx;
-        color: #000;
-        text-align: right;
-        font-weight: 500;
       }
     }
     .btns {
-      .van-button {
-        padding: 0 60upx;
-        border-radius: 10upx;
-      }
+      padding: 0 60upx;
+      border-radius: 10upx;
     }
   }
 }
@@ -286,29 +279,19 @@ text {
   }
 }
 .input {
-  /deep/.van-field__label {
-    span {
-      font-size: 32upx;
-      color: #000;
-      font-weight: 500;
-    }
-  }
-  /deep/.van-field__control {
+  display: flex;
+  padding: 28upx 40upx;
+  justify-content: space-between;
+  > view {
     font-size: 32upx;
     color: #000;
-    text-align: right;
     font-weight: 500;
   }
-}
-.btn {
-  padding: 10upx 30upx;
-  width: 100%;
-  box-sizing: border-box;
-  .van-button {
-    border-radius: 10upx;
-  }
-  .van-button__content span {
-    font-size: 32upx;
+  /deep/.u-input__content {
+    .uni-input-input,
+    .input-placeholder {
+      text-align: right;
+    }
   }
 }
 </style>

@@ -1,10 +1,8 @@
 import Vue from "vue";
 import App from "./App";
-import Vant from "vant";
 import uView from "@/uni_modules/uview-ui";
 import { router, RouterMount } from "./plugins/router";
 Vue.use(router);
-Vue.use(Vant);
 Vue.use(uView);
 // 如此配置即可
 uni.$u.config.unit = "rpx";

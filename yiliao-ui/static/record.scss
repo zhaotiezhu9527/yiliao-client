@@ -8,6 +8,7 @@
     border-bottom: 2upx solid #bbb;
     height: 60upx;
     align-items: center;
+    background-color: #fff;
     .title-remark {
       flex: 1;
     }
@@ -53,4 +54,7 @@ label {
 }
 .blue-text {
   background-color: #4994ec;
+}
+.scroll {
+  height: calc(100vh - 52px - var(--status-bar-height) - 60upx) !important;
 }

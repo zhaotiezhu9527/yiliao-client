@@ -1,23 +1,21 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
-      :title="config.jiancheng"
       :border="false"
+      autoBack
+      :title="config.jiancheng"
       fixed
+      leftIconSize="0"
       safe-area-inset-top
+      bgColor="#4b80af"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="banner">
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item>
-            <image src="../static/img/banner_13.jpg" mode="heightFix" />
-          </van-swipe-item>
-          <van-swipe-item>
-            <image src="../static/img/banner_14.jpg" mode="heightFix" />
-          </van-swipe-item>
-        </van-swipe>
+        <u-swiper :list="list2" class="my-swipe" indicator> </u-swiper>
       </view>
       <view class="content">
         <view
@@ -31,12 +29,12 @@
         </view>
       </view>
       <view class="notice">
-        <van-notice-bar
+        <u-notice-bar
           color="#ffffff"
-          background="#e15241"
-          left-icon="volume-o"
+          bgColor="#e15241"
           scrollable
-          :text="config.home_notice"
+          fontSize="32upx"
+          :text="config.home_notice || ''"
         />
       </view>
       <view class="list">
@@ -83,15 +81,15 @@
           </view>
           <view class="progress">
             <view class="txt">项目进度：</view>
-            <van-progress
-              class="prog"
+            <u-line-progress
               :percentage="scheduleFn(item.schedule)"
-              :show-pivot="false"
-            />
+              :showText="false"
+              activeColor="#2196f3"
+            ></u-line-progress>
             <view class="number">{{ item.schedule }}%</view>
           </view>
         </view>
-        <van-empty description="暂无产品" v-if="!shopGoods.length" />
+        <u-empty class="empty2" text="暂无产品" v-if="!shopGoods.length" />
       </view>
     </view>
   </view>
@@ -106,6 +104,8 @@ import img4 from "../static/img/func_icon_chongzhi.png";
 import img5 from "../static/img/func_icon_tixian.png";
 import img6 from "../static/img/func_icon_zhuce.png";
 import img7 from "../static/img/func_icon_kefu.png";
+import banner1 from "../static/img/banner_13.jpg";
+import banner2 from "../static/img/banner_14.jpg";
 export default {
   data() {
     return {
@@ -127,6 +127,7 @@ export default {
           path: "/pages/preview",
         },
       ],
+      list2: [banner1, banner2],
       shopGoods: [],
       config: {},
     };
@@ -161,7 +162,7 @@ export default {
         });
       } else if (["我要充值USDT"].includes(name)) {
         uni.navigateTo({
-          url: `${path}?title=${name}&url=${this.config.resource_domain}`,
+          url: `${path}?title=${name}&url=${this.config.online_service}`,
         });
       } else if (["在线客服"].includes(name)) {
         uni.navigateTo({
@@ -186,6 +187,9 @@ export default {
 
 <style scoped lang="scss">
 @import "../static/list.scss";
+.list {
+  background-color: #fff;
+}
 .page {
   background-color: #fafafa;
 }
@@ -195,21 +199,17 @@ export default {
   width: 100vw;
   border-bottom-left-radius: 50upx;
   border-bottom-right-radius: 50upx;
-  padding: 0 30upx;
+  padding: 20upx 30upx 0;
   box-sizing: border-box;
 }
+/deep/.u-swiper,
+/deep/.u-swiper__wrapper,
 .my-swipe {
-  padding-top: 20upx;
-  .van-swipe-item {
-    width: 100%;
-    overflow: hidden;
-    height: 350upx;
-    text-align: center;
-    border-radius: 20upx;
-    box-sizing: border-box;
-  }
-  image {
-    border-radius: 20upx;
+  height: 350upx !important;
+  border-radius: 20upx !important;
+  .u-swiper__wrapper__item__wrapper__image {
+    height: 100% !important;
+    border-radius: 20upx !important;
   }
 }
 .content {
@@ -238,8 +238,13 @@ export default {
   margin: 30upx 30upx 0;
   border-radius: 10upx;
   overflow: hidden;
+  /deep/.uicon-volume {
+    font-size: 32upx !important;
+    line-height: 32upx !important;
+  }
 }
-.van-empty {
-  background-color: #fafafa;
+.empty2 {
+  padding-top: 40upx;
+  background-color: #fff;
 }
 </style>

@@ -1,22 +1,24 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
+      title="修改支付密码"
       :border="false"
+      autoBack
       fixed
       safe-area-inset-top
-      title="修改支付密码"
-      @click-left="$base.BackPage('/pages/AccountSafe')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="from-input">
         <label>原支付密码</label>
         <input
-          type="text"
+          type="password"
           v-model="oldPwd"
           class="input-text"
           placeholder="请输入支付密码"
@@ -26,7 +28,7 @@
         <label>新支付密码</label>
         <input
           v-model="newPwd"
-          type="text"
+          type="password"
           class="input-text"
           placeholder="请输入新支付密码"
         />
@@ -40,11 +42,15 @@
           placeholder="请输入确认密码"
         />
       </view>
-      <view class="btns">
-        <van-button color="#4b80af" block @click="login" :loading="loading">
-          完成修改
-        </van-button>
-      </view>
+      <u-button
+        class="btn-class"
+        color="#4b80af"
+        block
+        @click="login"
+        :loading="loading"
+      >
+        完成修改
+      </u-button>
     </view>
   </view>
 </template>
@@ -105,16 +111,6 @@ export default {
       flex: 1;
       text-align: right;
     }
-  }
-}
-.btns {
-  padding: 40upx 40upx 0;
-  .van-button {
-    border-radius: 10upx;
-    margin-bottom: 20upx;
-  }
-  .van-button__content span {
-    font-size: 32upx;
   }
 }
 </style>

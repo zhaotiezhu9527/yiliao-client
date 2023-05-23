@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
-      :border="false"
-      fixed
       title="账户安全"
+      :border="false"
+      autoBack
+      fixed
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/personal')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="content">
         <view class="list">
@@ -82,16 +84,14 @@ export default {
 .wrap {
   background-color: #f7f8fa;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
   .content {
     padding-top: 14upx;
     color: #557fab;
     .list {
       display: flex;
-      padding: 20upx;
+      padding: 28upx 20upx;
       background-color: #fff;
       font-size: 28upx;
-      height: 52upx;
       align-items: center;
       .image {
         margin-right: 20upx;

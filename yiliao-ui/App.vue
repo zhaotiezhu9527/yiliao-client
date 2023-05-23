@@ -34,14 +34,10 @@ export default {
 </script>
 <style lang="scss">
 /*每个页面公共css */
-@import url("./node_modules/vant/lib/index.css");
 @import "@/uni_modules/uview-ui/index.scss";
 view,
 text {
   box-sizing: border-box;
-}
-.van-field__control {
-  font-size: 28upx;
 }
 /deep/.u-navbar__content {
   z-index: 1024;
@@ -65,10 +61,5 @@ text {
 }
 .uni-app--showleftwindow + .uni-tabbar-bottom {
   display: block !important;
-}
-.van-cell {
-  padding: 28upx 32upx;
-  line-height: 48upx;
-  font-size: 30upx;
 }
 </style>

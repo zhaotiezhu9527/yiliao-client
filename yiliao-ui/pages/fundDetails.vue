@@ -1,50 +1,47 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
+      title="资金明细"
       :border="false"
+      autoBack
       fixed
       safe-area-inset-top
-      title="资金明细"
-      @click-left="$base.BackPage('/pages/personal')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
-      <van-list
-        :immediate-check="false"
-        v-model="loading"
-        :finished="finished"
-        loading-text="加载中..."
-        finished-text="没有更多了"
-        @load="load"
-        v-if="isArray"
-      >
-        <!-- @click="change(item)" -->
-        <view class="title">
-          <view class="title-remark">摘要</view>
-          <view class="line"></view>
-          <view class="title-amount">金额</view>
-          <view class="line"></view>
-          <view class="title-time">时间</view>
-        </view>
-        <view class="content" v-for="(item, index) in list" :key="index">
-          <view class="table-title">
-            {{ item.remark }}
+      <view class="title">
+        <view class="title-remark">摘要</view>
+        <view class="line"></view>
+        <view class="title-amount">金额</view>
+        <view class="line"></view>
+        <view class="title-time">时间</view>
+      </view>
+      <u-list @scrolltolower="load" v-if="isArray" class="scroll">
+        <u-list-item v-for="(item, index) in list" :key="index">
+          <view class="content" :key="index">
+            <view class="table-title">
+              {{ item.remark }}
+            </view>
+            <view class="line"></view>
+            <view
+              class="table-money"
+              :class="item.amount > 0 ? 'green-text' : 'red-text'"
+              >{{ item.amount }}</view
+            >
+            <view class="line"></view>
+            <view class="table-time">{{ item.optTime }}</view>
           </view>
-          <view class="line"></view>
-          <view
-            class="table-money"
-            :class="item.amount > 0 ? 'green-text' : 'red-text'"
-            >{{ item.amount }}</view
-          >
-          <view class="line"></view>
-          <view class="table-time">{{ item.optTime }}</view>
-        </view>
-      </van-list>
-      <van-empty description="没有更多了" v-else />
+        </u-list-item>
+        <view class="loading" v-if="loading">加载中...</view>
+        <view class="nomore" v-if="finished">没有更多了</view>
+      </u-list>
+      <u-empty class="empty" text="暂无产品" v-else />
     </view>
   </view>
 </template>
@@ -56,7 +53,7 @@ export default {
       list: [], //列表数据
       loading: false,
       finished: false,
-      isArray: true,
+      isArray: false,
       page: 0,
     };
   },
@@ -67,11 +64,14 @@ export default {
   },
   methods: {
     load() {
+      if (this.loading || this.finished) return false;
       this.page++;
       this.dataFn(this.page);
     },
     dataFn(page = 1, limit = 20) {
+      this.loading = true;
       this.$api.account_list({ page, limit }).then((res) => {
+        this.loading = false;
         if (res.data.code == 0) {
           const vim = res.data.page;
           this.list = this.list.concat(vim.list);

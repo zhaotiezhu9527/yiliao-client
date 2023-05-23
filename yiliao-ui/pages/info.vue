@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
-      :border="false"
       title="投资详情"
+      :border="false"
+      autoBack
       fixed
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/investor')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="list">
         <view class="view">
@@ -52,96 +54,90 @@
           </view>
           <view class="progress">
             <view class="number">{{ items.schedule }}%</view>
-            <van-progress
-              class="prog"
-              :percentage="items.schedule || 0"
-              stroke-width="30"
-              :show-pivot="false"
-              track-color="#cccccc"
-              color="#2094f3"
-            />
+            <u-line-progress
+              height="40"
+              :percentage="scheduleFn(items.schedule)"
+              :showText="false"
+              activeColor="#2196f3"
+            ></u-line-progress>
           </view>
         </view>
       </view>
       <view class="tabs">
         <view class="name">投资详情</view>
-        <van-row class="row">
-          <van-col class="col" span="8">项目名称</van-col>
-          <van-col class="col" span="16">{{ items.projectName }}</van-col>
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">项目金额:</van-col>
-          <van-col class="col" span="16"
+        <u-row class="row">
+          <u-col class="col" span="4">项目名称</u-col>
+          <u-col class="col" span="8">{{ items.projectName }}</u-col>
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">项目金额:</u-col>
+          <u-col class="col" span="8"
             ><text>{{ items.projectAmount }}</text
-            >元人民币</van-col
+            >元人民币</u-col
           >
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">每天分红:</van-col>
-          <van-col class="col" span="16"
-            ><text
-              >按每日{{ items.incomeRate }}%的收益 (保本保息)</text
-            ></van-col
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">每天分红:</u-col>
+          <u-col class="col" span="8"
+            ><text>按每日{{ items.incomeRate }}%的收益 (保本保息)</text></u-col
           >
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">投资金额:</van-col>
-          <van-col class="col" span="16"
-            ><text>最低起投{{ items.minAmount }}元</text></van-col
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">投资金额:</u-col>
+          <u-col class="col" span="8"
+            ><text>最低起投{{ items.minAmount }}元</text></u-col
           >
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">项目期限:</van-col>
-          <van-col class="col" span="16"
-            ><text>分期定投，每期{{ items.limitTime }}分钟</text></van-col
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">项目期限:</u-col>
+          <u-col class="col" span="8"
+            ><text>分期定投，每期{{ items.limitTime }}分钟</text></u-col
           >
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">收益计算:</van-col>
-          <van-col class="col" span="16"
-            ><text>每天保底分红 利率*本金</text></van-col
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">收益计算:</u-col>
+          <u-col class="col" span="8"
+            ><text>每天保底分红 利率*本金</text></u-col
           >
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">还款方式:</van-col>
-          <van-col class="col" span="16"
-            >每日返息，到期还本，节假日照常收益</van-col
-          >
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">结算时间:</van-col>
-          <van-col class="col" span="16"
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">还款方式:</u-col>
+          <u-col class="col" span="8">每日返息，到期还本，节假日照常收益</u-col>
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">结算时间:</u-col>
+          <u-col class="col" span="8"
             >当天投资，当天到期自动结算收益(例如在15:00成功投资，则在投资期限到期收到分红和本金)，到期系统会把兰日分红和产品本金一起返还到您的账户当中。
-          </van-col>
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">可投金额:</van-col>
-          <van-col class="col" span="16"
-            >投资期间只要产品未投满，投资者均可自由投资。</van-col
+          </u-col>
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">可投金额:</u-col>
+          <u-col class="col" span="8"
+            >投资期间只要产品未投满，投资者均可自由投资。</u-col
           >
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">安全保障:</van-col>
-          <van-col class="col" span="16"
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">安全保障:</u-col>
+          <u-col class="col" span="8"
             >{{
               items.guaranteeCompany
             }}对平台上的每一笔投资提供<text>100%本金保障</text>平台设立风险备用金，对本金承诺全额垫付;
-          </van-col>
-        </van-row>
-        <van-row class="row">
-          <van-col class="col" span="8">项目概述:</van-col>
-          <van-col class="col" span="16"
+          </u-col>
+        </u-row>
+        <u-row class="row">
+          <u-col class="col" span="4">项目概述:</u-col>
+          <u-col class="col" span="8"
             ><text
               >本项目筹集资金{{
                 items.projectAmount
               }}元人民币，所筹集资金用于该项目直投运作作为投资者分红固定且无任何风险，集为投资份红围庆昌香括保风曾，所承担。
-            </text></van-col
+            </text></u-col
           >
-        </van-row>
+        </u-row>
       </view>
     </view>
     <view class="btn">
-      <van-button color="#4b80af" block @click="change"> 马上投资 </van-button>
+      <u-button color="#4b80af" block @click="change"> 马上投资 </u-button>
     </view>
   </view>
 </template>
@@ -161,6 +157,9 @@ export default {
     });
   },
   methods: {
+    scheduleFn(page) {
+      return (Number(page) > 100 ? 100 : Number(page)) || 0;
+    },
     change() {
       uni.navigateTo({
         url: `/pages/content?id=${this.items.projectId}`,
@@ -237,18 +236,18 @@ text {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    /deep/.u-line-progress,
+    /deep/.u-line-progress__background {
+      border-radius: 10upx !important;
+    }
 
     .number {
       position: absolute;
       color: #fff;
       font-size: 26upx;
-      width: 120upx;
+      width: 100upx;
       text-align: right;
       z-index: 2;
-    }
-    .prog {
-      z-index: 1;
-      width: 100%;
     }
   }
 }
@@ -263,6 +262,8 @@ text {
   }
   .row {
     display: flex;
+    justify-content: inherit !important;
+    align-items: inherit !important;
     &:nth-child(2) {
       margin-top: 30upx;
       .col {
@@ -278,9 +279,12 @@ text {
     border-top: 0;
     &:nth-child(1) {
       border-right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    &:nth-child(2) {
+      padding: 14upx 30upx !important;
     }
   }
 }
@@ -294,11 +298,8 @@ text {
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  .van-button {
+  /deep/.u-button {
     border-radius: 10upx;
-  }
-  .van-button__content span {
-    font-size: 32upx;
   }
 }
 </style>

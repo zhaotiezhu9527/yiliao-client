@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
-      :border="false"
-      fixed
       :title="title"
+      :border="false"
+      autoBack
+      fixed
       safe-area-inset-top
-      @click-left="$base.BackPage(rurl)"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <web-view
       v-if="url"
       :webview-styles="webviewStyles"

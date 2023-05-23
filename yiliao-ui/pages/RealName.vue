@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
-      :border="false"
+    <u-navbar
       placeholder
-      fixed
       title="实名认证"
+      :border="false"
+      autoBack
+      fixed
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/personal')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="from-input">
         <label>姓名</label>
@@ -33,7 +35,7 @@
           placeholder="请输入身份证号码"
         />
       </view>
-      <van-button
+      <u-button
         v-if="bindStatus"
         class="btn-class"
         block
@@ -41,7 +43,7 @@
         :loading="loading"
       >
         实名认证
-      </van-button>
+      </u-button>
     </view>
   </view>
 </template>

@@ -1,29 +1,31 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
-      :border="false"
-      fixed
       title="提现"
+      :border="false"
+      autoBack
+      fixed
       safe-area-inset-top
-      @click-left="$base.BackPage('/pages/personal')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="card-num" @click="show = true">
         <view class="flex">
           {{ title }}
-          <van-icon class="icon" name="play" />
+          <u-icon class="icon" color="#000" size="14" name="arrow-down-fill" />
         </view>
       </view>
       <view class="card-num">
         <view style="display: flex" v-if="type === 2">
-          USDT地址<label class="van-ellipsis">{{ infos.walletAddr }}</label>
+          USDT地址<label class="u-line-1">{{ infos.walletAddr }}</label>
         </view>
-        <view v-else class="van-ellipsis">
+        <view v-else class="u-line-1">
           银行卡 <label>{{ infos.idCard }}</label>
         </view>
       </view>
@@ -32,8 +34,9 @@
 
         <view class="money">
           <label>¥</label>
-          <van-field
+          <u-input
             v-model="amount"
+            border="none"
             type="number"
             placeholder="请输入提现金额"
             @input="update"
@@ -43,29 +46,36 @@
       </view>
       <view class="pay">
         <label>支付密码</label>
-        <van-field v-model="pwd" type="digit" placeholder="请输入支付密码" />
+        <u-input
+          v-model="pwd"
+          border="none"
+          password
+          placeholder="请输入支付密码"
+        />
       </view>
       <view class="btns">
-        <van-button color="#4b80af" block @click="login" :loading="loading">
+        <u-button
+          class="btn-class"
+          color="#4b80af"
+          block
+          @click="login"
+          :loading="loading"
+        >
           确认提现
-        </van-button>
+        </u-button>
       </view>
     </view>
-    <van-popup
-      v-model="show"
-      round
-      position="bottom"
+    <u-picker
+      title="选择提现方式"
+      :show="show"
+      show-toolbar
       :style="{ height: '50%' }"
-    >
-      <van-picker
-        :style="{ height: '100%' }"
-        title="选择提现方式"
-        show-toolbar
-        :columns="columns"
-        @confirm="onConfirm"
-        @cancel="show = false"
-      />
-    </van-popup>
+      :columns="columns"
+      itemHeight="90"
+      confirmColor="#4b80af"
+      @confirm="onConfirm"
+      @cancel="show = false"
+    />
   </view>
 </template>
 
@@ -74,8 +84,10 @@ export default {
   data() {
     return {
       columns: [
-        { text: "提现到USDT钱包", value: 2 },
-        { text: "提现到银行卡", value: 1 },
+        [
+          { text: "提现到USDT钱包", value: 2 },
+          { text: "提现到银行卡", value: 1 },
+        ],
       ],
       show: false,
       type: 2,
@@ -92,8 +104,8 @@ export default {
   },
   methods: {
     onConfirm(e) {
-      this.title = e.text;
-      this.type = e.value;
+      this.title = e.value[0].text;
+      this.type = e.value[0].value;
       this.show = false;
     },
     update(value) {
@@ -112,7 +124,7 @@ export default {
       } else if (!this.amount > this.infos.balance) {
         return this.$base.show("输入的金额不可大于可提现的金额~");
       } else if (!this.pwd || this.pwd.length < 6) {
-        return this.$base.show("请输入支付密码~");
+        return this.$base.show("请输入正确的支付密码~");
       }
       const DATA_OBJ = {
         type: this.type,
@@ -158,8 +170,7 @@ export default {
       align-items: center;
     }
     .icon {
-      transform: rotate(90deg);
-      padding-top: 30upx;
+      padding-right: 30upx;
     }
   }
   .content {
@@ -190,7 +201,7 @@ export default {
   }
   .pay {
     margin-top: 30upx;
-    height: 60upx;
+    height: 80upx;
     display: flex;
     align-items: center;
     background-color: #fff;
@@ -205,19 +216,6 @@ export default {
   }
 }
 .btns {
-  padding: 40upx 40upx 0;
-  .van-button {
-    border-radius: 10upx;
-    margin-bottom: 20upx;
-  }
-  .van-button__content span {
-    font-size: 32upx;
-  }
-}
-/deep/.van-cell {
-  padding: 0;
-}
-/deep/.van-field__control {
-  font-size: 32upx;
+  padding: 40upx 0 0;
 }
 </style>

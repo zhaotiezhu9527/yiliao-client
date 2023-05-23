@@ -1,17 +1,19 @@
 <template>
   <view class="page">
-    <van-nav-bar
+    <u-navbar
       placeholder
+      title="投资合同"
       :border="false"
+      autoBack
       fixed
       safe-area-inset-top
-      title="投资合同"
-      @click-left="$base.BackPage('/pages/InvestmentRecords')"
+      bgColor="#4b80af"
+      leftIconColor="#fff"
+      leftIconSize="32"
+      height="52px"
+      titleStyle="color:#fff;font-weight:500;font-size:32upx;"
     >
-      <template #left>
-        <van-icon name="arrow-left" size="18" />
-      </template>
-    </van-nav-bar>
+    </u-navbar>
     <view class="wrap">
       <view class="title">{{ detailsData.ourCompany }}投资合同书</view>
       <view class="number">合同编号：{{ detailsData.orderNo }}</view>
