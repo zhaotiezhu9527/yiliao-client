@@ -1,6 +1,6 @@
 {
     "name" : "安科生物",
-    "appid" : "__UNI__BE2460C",
+    "appid" : "__UNI__A323259",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -41,7 +41,9 @@
                 ]
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "dSYMs" : false
+            },
             /* SDK配置 */
             "sdkConfigs" : {
                 "ad" : {}

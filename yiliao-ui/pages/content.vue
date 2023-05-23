@@ -129,6 +129,9 @@ export default {
       } else if (Number(this.form.amount) < Number(this.items.minAmount)) {
         this.$base.show("金额必须大于起投金额");
         return false;
+      } else if (Number(this.form.amount) > Number(this.items.projectAmount)) {
+        this.$base.show("金额不可大于项目可投金额");
+        return false;
       } else if (!this.form.pwd && this.form.pwd + "".length < 6) {
         this.$base.show("请输入正确支付密码");
         return false;

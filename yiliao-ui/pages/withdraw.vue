@@ -36,6 +36,7 @@
             v-model="amount"
             type="number"
             placeholder="请输入提现金额"
+            @input="update"
           />
         </view>
         <view class="text">可提现金额{{ infos.balance }}元</view>
@@ -94,6 +95,16 @@ export default {
       this.title = e.text;
       this.type = e.value;
       this.show = false;
+    },
+    update(value) {
+      if (!value) return false;
+      if (Number(value) >= this.infos.balance) {
+        this.amount = Number(this.infos.balance);
+      } else if (Number(value) <= 0) {
+        this.amount = 0;
+      } else {
+        this.amount = value;
+      }
     },
     login() {
       if (!this.amount) {
