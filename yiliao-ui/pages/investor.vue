@@ -18,7 +18,7 @@
         >
           <image class="img" :src="item.img" mode="widthFix" />
           <view class="name">
-            <text>{{ guaranteeCompanyFn(item.guaranteeCompany) }}</text>
+            <text>保</text>
             <text>{{ item.projectName }}</text>
           </view>
           <view class="rate">
@@ -47,7 +47,7 @@
           <view class="investor">
             <view class="con">
               <text>项目规模：{{ item.projectAmount }}元</text>
-              <text>每日还息：到齐还本</text>
+              <text>每日还息：到期还本</text>
             </view>
             <view class="btn">立即投资</view>
           </view>
