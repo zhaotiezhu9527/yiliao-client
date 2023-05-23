@@ -4,12 +4,12 @@
       :border="false"
       placeholder
       fixed
+      title="实名认证"
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">实名认证</text>
       </template>
     </van-nav-bar>
     <view class="wrap">

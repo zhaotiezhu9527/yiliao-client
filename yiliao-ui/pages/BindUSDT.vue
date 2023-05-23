@@ -5,11 +5,11 @@
       fixed
       placeholder
       safe-area-inset-top
+      title="绑定USDT地址"
       @click-left="$base.BackPage('/pages/personal')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">绑定USDT地址</text>
       </template>
     </van-nav-bar>
     <view class="wrap">

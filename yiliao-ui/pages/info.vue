@@ -3,13 +3,13 @@
     <van-nav-bar
       placeholder
       :border="false"
+      title="投资详情"
       fixed
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/investor')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">投资详情</text>
       </template>
     </van-nav-bar>
     <view class="wrap">

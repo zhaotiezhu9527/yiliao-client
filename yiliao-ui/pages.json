@@ -105,8 +105,7 @@
     ]
   },
   "globalStyle": {
-    "navigationStyle": "custom",
-    "navigationBarTitleText": "安科生物"
+    "navigationStyle": "custom"
   },
   "networkTimeout": {
     "request": 10000

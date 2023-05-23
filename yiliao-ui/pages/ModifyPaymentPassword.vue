@@ -5,11 +5,11 @@
       :border="false"
       fixed
       safe-area-inset-top
+      title="修改支付密码"
       @click-left="$base.BackPage('/pages/AccountSafe')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">修改支付密码</text>
       </template>
     </van-nav-bar>
     <view class="wrap">
@@ -78,9 +78,10 @@ export default {
       this.$api.user_updatePayPwd(DATA_OBJ).then((res) => {
         this.loading = false;
         if (res.data.code == 0) {
-          uni.redirectTo({
-            url: "/pages/login",
-          });
+          this.$base.show(res.data.msg);
+          this.newPwd = "";
+          this.oldPwd = "";
+          this.password = "";
         }
       });
     },

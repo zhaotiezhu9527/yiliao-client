@@ -4,12 +4,12 @@
       :border="false"
       placeholder
       fixed
+      title="注册"
       safe-area-inset-top
       @click-left="$base.BackPage()"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">注册</text>
       </template>
     </van-nav-bar>
     <view class="wrap">
@@ -39,7 +39,6 @@
         <view class="input">
           <van-field
             v-model="password"
-            label="密码"
             type="password"
             placeholder="请输入登录密码"
           >
@@ -55,7 +54,6 @@
         <view class="input">
           <van-field
             v-model="confirmLoginPwd"
-            label="密码"
             type="password"
             placeholder="请确认登录密码"
           >
@@ -71,7 +69,6 @@
         <view class="input">
           <van-field
             v-model="payPwd"
-            label="密码"
             type="password"
             placeholder="请输入支付密码"
           >
@@ -87,9 +84,8 @@
         <view class="input">
           <van-field
             v-model="inviteCode"
-            label="密码"
             type="number"
-            placeholder="推荐人ID（必填）"
+            placeholder="邀请码ID（必填）"
           >
             <template #label>
               <image
@@ -123,7 +119,7 @@ export default {
       loading: false,
       confirmLoginPwd: "", //确认登录密码
       payPwd: "", //支付密码
-      inviteCode: "", //推荐人id
+      inviteCode: "", //邀请码id
     };
   },
   onLoad() {},
@@ -137,8 +133,8 @@ export default {
         return this.$base.show("两次输入密码不一致~");
       } else if (!this.payPwd || this.payPwd.length < 6) {
         return this.$base.show("请输入支付密码且长度大于6~");
-      } else if (this.inviteCode === "") {
-        return this.$base.show("请输入推荐人ID~");
+      } else if (!this.inviteCode || this.inviteCode.length < 6) {
+        return this.$base.show("请输入邀请码ID且长度大于6~");
       }
       const DATA_OBJ = {
         loginPwd: this.password,

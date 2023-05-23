@@ -1,7 +1,12 @@
 <template>
   <view class="page">
-    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
-      <template #left><text class="headr_title">安科生物</text></template>
+    <van-nav-bar
+      placeholder
+      :title="config.jiancheng"
+      :border="false"
+      fixed
+      safe-area-inset-top
+    >
     </van-nav-bar>
     <view class="wrap">
       <view class="banner">
@@ -31,7 +36,7 @@
           background="#e15241"
           left-icon="volume-o"
           scrollable
-          text="安科生物欢迎您！"
+          :text="config.home_notice"
         />
       </view>
       <view class="list">
@@ -113,7 +118,6 @@ export default {
           name: "我要充值USDT",
           img: img4,
           path: "/pages/preview",
-          url: "https://www.baidu.com",
         },
         { name: "我要提现", img: img5, path: "/pages/withdraw" },
         { name: "免费注册", img: img6, path: "/pages/register" },
@@ -121,13 +125,15 @@ export default {
           name: "在线客服",
           img: img7,
           path: "/pages/preview",
-          url: "https://www.baidu.com",
         },
       ],
       shopGoods: [],
+      config: {},
     };
   },
-  onShow() {
+  async onShow() {
+    await this.$onLaunched;
+    this.config = uni.getStorageSync("system_config");
     // 获取产品列表
     this.$api.project_list().then(({ data }) => {
       if (data.code == 0) {
@@ -153,9 +159,13 @@ export default {
             this.$base.show(data.msg + "~");
           }
         });
-      } else if (["我要充值USDT", "在线客服"].includes(name)) {
+      } else if (["我要充值USDT"].includes(name)) {
         uni.navigateTo({
-          url: `${path}?title=${name}&url=${url}`,
+          url: `${path}?title=${name}&url=${this.config.resource_domain}`,
+        });
+      } else if (["在线客服"].includes(name)) {
+        uni.navigateTo({
+          url: `${path}?title=${name}&url=${this.config.online_service}`,
         });
       }
     },

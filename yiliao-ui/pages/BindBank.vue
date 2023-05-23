@@ -4,12 +4,12 @@
       :border="false"
       placeholder
       fixed
+      title="银行卡绑定"
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">银行卡绑定</text>
       </template>
     </van-nav-bar>
     <view class="wrap">

@@ -1,7 +1,12 @@
 <template>
   <view class="page">
-    <van-nav-bar placeholder :border="false" fixed safe-area-inset-top>
-      <template #left><text class="headr_title">公司简介</text></template>
+    <van-nav-bar
+      placeholder
+      title="公司简介"
+      :border="false"
+      fixed
+      safe-area-inset-top
+    >
     </van-nav-bar>
     <view class="wrap">
       <image

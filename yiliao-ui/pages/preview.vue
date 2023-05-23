@@ -4,12 +4,12 @@
       placeholder
       :border="false"
       fixed
+      :title="title"
       safe-area-inset-top
       @click-left="$base.BackPage(rurl)"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">{{ title }}</text>
       </template>
     </van-nav-bar>
     <web-view

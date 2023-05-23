@@ -5,11 +5,11 @@
       :border="false"
       fixed
       safe-area-inset-top
+      title="资金明细"
       @click-left="$base.BackPage('/pages/personal')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">资金明细</text>
       </template>
     </van-nav-bar>
     <view class="wrap">

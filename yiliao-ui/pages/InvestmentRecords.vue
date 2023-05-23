@@ -4,12 +4,12 @@
       placeholder
       :border="false"
       fixed
+      title="投资记录"
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/personal')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">投资记录</text>
       </template>
     </van-nav-bar>
 

@@ -4,12 +4,12 @@
       :border="false"
       placeholder
       fixed
+      title="修改登录密码"
       safe-area-inset-top
       @click-left="$base.BackPage('/pages/AccountSafe')"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">修改登录密码</text>
       </template>
     </van-nav-bar>
     <view class="wrap">
@@ -78,8 +78,17 @@ export default {
       this.$api.user_updatePwd(DATA_OBJ).then((res) => {
         this.loading = false;
         if (res.data.code == 0) {
-          uni.redirectTo({
-            url: "/pages/login",
+          this.$base.show(res.data.msg);
+          uni.removeStorage({
+            key: "token",
+            success: function (res) {
+              this.newPwd = "";
+              this.oldPwd = "";
+              this.password = "";
+              uni.redirectTo({
+                url: "/pages/login",
+              });
+            },
           });
         }
       });

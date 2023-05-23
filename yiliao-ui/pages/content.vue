@@ -5,11 +5,11 @@
       :border="false"
       fixed
       safe-area-inset-top
-      @click-left="$base.BackPage()"
+      title="立即投资"
+      @click-left="$base.BackPage(`/pages/info?id=${form.projectId}`)"
     >
       <template #left>
         <van-icon name="arrow-left" size="18" />
-        <text class="headr_title">立即投资</text>
       </template>
     </van-nav-bar>
     <view class="cardStyle">
@@ -129,19 +129,24 @@ export default {
       } else if (Number(this.form.amount) < Number(this.items.minAmount)) {
         this.$base.show("金额必须大于起投金额");
         return false;
+      } else if (Number(this.form.amount) > Number(this.items.projectAmount)) {
+        this.$base.show("金额不可大于项目可投金额");
+        return false;
       } else if (!this.form.pwd && this.form.pwd + "".length < 6) {
         this.$base.show("请输入正确支付密码");
         return false;
       }
       this.$api.order_execute(this.form).then(({ data }) => {
         if (data.code == 0) {
-          this.$base.show(data.msg);
+          this.$base.show("投资成功~");
           this.form = {
             amount: "",
             pwd: "",
             projectId: this.items.projectId,
           };
-          dataFn(this.items.id);
+          setTimeout(() => {
+            this.dataFn(this.items.projectId);
+          }, 2000);
         }
       });
     },
