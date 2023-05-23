@@ -108,7 +108,13 @@
         </u--form>
       </view>
       <view class="btns">
-        <u-button color="#4b80af" block @click="login" :loading="loading">
+        <u-button
+          class="btn-class"
+          color="#4b80af"
+          block
+          @click="login"
+          :loading="loading"
+        >
           注册
         </u-button>
         <view class="register" @click="register"> 已有账号？返回登录 </view>
@@ -182,13 +188,8 @@ export default {
 }
 .btns {
   text-align: center;
-  padding: 40rpx 40rpx 0;
-  .custom-style {
-    border-radius: 10rpx;
-    margin-bottom: 20rpx;
-    font-size: 32rpx;
-    height: 88rpx;
-  }
+  padding: 40rpx 0 0;
+
   .register {
     color: #4b80af;
     font-size: 32rpx;

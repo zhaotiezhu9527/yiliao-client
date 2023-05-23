@@ -86,7 +86,7 @@ export const request = (params) => {
     };
   }
   uni.showLoading({
-    title: "loading",
+    title: "加载中",
     mask: true,
   });
   return new Promise((resolve, reject) => {
@@ -99,7 +99,7 @@ export const request = (params) => {
         uni.hideLoading();
         if (res.data.code != 0) {
           uni.showToast({
-            title: res.data.msg,
+            title: res?.data?.msg || "存在网络异常",
             duration: 2000,
             icon: "none",
           });
@@ -115,6 +115,7 @@ export const request = (params) => {
       },
       fail: () => {
         show("存在网络异常");
+        uni.hideLoading();
       },
     });
   });

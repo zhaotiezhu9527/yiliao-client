@@ -29,6 +29,6 @@ const app = new Vue({
 RouterMount(app, router, "#app");
 // #endif
 
-// #ifdef H5
+// #ifdef APP-PLUS
 app.$mount();
 // #endif
