@@ -45,11 +45,10 @@ export const loading = (title) => {
     title: title,
   });
 };
-// 西班牙
 const PATH_URL =
   process.env.NODE_ENV === "development"
     ? "http://clientapi.juhai.xyz/"
-    : "https://api.bambu.cc/";
+    : "http://clientapi.juhai.xyz/";
 
 export const upload = (params) => {
   let header = {
