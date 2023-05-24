@@ -144,7 +144,7 @@ export default {
   },
   methods: {
     change({ name, path, url }) {
-      if (["投资项目", "关于我们"].includes(name)) {
+      if (["投资项目", "关于我们","我要提现"].includes(name)) {
         uni.switchTab({
           url: path,
         });
@@ -168,7 +168,7 @@ export default {
         uni.navigateTo({
           url: '/pages/onlineService',
         });
-      }
+      } 
     },
     routePath(item) {
       uni.navigateTo({

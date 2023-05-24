@@ -15,7 +15,12 @@
     >
     </u-navbar>
     <view class="wrap">
-      <web-view :src="config.online_service"></web-view>
+      <view>
+        <!-- <web-view :src="config.online_service"></web-view> -->
+        <iframe :src="config.online_service" class="online">
+        </iframe>
+      </view>
+      <!-- <web-view :src="config.online_service"></web-view> -->
     </view>
   </view>
 </template>
@@ -37,4 +42,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.online{
+  width: 100%;
+  height: calc(100vh - 102px + var(--status-bar-height));
+  border: none;
+}
 </style>
