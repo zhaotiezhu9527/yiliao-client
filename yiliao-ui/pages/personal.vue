@@ -170,7 +170,7 @@ export default {
   methods: {
     pathChange() {
       uni.navigateTo({
-        url: `/pages/preview?title=我要充值USDT&url=${this.config.online_service}&rurl=/pages/personal`,
+        url: '/pages/onlineService',
       });
     },
     downloadChange(url) {

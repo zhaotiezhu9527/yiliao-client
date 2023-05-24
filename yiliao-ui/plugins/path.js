@@ -67,5 +67,7 @@ const home = [
     path: "/pages/withdraw",
   },
   { path: "/pages/preview" },
+  { path: "/pages/onlineService" },
+
 ];
 export default home;

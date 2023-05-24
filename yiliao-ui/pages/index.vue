@@ -162,11 +162,11 @@ export default {
         });
       } else if (["我要充值USDT"].includes(name)) {
         uni.navigateTo({
-          url: `${path}?title=${name}&url=${this.config.online_service}`,
+          url: '/pages/onlineService',
         });
       } else if (["在线客服"].includes(name)) {
         uni.navigateTo({
-          url: `${path}?title=${name}&url=${this.config.online_service}`,
+          url: '/pages/onlineService',
         });
       }
     },

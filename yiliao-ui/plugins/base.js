@@ -49,8 +49,8 @@ const PATH_URL =
   process.env.NODE_ENV === "development"
   ? "http://192.168.4.85:9522/"//本地测试
   // ? "http://clientapi.juhai.xyz/"//测试
-  : "/api/";//h5打包地址
-  // : "http://clientapi.juhai.xyz/";//app打包地址
+  // : "/api/";//h5打包地址
+  : "http://clientapi.juhai.xyz/";//app打包地址
 
 export const upload = (params) => {
   let header = {
