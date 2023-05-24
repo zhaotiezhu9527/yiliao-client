@@ -13,131 +13,138 @@
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
-    <view class="wrap">
-      <!-- 头部 -->
-      <view class="head">
-        <view class="head-text">
-          <label>我的账户：{{ userData.userName }}</label>
-          <label>用户等级：{{ userData.userLevelName }}</label>
+    <scroll-view scroll-y class="scroll">
+      <view class="wrap">
+        <!-- 头部 -->
+        <view class="head">
+          <view class="head-text">
+            <label>我的账户：{{ userData.userName }}</label>
+            <label>用户等级：{{ userData.userLevelName }}</label>
+          </view>
+          <view class="head-money">
+            {{ userData.balance }}
+          </view>
+          <view class="head-integral"> 账户余额（元）账户积分（0） </view>
         </view>
-        <view class="head-money">
-          {{ userData.balance }}
+        <view class="money">
+          <view class="interest">
+            <view>{{ userData.waitReturnInterest }}</view>
+            <view>待收利息（元）</view>
+          </view>
+          <view class="principal">
+            <view>{{ userData.waitReturnPrincipal }}</view>
+            <view>待收本金（元）</view>
+          </view>
         </view>
-        <view class="head-integral"> 账户余额（元）账户积分（0） </view>
+        <!-- 按钮 -->
+        <view class="button-box">
+          <u-button class="button-class" @click="pathChange">充值</u-button>
+          <u-button class="button-class" @click="goWithdraw">提现</u-button>
+        </view>
+        <!-- 列表 -->
+        <view class="list">
+          <view
+            v-if="config.ouyi_download_url"
+            class="list-item"
+            @click="downloadChange(config.ouyi_download_url)"
+          >
+            <image class="icon-img" src="../static/img/okx_app_icon.png" />
+            <label>欧易安卓下载</label>
+            <view class="icon"></view>
+          </view>
+          <view
+            v-if="config.bian_download_url"
+            class="list-item"
+            @click="downloadChange(config.bian_download_url)"
+          >
+            <image class="icon-img" src="../static/img/bian_app_icon.png" />
+            <label>币安安卓下载</label>
+            <view class="icon"></view>
+          </view>
+          <view
+            v-if="config.huobi_download_url"
+            class="list-item"
+            @click="downloadChange(config.huobi_download_url)"
+          >
+            <image class="icon-img" src="../static/img/icon_app_huobi.png" />
+            <label>火币APP下载</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="sign">
+            <image class="icon-img" src="../static/img/mine_func_qiandao.png" />
+            <label>每日签到</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="goFundDetails">
+            <image class="icon-img" src="../static/img/mine_func_zijin.png" />
+            <label>资金明细</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="goInvestmentRecords">
+            <image class="icon-img" src="../static/img/mine_func_touzi.png" />
+            <label>投资记录</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="goRevenueRecords">
+            <image class="icon-img" src="../static/img/mine_func_shouyi.png" />
+            <label>收益记录</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="goRechargeRecord">
+            <image
+              class="icon-img"
+              src="../static/img/mine_func_chongzhi.png"
+            />
+            <label>充值记录</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="goWithdrawalRecords">
+            <image class="icon-img" src="../static/img/mine_func_tixian.png" />
+            <label>提现记录</label>
+            <view class="icon"></view>
+          </view>
+        </view>
+        <view class="list">
+          <view class="list-item" @click="goAccountSafe">
+            <image class="icon-img" src="../static/img/mine_func_anquan.png" />
+            <label>账户安全</label>
+            <view class="icon"></view>
+          </view>
+          <view
+            class="list-item"
+            @click="goBindBank(userData.bankName, userData.bankCardNum)"
+          >
+            <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
+            <label>银行卡绑定</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="goRealName">
+            <image class="icon-img" src="../static/img/mine_func_shiming.png" />
+            <label>实名认证</label>
+            <view class="icon"></view>
+          </view>
+          <view class="list-item" @click="goBindUSDT">
+            <image class="icon-img" src="../static/img/mine_func_usdt.png" />
+            <label>USDT绑定地址</label>
+            <view class="icon"></view>
+          </view>
+        </view>
+        <!-- 退出登录 -->
+        <u-button class="logout" @click="show = true">退出登录</u-button>
       </view>
-      <view class="money">
-        <view class="interest">
-          <view>{{ userData.waitReturnInterest }}</view>
-          <view>待收利息（元）</view>
-        </view>
-        <view class="principal">
-          <view>{{ userData.waitReturnPrincipal }}</view>
-          <view>待收本金（元）</view>
-        </view>
-      </view>
-      <!-- 按钮 -->
-      <view class="button-box">
-        <u-button class="button-class" @click="pathChange">充值</u-button>
-        <u-button class="button-class" @click="goWithdraw">提现</u-button>
-      </view>
-      <!-- 列表 -->
-      <view class="list">
-        <view
-          v-if="config.ouyi_download_url"
-          class="list-item"
-          @click="downloadChange(config.ouyi_download_url)"
-        >
-          <image class="icon-img" src="../static/img/okx_app_icon.png" />
-          <label>欧易安卓下载</label>
-          <view class="icon"></view>
-        </view>
-        <view
-          v-if="config.bian_download_url"
-          class="list-item"
-          @click="downloadChange(config.bian_download_url)"
-        >
-          <image class="icon-img" src="../static/img/bian_app_icon.png" />
-          <label>币安安卓下载</label>
-          <view class="icon"></view>
-        </view>
-        <view
-          v-if="config.huobi_download_url"
-          class="list-item"
-          @click="downloadChange(config.huobi_download_url)"
-        >
-          <image class="icon-img" src="../static/img/icon_app_huobi.png" />
-          <label>火币APP下载</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="sign">
-          <image class="icon-img" src="../static/img/mine_func_qiandao.png" />
-          <label>每日签到</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="goFundDetails">
-          <image class="icon-img" src="../static/img/mine_func_zijin.png" />
-          <label>资金明细</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="goInvestmentRecords">
-          <image class="icon-img" src="../static/img/mine_func_touzi.png" />
-          <label>投资记录</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="goRevenueRecords">
-          <image class="icon-img" src="../static/img/mine_func_shouyi.png" />
-          <label>收益记录</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="goRechargeRecord">
-          <image class="icon-img" src="../static/img/mine_func_chongzhi.png" />
-          <label>充值记录</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="goWithdrawalRecords">
-          <image class="icon-img" src="../static/img/mine_func_tixian.png" />
-          <label>提现记录</label>
-          <view class="icon"></view>
-        </view>
-      </view>
-      <view class="list">
-        <view class="list-item" @click="goAccountSafe">
-          <image class="icon-img" src="../static/img/mine_func_anquan.png" />
-          <label>账户安全</label>
-          <view class="icon"></view>
-        </view>
-        <view
-          class="list-item"
-          @click="goBindBank(userData.bankName, userData.bankCardNum)"
-        >
-          <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
-          <label>银行卡绑定</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="goRealName">
-          <image class="icon-img" src="../static/img/mine_func_shiming.png" />
-          <label>实名认证</label>
-          <view class="icon"></view>
-        </view>
-        <view class="list-item" @click="goBindUSDT">
-          <image class="icon-img" src="../static/img/mine_func_usdt.png" />
-          <label>USDT绑定地址</label>
-          <view class="icon"></view>
-        </view>
-      </view>
-      <!-- 退出登录 -->
-      <u-button class="logout" @click="show = true">退出登录</u-button>
-    </view>
+    </scroll-view>
     <u-modal
       :show="show"
       title="退出登陆"
       @confirm="modalChange"
+      @cancel="show = false"
       ref="uModal"
-      content="你确定退出吗？"
       :asyncClose="true"
       showCancelButton
       confirmColor="#4b80af"
-    ></u-modal>
+    >
+      <view class="content">你确定退出吗？</view>
+    </u-modal>
   </view>
 </template>
 
@@ -170,11 +177,16 @@ export default {
   methods: {
     pathChange() {
       uni.navigateTo({
-        url: '/pages/onlineService',
+        url: "/pages/onlineService",
       });
     },
     downloadChange(url) {
+      // #ifdef APP-PLUS
+      plus.runtime.openURL(url);
+      // #endif
+      // #ifdef H5
       window.open(url);
+      // #endif
     },
     goFundDetails() {
       uni.navigateTo({
@@ -261,6 +273,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.scroll {
+  height: calc(100vh - 210rpx + var(--status-bar-height));
+}
 .wrap {
   background-color: #f8f8f9;
   padding-bottom: 40rpx;
@@ -384,5 +399,9 @@ export default {
     color: #fff;
     background-color: #e15241;
   }
+}
+.content {
+  padding: 40upx 0;
+  text-align: center;
 }
 </style>

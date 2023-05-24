@@ -12,7 +12,7 @@ router.beforeEach((to, from, next) => {
   if (!WHILE_LIST.includes(to.path) && !token) {
     next({
       path: "/pages/login",
-      NAVTYPE: "push",
+      NAVTYPE: "replaceAll",
     });
   } else {
     next();

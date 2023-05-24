@@ -14,11 +14,13 @@
     >
     </u-navbar>
     <view class="wrap">
-      <image
-        class="image"
-        mode="widthFix"
-        src="../static/img/zhenshi_about_post.jpg"
-      />
+      <scroll-view scroll-y class="scroll">
+        <image
+          class="image"
+          mode="widthFix"
+          src="../static/img/zhenshi_about_post.jpg"
+        />
+      </scroll-view>
     </view>
   </view>
 </template>
@@ -34,6 +36,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.scroll {
+  height: calc(100vh - 210rpx + var(--status-bar-height));
+}
 .image {
   width: 100vw;
 }

@@ -116,7 +116,7 @@ export default {
 <style scoped lang="scss">
 @import "../static/list.scss";
 .scroll {
-  height: calc(100vh - 102px + var(--status-bar-height));
+  height: calc(100vh - 210rpx + var(--status-bar-height));
 }
 .page {
   background-color: #fafafa;

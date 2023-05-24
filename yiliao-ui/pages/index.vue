@@ -14,83 +14,85 @@
     >
     </u-navbar>
     <view class="wrap">
-      <view class="banner">
-        <u-swiper :list="list2" class="my-swipe" indicator> </u-swiper>
-      </view>
-      <view class="content">
-        <view
-          class="item"
-          v-for="(item, index) in list"
-          :key="index"
-          @click="change(item)"
-        >
-          <image class="img" :src="item.img" />
-          <text class="txt">{{ item.name }}</text>
+      <scroll-view scroll-y class="scroll">
+        <view class="banner">
+          <u-swiper :list="list2" class="my-swipe" indicator> </u-swiper>
         </view>
-      </view>
-      <view class="notice">
-        <u-notice-bar
-          color="#ffffff"
-          bgColor="#e15241"
-          scrollable
-          fontSize="32rpx"
-          :text="config.home_notice || ''"
-        />
-      </view>
-      <view class="list">
-        <view
-          class="view"
-          v-for="(item, index) in shopGoods"
-          :key="index"
-          @click="routePath(item)"
-        >
-          <image class="img" :src="item.img" mode="widthFix" />
-          <view class="name">
-            <text>保</text>
-            <text>{{ item.projectName }}</text>
-          </view>
-          <view class="rate">
-            <view class="li">
-              <view class="num"
-                ><text>{{ item.incomeRate }}</text>
-                %
-              </view>
-              <view class="con">日化利率</view>
-            </view>
-            <view class="li">
-              <view class="num">
-                <text>{{ item.limitTime }}</text>
-                分钟
-              </view>
-              <view class="con">投资期限</view></view
-            >
-            <view class="li">
-              <view class="num"
-                >￥<text>{{ item.minAmount }}</text>
-                元
-              </view>
-              <view class="con">起投金额</view></view
-            >
-          </view>
-          <view class="investor">
-            <view class="con">
-              <text>项目规模：{{ item.projectAmount }}元</text>
-              <text>每日还息：到期还本</text>
-            </view>
-            <view class="btn">立即投资</view>
-          </view>
-          <view class="progress">
-            <view class="txt">项目进度：</view>
-            <u-line-progress
-              :percentage="scheduleFn(item.schedule)"
-              :showText="false"
-              activeColor="#2196f3"
-            ></u-line-progress>
-            <view class="number">{{ item.schedule }}%</view>
+        <view class="content">
+          <view
+            class="item"
+            v-for="(item, index) in list"
+            :key="index"
+            @click="change(item)"
+          >
+            <image class="img" :src="item.img" />
+            <text class="txt">{{ item.name }}</text>
           </view>
         </view>
-        <u-empty class="empty2" text="暂无产品" v-if="!shopGoods.length" />
-      </view>
+        <view class="notice">
+          <u-notice-bar
+            color="#ffffff"
+            bgColor="#e15241"
+            scrollable
+            fontSize="32rpx"
+            :text="config.home_notice || ''"
+          />
+        </view>
+        <view class="list">
+          <view
+            class="view"
+            v-for="(item, index) in shopGoods"
+            :key="index"
+            @click="routePath(item)"
+          >
+            <image class="img" :src="item.img" mode="widthFix" />
+            <view class="name">
+              <text>保</text>
+              <text>{{ item.projectName }}</text>
+            </view>
+            <view class="rate">
+              <view class="li">
+                <view class="num"
+                  ><text>{{ item.incomeRate }}</text>
+                  %
+                </view>
+                <view class="con">日化利率</view>
+              </view>
+              <view class="li">
+                <view class="num">
+                  <text>{{ item.limitTime }}</text>
+                  分钟
+                </view>
+                <view class="con">投资期限</view></view
+              >
+              <view class="li">
+                <view class="num"
+                  >￥<text>{{ item.minAmount }}</text>
+                  元
+                </view>
+                <view class="con">起投金额</view></view
+              >
+            </view>
+            <view class="investor">
+              <view class="con">
+                <text>项目规模：{{ item.projectAmount }}元</text>
+                <text>每日还息：到期还本</text>
+              </view>
+              <view class="btn">立即投资</view>
+            </view>
+            <view class="progress">
+              <view class="txt">项目进度：</view>
+              <u-line-progress
+                :percentage="scheduleFn(item.schedule)"
+                :showText="false"
+                activeColor="#2196f3"
+              ></u-line-progress>
+              <view class="number">{{ item.schedule }}%</view>
+            </view>
+          </view>
+          <u-empty class="empty2" text="暂无产品" v-if="!shopGoods.length" />
+        </view>
+      </scroll-view>
     </view>
   </view>
 </template>
@@ -144,7 +146,7 @@ export default {
   },
   methods: {
     change({ name, path, url }) {
-      if (["投资项目", "关于我们","我要提现"].includes(name)) {
+      if (["投资项目", "关于我们", "我要提现"].includes(name)) {
         uni.switchTab({
           url: path,
         });
@@ -162,13 +164,13 @@ export default {
         });
       } else if (["我要充值USDT"].includes(name)) {
         uni.navigateTo({
-          url: '/pages/onlineService',
+          url: "/pages/onlineService",
         });
       } else if (["在线客服"].includes(name)) {
         uni.navigateTo({
-          url: '/pages/onlineService',
+          url: "/pages/onlineService",
         });
-      } 
+      }
     },
     routePath(item) {
       uni.navigateTo({
@@ -189,6 +191,9 @@ export default {
 @import "../static/list.scss";
 .list {
   background-color: #fff;
+}
+.scroll {
+  height: calc(100vh - 210rpx + var(--status-bar-height));
 }
 .page {
   background-color: #fafafa;

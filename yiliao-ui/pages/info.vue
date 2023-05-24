@@ -137,7 +137,9 @@
       </view>
     </view>
     <view class="btn">
-      <u-button color="#4b80af" block @click="change"> 马上投资 </u-button>
+      <u-button color="#4b80af" class="btn-class" block @click="change">
+        马上投资
+      </u-button>
     </view>
   </view>
 </template>
@@ -289,6 +291,9 @@ text {
   }
 }
 .btn {
+  .btn-class {
+    width: 100%;
+  }
   padding: 10rpx 20rpx;
   padding-bottom: calc(10rpx + constant(safe-area-inset-bottom));
   padding-bottom: env(10rpx + constant(safe-area-inset-bottom));
@@ -298,8 +303,5 @@ text {
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  /deep/.u-button {
-    border-radius: 10rpx;
-  }
 }
 </style>
