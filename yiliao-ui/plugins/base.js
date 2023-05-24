@@ -1,28 +1,6 @@
-import { metadata, PhoneNumberUtil } from "google-libphonenumber";
 import Vue from "vue";
 import * as store from "plugins/store.js";
 Vue.prototype.$store = store;
-export const phone = (value) => {
-  try {
-    const phoneUtil = PhoneNumberUtil.getInstance();
-    let isValite = false;
-    let number;
-    let keys = [];
-    const CODEMAP = metadata.countryCodeToRegionCodeMap;
-    Object.keys(CODEMAP).forEach((item) => {
-      if (item === store.code) {
-        keys = CODEMAP[item];
-      }
-    });
-    isValite = keys.some((e) => {
-      number = phoneUtil.parseAndKeepRawInput(value, e);
-      return phoneUtil.isValidNumber(number);
-    });
-    return isValite;
-  } catch (error) {
-    return false;
-  }
-};
 
 //设置缓存内容
 export const storage = (name, value) => {
