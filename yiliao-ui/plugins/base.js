@@ -47,8 +47,8 @@ export const loading = (title) => {
 };
 const PATH_URL =
   process.env.NODE_ENV === "development"
-    ? "http://clientapi.juhai.xyz/"
-    : "http://clientapi.juhai.xyz/";
+  ? "http://192.168.4.85:9522/"
+  : "http://api.c9e47518ff9294fc2933c436e28068c3a.ap-southeast-1.alicontainer.com/";
 
 export const upload = (params) => {
   let header = {
