@@ -133,7 +133,7 @@ export default {
     margin: 40rpx 30rpx;
     .card {
       padding: 30rpx 20rpx;
-      height: 270rpx;
+      height: 320rpx;
       background-image: linear-gradient(#769ed6, #5375ae);
       color: #fff;
       .card-name {
