@@ -62,7 +62,7 @@ public class ProjectController {
                 temp.put("minAmount", project.getMinAmount());
                 temp.put("startTime", project.getStartTime());
                 temp.put("schedule", project.getSchedule());
-                temp.put("guaranteeCompany", project.getGuaranteeCompany());
+                temp.put("guaranteeCompany", map.get("guarantee_company"));
                 temp.put("img", map.get("resource_domain") + project.getImg());
                 array.add(temp);
             }
@@ -92,7 +92,7 @@ public class ProjectController {
         temp.put("minAmount", project.getMinAmount());
         temp.put("startTime", project.getStartTime());
         temp.put("schedule", project.getSchedule());
-        temp.put("guaranteeCompany", project.getGuaranteeCompany());
+        temp.put("guaranteeCompany", map.get("guarantee_company"));
         temp.put("img", map.get("resource_domain") + project.getImg());
 
         String userName = JwtUtils.getUserName(httpServletRequest);

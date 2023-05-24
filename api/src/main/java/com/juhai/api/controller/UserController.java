@@ -100,7 +100,7 @@ public class UserController {
 
         List<Order> list = orderService.list(
                 new LambdaQueryWrapper<Order>()
-                        .select(Order::getAmount)
+                        .select(Order::getAmount, Order::getForecastReturnAmount)
                         .eq(Order::getUserName, userName)
                         .eq(Order::getStatus, 0)
         );
@@ -564,8 +564,8 @@ public class UserController {
         if (StringUtils.isNotBlank(withdrawTimeStr)) {
             String today = DateUtil.formatDate(now);
             String[] timeArr = withdrawTimeStr.split("-");
-            Date beginTime = DateUtil.parseDate(today + " " + timeArr[0]);
-            Date endTime = DateUtil.parseDate(today + " " + timeArr[1]);
+            Date beginTime = DateUtil.parse(today + " " + timeArr[0]);
+            Date endTime = DateUtil.parse(today + " " + timeArr[1]);
             if (!DateUtil.isIn(now, beginTime, endTime)) {
                 return R.error(MsgUtil.get("system.withdraw.time") + ":" + withdrawTimeStr);
             }

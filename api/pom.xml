@@ -10,7 +10,7 @@
 
     <groupId>com.juhai</groupId>
     <artifactId>api</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <name>api</name>
     <description>api</description>
     <packaging>jar</packaging>
@@ -48,6 +48,22 @@
             <artifactId>java-jwt</artifactId>
             <version>${jwt.version}</version>
         </dependency>
+
+        <!-- 注册中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- 配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -79,45 +95,45 @@
             </plugin>
             <!-- docker插件 -->
             <!--使用docker-maven-plugin插件-->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.1.0</version>
-                <!--将插件绑定在某个phase执行-->
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <!--用户只需执行mvn package ，就会自动执行mvn docker:build-->
-                        <phase>install</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!--指定生成的镜像名-->
-                    <!--                    <imageName>registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/sengre-api</imageName>-->
-                    <imageName>registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api</imageName>
-                    <!--指定标签-->
-                    <imageTags>
-                        <imageTag>${project.version}</imageTag>
-                    </imageTags>
-                    <!-- 指定 Dockerfile 路径-->
-                    <dockerDirectory>${project.basedir}</dockerDirectory>
-                    <!--指定远程 docker api地址-->
-                    <dockerHost>http://8.222.224.10:2375</dockerHost>
-                    <!-- 这里是复制 jar 包到 docker 容器指定目录配置 -->
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <!--jar 包所在的路径  此处配置的 即对应 target 目录-->
-                            <directory>${project.build.directory}</directory>
-                            <!-- 需要包含的 jar包 ，这里对应的是 Dockerfile中添加的文件名　-->
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>docker-maven-plugin</artifactId>-->
+<!--                <version>1.1.0</version>-->
+<!--                &lt;!&ndash;将插件绑定在某个phase执行&ndash;&gt;-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>build-image</id>-->
+<!--                        &lt;!&ndash;用户只需执行mvn package ，就会自动执行mvn docker:build&ndash;&gt;-->
+<!--                        <phase>install</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;指定生成的镜像名&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <imageName>registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/sengre-api</imageName>&ndash;&gt;-->
+<!--                    <imageName>registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api</imageName>-->
+<!--                    &lt;!&ndash;指定标签&ndash;&gt;-->
+<!--                    <imageTags>-->
+<!--                        <imageTag>${project.version}</imageTag>-->
+<!--                    </imageTags>-->
+<!--                    &lt;!&ndash; 指定 Dockerfile 路径&ndash;&gt;-->
+<!--                    <dockerDirectory>${project.basedir}</dockerDirectory>-->
+<!--                    &lt;!&ndash;指定远程 docker api地址&ndash;&gt;-->
+<!--                    <dockerHost>http://8.222.224.10:2375</dockerHost>-->
+<!--                    &lt;!&ndash; 这里是复制 jar 包到 docker 容器指定目录配置 &ndash;&gt;-->
+<!--                    <resources>-->
+<!--                        <resource>-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            &lt;!&ndash;jar 包所在的路径  此处配置的 即对应 target 目录&ndash;&gt;-->
+<!--                            <directory>${project.build.directory}</directory>-->
+<!--                            &lt;!&ndash; 需要包含的 jar包 ，这里对应的是 Dockerfile中添加的文件名　&ndash;&gt;-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

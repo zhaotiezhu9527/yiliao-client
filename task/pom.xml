@@ -10,7 +10,7 @@
 
     <groupId>com.juhai</groupId>
     <artifactId>task</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <name>task</name>
     <description>task</description>
     <packaging>jar</packaging>
@@ -20,6 +20,22 @@
             <groupId>com.juhai</groupId>
             <artifactId>commons</artifactId>
             <version>1.0.0</version>
+        </dependency>
+
+        <!-- 注册中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- 配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
     </dependencies>
 

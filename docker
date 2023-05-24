@@ -4,33 +4,35 @@ docker login --username=weijing0318 registry.cn-hangzhou.aliyuncs.com
 docker stop yiliao-api;docker rm yiliao-api;
 docker run -d -p 9522:9522 --name yiliao-api \
 -e "SPRING_PROFILES_ACTIVE=test"  \
--e "spring.cloud.nacos.discovery.server-addr=172.16.168.146" \
--e "spring.application.name=mgapi" \
-registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.0;
+-e "spring.cloud.nacos.discovery.server-addr=mse-33f262210-nacos-ans.mse.aliyuncs.com" \
+-e "spring.cloud.nacos.config.namespace=3a3af44c-5083-45d2-acb2-b062011f2d51" \
+-e "spring.application.name=api" \
+registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.2;
 docker logs -f -t --tail 500 yiliao-api
 
-docker push registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-api:1.0.7
-docker pull registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-api:1.0.7
+docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.2
+docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.2
 
 docker stop yiliao-task;docker rm yiliao-task;
 docker run -d -p 8522:8522 --name yiliao-task \
 -e "SPRING_PROFILES_ACTIVE=test"  \
--e "spring.cloud.nacos.discovery.server-addr=172.16.168.146" \
--e "spring.application.name=mgapi" \
-registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-task:1.0.0;
+-e "spring.cloud.nacos.discovery.server-addr=mse-33f262210-nacos-ans.mse.aliyuncs.com" \
+-e "spring.cloud.nacos.config.namespace=3a3af44c-5083-45d2-acb2-b062011f2d51" \
+-e "spring.application.name=task" \
+registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-task:1.0.2;
 docker logs -f -t --tail 500 yiliao-task
 
-docker push registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-api:1.0.7
-docker pull registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-api:1.0.7
+docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-task:1.0.2
+docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-task:1.0.2
 
+docker stop yiliao-admin;docker rm yiliao-admin;
+docker run -d -p 9533:8080 --name yiliao-admin \
+-e "SPRING_PROFILES_ACTIVE=test"  \
+-e "spring.cloud.nacos.discovery.server-addr=mse-33f262210-nacos-ans.mse.aliyuncs.com" \
+-e "spring.cloud.nacos.config.namespace=3a3af44c-5083-45d2-acb2-b062011f2d51" \
+-e "spring.application.name=adminapi" \
+registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.2;
+docker logs -f -t --tail 500 yiliao-admin
 
-docker stop financial-admin;docker rm financial-admin;
-docker run -d -p 8533:8533 --name financial-admin \
--e "SPRING_PROFILES_ACTIVE=prod"  \
--e "spring.cloud.nacos.discovery.server-addr=172.16.168.146" \
--e "spring.application.name=mgadmin" \
-registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-admin:1.0.10;
-docker logs -f -t --tail 500 financial-admin
-
-docker push registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-admin:1.0.9
-docker pull registry.cn-hangzhou.aliyuncs.com/zhaotiezhu/financial-admin:1.0.9
+docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.2
+docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.2
