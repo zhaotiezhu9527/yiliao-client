@@ -5,8 +5,13 @@ export default {
     if (token) {
       this.$api.user_info().then(({ data }) => {
         if (data.code == 0) {
-          this.systemFn();
-          this.$base.storage("infos", data.data);
+          uni.setStorage({
+            key: "infos",
+            data: res.data,
+            success: function () {
+              this.systemFn();
+            },
+          });
         }
       });
     } else {
