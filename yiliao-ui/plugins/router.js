@@ -14,7 +14,16 @@ router.beforeEach((to, from, next) => {
       path: "/pages/login",
       NAVTYPE: "replaceAll",
     });
-  } else {
+  }
+  // #ifdef APP-PLUS
+  else if (["/pages/login"].includes(to.path) && token) {
+    next({
+      path: "/pages/index",
+      NAVTYPE: "pushTab",
+    });
+  }
+  // #endif
+  else {
     next();
   }
 });

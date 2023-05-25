@@ -169,8 +169,13 @@ export default {
       });
     },
     register() {
-      uni.navigateTo({
-        url: "/pages/login",
+      uni.removeStorage({
+        key: "token",
+        success: function (res) {
+          uni.navigateTo({
+            url: "/pages/login",
+          });
+        },
       });
     },
   },

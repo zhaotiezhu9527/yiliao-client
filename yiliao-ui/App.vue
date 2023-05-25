@@ -21,7 +21,34 @@ export default {
           uni.setNavigationBarTitle({
             title: data.data.jiancheng,
           });
+          //获取app版本号
+          // #ifdef APP-PLUS
+          // let that_app = parseInt(plus.runtime.version.split(".").join(""));
+          // let new_app = parseInt(data.version.split(".").join(""));
+          // if (that_app < new_app) {
+          //   console.log(uni.getSystemInfoSync().platform);
+          //   uni.showModal({
+          //     title: "提示",
+          //     content: "有最新版本，是否下载",
+          //     confirmText: "确定",
+          //     cancelText: "取消",
+          //     success: (res) => {
+          //       if (res.confirm) {
+          //         plus.runtime.openURL(this.items.url);
+          //         plus.runtime.quit();
+          //       } else if (res.cancel) {
+          //         plus.runtime.quit(); //强制退出应用
+          //       }
+          //     },
+          //   });
+          // } else {
+          //   this.$isResolve();
+          // }
           this.$isResolve();
+          // #endif
+          // #ifdef H5
+          this.$isResolve();
+          // #endif
         } else {
           this.$isResolve();
         }
