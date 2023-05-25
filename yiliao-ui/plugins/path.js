@@ -1,5 +1,8 @@
 const home = [
   {
+    path: "/pages/login",
+  },
+  {
     path: "/pages/index",
     aliasPath: "/",
   },
@@ -18,9 +21,7 @@ const home = [
   {
     path: "/pages/personal",
   },
-  {
-    path: "/pages/login",
-  },
+  
   {
     path: "/pages/register",
   },

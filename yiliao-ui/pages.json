@@ -4,10 +4,10 @@
   },
   "pages": [
     {
-      "path": "pages/index"
+      "path": "pages/login"
     },
     {
-      "path": "pages/login"
+      "path": "pages/index"
     },
     {
       "path": "pages/content"
