@@ -72,8 +72,16 @@ export default {
       bindStatus: "", //银行卡绑定状态
     };
   },
-  onLoad(option) {
-    this.getInfo();
+  async onLoad() {
+    await this.$onLaunched;
+    let infos = uni.getStorageSync("infos");
+    if (!this.infos) {
+      this.getInfo();
+    } else {
+      this.bindStatus = infos.bankName;
+      this.bankName = infos.bankName;
+      this.bankCardNum = infos.bankCardNum;
+    }
   },
   methods: {
     // 绑定银行卡
@@ -103,6 +111,7 @@ export default {
     getInfo() {
       this.$api.user_info().then((res) => {
         if (res.data.code == 0) {
+          this.$base.storage("infos", res.data.data);
           this.bindStatus = res.data.data.bankName;
           this.bankName = res.data.data.bankName;
           this.bankCardNum = res.data.data.bankCardNum;

@@ -172,7 +172,10 @@ export default {
   async onShow() {
     await this.$onLaunched;
     this.config = uni.getStorageSync("system_config");
-    this.getInfo();
+    this.userData = uni.getStorageSync("infos");
+    if (!this.userData) {
+      this.getInfo();
+    }
   },
   methods: {
     pathChange() {
@@ -234,9 +237,9 @@ export default {
       });
     },
     goWithdraw() {
-      if(!this.userData.bankCardNum && !this.userData.walletAddr){
+      if (!this.userData.bankCardNum && !this.userData.walletAddr) {
         return this.$base.show("请先绑定一种提款方式~");
-      }else{
+      } else {
         uni.navigateTo({
           url: "/pages/withdraw",
         });
@@ -246,8 +249,13 @@ export default {
     modalChange() {
       this.$api.user_logout().then((res) => {
         if (res.data.code == 0) {
-          uni.redirectTo({ url: "/pages/login" });
-          uni.removeStorageSync("token");
+          uni.removeStorage({
+            key: "token",
+            success: function (res) {
+              uni.removeStorageSync("infos");
+              uni.redirectTo({ url: "/pages/login" });
+            },
+          });
         }
       });
     },

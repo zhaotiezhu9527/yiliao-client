@@ -163,8 +163,13 @@ export default {
       this.$api.user_register(DATA_OBJ).then((res) => {
         this.loading = false;
         if (res.data.code == 0) {
-          this.$base.storage("token", res.data.token);
-          uni.switchTab({ url: "/pages/personal" });
+          uni.setStorage({
+            key: "token",
+            data: res.data.token,
+            success: function () {
+              uni.switchTab({ url: "/pages/personal" });
+            },
+          });
         }
       });
     },

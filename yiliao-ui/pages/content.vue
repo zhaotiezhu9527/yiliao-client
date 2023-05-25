@@ -83,7 +83,13 @@
         placeholder="请输入支付密码"
       />
     </view>
-    <u-button class="btn-class" color="#4b80af" block @click="investor">
+    <u-button
+      class="btn-class"
+      :loading="loading"
+      color="#4b80af"
+      block
+      @click="investor"
+    >
       立即投资
     </u-button>
   </view>
@@ -94,6 +100,7 @@ export default {
     return {
       items: {},
       infos: {},
+      loading: false,
       form: {
         amount: "",
         pwd: "",
@@ -117,6 +124,7 @@ export default {
       this.$api.user_info().then(({ data }) => {
         if (data.code == 0) {
           this.infos = data.data;
+          this.$base.storage("infos", data.data);
         }
       });
       // 获取产品详情
@@ -141,7 +149,9 @@ export default {
         this.$base.show("请输入正确支付密码");
         return false;
       }
+      this.loading = true;
       this.$api.order_execute(this.form).then(({ data }) => {
+        this.loading = false;
         if (data.code == 0) {
           this.$base.show("投资成功~");
           this.form = {
