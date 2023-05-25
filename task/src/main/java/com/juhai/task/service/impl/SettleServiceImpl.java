@@ -2,13 +2,16 @@ package com.juhai.task.service.impl;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.commons.entity.Account;
 import com.juhai.commons.entity.Order;
 import com.juhai.commons.entity.User;
+import com.juhai.commons.entity.UserReport;
 import com.juhai.commons.service.AccountService;
 import com.juhai.commons.service.OrderService;
+import com.juhai.commons.service.UserReportService;
 import com.juhai.commons.service.UserService;
 import com.juhai.task.service.SettleService;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -27,6 +30,9 @@ public class SettleServiceImpl implements SettleService {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private UserReportService userReportService;
 
     @Transactional
     @Override
@@ -62,5 +68,15 @@ public class SettleServiceImpl implements SettleService {
 
         // 给用户加钱
         userService.updateUserBalance(order.getUserName(), amount);
+
+        // 记录报表
+        UserReport report = new UserReport();
+        report.setUserName(order.getUserName());
+        report.setToday(DateUtil.format(order.getOrderTime(), "yyyyMMdd"));
+        report.setDepositAmount(new BigDecimal("0"));
+        report.setWithdrawAmount(new BigDecimal("0"));
+        report.setInvestmentAmount(new BigDecimal("0"));
+        report.setIncomeAmount(order.getForecastReturnAmount());
+        userReportService.insertOrUpdate(report);
     }
 }

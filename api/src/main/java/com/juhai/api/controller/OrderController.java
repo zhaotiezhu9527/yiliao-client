@@ -9,10 +9,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.juhai.api.controller.request.OrderRequest;
 import com.juhai.api.utils.JwtUtils;
-import com.juhai.commons.entity.Account;
-import com.juhai.commons.entity.Order;
-import com.juhai.commons.entity.Project;
-import com.juhai.commons.entity.User;
+import com.juhai.commons.entity.*;
 import com.juhai.commons.service.*;
 import com.juhai.commons.utils.MsgUtil;
 import com.juhai.commons.utils.R;
@@ -50,6 +47,9 @@ public class OrderController {
 
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private UserReportService userReportService;
 
     @Transactional
     @ApiOperation(value = "投资")
@@ -132,6 +132,16 @@ public class OrderController {
         account.setRefNo(orderNo);
         account.setRemark("投资项目:" + project.getProjectName() + ",使用余额" + amount + "元");
         accountService.save(account);
+
+        // 记录报表
+        UserReport report = new UserReport();
+        report.setUserName(userName);
+        report.setToday(DateUtil.format(now, "yyyyMMdd"));
+        report.setDepositAmount(new BigDecimal("0"));
+        report.setWithdrawAmount(new BigDecimal("0"));
+        report.setInvestmentAmount(amount);
+        report.setIncomeAmount(new BigDecimal("0"));
+        userReportService.insertOrUpdate(report);
         return R.ok();
     }
 
