@@ -121,18 +121,17 @@ export default {
     },
     dataFn(id) {
       // 投资提交完成，则再一次获取信息
-      this.$api.user_info().then(({ data }) => {
-        if (data.code == 0) {
-          this.infos = data.data;
-          this.$base.storage("infos", data.data);
+      Promise.all([this.$api.user_info(), this.$api.project_info(id)]).then(
+        (res) => {
+          if (res[0].data.code == 0) {
+            this.infos = res[0].data.data;
+            this.$base.storage("infos", res[0].data.data);
+          }
+          if (res[1].data.code == 0) {
+            this.items = res[1].data.data;
+          }
         }
-      });
-      // 获取产品详情
-      this.$api.project_info(id).then(({ data }) => {
-        if (data.code == 0) {
-          this.items = data.data;
-        }
-      });
+      );
     },
     // 立即投资
     investor() {
@@ -171,6 +170,7 @@ export default {
     },
     // 加减
     add() {
+      if (!this.items.projectAmount) return false;
       if (this.items.minAmount >= this.infos.balance) {
         this.fullthrow();
         return false;
@@ -188,6 +188,7 @@ export default {
       }
     },
     subtract() {
+      if (!this.items.projectAmount) return false;
       if (this.items.minAmount >= this.infos.balance) {
         this.fullthrow();
         return false;
