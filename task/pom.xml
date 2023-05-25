@@ -10,7 +10,7 @@
 
     <groupId>com.juhai</groupId>
     <artifactId>task</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>task</name>
     <description>task</description>
     <packaging>jar</packaging>
@@ -36,6 +36,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
     </dependencies>
 

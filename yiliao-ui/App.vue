@@ -55,7 +55,16 @@ export default {
       });
     },
   },
-  onShow: function () {},
+  onShow: function () {
+    // 获取token是否过期
+    let token = uni.getStorageSync("token");
+    this.systemFn();
+    if (!token) {
+      uni.redirectTo({
+        url: "/pages/login",
+      });
+    }
+  },
   onHide: function () {},
 };
 </script>
