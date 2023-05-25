@@ -72,6 +72,9 @@ public class UserController {
     private WithdrawService withdrawService;
 
     @Autowired
+    private UserReportService userReportService;
+
+    @Autowired
     private StringRedisTemplate redisTemplate;
 
     @ApiOperation(value = "用户信息")
@@ -595,6 +598,17 @@ public class UserController {
         if (user.getBalance().doubleValue() < amount.doubleValue()) {
             return R.error(MsgUtil.get("system.order.balance"));
         }
+
+        // 查询是否还有待审核的订单
+        long count = withdrawService.count(
+                new LambdaQueryWrapper<Withdraw>()
+                        .eq(Withdraw::getUserName, user.getUserName())
+                        .eq(Withdraw::getStatus, 0)
+        );
+        if (count > 0) {
+            return R.error(MsgUtil.get("system.withdraw.hasorder"));
+        }
+
         // 扣钱
         userService.updateUserBalance(userName, amount.negate());
 
@@ -634,6 +648,16 @@ public class UserController {
         account.setRefNo(orderNo);
         account.setRemark("提现金额:" + amount + "元");
         accountService.save(account);
+
+        // 记录报表
+        UserReport report = new UserReport();
+        report.setUserName(user.getUserName());
+        report.setToday(DateUtil.format(now, "yyyyMMdd"));
+        report.setDepositAmount(new BigDecimal("0"));
+        report.setWithdrawAmount(amount);
+        report.setInvestmentAmount(new BigDecimal("0"));
+        report.setIncomeAmount(new BigDecimal("0"));
+        userReportService.insertOrUpdate(report);
         return R.ok();
     }
 }

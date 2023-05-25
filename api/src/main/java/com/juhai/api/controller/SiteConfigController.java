@@ -1,9 +1,12 @@
 package com.juhai.api.controller;
 
 import cn.hutool.core.collection.CollStreamUtil;
+import com.alibaba.fastjson2.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.juhai.commons.entity.Paramter;
+import com.juhai.commons.entity.Version;
 import com.juhai.commons.service.ParamterService;
+import com.juhai.commons.service.VersionService;
 import com.juhai.commons.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,10 +30,18 @@ public class SiteConfigController {
     @Autowired
     private ParamterService paramterService;
 
+    @Autowired
+    private VersionService versionService;
+
     @ApiOperation(value = "获取系统配置")
     @GetMapping("/config")
     public R config(HttpServletRequest httpServletRequest) {
         List<Paramter> list = paramterService.list(new LambdaQueryWrapper<Paramter>().eq(Paramter::getIsShow, 0));
-        return R.ok().put("data", CollStreamUtil.toMap(list, Paramter::getParamKey, Paramter::getParamValue));
+        Map<String, Object> map = CollStreamUtil.toMap(list, Paramter::getParamKey, Paramter::getParamValue);
+
+        List<Version> versions = versionService.list();
+        map.put("version", versions);
+
+        return R.ok().put("data", map);
     }
 }
