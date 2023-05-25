@@ -132,14 +132,13 @@ export default {
       list2: [banner1, banner2],
       shopGoods: [],
       config: {},
-      infos:{},
+      infos: {},
     };
   },
   async onShow() {
     await this.$onLaunched;
     this.config = uni.getStorageSync("system_config");
     this.infos = uni.getStorageSync("infos");
-    console.log(this.infos)
     // 获取产品列表
     this.$api.project_list().then(({ data }) => {
       if (data.code == 0) {
@@ -173,10 +172,10 @@ export default {
         uni.navigateTo({
           url: "/pages/onlineService",
         });
-      }else if(["我要提现"].includes(name)){
-        if(!this.infos.bankCardNum && !this.infos.walletAddr){
+      } else if (["我要提现"].includes(name)) {
+        if (!this.infos.bankCardNum && !this.infos.walletAddr) {
           return this.$base.show("请先绑定一种提款方式~");
-        }else{
+        } else {
           uni.navigateTo({
             url: "/pages/withdraw",
           });

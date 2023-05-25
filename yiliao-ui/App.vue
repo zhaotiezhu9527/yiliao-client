@@ -4,8 +4,8 @@ export default {
     let token = uni.getStorageSync("token");
     if (token) {
       this.$api.user_info().then(({ data }) => {
-        this.systemFn();
         if (data.code == 0) {
+          this.systemFn();
           this.$base.storage("infos", data.data);
         }
       });
@@ -21,30 +21,30 @@ export default {
           uni.setNavigationBarTitle({
             title: data.data.jiancheng,
           });
-          //获取app版本号
+          //获取app版本应用
           // #ifdef APP-PLUS
-          // let that_app = parseInt(plus.runtime.version.split(".").join(""));
-          // let new_app = parseInt(data.version.split(".").join(""));
-          // if (that_app < new_app) {
-          //   console.log(uni.getSystemInfoSync().platform);
-          //   uni.showModal({
-          //     title: "提示",
-          //     content: "有最新版本，是否下载",
-          //     confirmText: "确定",
-          //     cancelText: "取消",
-          //     success: (res) => {
-          //       if (res.confirm) {
-          //         plus.runtime.openURL(this.items.url);
-          //         plus.runtime.quit();
-          //       } else if (res.cancel) {
-          //         plus.runtime.quit(); //强制退出应用
-          //       }
-          //     },
-          //   });
-          // } else {
-          //   this.$isResolve();
-          // }
-          this.$isResolve();
+          let that_app = uni.getAppBaseInfo();
+          let new_app = data.data.version.find(
+            (item) => item.platForm === uni.getSystemInfoSync().platform
+          );
+          if (that_app.appWgtVersion !== new_app.version) {
+            uni.showModal({
+              title: "提示",
+              content: "有最新版本，是否下载",
+              confirmText: "确定",
+              cancelText: "取消",
+              success: (res) => {
+                if (res.confirm) {
+                  plus.runtime.openURL(new_app.downloadUrl);
+                  plus.runtime.quit();
+                } else if (res.cancel) {
+                  plus.runtime.quit(); //强制退出应用
+                }
+              },
+            });
+          } else {
+            this.$isResolve();
+          }
           // #endif
           // #ifdef H5
           this.$isResolve();
