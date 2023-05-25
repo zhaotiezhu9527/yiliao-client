@@ -19,7 +19,7 @@
         <image
           class="img"
           mode="widthFix"
-          src="../static/img/login_zhenhsi_logo.png"
+          src="../static/img/login_zhenhsi_logo.jpg"
         />
       </view>
       <view class="form">
