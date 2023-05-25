@@ -61,16 +61,12 @@ export default {
   async onShow() {
     await this.$onLaunched;
     let infos = uni.getStorageSync("infos");
-    if (!this.infos) {
-      this.getInfo();
+    this.idCardNo = infos.idCard;
+    this.realName = infos.realName;
+    if (infos.idCard === null) {
+      this.bindStatus = true;
     } else {
-      this.idCardNo = infos.idCard;
-      this.realName = infos.realName;
-      if (infos.idCard === null) {
-        this.bindStatus = true;
-      } else {
-        this.bindStatus = false;
-      }
+      this.bindStatus = false;
     }
   },
   methods: {

@@ -75,13 +75,9 @@ export default {
   async onLoad() {
     await this.$onLaunched;
     let infos = uni.getStorageSync("infos");
-    if (!this.infos) {
-      this.getInfo();
-    } else {
-      this.bindStatus = infos.bankName;
-      this.bankName = infos.bankName;
-      this.bankCardNum = infos.bankCardNum;
-    }
+    this.bindStatus = infos.bankName;
+    this.bankName = infos.bankName;
+    this.bankCardNum = infos.bankCardNum;
   },
   methods: {
     // 绑定银行卡

@@ -171,11 +171,8 @@ export default {
   },
   async onShow() {
     await this.$onLaunched;
-    this.config = uni.getStorageSync("system_config");
     this.userData = uni.getStorageSync("infos");
-    if (!this.userData) {
-      this.getInfo();
-    }
+    this.config = uni.getStorageSync("system_config");
   },
   methods: {
     pathChange() {

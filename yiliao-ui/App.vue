@@ -7,8 +7,8 @@ export default {
         if (data.code == 0) {
           uni.setStorage({
             key: "infos",
-            data: res.data,
-            success: function () {
+            data: data.data,
+            success: () => {
               this.systemFn();
             },
           });

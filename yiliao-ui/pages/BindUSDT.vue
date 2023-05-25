@@ -54,12 +54,8 @@ export default {
   async onShow() {
     await this.$onLaunched;
     let infos = uni.getStorageSync("infos");
-    if (!this.infos) {
-      this.getInfo();
-    } else {
-      this.bindStatus = infos.walletAddr;
-      this.addr = infos.walletAddr;
-    }
+    this.bindStatus = infos.walletAddr;
+    this.addr = infos.walletAddr;
   },
   methods: {
     // 绑定银行卡
