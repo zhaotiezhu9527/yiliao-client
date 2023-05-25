@@ -1,14 +1,10 @@
 package com.juhai.task.schedule;
 
-import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.juhai.commons.entity.Order;
-import com.juhai.commons.service.AccountService;
 import com.juhai.commons.service.OrderService;
-import com.juhai.commons.service.UserService;
 import com.juhai.task.service.SettleService;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -26,12 +22,6 @@ public class SettleSchedule {
 
     @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private AccountService accountService;
 
     @Autowired
     private SettleService settleService;
