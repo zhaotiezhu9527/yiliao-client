@@ -1,8 +1,7 @@
 package com.juhai.task.service.impl;
-import java.math.BigDecimal;
-import java.util.Date;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.commons.entity.Account;
@@ -14,10 +13,12 @@ import com.juhai.commons.service.OrderService;
 import com.juhai.commons.service.UserReportService;
 import com.juhai.commons.service.UserService;
 import com.juhai.task.service.SettleService;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Service
 public class SettleServiceImpl implements SettleService {
@@ -64,6 +65,7 @@ public class SettleServiceImpl implements SettleService {
         account.setUserAgent(order.getUserAgent());
         account.setRefNo(order.getOrderNo());
         account.setRemark(order.getProjectName() + "第一期收益" + amount + "元");
+        account.setAccountNo(IdUtil.getSnowflakeNextIdStr());
         accountService.save(account);
 
         // 给用户加钱
