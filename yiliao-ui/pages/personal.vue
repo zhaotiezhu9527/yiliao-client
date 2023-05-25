@@ -234,9 +234,13 @@ export default {
       });
     },
     goWithdraw() {
-      uni.navigateTo({
-        url: "/pages/withdraw",
-      });
+      if(!this.userData.bankCardNum && !this.userData.walletAddr){
+        return this.$base.show("请先绑定一种提款方式~");
+      }else{
+        uni.navigateTo({
+          url: "/pages/withdraw",
+        });
+      }
     },
     // 退出登陆
     modalChange() {

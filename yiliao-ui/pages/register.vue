@@ -83,7 +83,7 @@
             </template>
             <u-input
               password
-              placeholder="请确认登录密码"
+              placeholder="请输入支付密码"
               clearable
               border="none"
               v-model="payPwd"

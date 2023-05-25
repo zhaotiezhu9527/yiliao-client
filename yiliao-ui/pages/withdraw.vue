@@ -26,7 +26,7 @@
           USDT地址<label class="u-line-1">{{ infos.walletAddr }}</label>
         </view>
         <view v-else class="u-line-1">
-          银行卡 <label>{{ infos.idCard }}</label>
+          银行卡 <label>{{ infos.bankCardNum }}</label>
         </view>
       </view>
       <view class="content">
@@ -125,6 +125,10 @@ export default {
         return this.$base.show("输入的金额不可大于可提现的金额~");
       } else if (!this.pwd || this.pwd.length < 6) {
         return this.$base.show("请输入正确的支付密码~");
+      } else if(!this.infos.bankCardNum && this.type === 1){
+        return this.$base.show("请先绑定银行卡~");
+      } else if(!this.infos.walletAddr && this.type === 2){
+        return this.$base.show("请先绑定USDT地址~");
       }
       const DATA_OBJ = {
         type: this.type,
