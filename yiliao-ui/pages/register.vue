@@ -23,7 +23,7 @@
         />
       </view>
       <view class="form">
-        <u--form labelPosition="left" labelWidth="124">
+        <u-form ref="uForm" labelPosition="left" labelWidth="124">
           <u-form-item>
             <template #label>
               <image
@@ -50,7 +50,7 @@
               />
             </template>
             <u-input
-              password
+              type="password"
               placeholder="请输入登录密码"
               clearable
               border="none"
@@ -66,7 +66,7 @@
               />
             </template>
             <u-input
-              password
+              type="password"
               placeholder="请确认登录密码"
               clearable
               border="none"
@@ -82,7 +82,7 @@
               />
             </template>
             <u-input
-              password
+              type="password"
               placeholder="请输入支付密码"
               clearable
               border="none"
@@ -105,7 +105,7 @@
               v-model="inviteCode"
             ></u-input>
           </u-form-item>
-        </u--form>
+        </u-form>
       </view>
       <view class="btns">
         <u-button

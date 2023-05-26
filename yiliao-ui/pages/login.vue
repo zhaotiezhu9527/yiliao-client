@@ -22,7 +22,7 @@
         />
       </view>
       <view class="from">
-        <u--form labelPosition="left" labelWidth="124">
+        <u-form ref="uForm" labelPosition="left" labelWidth="124">
           <u-form-item label="账号">
             <u-input
               type="text"
@@ -34,14 +34,14 @@
           </u-form-item>
           <u-form-item label="密码">
             <u-input
-              password
+              type="password"
               placeholder="请输入登录密码"
               clearable
               border="none"
               v-model="password"
             ></u-input>
           </u-form-item>
-        </u--form>
+        </u-form>
         <view class="btns">
           <u-button
             class="custom-style"

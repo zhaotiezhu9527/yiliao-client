@@ -79,7 +79,7 @@
         v-model="form.pwd"
         :maxlength="6"
         border="none"
-        password
+        type="password"
         placeholder="请输入支付密码"
       />
     </view>

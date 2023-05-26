@@ -49,7 +49,7 @@
         <u-input
           v-model="pwd"
           border="none"
-          password
+          type="password"
           placeholder="请输入支付密码"
         />
       </view>
@@ -125,9 +125,9 @@ export default {
         return this.$base.show("输入的金额不可大于可提现的金额~");
       } else if (!this.pwd || this.pwd.length < 6) {
         return this.$base.show("请输入正确的支付密码~");
-      } else if(!this.infos.bankCardNum && this.type === 1){
+      } else if (!this.infos.bankCardNum && this.type === 1) {
         return this.$base.show("请先绑定银行卡~");
-      } else if(!this.infos.walletAddr && this.type === 2){
+      } else if (!this.infos.walletAddr && this.type === 2) {
         return this.$base.show("请先绑定USDT地址~");
       }
       const DATA_OBJ = {
