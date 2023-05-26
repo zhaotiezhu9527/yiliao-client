@@ -34,7 +34,7 @@
             color="#ffffff"
             bgColor="#e15241"
             scrollable
-            fontSize="32rpx"
+            fontSize="28rpx"
             :text="config.home_notice || ''"
           />
         </view>
