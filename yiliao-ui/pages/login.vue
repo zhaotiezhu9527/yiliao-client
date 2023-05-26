@@ -84,18 +84,22 @@ export default {
         userName: this.userPhone,
       };
       this.loading = true;
-      this.$api.user_login(DATA_OBJ).then((res) => {
-        this.loading = false;
-        if (res.data.code == 0) {
-          uni.setStorage({
-            key: "token",
-            data: res.data.token,
-            success: function () {
-              uni.switchTab({ url: "/pages/personal" });
-            },
-          });
-        }
-      });
+      this.$api
+        .user_login(DATA_OBJ)
+        .then((res) => {
+          if (res.data.code == 0) {
+            uni.setStorage({
+              key: "token",
+              data: res.data.token,
+              success: function () {
+                uni.switchTab({ url: "/pages/personal" });
+              },
+            });
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
 };

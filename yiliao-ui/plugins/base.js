@@ -65,7 +65,7 @@ export const request = (params) => {
       token: uni.getStorageSync("token"),
     };
   }
-  if(params.loading){
+  if (params.loading) {
     uni.showLoading({
       title: "加载中",
       mask: true,
@@ -91,6 +91,7 @@ export const request = (params) => {
             url: "/pages/login",
           });
           uni.removeStorageSync("token");
+          uni.removeStorageSync("infos");
           show(res.data.msg);
         }
         resolve(res);

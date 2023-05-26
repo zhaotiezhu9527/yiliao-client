@@ -70,17 +70,21 @@ export default {
     },
     dataFn(page = 1, limit = 20) {
       this.loading = true;
-      this.$api.account_list({ page, limit }).then((res) => {
-        this.loading = false;
-        if (res.data.code == 0) {
-          const vim = res.data.page;
-          this.list = this.list.concat(vim.list);
-          this.isArray = vim.totalCount ? true : false;
-          if (this.page >= vim.totalPage) {
-            this.finished = true;
+      this.$api
+        .account_list({ page, limit })
+        .then((res) => {
+          if (res.data.code == 0) {
+            const vim = res.data.page;
+            this.list = this.list.concat(vim.list);
+            this.isArray = vim.totalCount ? true : false;
+            if (this.page >= vim.totalPage) {
+              this.finished = true;
+            }
           }
-        }
-      });
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
 };

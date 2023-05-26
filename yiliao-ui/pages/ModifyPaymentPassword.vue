@@ -81,15 +81,19 @@ export default {
         newPwd: this.newPwd,
       };
       this.loading = true;
-      this.$api.user_updatePayPwd(DATA_OBJ).then((res) => {
-        this.loading = false;
-        if (res.data.code == 0) {
-          this.$base.show(res.data.msg);
-          this.newPwd = "";
-          this.oldPwd = "";
-          this.password = "";
-        }
-      });
+      this.$api
+        .user_updatePayPwd(DATA_OBJ)
+        .then((res) => {
+          if (res.data.code == 0) {
+            this.$base.show(res.data.msg);
+            this.newPwd = "";
+            this.oldPwd = "";
+            this.password = "";
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
 };

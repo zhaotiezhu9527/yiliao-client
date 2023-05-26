@@ -149,20 +149,24 @@ export default {
         return false;
       }
       this.loading = true;
-      this.$api.order_execute(this.form).then(({ data }) => {
-        this.loading = false;
-        if (data.code == 0) {
-          this.$base.show("投资成功~");
-          this.form = {
-            amount: "",
-            pwd: "",
-            projectId: this.items.projectId,
-          };
-          setTimeout(() => {
-            this.dataFn(this.items.projectId);
-          }, 2000);
-        }
-      });
+      this.$api
+        .order_execute(this.form)
+        .then(({ data }) => {
+          if (data.code == 0) {
+            this.$base.show("投资成功~");
+            this.form = {
+              amount: "",
+              pwd: "",
+              projectId: this.items.projectId,
+            };
+            setTimeout(() => {
+              this.dataFn(this.items.projectId);
+            }, 2000);
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     // 一键全投
     fullthrow() {

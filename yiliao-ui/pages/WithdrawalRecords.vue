@@ -32,8 +32,12 @@
             <view class="table-title">{{ item.time }}</view>
             <view class="line"></view>
             <view class="table-money" v-if="item.status === 0">待审核</view>
-            <view class="table-money" v-else-if="item.status === 1">提现成功</view>
-            <view class="table-money" v-else-if="item.status === 2">提现失败</view>
+            <view class="table-money" v-else-if="item.status === 1">
+              提现成功
+            </view>
+            <view class="table-money" v-else-if="item.status === 2">
+              提现失败
+            </view>
           </view>
         </u-list-item>
         <view class="loading" v-if="loading">加载中...</view>
@@ -68,17 +72,21 @@ export default {
     },
     dataFn(page = 1, limit = 20) {
       this.loading = true;
-      this.$api.user_withdraw_list({ page, limit }).then((res) => {
-        this.loading = false;
-        if (res.data.code == 0) {
-          const vim = res.data.page;
-          this.list = this.list.concat(vim.list);
-          this.isArray = vim.totalCount ? true : false;
-          if (this.page >= vim.totalPage) {
-            this.finished = true;
+      this.$api
+        .user_withdraw_list({ page, limit })
+        .then((res) => {
+          if (res.data.code == 0) {
+            const vim = res.data.page;
+            this.list = this.list.concat(vim.list);
+            this.isArray = vim.totalCount ? true : false;
+            if (this.page >= vim.totalPage) {
+              this.finished = true;
+            }
           }
-        }
-      });
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
 };

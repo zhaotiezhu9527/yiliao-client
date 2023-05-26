@@ -97,10 +97,12 @@ export default {
           cardNo: this.bankCardNum,
         })
         .then((res) => {
-          this.loading = false;
           if (res.data.code == 0) {
             this.getInfo();
           }
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
     //用户列表数据

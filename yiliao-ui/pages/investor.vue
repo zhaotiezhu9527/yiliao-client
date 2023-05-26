@@ -89,14 +89,18 @@ export default {
   methods: {
     dataFn() {
       this.loading = true;
-      this.$api.project_list().then(({ data }) => {
-        this.loading = false;
-        if (data.code == 0) {
-          this.shopGoods = data.data;
-        } else {
-          this.$base.show(data.msg);
-        }
-      });
+      this.$api
+        .project_list()
+        .then(({ data }) => {
+          if (data.code == 0) {
+            this.shopGoods = data.data;
+          } else {
+            this.$base.show(data.msg);
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     routePath(item) {
       uni.navigateTo({

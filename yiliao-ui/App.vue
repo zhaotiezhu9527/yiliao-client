@@ -60,8 +60,27 @@ export default {
       });
     },
   },
-  onShow: function () {},
-  onHide: function () {},
+  onShow: function () {
+    let route = [];
+    let path = "";
+    // #ifdef APP-PLUS
+    route = ["pages/login", "/", "pages/register"];
+    let routes = getCurrentPages();
+    if (routes.length) {
+      path = routes[routes.length - 1].route;
+    } else {
+      path = "/";
+    }
+    // #endif
+    // #ifdef H5
+    route = ["/pages/login", "/pages/register"];
+    path = this.$route.path;
+    // #endif
+    let token = uni.getStorageSync("token");
+    if (!token && !route.includes(path)) {
+      this.$base.show("登录已过期~");
+    }
+  },
 };
 </script>
 <style lang="scss">

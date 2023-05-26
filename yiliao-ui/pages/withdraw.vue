@@ -136,14 +136,18 @@ export default {
         pwd: this.pwd,
       };
       this.loading = true;
-      this.$api.user_withdraw(DATA_OBJ).then((res) => {
-        this.loading = false;
-        if (res.data.code == 0) {
-          this.$base.show(res.data.msg);
-          this.amount = undefined;
-          this.pwd = "";
-        }
-      });
+      this.$api
+        .user_withdraw(DATA_OBJ)
+        .then((res) => {
+          if (res.data.code == 0) {
+            this.$base.show(res.data.msg);
+            this.amount = undefined;
+            this.pwd = "";
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
 };

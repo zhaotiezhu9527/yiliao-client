@@ -75,23 +75,27 @@ export default {
         newPwd: this.newPwd,
       };
       this.loading = true;
-      this.$api.user_updatePwd(DATA_OBJ).then((res) => {
-        this.loading = false;
-        if (res.data.code == 0) {
-          this.$base.show(res.data.msg);
-          uni.removeStorage({
-            key: "token",
-            success: function (res) {
-              this.newPwd = "";
-              this.oldPwd = "";
-              this.password = "";
-              uni.redirectTo({
-                url: "/pages/login",
-              });
-            },
-          });
-        }
-      });
+      this.$api
+        .user_updatePwd(DATA_OBJ)
+        .then((res) => {
+          if (res.data.code == 0) {
+            this.$base.show(res.data.msg);
+            uni.removeStorage({
+              key: "token",
+              success: function (res) {
+                this.newPwd = "";
+                this.oldPwd = "";
+                this.password = "";
+                uni.redirectTo({
+                  url: "/pages/login",
+                });
+              },
+            });
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
   },
 };
