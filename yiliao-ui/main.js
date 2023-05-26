@@ -25,6 +25,23 @@ App.mpType = "app";
 const app = new Vue({
   ...App,
 });
+
+// 设置全局标题
+Vue.mixin({
+  onShow() {
+    let config = uni.getStorageSync("system_config");
+    let setTitle = config.jiancheng;
+    if (setTitle) {
+      uni.setNavigationBarTitle({
+        title: setTitle,
+      });
+      // #ifdef H5
+      document.title = setTitle;
+      // #endif
+    }
+  },
+});
+
 // #ifdef H5
 RouterMount(app, router, "#app");
 // #endif
