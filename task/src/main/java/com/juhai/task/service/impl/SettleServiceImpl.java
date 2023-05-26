@@ -44,7 +44,7 @@ public class SettleServiceImpl implements SettleService {
         boolean flag = orderService.update(
                 new UpdateWrapper<Order>().lambda()
                         .set(Order::getStatus, 1)
-                        .set(Order::getActualReturnTime, now)
+//                        .set(Order::getActualReturnTime, now)
                         .eq(Order::getId, order.getId())
                         .eq(Order::getStatus, 0)
         );
