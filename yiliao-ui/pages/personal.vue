@@ -154,12 +154,12 @@ export default {
     return {
       show: false,
       userData: {
-        userName: "", //用户名
-        userLevelName: "", //会员等级
-        balance: "", //余额
+        userName: "xxxxxx", //用户名
+        userLevelName: "xxxxxx", //会员等级
+        balance: 0, //余额
         integral: "", //积分
-        waitReturnInterest: "", //待收利息
-        waitReturnPrincipal: "", //待收本金
+        waitReturnInterest: 0, //待收利息
+        waitReturnPrincipal: 0, //待收本金
         bankName: "", //银行名称
         bankCardNum: "", //银行卡号
       },
@@ -171,6 +171,7 @@ export default {
   },
   async onShow() {
     await this.$onLaunched;
+    this.getInfo()
     this.userData = uni.getStorageSync("infos");
     this.config = uni.getStorageSync("system_config");
   },

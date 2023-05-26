@@ -59,7 +59,7 @@ export default {
       page: 0,
     };
   },
-  onShow() {
+  onLoad() {
     uni.showLoading();
     this.page = 1;
     this.dataFn();
