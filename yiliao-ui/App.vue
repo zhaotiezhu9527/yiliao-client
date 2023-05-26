@@ -76,7 +76,17 @@ export default {
     route = ["/pages/login", "/pages/register"];
     path = this.$route.path;
     // #endif
+
+    let time = uni.getStorageSync("dateTime");
+    let that = new Date().getTime();
+    let max = 60 * 1000 * 15; // 15分钟
     let token = uni.getStorageSync("token");
+    // if (
+    //   (!token && !route.includes(path)) ||
+    //   (time && that - time > max && !route.includes(path))
+    // ) {
+    //   this.$base.show("登录已过期~");
+    // }
     if (!token && !route.includes(path)) {
       this.$base.show("登录已过期~");
     }

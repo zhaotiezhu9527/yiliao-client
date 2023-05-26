@@ -88,6 +88,8 @@ export default {
         .user_login(DATA_OBJ)
         .then((res) => {
           if (res.data.code == 0) {
+            // 记录token过期时间
+            uni.setStorageSync("dateTime", new Date().getTime());
             uni.setStorage({
               key: "token",
               data: res.data.token,

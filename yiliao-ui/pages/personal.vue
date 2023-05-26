@@ -171,8 +171,8 @@ export default {
   },
   async onShow() {
     await this.$onLaunched;
-    this.getInfo();
     this.config = uni.getStorageSync("system_config");
+    this.getInfo();
   },
   methods: {
     pathChange() {
@@ -249,7 +249,6 @@ export default {
           uni.removeStorage({
             key: "token",
             success: function (res) {
-              uni.removeStorageSync("infos");
               uni.redirectTo({ url: "/pages/login" });
             },
           });
