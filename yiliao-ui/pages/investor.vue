@@ -70,7 +70,7 @@
         </view>
       </scroll-view>
 
-      <u-empty class="empty" text="暂无产品" v-else />
+      <u-empty class="empty" text="暂无数据" v-else />
     </view>
   </view>
 </template>

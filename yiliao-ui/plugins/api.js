@@ -11,6 +11,7 @@ export const project_list = (data) => {
         url: "/project/list",
         method: "get",
         data: data,
+        loading: false,
       })
       .then((res) => {
         resolve(res);

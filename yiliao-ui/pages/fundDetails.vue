@@ -41,7 +41,7 @@
         <view class="loading" v-if="loading">加载中...</view>
         <view class="nomore" v-if="finished">没有更多了</view>
       </u-list>
-      <u-empty class="empty" text="暂无产品" v-else />
+      <u-empty class="empty" text="暂无数据" v-else />
     </view>
   </view>
 </template>

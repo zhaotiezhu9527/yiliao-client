@@ -90,7 +90,7 @@
               <view class="number">{{ item.schedule }}%</view>
             </view>
           </view>
-          <u-empty class="empty2" text="暂无产品" v-if="!shopGoods.length" />
+          <u-empty class="empty2" text="暂无数据" v-if="!shopGoods.length" />
         </view>
       </scroll-view>
     </view>

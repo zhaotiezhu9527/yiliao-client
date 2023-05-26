@@ -32,7 +32,7 @@
             <view class="li">
               <view class="con">每份分红</view>
               <view class="num"
-                ><text>{{ items.userBalance }}</text
+                ><text>{{ (items.minAmount * (items.incomeRate/100)).toFixed(0) }}</text
                 >元起</view
               >
             </view>

@@ -65,10 +65,12 @@ export const request = (params) => {
       token: uni.getStorageSync("token"),
     };
   }
-  uni.showLoading({
-    title: "加载中",
-    mask: true,
-  });
+  if(params.loading){
+    uni.showLoading({
+      title: "加载中",
+      mask: true,
+    });
+  }
   return new Promise((resolve, reject) => {
     uni.request({
       url: PATH_URL + params.url,
