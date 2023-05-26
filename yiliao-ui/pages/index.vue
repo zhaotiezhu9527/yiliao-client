@@ -183,8 +183,12 @@ export default {
       }
     },
     routePath(item) {
-      uni.navigateTo({
-        url: `/pages/info?id=${item.projectId}`,
+      this.$api.project_info(item.projectId).then(({ data }) => {
+        if (data.code == 0) {
+          uni.navigateTo({
+            url: `/pages/info?id=${item.projectId}`,
+          });
+        }
       });
     },
     guaranteeCompanyFn(name) {
