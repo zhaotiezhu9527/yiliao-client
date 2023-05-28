@@ -47,7 +47,7 @@
             class="uinput"
             v-model="form.amount"
             type="number"
-            border="nonn"
+            border="none"
             placeholder="请输入金额"
           />
           <image
@@ -175,6 +175,8 @@ export default {
     // 加减
     add() {
       if (!this.items.projectAmount) return false;
+      this.form.amount =
+        Number(this.form.amount) + Number(this.items.minAmount);
       if (this.items.minAmount >= this.infos.balance) {
         this.fullthrow();
         return false;
@@ -186,13 +188,12 @@ export default {
         this.form.amount = Number(this.items.projectAmount);
       } else if (this.form.amount >= Number(this.infos.balance)) {
         this.form.amount = Number(this.infos.balance);
-      } else {
-        this.form.amount =
-          Number(this.form.amount) + Number(this.items.minAmount);
       }
+      this.form.amount = this.form.amount.toFixed(3);
     },
     subtract() {
       if (!this.items.projectAmount) return false;
+      this.form.amount -= this.items.minAmount;
       if (this.items.minAmount >= this.infos.balance) {
         this.fullthrow();
         return false;
@@ -200,7 +201,7 @@ export default {
         this.form.amount = this.items.minAmount;
         return false;
       }
-      this.form.amount -= this.items.minAmount;
+      this.form.amount = this.form.amount.toFixed(3);
     },
   },
 };
