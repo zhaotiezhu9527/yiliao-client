@@ -8,7 +8,7 @@ export const project_list = (data) => {
   return new Promise((resolve, reject) => {
     base
       .request({
-        url: "/project/list",
+        url: "project/list",
         method: "get",
         data: data,
         loading: false,
@@ -24,7 +24,7 @@ export const project_info = (data) => {
   return new Promise((resolve, reject) => {
     base
       .request({
-        url: "/project/detail/" + data,
+        url: "project/detail/" + data,
         method: "get",
       })
       .then((res) => {
@@ -38,7 +38,7 @@ export const order_execute = (data) => {
   return new Promise((resolve, reject) => {
     base
       .request({
-        url: "/order/execute",
+        url: "order/execute",
         method: "post",
         data: data,
       })
