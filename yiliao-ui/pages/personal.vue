@@ -169,9 +169,11 @@ export default {
       config: {},
     };
   },
-  async onShow() {
+  async onLoad() {
     await this.$onLaunched;
     this.config = uni.getStorageSync("system_config");
+  },
+  onShow() {
     this.getInfo();
   },
   methods: {

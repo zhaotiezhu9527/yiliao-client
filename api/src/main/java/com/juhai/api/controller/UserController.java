@@ -3,10 +3,7 @@ package com.juhai.api.controller;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.*;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import com.alibaba.fastjson2.JSONArray;
@@ -87,10 +84,10 @@ public class UserController {
         temp.put("userName", user.getUserName());
         temp.put("balance", user.getBalance());
         temp.put("realName", user.getRealName());
-        temp.put("idCard", user.getIdCard());
+        temp.put("idCard", DesensitizedUtil.idCardNum(user.getIdCard(), 4, 4));
         temp.put("inviteCode", user.getInviteCode());
-        temp.put("walletAddr", user.getWalletAddr());
-        temp.put("bankCardNum", user.getBankCardNum());
+        temp.put("walletAddr", DesensitizedUtil.bankCard(user.getWalletAddr()));
+        temp.put("bankCardNum", DesensitizedUtil.bankCard(user.getBankCardNum()));
         temp.put("bankName", user.getBankName());
         temp.put("bankAddr", user.getBankAddr());
         temp.put("userLevelName", "普通用户");
@@ -170,7 +167,7 @@ public class UserController {
     @ApiOperation(value = "注册")
     @PostMapping("/register")
     public R register(@Validated UserRegisterRequest request, HttpServletRequest httpServletRequest) {
-        Map<String, String> paramsMap = paramterService.getAllParamByMap();
+//        Map<String, String> paramsMap = paramterService.getAllParamByMap();
 
         // 校验两次密码一致
         if (!StringUtils.equals(request.getConfirmLoginPwd(), request.getLoginPwd())) {
@@ -491,6 +488,10 @@ public class UserController {
     public R realName(@Validated RealNameRequest request, HttpServletRequest httpServletRequest) {
         String userName = JwtUtils.getUserName(httpServletRequest);
 
+        if (!IdcardUtil.isValidCard(request.getIdCardNo())) {
+            return R.error(MsgUtil.get("system.user.idcard"));
+        }
+
         User user = userService.getUserByName(userName);
         if (StringUtils.isNotBlank(user.getRealName()) && StringUtils.isNotBlank(user.getIdCard())) {
             return R.error(MsgUtil.get("system.user.realname"));
@@ -658,6 +659,8 @@ public class UserController {
         report.setInvestmentAmount(new BigDecimal("0"));
         report.setIncomeAmount(new BigDecimal("0"));
         userReportService.insertOrUpdate(report);
+
+        redisTemplate.opsForValue().set("user:withdraw:notice", "1");
         return R.ok();
     }
 }
