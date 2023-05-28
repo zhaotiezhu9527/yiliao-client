@@ -63,7 +63,7 @@ export default {
     let infos = uni.getStorageSync("infos");
     this.idCardNo = infos.idCard;
     this.realName = infos.realName;
-    if (infos.idCard === null) {
+    if (infos.idCard === null || !infos.idCard) {
       this.bindStatus = true;
     } else {
       this.bindStatus = false;
@@ -74,7 +74,7 @@ export default {
     getInfo() {
       this.$api.user_info().then((res) => {
         if (res.data.code == 0) {
-          if (res.data.data.idCard === null) {
+          if (!res.data.data.idCard || res.data.data.idCard === null) {
             this.bindStatus = true;
           } else {
             this.bindStatus = false;

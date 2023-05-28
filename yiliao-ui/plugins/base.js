@@ -26,7 +26,7 @@ export const loading = (title) => {
 const PATH_URL =
   process.env.NODE_ENV === "development"
     ? // ? "http://192.168.4.85:9522/"//本地测试
-      "http://www.juhai.top/api/" //测试
+      "https://api.juhai.top/" //测试
     // : "/api/";//h5打包地址
       : "https://api.anke9988.com/"; //app打包地址
 

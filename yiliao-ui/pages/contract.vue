@@ -119,7 +119,7 @@ export default {
         orderTime: "", //投资时间
         returnTime: "", //到期时间
         forecastReturnTime: "", //到期时间，应收时间
-        status: 0, //状态，0未结算 1已完成
+        status: 0, //状态，0待收益 1已完成
         IdCardNo: "", //身份证
         ourCompany: "", //乙方名称
         projectName: "", //产品名称

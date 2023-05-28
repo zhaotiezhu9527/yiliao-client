@@ -36,7 +36,7 @@
             <view class="table-money">{{ item.amount }}</view>
             <view class="line"></view>
             <view class="table-time">{{
-              item.status ? "已完成" : "未结算"
+              item.status ? "已完成" : "待收益"
             }}</view>
           </view>
         </u-list-item>
