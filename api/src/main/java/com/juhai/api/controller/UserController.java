@@ -292,14 +292,17 @@ public class UserController {
         log.setLoginTime(new Date());
         userLogService.save(log);
 
-        /** 保存token **/
-        Map<String, String> map = new HashMap<>();
-        map.put("userName", user.getUserName());
-        map.put("userIp", clientIP);
-        map.put("random", RandomUtil.randomString(6));
-        String token = JwtUtils.getToken(map);
-        redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, 15, TimeUnit.MINUTES);
-
+        // 多端登录
+        String token = redisTemplate.opsForValue().get(RedisKeyUtil.UserTokenKey(user.getUserName()));
+        if (StringUtils.isBlank(token)) {
+            /** 保存token **/
+            Map<String, String> map = new HashMap<>();
+            map.put("userName", user.getUserName());
+            map.put("userIp", clientIP);
+            map.put("random", RandomUtil.randomString(6));
+            token = JwtUtils.getToken(map);
+            redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, 15, TimeUnit.MINUTES);
+        }
         /** 删除密码输入错误次数 **/
         redisTemplate.delete(incKey);
         return R.ok().put("token", token);
