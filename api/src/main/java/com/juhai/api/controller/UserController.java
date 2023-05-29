@@ -488,7 +488,11 @@ public class UserController {
     public R realName(@Validated RealNameRequest request, HttpServletRequest httpServletRequest) {
         String userName = JwtUtils.getUserName(httpServletRequest);
 
-        if (!IdcardUtil.isValidCard(request.getIdCardNo())) {
+//        if (!IdcardUtil.isValidCard(request.getIdCardNo())) {
+//            return R.error(MsgUtil.get("system.user.idcard"));
+//        }
+
+        if (StringUtils.isBlank(request.getIdCardNo())) {
             return R.error(MsgUtil.get("system.user.idcard"));
         }
 
