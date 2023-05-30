@@ -82,7 +82,7 @@ public class ReportSchedule {
         BigDecimal withdrawAmount = new BigDecimal(0);
         Set<String> withdrawSet = new HashSet<>();
         for (Withdraw temp : withdraws) {
-            depositAmount = NumberUtil.add(withdrawAmount, temp.getOptAmount());
+            withdrawAmount = NumberUtil.add(withdrawAmount, temp.getOptAmount());
             withdrawSet.add(temp.getUserName());
         }
 
