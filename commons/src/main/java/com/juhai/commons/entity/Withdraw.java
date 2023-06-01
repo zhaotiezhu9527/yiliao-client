@@ -41,6 +41,12 @@ public class Withdraw implements Serializable {
     private BigDecimal optAmount;
 
     /**
+     * USDT金额
+     */
+    @TableField(value = "usdt_amount")
+    private BigDecimal usdtAmount;
+
+    /**
      * 操作前金额
      */
     @TableField(value = "before_amount")

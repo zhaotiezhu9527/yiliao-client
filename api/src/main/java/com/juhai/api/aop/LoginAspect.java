@@ -81,8 +81,8 @@ public class LoginAspect {
         }
 
         // token续期
-        redisTemplate.expireAt(tokenKey, DateUtil.offsetMinute(new Date(), 30));
-//        redisTemplate.expireAt(tokenKey, DateUtil.offsetDay(new Date(), 1));
+        redisTemplate.expireAt(tokenKey, DateUtil.offsetMinute(new Date(), RedisKeyUtil.USER_TOKEN_EXPIRE));
+//        redisTemplate.expireAt(tokenKey, DateUtil.offsetDay(new Date(), RedisKeyUtil.USER_TOKEN_EXPIRE));
         return joinPoint.proceed();
     }
 

@@ -11,6 +11,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.api.controller.request.*;
+import com.juhai.api.utils.DataDesensitizeUtils;
 import com.juhai.api.utils.JwtUtils;
 import com.juhai.commons.constants.Constant;
 import com.juhai.commons.entity.*;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +88,7 @@ public class UserController {
         temp.put("realName", user.getRealName());
         temp.put("idCard", DesensitizedUtil.idCardNum(user.getIdCard(), 4, 4));
         temp.put("inviteCode", user.getInviteCode());
-        temp.put("walletAddr", DesensitizedUtil.bankCard(user.getWalletAddr()));
+        temp.put("walletAddr", DataDesensitizeUtils.desensitize(user.getWalletAddr(), 4 , 4));
         temp.put("bankCardNum", DesensitizedUtil.bankCard(user.getBankCardNum()));
         temp.put("bankName", user.getBankName());
         temp.put("bankAddr", user.getBankAddr());
@@ -95,8 +97,11 @@ public class UserController {
         if (StringUtils.isNotBlank(user.getRealName()) && StringUtils.isNotBlank(user.getIdCard())) {
             isRealName = 0;
         }
+
+        Map<String, String> params = paramterService.getAllParamByMap();
         temp.put("isRealName", isRealName);
         temp.put("integral", 0);
+        temp.put("usdtAmount", NumberUtil.div(user.getBalance(), MapUtil.getDouble(params, "usdt_rate"), 2, RoundingMode.DOWN));
 
         List<Order> list = orderService.list(
                 new LambdaQueryWrapper<Order>()
@@ -224,7 +229,7 @@ public class UserController {
         map.put("userIp", clientIP);
         map.put("random", RandomUtil.randomString(6));
         String token = JwtUtils.getToken(map);
-        redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, 15, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, RedisKeyUtil.USER_TOKEN_EXPIRE, TimeUnit.MINUTES);
         return R.ok().put("token", token);
     }
 
@@ -581,11 +586,18 @@ public class UserController {
                 return R.error(MsgUtil.get("system.withdraw.time") + ":" + withdrawTimeStr);
             }
         }
+
         // 验证提现金额
         BigDecimal amount = new BigDecimal(request.getAmount());
+        // 如果提现U  换算成实际金额
+        if (StringUtils.equals(request.getType(), "2")) {
+            amount = NumberUtil.mul(amount, MapUtil.getDouble(params, "usdt_rate"));
+        }
+
         Double leastWithdrawAmount = MapUtil.getDouble(params, "least_withdraw_amount", 0.0);
         Double largestWithdrawAmount = MapUtil.getDouble(params, "largest_withdraw_amount", 0.0);
-        if (amount.doubleValue() < leastWithdrawAmount || amount.doubleValue() > largestWithdrawAmount) {
+        if ((leastWithdrawAmount != 0 && amount.doubleValue() < leastWithdrawAmount)
+                || (largestWithdrawAmount != 0 && amount.doubleValue() > largestWithdrawAmount)) {
             return R.error(StrUtil.format(MsgUtil.get("system.withdraw.limitamount"), leastWithdrawAmount, largestWithdrawAmount));
         }
 
@@ -626,6 +638,7 @@ public class UserController {
         withdraw.setOrderNo(orderNo);
         withdraw.setUserName(userName);
         withdraw.setOptAmount(amount);
+        withdraw.setUsdtAmount(new BigDecimal(request.getAmount()));
         withdraw.setBeforeAmount(user.getBalance());
         withdraw.setAfterAmount(NumberUtil.sub(user.getBalance(), amount));
         withdraw.setWalletAddr(StringUtils.equals(request.getType(), "2") ? user.getWalletAddr() : null);

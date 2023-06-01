@@ -7,11 +7,11 @@ docker run -d -p 9522:9522 --name yiliao-api \
 -e "spring.cloud.nacos.discovery.server-addr=mse-33f262210-nacos-ans.mse.aliyuncs.com" \
 -e "spring.cloud.nacos.config.namespace=3a3af44c-5083-45d2-acb2-b062011f2d51" \
 -e "spring.application.name=api" \
-registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.4;
+registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.6;
 docker logs -f -t --tail 500 yiliao-api
 
-docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.4
-docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.4
+docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.6
+docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.6
 
 docker stop yiliao-task;docker rm yiliao-task;
 docker run -d -p 8522:8522 --name yiliao-task \
@@ -31,8 +31,8 @@ docker run -d -p 9533:8080 --name yiliao-admin \
 -e "spring.cloud.nacos.discovery.server-addr=mse-33f262210-nacos-ans.mse.aliyuncs.com" \
 -e "spring.cloud.nacos.config.namespace=3a3af44c-5083-45d2-acb2-b062011f2d51" \
 -e "spring.application.name=adminapi" \
-registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.2;
+registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.4;
 docker logs -f -t --tail 500 yiliao-admin
 
-docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.2
-docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.2
+docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.4
+docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.4

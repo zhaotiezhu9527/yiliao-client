@@ -6,6 +6,11 @@ import cn.hutool.core.util.StrUtil;
 public class RedisKeyUtil {
 
     /**
+     * 用户过期时间
+     */
+    public static final int USER_TOKEN_EXPIRE = 15;
+
+    /**
      * 用户登录token key
      * @param userId 用户Id
      * @return

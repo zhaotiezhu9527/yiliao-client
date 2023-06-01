@@ -20,5 +20,5 @@ login:
       - /user/register
       - /user/login
       - /system/config
-      - /project/list
-      - /project/detail/*
+#      - /project/list
+#      - /project/detail/*
