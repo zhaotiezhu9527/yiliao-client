@@ -28,7 +28,8 @@ const PATH_URL =
     ? "http://192.168.4.85:9522/"//本地测试
     // ? "http://api.juhai.top/" //测试
     // : "/api/";//h5打包地址
-      : "https://api.anke9988.com/"; //app打包地址
+    : "https://api.anke9988.com/"; //app打包地址
+    // : "http://api.juhai.top/"; //app打包地址测试
 
 export const upload = (params) => {
   let header = {
