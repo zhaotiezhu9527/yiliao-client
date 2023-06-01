@@ -177,11 +177,22 @@ export default {
           this.loading = false;
         });
     },
-    register() {
-      uni.removeStorageSync("token");
+    navigateToFn() {
       uni.navigateTo({
         url: "/pages/login",
       });
+    },
+    register() {
+      if (uni.getStorageSync("token")) {
+        uni.removeStorage({
+          key: "token",
+          success: (res) => {
+            this.navigateToFn();
+          },
+        });
+      } else {
+        this.navigateToFn();
+      }
     },
   },
 };
