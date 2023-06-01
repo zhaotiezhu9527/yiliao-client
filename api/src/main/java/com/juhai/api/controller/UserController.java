@@ -638,7 +638,7 @@ public class UserController {
         withdraw.setOrderNo(orderNo);
         withdraw.setUserName(userName);
         withdraw.setOptAmount(amount);
-        withdraw.setUsdtAmount(new BigDecimal(request.getAmount()));
+        withdraw.setUsdtAmount(StringUtils.equals(request.getType(), "2") ? new BigDecimal(request.getAmount()) : null);
         withdraw.setBeforeAmount(user.getBalance());
         withdraw.setAfterAmount(NumberUtil.sub(user.getBalance(), amount));
         withdraw.setWalletAddr(StringUtils.equals(request.getType(), "2") ? user.getWalletAddr() : null);

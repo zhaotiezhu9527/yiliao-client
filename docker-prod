@@ -6,7 +6,7 @@ docker run -d -p 9522:9522 --name yiliao-api \
 -e "spring.cloud.nacos.discovery.server-addr=mse-33f262210-nacos-ans.mse.aliyuncs.com" \
 -e "spring.cloud.nacos.config.namespace=c5af6abb-0661-4508-8a7f-c010d520de39" \
 -e "spring.application.name=api" \
-registry-intl-vpc.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.6;
+registry-intl-vpc.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.7;
 docker logs -f -t --tail 500 yiliao-api
 
 docker pull registry-intl-vpc.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.6
