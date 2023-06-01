@@ -33,7 +33,8 @@
         <view>提现金额</view>
 
         <view class="money">
-          <label>¥</label>
+          <label v-if="type === 1">¥</label>
+          <label v-else-if="type === 2">$</label>
           <u-input
             v-model="amount"
             border="none"
@@ -43,7 +44,7 @@
           />
         </view>
         <view class="text" v-if="type === 1">可提现金额{{ infos.balance }}元</view>
-        <view class="text" v-else-if="type === 2">可提现金额{{ Number(infos.balance / config.usdt_rate).toFixed(2)}}USDT</view>
+        <view class="text" v-else-if="type === 2">可提现金额{{ infos.usdtAmount }}USDT</view>
       </view>
       <view class="pay">
         <label>支付密码</label>
@@ -115,12 +116,12 @@ export default {
       if (!value) return false;
       let rate = 0
       if(this.type === 2){
-        rate = this.config.usdt_rate
+        rate = this.infos.usdtAmount
       }else{
-        rate = 1
+        rate = this.infos.balance
       }
-      if (Number(value) >= Number(this.infos.balance) / Number(rate)) {
-        this.amount = Number(Number(this.infos.balance) / Number(rate)).toFixed(2);
+      if (Number(value) >= Number(rate)) {
+        this.amount = rate;
       } else if (Number(value) <= 0) {
         this.amount = 0;
       } else {
@@ -147,7 +148,7 @@ export default {
       }
       const DATA_OBJ = {
         type: this.type,
-        amount: this.amount * rate,
+        amount: this.amount,
         pwd: this.pwd,
       };
       this.loading = true;
