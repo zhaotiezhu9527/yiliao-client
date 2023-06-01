@@ -24,7 +24,7 @@
           <view class="head-money">
             ¥ {{ userData.balance }}
           </view>
-          <view class="head-integral"> 账户余额 ≈ ${{Number(userData.balance / config.usdt_rate).toFixed(2)}}</view>
+          <view class="head-integral"> 账户余额 ≈ ${{userData.usdtAmount}}</view>
         </view>
         <view class="money">
           <view class="interest">
@@ -162,6 +162,7 @@ export default {
         waitReturnPrincipal: 0, //待收本金
         bankName: "", //银行名称
         bankCardNum: "", //银行卡号
+        usdtAmount: "",//usdt
       },
       loading: false,
       items: {},
