@@ -135,10 +135,12 @@ export default {
       infos: {},
     };
   },
-  async onShow() {
+  async onLoad() {
     await this.$onLaunched;
     this.config = uni.getStorageSync("system_config");
     this.infos = uni.getStorageSync("infos");
+  },
+  onShow() {
     // 获取产品列表
     this.$api.project_list().then(({ data }) => {
       if (data.code == 0) {

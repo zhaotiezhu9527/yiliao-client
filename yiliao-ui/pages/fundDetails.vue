@@ -58,6 +58,7 @@ export default {
     };
   },
   onLoad() {
+    this.list = [];
     uni.showLoading();
     this.page = 1;
     this.dataFn();

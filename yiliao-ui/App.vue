@@ -89,6 +89,10 @@ export default {
     // }
     if (!token && !route.includes(path)) {
       this.$base.show("登录已过期~");
+      uni.redirectTo({
+        url: "/pages/login",
+      });
+      uni.removeStorageSync("token");
     }
   },
 };
