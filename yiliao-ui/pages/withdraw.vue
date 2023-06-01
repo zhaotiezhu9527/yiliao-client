@@ -42,7 +42,8 @@
             @input="update"
           />
         </view>
-        <view class="text">可提现金额{{ infos.balance }}元</view>
+        <view class="text" v-if="type === 1">可提现金额{{ infos.balance }}元</view>
+        <view class="text" v-else-if="type === 2">可提现金额{{ Number(infos.balance / config.usdt_rate).toFixed(2)}}USDT</view>
       </view>
       <view class="pay">
         <label>支付密码</label>
@@ -96,11 +97,13 @@ export default {
       title: "提现到USDT钱包",
       infos: {},
       loading: false,
+      config:{},
     };
   },
   async onShow() {
     await this.$onLaunched;
     this.infos = uni.getStorageSync("infos");
+    this.config = uni.getStorageSync("system_config");
   },
   methods: {
     onConfirm(e) {
@@ -110,8 +113,14 @@ export default {
     },
     update(value) {
       if (!value) return false;
-      if (Number(value) >= this.infos.balance) {
-        this.amount = Number(this.infos.balance);
+      let rate = 0
+      if(this.type === 2){
+        rate = this.config.usdt_rate
+      }else{
+        rate = 1
+      }
+      if (Number(value) >= Number(this.infos.balance) / Number(rate)) {
+        this.amount = Number(Number(this.infos.balance) / Number(rate)).toFixed(2);
       } else if (Number(value) <= 0) {
         this.amount = 0;
       } else {
@@ -119,9 +128,15 @@ export default {
       }
     },
     login() {
+      let rate = 0
+      if(this.type === 2){
+        rate = this.config.usdt_rate
+      }else{
+        rate = 1
+      }
       if (!this.amount) {
         return this.$base.show("请输入提现金额~");
-      } else if (!this.amount > this.infos.balance) {
+      } else if (!this.amount > Number(Number(this.infos.balance) / Number(rate)).toFixed(2)) {
         return this.$base.show("输入的金额不可大于可提现的金额~");
       } else if (!this.pwd || this.pwd.length < 6) {
         return this.$base.show("请输入正确的支付密码~");
@@ -132,7 +147,7 @@ export default {
       }
       const DATA_OBJ = {
         type: this.type,
-        amount: this.amount,
+        amount: this.amount * rate,
         pwd: this.pwd,
       };
       this.loading = true;

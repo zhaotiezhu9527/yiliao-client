@@ -22,9 +22,9 @@
             <label>用户等级：{{ userData.userLevelName }}</label>
           </view>
           <view class="head-money">
-            {{ userData.balance }}
+            ¥ {{ userData.balance }}
           </view>
-          <view class="head-integral"> 账户余额（元）账户积分（0） </view>
+          <view class="head-integral"> 账户余额 ≈ ${{Number(userData.balance / config.usdt_rate).toFixed(2)}}</view>
         </view>
         <view class="money">
           <view class="interest">
