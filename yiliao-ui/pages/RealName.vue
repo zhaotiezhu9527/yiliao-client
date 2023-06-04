@@ -58,16 +58,8 @@ export default {
       bindStatus: false, //是否实名
     };
   },
-  async onShow() {
-    await this.$onLaunched;
-    let infos = uni.getStorageSync("infos");
-    this.idCardNo = infos.idCard;
-    this.realName = infos.realName;
-    if (infos.idCard === null || !infos.idCard) {
-      this.bindStatus = true;
-    } else {
-      this.bindStatus = false;
-    }
+  onShow() {
+    this.getInfo()
   },
   methods: {
     //用户列表数据
@@ -79,7 +71,6 @@ export default {
           } else {
             this.bindStatus = false;
           }
-          this.$base.storage("infos", res.data.data);
           this.idCardNo = res.data.data.idCard;
           this.realName = res.data.data.realName;
         }

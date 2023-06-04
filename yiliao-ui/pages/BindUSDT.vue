@@ -51,11 +51,8 @@ export default {
       bindStatus: "", //是否绑定地址
     };
   },
-  async onShow() {
-    await this.$onLaunched;
-    let infos = uni.getStorageSync("infos");
-    this.bindStatus = infos.walletAddr;
-    this.addr = infos.walletAddr;
+  onShow() {
+    this.getInfo()
   },
   methods: {
     // 绑定银行卡

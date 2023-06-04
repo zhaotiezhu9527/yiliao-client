@@ -56,9 +56,8 @@ export default {
       infos: {},
     };
   },
-  async onShow() {
-    await this.$onLaunched;
-    this.infos = uni.getStorageSync("infos");
+  onShow() {
+    this.getData()
   },
   methods: {
     goRealName() {
@@ -75,6 +74,13 @@ export default {
       uni.navigateTo({
         url: "/pages/ChangeLoginPassword",
       });
+    },
+    getData(){
+      this.$api.user_info().then(({ data }) => {
+        if (data.code == 0) {
+          this.infos = data.data
+        }
+      })
     },
   },
 };
