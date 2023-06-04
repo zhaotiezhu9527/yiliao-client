@@ -22,3 +22,6 @@ login:
       - /system/config
 #      - /project/list
 #      - /project/detail/*
+#token失效时间
+token:
+  expire: 15

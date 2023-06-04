@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -76,6 +77,9 @@ public class UserController {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    @Value("${token.expire}")
+    private int expire;
+
     @ApiOperation(value = "用户信息")
     @GetMapping("/info")
     public R info(HttpServletRequest httpServletRequest) {
@@ -118,6 +122,33 @@ public class UserController {
             waitReturnPrincipal = NumberUtil.add(waitReturnPrincipal, order.getAmount());
         }
         
+        temp.put("waitReturnInterest", waitReturnInterest);
+        temp.put("waitReturnPrincipal", waitReturnPrincipal);
+
+        return R.ok().put("data", temp);
+    }
+
+    @ApiOperation(value = "获取投资详情")
+    @GetMapping("/interest/info")
+    public R Interest(HttpServletRequest httpServletRequest) {
+        String userName = JwtUtils.getUserName(httpServletRequest);
+        JSONObject temp = new JSONObject();
+
+        List<Order> list = orderService.list(
+                new LambdaQueryWrapper<Order>()
+                        .select(Order::getAmount, Order::getForecastReturnAmount)
+                        .eq(Order::getUserName, userName)
+                        .eq(Order::getStatus, 0)
+        );
+        // 待回收利息
+        BigDecimal waitReturnInterest = new BigDecimal(0);
+        // 待回收本金
+        BigDecimal waitReturnPrincipal = new BigDecimal(0);
+        for (Order order : list) {
+            waitReturnInterest = NumberUtil.add(waitReturnInterest, order.getForecastReturnAmount());
+            waitReturnPrincipal = NumberUtil.add(waitReturnPrincipal, order.getAmount());
+        }
+
         temp.put("waitReturnInterest", waitReturnInterest);
         temp.put("waitReturnPrincipal", waitReturnPrincipal);
 
@@ -306,7 +337,7 @@ public class UserController {
             map.put("userIp", clientIP);
             map.put("random", RandomUtil.randomString(6));
             token = JwtUtils.getToken(map);
-            redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, 15, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, expire, TimeUnit.MINUTES);
         }
         /** 删除密码输入错误次数 **/
         redisTemplate.delete(incKey);
