@@ -40,8 +40,8 @@
             border="none"
             type="number"
             placeholder="请输入提现金额"
-            @change="update"
-          ></u-input>
+            @input="update"
+          />
         </view>
         <view class="text" v-if="type === 1">可提现金额{{ infos.balance }}元</view>
         <view class="text" v-else-if="type === 2">可提现金额{{ infos.usdtAmount }}USDT</view>
