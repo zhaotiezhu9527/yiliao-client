@@ -24,7 +24,7 @@
       </view>
       <u-list @scrolltolower="load" v-if="isArray" class="scroll">
         <u-list-item v-for="(item, index) in list" :key="index">
-          <view class="content" v-for="(item, index) in list" :key="index">
+          <view class="content">
             <view class="table-money">
               {{ item.amount }}
             </view>
