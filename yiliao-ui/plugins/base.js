@@ -92,7 +92,7 @@ export const request = (params) => {
             url: "/pages/login",
           });
           uni.removeStorageSync("token");
-          show(res.data.msg);
+          // show(res.data.msg);
         }
         resolve(res);
       },

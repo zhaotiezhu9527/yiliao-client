@@ -40,8 +40,8 @@
             border="none"
             type="number"
             placeholder="请输入提现金额"
-            @input="update"
-          />
+            @change="update"
+          ></u-input>
         </view>
         <view class="text" v-if="type === 1">可提现金额{{ infos.balance }}元</view>
         <view class="text" v-else-if="type === 2">可提现金额{{ infos.usdtAmount }}USDT</view>
@@ -98,13 +98,10 @@ export default {
       title: "提现到USDT钱包",
       infos: {},
       loading: false,
-      config:{},
     };
   },
-  async onShow() {
-    await this.$onLaunched;
-    this.infos = uni.getStorageSync("infos");
-    this.config = uni.getStorageSync("system_config");
+  onShow() {
+    this.getInfo()
   },
   methods: {
     onConfirm(e) {
@@ -120,24 +117,26 @@ export default {
       }else{
         rate = this.infos.balance
       }
-      if (Number(value) >= Number(rate)) {
-        this.amount = rate;
-      } else if (Number(value) <= 0) {
+      if (value >= rate) {
+        // this.amount = rate;
+      } else if (value <= 0) {
         this.amount = 0;
       } else {
         this.amount = value;
       }
+      // return
     },
     login() {
-      let rate = 0
-      if(this.type === 2){
-        rate = this.config.usdt_rate
+      
+      let balance = 0
+      if(this.type == 2){
+        balance = this.infos.usdtAmount
       }else{
-        rate = 1
+        balance = this.infos.balance
       }
       if (!this.amount) {
         return this.$base.show("请输入提现金额~");
-      } else if (!this.amount > Number(Number(this.infos.balance) / Number(rate)).toFixed(2)) {
+      } else if (this.amount > balance) {
         return this.$base.show("输入的金额不可大于可提现的金额~");
       } else if (!this.pwd || this.pwd.length < 6) {
         return this.$base.show("请输入正确的支付密码~");
@@ -164,6 +163,14 @@ export default {
         .finally(() => {
           this.loading = false;
         });
+    },
+    //用户列表数据
+    getInfo() {
+      this.$api.user_info().then((res) => {
+        if (res.data.code == 0) {
+          this.infos = res.data.data
+        }
+      });
     },
   },
 };
