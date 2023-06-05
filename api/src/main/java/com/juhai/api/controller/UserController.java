@@ -702,16 +702,16 @@ public class UserController {
         accountService.save(account);
 
         // 记录报表
-        UserReport report = new UserReport();
-        report.setUserName(user.getUserName());
-        report.setToday(DateUtil.format(now, "yyyyMMdd"));
-        report.setDepositAmount(new BigDecimal("0"));
-        report.setWithdrawAmount(amount);
-        report.setInvestmentAmount(new BigDecimal("0"));
-        report.setIncomeAmount(new BigDecimal("0"));
-        userReportService.insertOrUpdate(report);
-
-        redisTemplate.opsForValue().set("user:withdraw:notice", "1");
+//        UserReport report = new UserReport();
+//        report.setUserName(user.getUserName());
+//        report.setToday(DateUtil.format(now, "yyyyMMdd"));
+//        report.setDepositAmount(new BigDecimal("0"));
+//        report.setWithdrawAmount(amount);
+//        report.setInvestmentAmount(new BigDecimal("0"));
+//        report.setIncomeAmount(new BigDecimal("0"));
+//        userReportService.insertOrUpdate(report);
+//
+//        redisTemplate.opsForValue().set("user:withdraw:notice", "1");
         return R.ok();
     }
 }
