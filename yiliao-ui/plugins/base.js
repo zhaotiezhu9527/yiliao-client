@@ -29,7 +29,7 @@ const PATH_URL =
     // ? "http://ym.qtapi.juhai.top/" //测试
     // : "/api/";//h5打包地址
     // : "https://api.anke9988.com/"; //杨杨a1 安科app打包地址
-    : "http://ym.qtapi.juhai.top/"; //阿明a2 安科app打包地址
+    : "https://api.anke8888.com/"; //阿明a2 安科app打包地址
     // : "http://api.juhai.top/"; //app打包地址测试
 
 export const upload = (params) => {
