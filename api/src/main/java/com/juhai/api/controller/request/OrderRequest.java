@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Data
-@ApiModel(value = "注册请求类", description = "注册请求参数")
+@ApiModel(value = "订单请求类", description = "订单请求参数")
 public class OrderRequest {
 
     @NotNull(message = "system.param.err")
