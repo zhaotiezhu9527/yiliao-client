@@ -28,9 +28,9 @@ const PATH_URL =
     ? "http://192.168.4.85:9522/"//本地测试
     // ? "http://ym.qtapi.juhai.top/" //测试
     // : "/api/";//h5打包地址
-    // : "https://api.anke9988.com/"; //杨杨a1 安科app打包地址
-    // : "https://api.anke8888.com/"; //阿明a2 安科app打包地址
-    : "https://juhai.top/"; //app打包地址测试
+    : "https://www.juhai.top/"; //杨杨a1 安科app打包地址
+    // : "https://juhai.top/"; //阿明a2 安科app打包地址
+    // : "https://juhai.top/"; //app打包地址测试
 
 export const upload = (params) => {
   let header = {
