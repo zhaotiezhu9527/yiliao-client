@@ -1,4 +1,6 @@
-docker login --username=zhaot0392@gmail.com registry-intl-vpc.ap-southeast-1.aliyuncs.com
+docker login --username=zhaot0392@gmail.com --password=OZi1vWXjkrF259NU registry-intl-vpc.ap-southeast-1.aliyuncs.com
+
+
 
 docker stop yiliao-api;docker rm yiliao-api;
 docker run -d -p 9522:9522 --name yiliao-api \
