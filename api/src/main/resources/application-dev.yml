@@ -1,5 +1,7 @@
 server:
   port: 9522
+  servlet:
+    context-path: /
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

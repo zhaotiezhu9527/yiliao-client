@@ -10,7 +10,7 @@ docker run -d -p 9522:9522 --name yiliao-api \
 registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.9;
 docker logs -f -t --tail 500 yiliao-api
 
-docker push registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.9
+docker push registry-intl-vpc.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.10
 docker pull registry-intl.ap-southeast-1.aliyuncs.com/juhai/yiliao-api:1.0.9
 
 docker stop yiliao-task;docker rm yiliao-task;
