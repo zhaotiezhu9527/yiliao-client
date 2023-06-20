@@ -28,9 +28,13 @@ const PATH_URL =
     ? "http://192.168.4.85:9522/"//本地测试
     // ? "http://ym.qtapi.juhai.top/" //测试
     // : "/api/";//h5打包地址
-    : "https://www.juhai.top/"; //杨杨a1 安科app打包地址
+    // : "https://www.juhai.top/"; //杨杨a1 安科app打包地址
+    : "/DISOZzbHUGxkbPh2/"; //杨杨a1 安科h5打包地址
     // : "https://juhai.top/"; //阿明a2 安科app打包地址
     // : "https://juhai.top/"; //app打包地址测试
+    // : "/ym-qtapi-test/"; //app打包地址测试
+    // : "/lCY45gucOU2CMttF/"; //阿明a2 安科h5打包地址
+    
 
 export const upload = (params) => {
   let header = {
