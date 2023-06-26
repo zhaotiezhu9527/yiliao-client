@@ -32,3 +32,5 @@ registry-intl-vpc.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.5;
 docker logs -f -t --tail 500 yiliao-admin
 
 docker pull registry-intl-vpc.ap-southeast-1.aliyuncs.com/juhai/yiliao-admin:1.0.5
+
+docker stop nacos;docker rm nacos;
