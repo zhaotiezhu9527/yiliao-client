@@ -29,7 +29,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Data
 @Slf4j
@@ -61,6 +60,7 @@ public class LoginAspect {
         log.info("请求地址:" + request.getRequestURL());
         log.info("请求方式:" + request.getMethod());
         log.info("请求参数:" + JSONUtil.toJsonStr(request.getParameterMap()));
+
         for (String pattern : urls) {
             pattern = contentPath + pattern;
             boolean match = matcher.match(pattern, request.getRequestURI());
