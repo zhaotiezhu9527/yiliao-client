@@ -25,16 +25,15 @@ export const loading = (title) => {
 };
 const PATH_URL =
   process.env.NODE_ENV === "development"
-    ? "http://192.168.4.85:9522/"//本地测试
-    // ? "http://ym.qtapi.juhai.top/" //测试
-    // : "/api/";//h5打包地址
-    // : "https://www.anke9988.com/DISOZzbHUGxkbPh2/"; //杨杨a1 安科app打包地址
-    // : "/DISOZzbHUGxkbPh2/"; //杨杨a1 安科h5打包地址
-    // : "https://juhai.top/"; //阿明a2 安科app打包地址
-    // : "https://juhai.top/"; //app打包地址测试
-    // : "/ym-qtapi-test/"; //app打包地址测试
-    : "https://www.anke8888.com/lCY45gucOU2CMttF/"; //阿明a2 安科h5打包地址
-    
+    ? "http://192.168.4.85:9522/" //本地测试
+    : // ? "http://ym.qtapi.juhai.top/" //测试
+      // : "/api/";//h5打包地址
+      // : "https://www.anke9988.com/DISOZzbHUGxkbPh2/"; //杨杨a1 安科app打包地址
+      // : "/DISOZzbHUGxkbPh2/"; //杨杨a1 安科h5打包地址
+      // : "https://juhai.top/"; //阿明a2 安科app打包地址
+      // : "https://juhai.top/"; //app打包地址测试
+      // : "/ym-qtapi-test/"; //app打包地址测试
+      "https://www.anke8888.com/lCY45gucOU2CMttF/"; //阿明a2 安科h5打包地址
 
 export const upload = (params) => {
   let header = {
@@ -92,8 +91,7 @@ export const request = (params) => {
           });
           uni.removeStorageSync("token");
           // show(res.data.msg);
-        }
-        else if (res.data.code != 0) {
+        } else if (res.data.code != 0) {
           uni.showToast({
             title: res?.data?.msg || "存在网络异常",
             duration: 2000,
@@ -103,6 +101,7 @@ export const request = (params) => {
         resolve(res);
       },
       fail: () => {
+        reject();
         show("存在网络异常");
         uni.hideLoading();
       },

@@ -59,6 +59,9 @@ export const user_login = (data) => {
       })
       .then((res) => {
         resolve(res);
+      })
+      .catch(() => {
+        reject();
       });
   });
 };
