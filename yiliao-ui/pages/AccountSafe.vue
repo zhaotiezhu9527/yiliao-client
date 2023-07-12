@@ -10,7 +10,7 @@
       bgColor="#4b80af"
       leftIconColor="#fff"
       leftIconSize="32"
-      height="52px"
+      height="100rpx"
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
@@ -57,7 +57,7 @@ export default {
     };
   },
   onShow() {
-    this.getData()
+    this.getData();
   },
   methods: {
     goRealName() {
@@ -75,12 +75,12 @@ export default {
         url: "/pages/ChangeLoginPassword",
       });
     },
-    getData(){
+    getData() {
       this.$api.user_info().then(({ data }) => {
         if (data.code == 0) {
-          this.infos = data.data
+          this.infos = data.data;
         }
-      })
+      });
     },
   },
 };

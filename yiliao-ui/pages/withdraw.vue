@@ -10,7 +10,7 @@
       bgColor="#4b80af"
       leftIconColor="#fff"
       leftIconSize="32"
-      height="52px"
+      height="100rpx"
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
@@ -43,8 +43,12 @@
             @input="update"
           />
         </view>
-        <view class="text" v-if="type === 1">可提现金额{{ infos.balance }}元</view>
-        <view class="text" v-else-if="type === 2">可提现金额{{ infos.usdtAmount }}USDT</view>
+        <view class="text" v-if="type === 1"
+          >可提现金额{{ infos.balance }}元</view
+        >
+        <view class="text" v-else-if="type === 2"
+          >可提现金额{{ infos.usdtAmount }}USDT</view
+        >
       </view>
       <view class="pay">
         <label>支付密码</label>
@@ -101,7 +105,7 @@ export default {
     };
   },
   onShow() {
-    this.getInfo()
+    this.getInfo();
   },
   methods: {
     onConfirm(e) {
@@ -111,11 +115,11 @@ export default {
     },
     update(value) {
       if (!value) return false;
-      let rate = 0
-      if(this.type === 2){
-        rate = this.infos.usdtAmount
-      }else{
-        rate = this.infos.balance
+      let rate = 0;
+      if (this.type === 2) {
+        rate = this.infos.usdtAmount;
+      } else {
+        rate = this.infos.balance;
       }
       if (value >= rate) {
         // this.amount = rate;
@@ -127,12 +131,11 @@ export default {
       // return
     },
     login() {
-      
-      let balance = 0
-      if(this.type == 2){
-        balance = this.infos.usdtAmount
-      }else{
-        balance = this.infos.balance
+      let balance = 0;
+      if (this.type == 2) {
+        balance = this.infos.usdtAmount;
+      } else {
+        balance = this.infos.balance;
       }
       if (!this.amount) {
         return this.$base.show("请输入提现金额~");
@@ -168,7 +171,7 @@ export default {
     getInfo() {
       this.$api.user_info().then((res) => {
         if (res.data.code == 0) {
-          this.infos = res.data.data
+          this.infos = res.data.data;
         }
       });
     },

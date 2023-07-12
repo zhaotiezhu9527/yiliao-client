@@ -9,7 +9,7 @@
       leftIconSize="0"
       safe-area-inset-top
       bgColor="#4b80af"
-      height="52px"
+      height="100rpx"
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
@@ -21,10 +21,10 @@
             <label>我的账户：{{ userData.userName }}</label>
             <label>用户等级：{{ userData.userLevelName }}</label>
           </view>
-          <view class="head-money">
-            ¥ {{ userData.balance }}
-          </view>
-          <view class="head-integral"> 账户余额 ≈ ${{userData.usdtAmount}}</view>
+          <view class="head-money"> ¥ {{ userData.balance }} </view>
+          <view class="head-integral">
+            账户余额 ≈ ${{ userData.usdtAmount }}</view
+          >
         </view>
         <view class="money">
           <view class="interest">
@@ -162,7 +162,7 @@ export default {
         waitReturnPrincipal: 0, //待收本金
         bankName: "", //银行名称
         bankCardNum: "", //银行卡号
-        usdtAmount: "",//usdt
+        usdtAmount: "", //usdt
       },
       loading: false,
       items: {},
@@ -285,7 +285,7 @@ export default {
 
 <style scoped lang="scss">
 .scroll {
-  height: calc(100vh - 210rpx + var(--status-bar-height));
+  height: calc(100vh - 200rpx + var(--status-bar-height));
 }
 .wrap {
   background-color: #f8f8f9;
