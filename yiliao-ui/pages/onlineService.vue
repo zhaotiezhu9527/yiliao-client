@@ -17,7 +17,8 @@
     <view class="wrap">
       <view>
         <!-- <web-view :src="config.online_service"></web-view> -->
-        <iframe :src="config.online_service" class="online"> </iframe>
+        <iframe :src="config.online_service" class="online">
+        </iframe>
       </view>
       <!-- <web-view :src="config.online_service"></web-view> -->
     </view>
@@ -31,11 +32,19 @@ export default {
       config: {}, //配置
     };
   },
-  async onShow() {
-    await this.$onLaunched;
+  onShow() {
     this.config = uni.getStorageSync("system_config");
   },
-  methods: {},
+  methods: {
+    systemFn(){
+      this.$api.system_config().then(({ data }) => {
+        if (data.code == 0) {
+          this.$base.storage("system_config", data.data);
+          this.config = data
+        }
+      });
+    }
+  },
 };
 </script>
 
