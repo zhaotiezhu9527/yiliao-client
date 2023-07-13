@@ -10,7 +10,7 @@
       bgColor="#4b80af"
       leftIconColor="#fff"
       leftIconSize="32"
-      height="52px"
+      height="100rpx"
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
@@ -73,7 +73,7 @@ export default {
     };
   },
   onShow() {
-    this.getInfo()
+    this.getInfo();
   },
   methods: {
     // 绑定银行卡

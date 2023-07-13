@@ -9,7 +9,7 @@
       leftIconSize="0"
       safe-area-inset-top
       bgColor="#4b80af"
-      height="52px"
+      height="100rpx"
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
@@ -37,12 +37,12 @@ export default {
 
 <style scoped lang="scss">
 .scroll {
-  height: calc(100vh - 210rpx + var(--status-bar-height));
+  height: calc(100vh - 200rpx + var(--status-bar-height));
 }
 .image {
   width: 100vw;
 }
-.text{
+.text {
   font-size: 50rpx;
 }
 </style>

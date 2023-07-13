@@ -10,7 +10,7 @@
       bgColor="#4b80af"
       leftIconColor="#fff"
       leftIconSize="32"
-      height="52px"
+      height="100rpx"
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
@@ -32,7 +32,9 @@
             <view class="li">
               <view class="con">每份分红</view>
               <view class="num"
-                ><text>{{ (items.minAmount * (items.incomeRate/100)).toFixed(0) }}</text
+                ><text>{{
+                  (items.minAmount * (items.incomeRate / 100)).toFixed(0)
+                }}</text
                 >元起</view
               >
             </view>
