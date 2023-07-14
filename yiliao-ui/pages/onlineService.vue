@@ -29,18 +29,19 @@
 export default {
   data() {
     return {
-      config: {}, //配置
+      config: {
+        online_service:""
+      }, //配置
     };
   },
   onShow() {
-    this.config = uni.getStorageSync("system_config");
+    this.systemFn()
   },
   methods: {
     systemFn(){
       this.$api.system_config().then(({ data }) => {
         if (data.code == 0) {
-          this.$base.storage("system_config", data.data);
-          this.config = data
+          this.config = data.data
         }
       });
     }

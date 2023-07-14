@@ -167,15 +167,19 @@ export default {
       loading: false,
       items: {},
       pwd: "",
-      config: {},
+      config: {
+        ouyi_download_url:"",
+        bian_download_url:"",
+        huobi_download_url:"",
+      },
     };
   },
-  async onLoad() {
-    await this.$onLaunched;
-    this.config = uni.getStorageSync("system_config");
+  onLoad() {
+    // this.systemFn()
   },
   onShow() {
     this.getInfo();
+    this.systemFn()
   },
   methods: {
     pathChange() {
@@ -279,6 +283,13 @@ export default {
         }
       });
     },
+    systemFn(){
+      this.$api.system_config().then(({ data }) => {
+        if (data.code == 0) {
+          this.config = data.data
+        }
+      });
+    }
   },
 };
 </script>
