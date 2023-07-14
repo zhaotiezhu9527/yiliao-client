@@ -32,8 +32,8 @@ export default {
           let new_app = data.data.version.find(
             (item) => item.platForm === uni.getSystemInfoSync().platform
           );
-          let oldVersion = new_app.version.split(".").map((a) => parseInt(a));
-          let newVersion = that_app.appWgtVersion
+          let newVersion= new_app.version.split(".").map((a) => parseInt(a));
+          let oldVersion = that_app.appWgtVersion
             .split(".")
             .map((a) => parseInt(a));
           oldVersion = Number(oldVersion.join(""));
