@@ -29,12 +29,15 @@ export default {
           //获取app版本应用
           // #ifdef APP-PLUS
           let that_app = uni.getAppBaseInfo();
-
           let new_app = data.data.version.find(
             (item) => item.platForm === uni.getSystemInfoSync().platform
           );
-          let newVersion = new_app.version.replaceAll('.','')
-          let oldVersion = that_app.replaceAll('.','')
+          let oldVersion = new_app.version.split(".").map((a) => parseInt(a));
+          let newVersion = that_app.appWgtVersion
+            .split(".")
+            .map((a) => parseInt(a));
+          oldVersion = Number(oldVersion.join(""));
+          newVersion = Number(newVersion.join(""));
           if (oldVersion < newVersion) {
             uni.showModal({
               title: "提示",

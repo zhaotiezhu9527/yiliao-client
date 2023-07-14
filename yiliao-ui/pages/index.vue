@@ -139,13 +139,6 @@ export default {
     await this.$onLaunched;
     this.config = uni.getStorageSync("system_config");
     this.infos = uni.getStorageSync("infos");
-    let time = setInterval(() => {
-      if (JSON.stringify(this.config) !== "{}") {
-        clearInterval(time);
-      } else {
-        this.config = uni.getStorageSync("system_config");
-      }
-    }, 500);
   },
   onShow() {
     // 获取产品列表
