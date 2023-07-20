@@ -30,7 +30,9 @@ const PATH_URL =
       // : "/api/";//h5打包地址
       // : "https://www.anke9988.com/DISOZzbHUGxkbPh2/"; //杨杨a1 安科app打包地址
       // : "/DISOZzbHUGxkbPh2/"; //杨杨a1 安科h5打包地址
-      : "/lCY45gucOU2CMttF/"; //阿明a2 安科app打包地址
+	  : "https://anke6666.top/QKDcq6giyFT232Eo/"; //杨杨a2 安科app打包地址
+      // : "/QKDcq6giyFT232Eo/"; //杨杨a2 安科h5打包地址
+      // : "/lCY45gucOU2CMttF/"; //阿明a2 安科app打包地址
       // : "https://juhai.top/"; //app打包地址测试
       // : "/ym-qtapi-test/"; //app打包地址测试
     //  : "https://www.anke8811.com/lCY45gucOU2CMttF/"; //阿明a2 安科h5打包地址
