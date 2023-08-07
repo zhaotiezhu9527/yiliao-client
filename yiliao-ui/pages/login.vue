@@ -54,6 +54,7 @@
           </u-button>
           <view class="register" @click="register"> 注册账号 </view>
         </view>
+        <view class="version-class">版本号 : v{{ version }}</view>
       </view>
     </view>
   </view>
@@ -65,6 +66,7 @@ export default {
       password: "",
       userPhone: "",
       loading: false,
+      version: "",
     };
   },
   methods: {
@@ -104,6 +106,9 @@ export default {
         });
     },
   },
+  onShow() {
+    this.version = uni.getAppBaseInfo().appVersionCode
+  },
 };
 </script>
 
@@ -142,5 +147,11 @@ text {
   .image {
     height: 60rpx;
   }
+}
+.version-class{
+  margin-top: 400rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ddd;
 }
 </style>
