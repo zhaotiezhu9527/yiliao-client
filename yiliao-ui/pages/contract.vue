@@ -75,7 +75,7 @@
         </tr>
         <tr>
           <td>还款方式</td>
-          <td>每日反息，到期还本</td>
+          <td>每日返息，到期还本</td>
         </tr>
       </table>
       <view class="date">

@@ -53,7 +53,7 @@
             <view class="investor">
               <view class="con">
                 <text>项目规模：{{ item.projectAmount }}元</text>
-                <text>每日还息：到期还本</text>
+                <text>每日返息：到期还本</text>
               </view>
               <view class="btn">立即投资</view>
             </view>
