@@ -26,7 +26,7 @@ export const loading = (title) => {
 const PATH_URL =
   process.env.NODE_ENV === "development"
     // ? "http://192.168.4.85:9522/" //本地测试
-     ? "http://ymqt.juhai.xyz/ym-qtapi-test/" //测试
+    ? "http://ymqt.juhai.xyz/ym-qtapi-test/" //测试
       // : "/api/";//h5打包地址
       // : "https://anke9988.top/DISOZzbHUGxkbPh2/"; //杨杨a1 安科app打包地址
       // : "/DISOZzbHUGxkbPh2/"; //杨杨a1 安科h5打包地址
