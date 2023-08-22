@@ -303,7 +303,7 @@ export const user_withdraw = (data) => {
       });
   });
 };
-//用户提现
+//配置
 export const system_config = (data) => {
   return new Promise((resolve, reject) => {
     base
