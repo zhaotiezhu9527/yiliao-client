@@ -30,12 +30,12 @@ const PATH_URL =
       // : "/api/";//h5打包地址
       // : "https://anke9988.top/DISOZzbHUGxkbPh2/"; //杨杨a1 安科app打包地址
       // : "/DISOZzbHUGxkbPh2/"; //杨杨a1 安科h5打包地址
-	  : "https://dsfa51.top/yangyang2/"; //杨杨a2 安科app打包地址
+	  : "https://ym4356.top/yangyang2/"; //杨杨a2 安科app打包地址
       // : "/yangyang2/"; //杨杨a2 安科h5打包地址
       // : "/lCY45gucOU2CMttF/"; //阿明a1 安科app打包地址
       // : "/gsLz2d6XZF2ptdoj/"; //阿明a2 安科h5打包地址
-      //  : "https://www.anke8811.com/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
-	  // : "https://asdfg32.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
+      //  : "https://ym6587.top/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
+	  // : "https://ym8907.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
       // : "https://juhai.top/"; //app打包地址测试
       // : "/ym-qtapi-test/"; //app打包地址测试
 
