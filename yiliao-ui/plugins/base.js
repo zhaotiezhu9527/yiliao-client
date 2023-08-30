@@ -28,14 +28,14 @@ const PATH_URL =
     // ? "http://192.168.4.85:9522/" //本地测试
     ? "http://ymqt.juhai.xyz/ym-qtapi-test/" //测试
       // : "/api/";//h5打包地址
-      // : "https://ymy1666.top/yangyang1/"; //杨杨a1 安科app打包地址
+      // : "https://ymy3666.top/yangyang1/"; //杨杨a1 安科app打包地址
       // : "/yangyang1/"; //杨杨a1 安科h5打包地址
-	  : "https://ym4455.top/yangyang2/"; //杨杨a2 安科app打包地址
+	  // : "https://ymy2666.top/yangyang2/"; //杨杨a2 安科app打包地址
       // : "/yangyang2/"; //杨杨a2 安科h5打包地址
       // : "/lCY45gucOU2CMttF/"; //阿明a1 安科app打包地址
       // : "/gsLz2d6XZF2ptdoj/"; //阿明a2 安科h5打包地址
-      //  : "https://ym5566.top/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
-	  // : "https://ym6677.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
+      //  : "https://ymam1666.top/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
+	  : "https://ymam2666.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
       // : "https://juhai.top/"; //app打包地址测试
       // : "/ym-qtapi-test/"; //app打包地址测试
 
