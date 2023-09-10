@@ -80,7 +80,7 @@ export const request = (params) => {
   }
   return new Promise((resolve, reject) => {
     uni.request({
-      url: PATH_URL + params.url + '?t=' + new Date().getTime(),
+      url: PATH_URL + params.url,
       data: params.data,
       method: str,
       header: params.header,
