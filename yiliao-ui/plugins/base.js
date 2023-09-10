@@ -25,8 +25,8 @@ export const loading = (title) => {
 };
 const PATH_URL =
   process.env.NODE_ENV === "development"
-    // ? "http://192.168.4.85:9522/" //本地测试
-    ? "http://ymqt.juhai.xyz/ym-qtapi-test/" //测试
+    ? "http://192.168.4.85:9522/" //本地测试
+    // ? "http://ymqt.juhai.xyz/ym-qtapi-test/" //测试
       // : "/api/";//h5打包地址
       // : "https://ymy3.top/yangyang1/"; //杨杨a1 安科app打包地址
       // : "/yangyang1/"; //杨杨a1 安科h5打包地址
@@ -34,8 +34,8 @@ const PATH_URL =
       // : "/yangyang2/"; //杨杨a2 安科h5打包地址
       // : "/lCY45gucOU2CMttF/"; //阿明a1 安科app打包地址
       // : "/gsLz2d6XZF2ptdoj/"; //阿明a2 安科h5打包地址
-       // : "https://ymm1.top/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
-	  : "https://ymm2.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
+       : "https://ymm1.top/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
+	  // : "https://ymm2.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
       // : "https://juhai.top/"; //app打包地址测试
       // : "/ym-qtapi-test/"; //app打包地址测试
 
@@ -82,7 +82,7 @@ export const request = (params) => {
   }
   return new Promise((resolve, reject) => {
     uni.request({
-      url: PATH_URL + params.url,
+      url: PATH_URL + params.url + '?t=' + new Date().getTime(),
       data: params.data,
       method: str,
       header: params.header,
