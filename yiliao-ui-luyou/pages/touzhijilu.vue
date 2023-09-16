@@ -42,7 +42,7 @@
             <view class="table-time">
               <label
                 class="blue-text"
-                @click="goInvestmentDetails(item.orderNo)"
+                @click="gotouzhineirong(item.orderNo)"
               >
                 查看
               </label>
@@ -50,7 +50,7 @@
 
             <view class="line"></view>
             <view class="table-time">
-              <label class="grey-text" @click="goContract(item.orderNo)">
+              <label class="grey-text" @click="gotouzhihetong(item.orderNo)">
                 查看
               </label>
             </view>
@@ -82,14 +82,14 @@ export default {
     this.dataFn();
   },
   methods: {
-    goInvestmentDetails(num) {
+    gotouzhineirong(num) {
       uni.navigateTo({
-        url: "/pages/InvestmentDetails?orderNo=" + num,
+        url: "/pages/touzhineirong?orderNo=" + num,
       });
     },
-    goContract(num) {
+    gotouzhihetong(num) {
       uni.navigateTo({
-        url: "/pages/contract?orderNo=" + num,
+        url: "/pages/touzhihetong?orderNo=" + num,
       });
     },
     load() {

@@ -50,7 +50,7 @@
                 <view class="con">起投金额</view></view
               >
             </view>
-            <view class="investor">
+            <view class="xiangmutouzhi">
               <view class="con">
                 <text>项目规模：{{ item.projectAmount }}元</text>
                 <text>每日返息：到期还本</text>
@@ -106,7 +106,7 @@ export default {
       this.$api.project_info(item.projectId).then(({ data }) => {
         if (data.code == 0) {
           uni.navigateTo({
-            url: `/pages/info?id=${item.projectId}`,
+            url: `/pages/touzhixiangqing?id=${item.projectId}`,
           });
         }
       });

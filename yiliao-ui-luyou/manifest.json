@@ -16,19 +16,6 @@
             "autoclose" : true,
             "delay" : 0
         },
-        // 代码混淆
-        "confusion" : {
-            "description" : "NVUE原生混淆",
-            "resources" : {
-                "plugins/api.js" : {},
-                "plugins/base.js" : {},
-                "plugins/path.js" : {},
-                "plugins/router.js" : {},
-                "plugins/store.js" : {},
-                "plugins/util.js" : {},
-                "main.js" : {}
-            }
-        },
         /* 模块配置 */
         "modules" : {},
         /* 应用发布信息 */

@@ -168,7 +168,7 @@ export default {
               key: "token",
               data: res.data.token,
               success: function () {
-                uni.switchTab({ url: "/pages/personal" });
+                uni.switchTab({ url: "/pages/gerenzhongxin" });
               },
             });
           }
@@ -179,7 +179,7 @@ export default {
     },
     navigateToFn() {
       uni.navigateTo({
-        url: "/pages/login",
+        url: "/pages/denglu",
       });
     },
     register() {

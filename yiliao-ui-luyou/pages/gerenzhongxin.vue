@@ -75,22 +75,22 @@
             <label>每日签到</label>
             <view class="icon"></view>
           </view>
-          <view class="list-item" @click="goFundDetails">
+          <view class="list-item" @click="gozhijinmingxi">
             <image class="icon-img" src="../static/img/mine_func_zijin.png" />
             <label>资金明细</label>
             <view class="icon"></view>
           </view>
-          <view class="list-item" @click="goInvestmentRecords">
+          <view class="list-item" @click="gotouzhijilu">
             <image class="icon-img" src="../static/img/mine_func_touzi.png" />
             <label>投资记录</label>
             <view class="icon"></view>
           </view>
-          <view class="list-item" @click="goRevenueRecords">
+          <view class="list-item" @click="goshouyijilu">
             <image class="icon-img" src="../static/img/mine_func_shouyi.png" />
             <label>收益记录</label>
             <view class="icon"></view>
           </view>
-          <view class="list-item" @click="goRechargeRecord">
+          <view class="list-item" @click="gochongzhijilu">
             <image
               class="icon-img"
               src="../static/img/mine_func_chongzhi.png"
@@ -98,32 +98,32 @@
             <label>充值记录</label>
             <view class="icon"></view>
           </view>
-          <view class="list-item" @click="goWithdrawalRecords">
+          <view class="list-item" @click="gotixianjilu">
             <image class="icon-img" src="../static/img/mine_func_tixian.png" />
             <label>提现记录</label>
             <view class="icon"></view>
           </view>
         </view>
         <view class="list">
-          <view class="list-item" @click="goAccountSafe">
+          <view class="list-item" @click="gozhanghuanquan">
             <image class="icon-img" src="../static/img/mine_func_anquan.png" />
             <label>账户安全</label>
             <view class="icon"></view>
           </view>
           <view
             class="list-item"
-            @click="goBindBank(userData.bankName, userData.bankCardNum)"
+            @click="gobangdingyinhang(userData.bankName, userData.bankCardNum)"
           >
             <image class="icon-img" src="../static/img/mine_func_yinhang.png" />
             <label>银行卡绑定</label>
             <view class="icon"></view>
           </view>
-          <view class="list-item" @click="goRealName">
+          <view class="list-item" @click="gozhenshixingming">
             <image class="icon-img" src="../static/img/mine_func_shiming.png" />
             <label>实名认证</label>
             <view class="icon"></view>
           </view>
-          <view class="list-item" @click="goBindUSDT">
+          <view class="list-item" @click="gobangdingUSDT">
             <image class="icon-img" src="../static/img/mine_func_usdt.png" />
             <label>USDT绑定地址</label>
             <view class="icon"></view>
@@ -184,7 +184,7 @@ export default {
   methods: {
     pathChange() {
       uni.navigateTo({
-        url: "/pages/onlineService",
+        url: "/pages/zaixiankefu",
       });
     },
     downloadChange(url) {
@@ -195,49 +195,49 @@ export default {
       window.open(url);
       // #endif
     },
-    goFundDetails() {
+    gozhijinmingxi() {
       uni.navigateTo({
-        url: "/pages/fundDetails",
+        url: "/pages/zhijinmingxi",
       });
     },
-    goInvestmentRecords() {
+    gotouzhijilu() {
       uni.navigateTo({
-        url: "/pages/InvestmentRecords",
+        url: "/pages/touzhijilu",
       });
     },
-    goRevenueRecords() {
+    goshouyijilu() {
       uni.navigateTo({
-        url: "/pages/RevenueRecords",
+        url: "/pages/shouyijilu",
       });
     },
-    goRechargeRecord() {
+    gochongzhijilu() {
       uni.navigateTo({
-        url: "/pages/RechargeRecord",
+        url: "/pages/chongzhijilu",
       });
     },
-    goWithdrawalRecords() {
+    gotixianjilu() {
       uni.navigateTo({
-        url: "/pages/WithdrawalRecords",
+        url: "/pages/tixianjilu",
       });
     },
-    goRealName() {
+    gozhenshixingming() {
       uni.navigateTo({
-        url: "/pages/RealName",
+        url: "/pages/zhenshixingming",
       });
     },
-    goBindUSDT() {
+    gobangdingUSDT() {
       uni.navigateTo({
-        url: "/pages/BindUSDT",
+        url: "/pages/bangdingUSDT",
       });
     },
-    goBindBank() {
+    gobangdingyinhang() {
       uni.navigateTo({
-        url: "/pages/BindBank",
+        url: "/pages/bangdingyinhang",
       });
     },
-    goAccountSafe() {
+    gozhanghuanquan() {
       uni.navigateTo({
-        url: "/pages/AccountSafe",
+        url: "/pages/zhanghuanquan",
       });
     },
     goWithdraw() {
@@ -245,7 +245,7 @@ export default {
         return this.$base.show("请先绑定一种提款方式~");
       } else {
         uni.navigateTo({
-          url: "/pages/withdraw",
+          url: "/pages/tixian",
         });
       }
     },
@@ -256,7 +256,7 @@ export default {
           uni.removeStorage({
             key: "token",
             success: function (res) {
-              uni.redirectTo({ url: "/pages/login" });
+              uni.redirectTo({ url: "/pages/denglu" });
             },
           });
         }

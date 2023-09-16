@@ -6,72 +6,72 @@ const home = [
     // #endif
   },
   {
-    path: "/pages/login",
+    path: "/pages/denglu",
     // #ifdef APP-PLUS
     aliasPath: "/",
     // #endif
   },
   {
-    path: "/pages/content",
+    path: "/pages/touzhianniu",
   },
   {
-    path: "/pages/info",
+    path: "/pages/touzhixiangqing",
   },
   {
-    path: "/pages/about",
+    path: "/pages/guanyu",
   },
   {
-    path: "/pages/investor",
+    path: "/pages/xiangmutouzhi",
   },
   {
-    path: "/pages/personal",
+    path: "/pages/gerenzhongxin",
   },
   {
-    path: "/pages/register",
+    path: "/pages/zhuce",
   },
   {
-    path: "/pages/fundDetails",
+    path: "/pages/touzhihetong",
   },
   {
-    path: "/pages/InvestmentRecords",
+    path: "/pages/touzhijilu",
   },
   {
-    path: "/pages/InvestmentDetails",
+    path: "/pages/touzhineirong",
   },
   {
-    path: "/pages/RevenueRecords",
+    path: "/pages/shouyijilu",
   },
   {
-    path: "/pages/RechargeRecord",
+    path: "/pages/chongzhijilu",
   },
   {
-    path: "/pages/WithdrawalRecords",
+    path: "/pages/tixianjilu",
   },
   {
-    path: "/pages/RealName",
+    path: "/pages/zhenshixingming",
   },
   {
-    path: "/pages/BindUSDT",
+    path: "/pages/bangdingUSDT",
   },
   {
-    path: "/pages/BindBank",
+    path: "/pages/bangdingyinhang",
   },
   {
-    path: "/pages/AccountSafe",
+    path: "/pages/zhanghuanquan",
   },
   {
-    path: "/pages/ChangeLoginPassword",
+    path: "/pages/xiugaidenglumima",
   },
   {
-    path: "/pages/ModifyPaymentPassword",
+    path: "/pages/xiugaizhifumima",
   },
   {
-    path: "/pages/contract",
+    path: "/pages/zhijinmingxi",
   },
   {
-    path: "/pages/withdraw",
+    path: "/pages/tixian",
   },
   { path: "/pages/preview" },
-  { path: "/pages/onlineService" },
+  { path: "/pages/zaixiankefu" },
 ];
 export default home;

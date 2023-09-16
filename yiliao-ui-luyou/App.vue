@@ -70,7 +70,7 @@ export default {
     let route = [];
     let path = "";
     // #ifdef APP-PLUS
-    route = ["pages/login", "/", "pages/register"];
+    route = ["pages/denglu", "/", "pages/zhuce"];
     let routes = getCurrentPages();
     if (routes.length) {
       path = routes[routes.length - 1].route;
@@ -79,7 +79,7 @@ export default {
     }
     // #endif
     // #ifdef H5
-    route = ["/pages/login", "/pages/register"];
+    route = ["/pages/denglu", "/pages/zhuce"];
     path = this.$route.path;
     // #endif
 
@@ -99,7 +99,7 @@ export default {
         key: "token",
         success: (res) => {
           uni.redirectTo({
-            url: "/pages/login",
+            url: "/pages/denglu",
           });
         },
       });

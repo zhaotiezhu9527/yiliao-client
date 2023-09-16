@@ -87,7 +87,7 @@ export default {
                 this.oldPwd = "";
                 this.password = "";
                 uni.redirectTo({
-                  url: "/pages/login",
+                  url: "/pages/denglu",
                 });
               },
             });

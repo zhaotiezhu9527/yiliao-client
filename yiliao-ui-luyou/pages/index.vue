@@ -73,7 +73,7 @@
                 <view class="con">起投金额</view></view
               >
             </view>
-            <view class="investor">
+            <view class="xiangmutouzhi">
               <view class="con">
                 <text>项目规模：{{ item.projectAmount }}元</text>
                 <text>每日返息：到期还本</text>
@@ -112,8 +112,8 @@ export default {
   data() {
     return {
       list: [
-        { name: "投资项目", img: img0, path: "/pages/investor" },
-        { name: "关于我们", img: img1, path: "/pages/about" },
+        { name: "投资项目", img: img0, path: "/pages/xiangmutouzhi" },
+        { name: "关于我们", img: img1, path: "/pages/guanyu" },
         { name: "计算器", img: img2 },
         { name: "每日签到", img: img3 },
         {
@@ -121,8 +121,8 @@ export default {
           img: img4,
           path: "/pages/preview",
         },
-        { name: "我要提现", img: img5, path: "/pages/withdraw" },
-        { name: "免费注册", img: img6, path: "/pages/register" },
+        { name: "我要提现", img: img5, path: "/pages/tixian" },
+        { name: "免费注册", img: img6, path: "/pages/zhuce" },
         {
           name: "在线客服",
           img: img7,
@@ -168,18 +168,18 @@ export default {
         });
       } else if (["我要充值USDT"].includes(name)) {
         uni.navigateTo({
-          url: "/pages/onlineService",
+          url: "/pages/zaixiankefu",
         });
       } else if (["在线客服"].includes(name)) {
         uni.navigateTo({
-          url: "/pages/onlineService",
+          url: "/pages/zaixiankefu",
         });
       } else if (["我要提现"].includes(name)) {
         if (!this.infos.bankCardNum && !this.infos.walletAddr) {
           return this.$base.show("请先绑定一种提款方式~");
         } else {
           uni.navigateTo({
-            url: "/pages/withdraw",
+            url: "/pages/tixian",
           });
         }
       }
@@ -188,7 +188,7 @@ export default {
       this.$api.project_info(item.projectId).then(({ data }) => {
         if (data.code == 0) {
           uni.navigateTo({
-            url: `/pages/info?id=${item.projectId}`,
+            url: `/pages/touzhixiangqing?id=${item.projectId}`,
           });
         }
       });

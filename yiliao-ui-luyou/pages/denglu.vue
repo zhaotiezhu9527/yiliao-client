@@ -72,7 +72,7 @@ export default {
   methods: {
     register() {
       uni.navigateTo({
-        url: "/pages/register",
+        url: "/pages/zhuce",
       });
     },
     login() {
@@ -96,7 +96,7 @@ export default {
               key: "token",
               data: res.data.token,
               success: function () {
-                uni.switchTab({ url: "/pages/personal" });
+                uni.switchTab({ url: "/pages/gerenzhongxin" });
               },
             });
           }

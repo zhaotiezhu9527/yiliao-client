@@ -53,7 +53,7 @@ export const user_login = (data) => {
   return new Promise((resolve, reject) => {
     base
       .request({
-        url: "user/login",
+        url: "user/denglu",
         method: "post",
         data: data,
       })
@@ -71,7 +71,7 @@ export const user_register = (data) => {
   return new Promise((resolve, reject) => {
     base
       .request({
-        url: "user/register",
+        url: "user/zhuce",
         method: "post",
         data: data,
       })

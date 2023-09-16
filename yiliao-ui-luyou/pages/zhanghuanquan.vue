@@ -23,7 +23,7 @@
           <label>用户名</label>
           <view class="right-text">{{ infos.userName }}</view>
         </view>
-        <view class="list margintop10 borderBottom" @click="goRealName">
+        <view class="list margintop10 borderBottom" @click="gogerenzhongxin">
           <view class="image">
             <image class="icon-img" src="../static/img/admin.png" />
           </view>
@@ -32,13 +32,13 @@
             infos.idCard ? "已认证" : "未认证"
           }}</view>
         </view>
-        <view class="list borderBottom" @click="goChangeLoginPassword">
+        <view class="list borderBottom" @click="goxiugaidenglumima">
           <view class="image">
             <image class="icon-img" src="../static/img/pass.png" />
           </view>
           <label>修改登录密码</label>
         </view>
-        <view class="list" @click="goModifyPaymentPassword">
+        <view class="list" @click="goxiugaizhifumima">
           <view class="image">
             <image class="icon-img2" src="../static/img/key.png" />
           </view>
@@ -60,19 +60,19 @@ export default {
     this.getData();
   },
   methods: {
-    goRealName() {
+    gogerenzhongxin() {
       uni.navigateTo({
-        url: "/pages/RealName",
+        url: "/pages/gerenzhongxin",
       });
     },
-    goModifyPaymentPassword() {
+    goxiugaizhifumima() {
       uni.navigateTo({
-        url: "/pages/ModifyPaymentPassword",
+        url: "/pages/xiugaizhifumima",
       });
     },
-    goChangeLoginPassword() {
+    goxiugaidenglumima() {
       uni.navigateTo({
-        url: "/pages/ChangeLoginPassword",
+        url: "/pages/xiugaidenglumima",
       });
     },
     getData() {

@@ -46,7 +46,7 @@
               >
             </view>
           </view>
-          <view class="investor">
+          <view class="xiangmutouzhi">
             <view class="con">
               <text>分红方式：每日返息，到期还本</text>
               <text>起投金额：{{ items.minAmount }}元</text>
@@ -166,7 +166,7 @@ export default {
     },
     change() {
       uni.navigateTo({
-        url: `/pages/content?id=${this.items.projectId}`,
+        url: `/pages/touzhianniu?id=${this.items.projectId}`,
       });
     },
   },
@@ -216,7 +216,7 @@ text {
       color: #4c7eaf;
     }
   }
-  .investor {
+  .xiangmutouzhi {
     display: flex;
     align-items: center;
     justify-content: space-between;

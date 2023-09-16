@@ -88,7 +88,7 @@
       :loading="loading"
       color="#4b80af"
       block
-      @click="investor"
+      @click="xiangmutouzhi"
     >
       立即投资
     </u-button>
@@ -116,7 +116,7 @@ export default {
   methods: {
     change() {
       uni.navigateTo({
-        url: "/pages/content",
+        url: "/pages/touzhianniu",
       });
     },
     dataFn(id) {
@@ -134,7 +134,7 @@ export default {
       );
     },
     // 立即投资
-    investor() {
+    xiangmutouzhi() {
       if (!this.form.amount) {
         this.$base.show("请输入金额");
         return false;
