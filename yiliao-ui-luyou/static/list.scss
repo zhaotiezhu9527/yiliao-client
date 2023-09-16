@@ -1,0 +1,98 @@
+.list {
+  padding: 0 30rpx 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  .view {
+    margin-top: 30rpx;
+    padding: 20rpx;
+    box-sizing: border-box;
+    border-radius: 20rpx;
+    background-color: #fff;
+    box-shadow: 0 0 20rpx 10rpx #eee;
+    overflow: hidden;
+  }
+  .name {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16rpx;
+    border-bottom: 2rpx solid #e0e0e0;
+    text:nth-child(1) {
+      background-color: #4caf50;
+      border-radius: 50%;
+      width: 55rpx;
+      height: 55rpx;
+      font-size: 32rpx;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    text:nth-child(2) {
+      padding-left: 20rpx;
+      color: #4b80af;
+      font-size: 32rpx;
+    }
+  }
+  .rate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40rpx 0;
+    .li {
+      width: calc(100% / 3);
+      text-align: center;
+    }
+    .con,
+    .num {
+      font-size: 24rpx;
+    }
+    .con {
+      padding-top: 20rpx;
+    }
+    text {
+      color: red;
+    }
+  }
+  .investor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .con {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text {
+        text-align: left;
+        color: #d3d3d3;
+        font-size: 26rpx;
+        &:nth-child(1) {
+          padding-bottom: 15rpx;
+        }
+      }
+    }
+    .btn {
+      font-size: 28rpx;
+      color: #ffffff;
+      border-radius: 10rpx;
+      background-color: #2196f3;
+      padding: 12rpx 26rpx;
+    }
+  }
+  .progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30rpx;
+    .txt {
+      color: #999;
+      font-size: 26rpx;
+      width: 150rpx;
+    }
+    .number {
+      color: #d3d3d3;
+      font-size: 26rpx;
+      width: 120rpx;
+      text-align: right;
+    }
+  }
+}

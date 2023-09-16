@@ -1,0 +1,129 @@
+{
+  "easycom": {
+    "^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+  },
+  "pages": [
+    // #ifdef APP-PLUS
+    {
+      "path": "pages/login"
+    },
+    {
+      "path": "pages/index"
+    },
+    // #endif
+    // #ifdef H5
+    {
+      "path": "pages/index"
+    },
+    {
+      "path": "pages/login"
+    },
+    // #endif
+    {
+      "path": "pages/content"
+    },
+    {
+      "path": "pages/info"
+    },
+    {
+      "path": "pages/about"
+    },
+    {
+      "path": "pages/investor"
+    },
+    {
+      "path": "pages/personal"
+    },
+    {
+      "path": "pages/register"
+    },
+    {
+      "path": "pages/fundDetails"
+    },
+    {
+      "path": "pages/InvestmentRecords"
+    },
+    {
+      "path": "pages/InvestmentDetails"
+    },
+    {
+      "path": "pages/RevenueRecords"
+    },
+    {
+      "path": "pages/RechargeRecord"
+    },
+    {
+      "path": "pages/WithdrawalRecords"
+    },
+    {
+      "path": "pages/RealName"
+    },
+    {
+      "path": "pages/BindUSDT"
+    },
+    {
+      "path": "pages/BindBank"
+    },
+    {
+      "path": "pages/AccountSafe"
+    },
+    {
+      "path": "pages/ChangeLoginPassword"
+    },
+    {
+      "path": "pages/ModifyPaymentPassword"
+    },
+    {
+      "path": "pages/contract"
+    },
+    {
+      "path": "pages/withdraw"
+    },
+    {
+      "path": "pages/preview"
+    },
+    {
+      "path": "pages/onlineService"
+    }
+  ],
+  "tabBar": {
+    "color": "#666974",
+    "selectedColor": "#4b80af",
+    "borderStyle": "#eeeeee",
+    "backgroundColor": "#ffffff",
+    "fontSize": "12px",
+    "iconWidth": "22px",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "iconPath": "./static/img/index1.png",
+        "selectedIconPath": "./static/img/index.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/investor",
+        "iconPath": "./static/img/money1.png",
+        "selectedIconPath": "./static/img/money.png",
+        "text": "投资"
+      },
+      {
+        "pagePath": "pages/about",
+        "iconPath": "./static/img/find1.png",
+        "selectedIconPath": "./static/img/find.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/personal",
+        "iconPath": "./static/img/user1.png",
+        "selectedIconPath": "./static/img/user.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationStyle": "custom"
+  },
+  "networkTimeout": {
+    "request": 10000
+  }
+}
