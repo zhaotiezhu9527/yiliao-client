@@ -1,9 +1,9 @@
 {
-    "name" : "　安科生物　",
+    "name" : "　　",
     "appid" : "__UNI__AA33E97",
     "description" : "",
-    "versionName" : "121",
-    "versionCode" : 121,
+    "versionName" : "122",
+    "versionCode" : 122,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -15,6 +15,19 @@
             "waiting" : true,
             "autoclose" : true,
             "delay" : 0
+        },
+        // 代码混淆
+        "confusion" : {
+            "description" : "NVUE原生混淆",
+            "resources" : {
+                "plugins/api.js" : {},
+                "plugins/base.js" : {},
+                "plugins/path.js" : {},
+                "plugins/router.js" : {},
+                "plugins/store.js" : {},
+                "plugins/util.js" : {},
+                "main.js" : {}
+            }
         },
         /* 模块配置 */
         "modules" : {},
@@ -108,7 +121,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : "安科生物",
+        "title" : "  ",
         "template" : "index.html",
         "router" : {
             "mode" : "hash",

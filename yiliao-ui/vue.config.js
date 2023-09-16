@@ -1,5 +1,6 @@
 const TransformPages = require("uni-read-pages");
 const { webpack } = new TransformPages();
+var JavaScriptObfuscator = require('webpack-obfuscator');  
 module.exports = {
   configureWebpack: {
     plugins: [
@@ -13,4 +14,11 @@ module.exports = {
       }),
     ],
   },
+  configureWebpack: process.env.NODE_ENV === 'production' ? {  
+    plugins: [  
+        new JavaScriptObfuscator({  
+            rotateStringArray: true,  
+        }, [])  
+        ]  
+    } : {} 
 };
