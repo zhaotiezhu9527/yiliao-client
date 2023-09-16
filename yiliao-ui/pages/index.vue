@@ -4,7 +4,7 @@
       placeholder
       :border="false"
       autoBack
-      :title="config.jiancheng || '安科生物'"
+      :title="config.jiancheng"
       fixed
       leftIconSize="0"
       safe-area-inset-top
