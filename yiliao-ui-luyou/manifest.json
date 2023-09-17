@@ -1,5 +1,5 @@
 {
-    "name" : "东城药业",
+    "name" : "东诚药业",
     "appid" : "__UNI__ED61B4E",
     "description" : "",
     "versionName" : "123",
@@ -108,7 +108,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : " 东城药业 ",
+        "title" : " 东诚药业 ",
         "template" : "index.html",
         "router" : {
             "mode" : "hash",

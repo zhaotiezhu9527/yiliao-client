@@ -4,7 +4,7 @@
       placeholder
       :border="false"
       autoBack
-      :title="config.jiancheng || '东城药业'"
+      :title="config.jiancheng || '东诚药业'"
       fixed
       leftIconSize="0"
       safe-area-inset-top
