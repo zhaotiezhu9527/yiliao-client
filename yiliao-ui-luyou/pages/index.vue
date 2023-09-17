@@ -4,7 +4,7 @@
       placeholder
       :border="false"
       autoBack
-      :title="config.jiancheng"
+      :title="config.jiancheng || '东城药业'"
       fixed
       leftIconSize="0"
       safe-area-inset-top
@@ -106,8 +106,9 @@ import img4 from "../static/img/func_icon_chongzhi.png";
 import img5 from "../static/img/func_icon_tixian.png";
 import img6 from "../static/img/func_icon_zhuce.png";
 import img7 from "../static/img/func_icon_kefu.png";
-import banner1 from "../static/img/banner_13.jpg";
-import banner2 from "../static/img/banner_14.jpg";
+import banner1 from "../static/img/banner_10.jpg";
+import banner2 from "../static/img/banner_11.jpg";
+import banner3 from "../static/img/banner_12.jpg";
 export default {
   data() {
     return {
@@ -129,7 +130,7 @@ export default {
           path: "/pages/preview",
         },
       ],
-      list2: [banner1, banner2],
+      list2: [banner1,banner2,banner3],
       shopGoods: [],
       config: {},
       infos: {},

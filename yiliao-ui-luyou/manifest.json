@@ -1,9 +1,9 @@
 {
-    "name" : "　安科生物　",
+    "name" : "东城药业",
     "appid" : "__UNI__E712B2E",
     "description" : "",
-    "versionName" : "122",
-    "versionCode" : 122,
+    "versionName" : "123",
+    "versionCode" : 123,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -108,7 +108,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : "  ",
+        "title" : " 东城药业 ",
         "template" : "index.html",
         "router" : {
             "mode" : "hash",

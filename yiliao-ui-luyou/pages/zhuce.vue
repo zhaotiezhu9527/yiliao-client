@@ -16,11 +16,11 @@
     </u-navbar>
     <view class="wrap">
       <view class="logo">
-        <!-- <image
+        <image
           class="img"
           mode="widthFix"
-          src="../static/img/login_zhenhsi_logo.jpg"
-        /> -->
+          src="../static/img/logo_new.png"
+        />
       </view>
       <view class="form">
         <u-form ref="uForm" labelPosition="left" labelWidth="124">
