@@ -96,26 +96,26 @@
     "list": [
       {
         "pagePath": "pages/index",
-        "iconPath": "./static/img/index1.png",
-        "selectedIconPath": "./static/img/index.png",
+        "iconPath": "static/img/index1.png",
+        "selectedIconPath": "static/img/index.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/xiangmutouzhi",
-        "iconPath": "./static/img/money1.png",
-        "selectedIconPath": "./static/img/money.png",
+        "iconPath": "static/img/money1.png",
+        "selectedIconPath": "static/img/money.png",
         "text": "投资"
       },
       {
         "pagePath": "pages/guanyu",
-        "iconPath": "./static/img/find1.png",
-        "selectedIconPath": "./static/img/find.png",
+        "iconPath": "static/img/find1.png",
+        "selectedIconPath": "static/img/find.png",
         "text": "发现"
       },
       {
         "pagePath": "pages/gerenzhongxin",
-        "iconPath": "./static/img/user1.png",
-        "selectedIconPath": "./static/img/user.png",
+        "iconPath": "static/img/user1.png",
+        "selectedIconPath": "static/img/user.png",
         "text": "我的"
       }
     ]
