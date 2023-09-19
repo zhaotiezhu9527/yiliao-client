@@ -33,7 +33,7 @@
           <u-notice-bar
             color="#ffffff"
             bgColor="#e15241"
-            speed="30"
+            :speed="30"
             scrollable
             fontSize="28rpx"
             :text="config.home_notice || ''"
