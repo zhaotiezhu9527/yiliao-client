@@ -4,7 +4,7 @@
       placeholder
       :border="false"
       autoBack
-      :title="config.jiancheng || '东诚药业'"
+      :title="config.jiancheng"
       fixed
       leftIconSize="0"
       safe-area-inset-top
@@ -33,6 +33,7 @@
           <u-notice-bar
             color="#ffffff"
             bgColor="#e15241"
+            speed="30"
             scrollable
             fontSize="28rpx"
             :text="config.home_notice || ''"
@@ -108,7 +109,6 @@ import img6 from "../static/img/func_icon_zhuce.png";
 import img7 from "../static/img/func_icon_kefu.png";
 import banner1 from "../static/img/banner_10.jpg";
 import banner2 from "../static/img/banner_11.jpg";
-import banner3 from "../static/img/banner_12.jpg";
 export default {
   data() {
     return {
@@ -130,7 +130,7 @@ export default {
           path: "/pages/preview",
         },
       ],
-      list2: [banner1,banner2,banner3],
+      list2: [banner1,banner2],
       shopGoods: [],
       config: {},
       infos: {},

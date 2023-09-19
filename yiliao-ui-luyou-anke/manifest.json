@@ -1,9 +1,9 @@
 {
-    "name" : "东诚药业",
+    "name" : "安科生物",
     "appid" : "__UNI__ED61B4E",
     "description" : "",
-    "versionName" : "124",
-    "versionCode" : 124,
+    "versionName" : "125",
+    "versionCode" : 125,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -108,7 +108,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : " 东诚药业 ",
+        "title" : "  ",
         "template" : "index.html",
         "router" : {
             "mode" : "hash",
