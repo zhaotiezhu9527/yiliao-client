@@ -27,14 +27,14 @@ const PATH_URL =
   process.env.NODE_ENV === "development"
     // ? "http://192.168.4.85:9522/" //本地测试
     ? "https://ymyyy3.top/yangyang1/" //测试
-      // : "https://ymyyy3.top/yangyang1/"; //杨杨a1 安科app打包地址
+      // : "https://yy33ym.top/yangyang1/"; //杨杨a1 安科app打包地址
       // : "/yangyang1/"; //杨杨a1 安科h5打包地址
-	  // : "https://ymyang2.top/yangyang2/"; //杨杨a2 安科app打包地址
+	  // : "https://yy22ym.top/yangyang2/"; //杨杨a2 安科app打包地址
       // : "/yangyang2/"; //杨杨a2 安科h5打包地址
       // : "/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
       : "/gsLz2d6XZF2ptdoj/"; //阿明a2 安科h5打包地址
-      //  : "https://ymmmm1.top/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
-	  // : "https://ymmmm2.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
+      //  : "https://am11ym.top/lCY45gucOU2CMttF/"; //阿明a1 安科h5打包地址
+	  // : "https://am22ym.top/gsLz2d6XZF2ptdoj/"; //阿明2 安科app打包地址
       // : "/ym-qtapi-test/"; //app打包地址测试
       // : "/kedou/"; //小蝌蚪网页
 	  //  : "https://dcyy988.top/kedou/"; //小蝌蚪app
