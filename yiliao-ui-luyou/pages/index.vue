@@ -14,7 +14,6 @@
     >
     </u-navbar>
     <view class="wrap">
-      <scroll-view scroll-y class="scroll">
         <view class="banner">
           <u-swiper :list="list2" class="my-swipe" indicator> </u-swiper>
         </view>
@@ -93,7 +92,6 @@
           </view>
           <u-empty class="empty2" text="暂无数据" v-if="!shopGoods.length" />
         </view>
-      </scroll-view>
     </view>
   </view>
 </template>

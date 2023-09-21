@@ -14,7 +14,6 @@
     >
     </u-navbar>
     <view class="wrap">
-      <scroll-view scroll-y class="scroll">
         <view class="title">东诚简介</view>
         <view class="head">COMPANY PROFILE</view>
         <image
@@ -42,7 +41,6 @@
             在“立足东方，守望健康”使命指引下，东诚药业将深化资源整合、优化产业结构、不断提升企业创新能力与核心竞争力，向着“成为持续卓越的医药企业”不断迈进。
           </view>
         </view>
-      </scroll-view>
     </view>
   </view>
 </template>

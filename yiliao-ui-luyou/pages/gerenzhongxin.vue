@@ -13,7 +13,6 @@
       titleStyle="color:#fff;font-weight:500;font-size:32rpx;"
     >
     </u-navbar>
-    <scroll-view scroll-y class="scroll">
       <view class="wrap">
         <!-- 头部 -->
         <view class="head">
@@ -132,7 +131,6 @@
         <!-- 退出登录 -->
         <u-button class="logout" @click="show = true">退出登录</u-button>
       </view>
-    </scroll-view>
     <u-modal
       :show="show"
       title="退出登陆"
