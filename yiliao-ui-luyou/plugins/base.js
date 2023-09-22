@@ -27,8 +27,10 @@ const PATH_URL =
   process.env.NODE_ENV === "development"
     // ? "http://192.168.4.85:9522/" //本地测试
     ? "https://ymyyy3.top/yangyang1/" //测试
-	   : "https:/kd11ym.top/kedou/"; //小蝌蚪app
-	  //  : "/kedou/" //小蝌蚪网页
+	   // : "https:/kd11ym.top/kedou/"; //小蝌蚪1app
+	  //  : "/kedou/" //小蝌蚪1网页
+    : "https://dc1am127.top/dcam1/"; //东诚阿明1app
+	  //  : "/dcam1/" //东诚阿明1网页
 	  
 
 export const upload = (params) => {
