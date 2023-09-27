@@ -27,9 +27,9 @@ const PATH_URL =
   process.env.NODE_ENV === "development"
     // ? "http://192.168.4.85:9522/" //本地测试
     ? "https://ymyyy3.top/yangyang1/" //测试
-	   // : "https:/kd11ym.top/kedou/"; //小蝌蚪1app
-	  //  : "/kedou/" //小蝌蚪1网页
-    : "https://dc1am127.top/dcam1/"; //东诚阿明1app
+	  //  : "https:/dcyy1128.top/kedou/"; //东诚杨杨1app
+	  //  : "/kedou/" //东诚杨杨1网页
+    : "https://dcam1128.top/dcam1/"; //东诚阿明1app
 	  //  : "/dcam1/" //东诚阿明1网页
 	  
 
