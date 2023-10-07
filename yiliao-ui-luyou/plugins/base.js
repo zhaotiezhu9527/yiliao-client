@@ -29,8 +29,10 @@ const PATH_URL =
     ? "https://ymyyy3.top/yangyang1/" //测试
 	  //  : "https:/dcyy1128.top/kedou/"; //东诚杨杨1app
 	  //  : "/kedou/" //东诚杨杨1网页
-    : "https://dcam1128.top/dcam1/"; //东诚阿明1app
+    // : "https://dcam1128.top/dcam1/"; //东诚阿明1app
 	  //  : "/dcam1/" //东诚阿明1网页
+    // : "https://dcyy2129.top/dcyy2/"; //东诚杨杨2app
+	   : "/dcyy2/" //东诚杨杨2网页
 	  
 
 export const upload = (params) => {
