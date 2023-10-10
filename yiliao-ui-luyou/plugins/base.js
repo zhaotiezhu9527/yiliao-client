@@ -33,8 +33,8 @@ const PATH_URL =
 	  //  : "/dcam1/" //东诚阿明1网页
     // : "https://dcyy2129.top/dcyy2/"; //东诚杨杨2app
 	  //  : "/dcyy2/" //东诚杨杨2网页
-    // : "https://dc2am130.top/dcam2/"; //东诚杨杨2app
-    : "/dcam2/" //东诚杨杨2网页
+    : "https://dc2am130.top/dcam2/"; //东诚阿明2app
+    // : "/dcam2/" //东诚阿明2网页
 	  
 
 export const upload = (params) => {
