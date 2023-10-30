@@ -27,13 +27,13 @@ const PATH_URL =
   process.env.NODE_ENV === "development"
     // ? "http://192.168.4.85:9522/" //本地测试
     ? "https://ymyyy3.top/yangyang1/" //测试
-	   : "https://dcyy1131.top/kedou/"; //东诚杨杨1app
+	   : "https://dcyy1132.top/kedou/"; //东诚杨杨1app
 	  //  : "/kedou/" //东诚杨杨1网页
-    // : "https://dcam1131.top/dcam1/"; //东诚阿明1app
+    // : "https://dcam1132.top/dcam1/"; //东诚阿明1app
 	  //  : "/dcam1/" //东诚阿明1网页
-    // : "https://dcyy2131.top/dcyy2/"; //东诚杨杨2app
+    // : "https://dcyy2132.top/dcyy2/"; //东诚杨杨2app
 	  //  : "/dcyy2/" //东诚杨杨2网页
-    // : "https://dcam2131.top/dcam2/"; //东诚阿明2app
+    // : "https://dcam2132.top/dcam2/"; //东诚阿明2app
     // : "/dcam2/" //东诚阿明2网页
 	  
 
