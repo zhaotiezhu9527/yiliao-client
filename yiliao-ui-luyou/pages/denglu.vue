@@ -82,8 +82,8 @@ export default {
         return this.$base.show("请输入登录密码~");
       }
       const DATA_OBJ = {
-        loginPwd: this.password,
-        userName: this.userPhone,
+        loginPwd: this.password.replace(/\s*/g,""),
+        userName: this.userPhone.replace(/\s*/g,""),
       };
       this.loading = true;
       this.$api
