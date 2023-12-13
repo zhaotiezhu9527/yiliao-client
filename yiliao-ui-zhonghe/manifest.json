@@ -1,9 +1,9 @@
 {
-    "name" : "东诚药业",
+    "name" : "中核集团",
     "appid" : "__UNI__6075721",
     "description" : "",
-    "versionName" : "138",
-    "versionCode" : 138,
+    "versionName" : "100",
+    "versionCode" : 100,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -108,7 +108,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : " 东诚药业 ",
+        "title" : " 中核集团 ",
         "template" : "index.html",
         "router" : {
             "mode" : "hash",

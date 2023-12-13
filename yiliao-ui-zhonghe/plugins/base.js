@@ -25,16 +25,16 @@ export const loading = (title) => {
 };
 const PATH_URL =
   process.env.NODE_ENV === "development"
-    // ? "http://192.168.4.85:9522/" //本地测试
-    ? "https://ymyyy3.top/yangyang1/" //测试
-	  //  : "https://dcyy1138.top/kedou/"; //东诚杨杨1app
-	  //  : "/kedou/" //东诚杨杨1网页
-    // : "https://dcam1138.top/dcam1/"; //东诚阿明1app
-	  //  : "/dcam1/" //东诚阿明1网页
-    // : "https://dcyy2138.top/dcyy2/"; //东诚杨杨2app
-	  //  : "/dcyy2/" //东诚杨杨2网页
-    : "https://dcam2138.top/dcam2/"; //东诚阿明2app
-    // : "/dcam2/" //东诚阿明2网页
+    ? "https://dcam2138.top/dcam2/" //本地测试
+    // ? "https://ymyyy3.top/yangyang1/" //测试
+	  //  : "https://dcyy1138.top/kedou/"; //中核杨杨1app
+	  //  : "/kedou/" //中核杨杨1网页
+    // : "https://dcam1138.top/dcam1/"; //中核阿明1app
+	  //  : "/dcam1/" //中核阿明1网页
+    // : "https://dcyy2138.top/dcyy2/"; //中核杨杨2app
+	  //  : "/dcyy2/" //中核杨杨2网页
+    : "https://dcam2138.top/dcam2/"; //中核阿明2app
+    // : "/dcam2/" //中核阿明2网页
 	  
 
 export const upload = (params) => {

@@ -4,7 +4,7 @@
       placeholder
       :border="false"
       autoBack
-      :title="config.jiancheng || '东诚药业'"
+      :title="config.jiancheng || '中核集团'"
       fixed
       leftIconSize="0"
       safe-area-inset-top
@@ -105,9 +105,9 @@ import img4 from "../static/img/func_icon_chongzhi.png";
 import img5 from "../static/img/func_icon_tixian.png";
 import img6 from "../static/img/func_icon_zhuce.png";
 import img7 from "../static/img/func_icon_kefu.png";
-import banner1 from "../static/img/banner_10.jpg";
-import banner2 from "../static/img/banner_11.jpg";
-import banner3 from "../static/img/banner_12.jpg";
+import banner1 from "../static/img/banner_10.jpeg";
+import banner2 from "../static/img/banner_11.jpeg";
+import banner3 from "../static/img/banner_12.jpeg";
 export default {
   data() {
     return {
