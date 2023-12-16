@@ -29,11 +29,11 @@ const PATH_URL =
     ? "https://ymyyy3.top/yangyang1/" //测试
 	  //  : "https://dcyy1138.top/kedou/"; //东诚杨杨1app
 	  //  : "/kedou/" //东诚杨杨1网页
-    // : "https://dcam1138.top/dcam1/"; //东诚阿明1app
+    // : "https://dcam1139.top/dcam1/"; //东诚阿明1app
 	  //  : "/dcam1/" //东诚阿明1网页
-    // : "https://dcyy2138.top/dcyy2/"; //东诚杨杨2app
+    : "https://dcyy2139.top/dcyy2/"; //东诚杨杨2app
 	  //  : "/dcyy2/" //东诚杨杨2网页
-    : "https://dcam2138.top/dcam2/"; //东诚阿明2app
+    // : "https://dcam2139.top/dcam2/"; //东诚阿明2app
     // : "/dcam2/" //东诚阿明2网页
 	  
 
