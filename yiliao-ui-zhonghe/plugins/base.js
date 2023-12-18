@@ -25,16 +25,12 @@ export const loading = (title) => {
 };
 const PATH_URL =
   process.env.NODE_ENV === "development"
-    ? "https://dcam2138.top/dcam2/" //本地测试
-    // ? "https://ymyyy3.top/yangyang1/" //测试
-	   // : "https://zhyy1100.top/kedou/"; //中核杨杨1app
-	  //  : "/kedou/" //中核杨杨1网页
-    // : "https://dcam1138.top/dcam1/"; //中核阿明1app
-	  //  : "/dcam1/" //中核阿明1网页
-    // : "https://dcyy2138.top/dcyy2/"; //中核杨杨2app
-	  //  : "/dcyy2/" //中核杨杨2网页
-    // : "https://dcam2138.top/dcam2/"; //中核阿明2app
-    // : "/dcam2/" //中核阿明2网页
+    ? "https://zhyy1100.top/api/" //本地测试
+    // ? "https://ymyyy3.top/api/" //测试
+	   // : "https://zhyy1100.top/api/"; //中核杨杨1app
+    // : "https://dcam1138.top/api/"; //中核阿明1app
+    // : "https://dcyy2138.top/api/"; //中核杨杨2app
+    // : "https://dcam2138.top/api/"; //中核阿明2app
 	// : "/ym-qtapi-test/"   //测试
 	: "/api/"   //正式服网页H5接口
 	  
