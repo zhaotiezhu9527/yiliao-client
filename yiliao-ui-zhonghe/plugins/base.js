@@ -35,7 +35,8 @@ const PATH_URL =
 	  //  : "/dcyy2/" //中核杨杨2网页
     // : "https://dcam2138.top/dcam2/"; //中核阿明2app
     // : "/dcam2/" //中核阿明2网页
-	: "/ym-qtapi-test/"   //测试
+	// : "/ym-qtapi-test/"   //测试
+	: "/api/"   //正式服网页H5接口
 	  
 
 export const upload = (params) => {
