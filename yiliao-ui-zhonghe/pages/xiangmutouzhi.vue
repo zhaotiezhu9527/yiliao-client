@@ -128,4 +128,8 @@ export default {
 .page {
   background-color: #fafafa;
 }
+.img{
+  display: block;
+  margin: 0 auto 20rpx auto;
+}
 </style>

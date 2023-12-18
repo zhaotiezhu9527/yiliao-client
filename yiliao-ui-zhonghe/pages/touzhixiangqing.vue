@@ -183,6 +183,10 @@ text {
     padding: 20rpx;
     box-sizing: border-box;
     background-color: #fff;
+    .img{
+      display: block;
+      margin: 0 auto 20rpx auto;
+    }
   }
   .name {
     display: flex;
@@ -215,6 +219,7 @@ text {
     text {
       color: #4c7eaf;
     }
+    
   }
   .xiangmutouzhi {
     display: flex;
