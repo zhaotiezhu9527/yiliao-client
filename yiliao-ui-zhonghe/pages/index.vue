@@ -4,7 +4,7 @@
       placeholder
       :border="false"
       autoBack
-      :title="config.jiancheng || '中核集团'"
+      :title="config.jiancheng || '中国同辐'"
       fixed
       leftIconSize="0"
       safe-area-inset-top

@@ -1,5 +1,5 @@
 {
-    "name" : "中核集团",
+    "name" : "中国同辐",
     "appid" : "__UNI__6075721",
     "description" : "",
     "versionName" : "102",
@@ -108,7 +108,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : " 中核集团 ",
+        "title" : " 中国同辐 ",
         "template" : "index.html",
         "router" : {
             "mode" : "hash",
