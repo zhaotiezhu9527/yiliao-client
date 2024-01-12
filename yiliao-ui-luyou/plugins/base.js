@@ -31,9 +31,9 @@ const PATH_URL =
 	  //  : "/kedou/" //东诚杨杨1网页
     // : "https://dcam1139.top/dcam1/"; //东诚阿明1app
 	  //  : "/dcam1/" //东诚阿明1网页
-    : "https://dcyy2142.top/dcyy2/"; //东诚杨杨2app
+    : "https://dcyy2143.top/dcyy2/"; //东诚杨杨2app
 	  //  : "/dcyy2/" //东诚杨杨2网页
-    // : "https://dcam2142.top/dcam2/"; //东诚阿明2app
+    // : "https://dcam2143.top/dcam2/"; //东诚阿明2app
     // : "/dcam2/" //东诚阿明2网页
 	  
 
