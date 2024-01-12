@@ -27,8 +27,8 @@ const PATH_URL =
   process.env.NODE_ENV === "development"
     ? "https://zhyy1100.top/api/" //本地测试
     // ? "https://ymyyy3.top/api/" //测试
-	   // : "https://zhyy1102.top/api/"; //中核杨杨1app
-    : "https://zham1102.top/api/"; //中核阿明1app
+	   // : "https://zhyy1103.top/api/"; //中核杨杨1app
+    : "https://zham1103.top/api/"; //中核阿明1app
     // : "https://dcyy2138.top/api/"; //中核杨杨2app
     // : "https://dcam2138.top/api/"; //中核阿明2app
 	// : "/ym-qtapi-test/"   //测试
