@@ -1,0 +1,60 @@
+.wrap {
+  .title {
+    display: flex;
+    text-align: center;
+    font-size: 24rpx;
+    font-weight: 600;
+    border-top: 2rpx solid #bbb;
+    border-bottom: 2rpx solid #bbb;
+    height: 60rpx;
+    align-items: center;
+    background-color: #fff;
+    .title-remark {
+      flex: 1;
+    }
+    .title-amount {
+      width: 20%;
+      .green-text {
+        color: green;
+      }
+    }
+    .title-time {
+      width: 15%;
+    }
+  }
+  .content {
+    display: flex;
+    font-size: 24rpx;
+    height: 80rpx;
+    align-items: center;
+    border-bottom: 2rpx solid #bbb;
+  }
+  .table-title {
+    text-align: center;
+    flex: 1;
+  }
+  .table-money {
+    width: 20%;
+    text-align: center;
+  }
+  .table-time {
+    width: 15%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+label {
+  font-size: 12px;
+  padding: 5px 5px;
+  color: #fff;
+  border-radius: 5px;
+}
+.grey-text {
+  background-color: #567da8;
+}
+.blue-text {
+  background-color: #4994ec;
+}
+.scroll {
+  height: calc(100vh - 104rpx - var(--status-bar-height) - 60rpx) !important;
+}
