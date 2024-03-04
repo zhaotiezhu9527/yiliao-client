@@ -18,7 +18,7 @@
         <image
           class="img"
           mode="widthFix"
-          src="../static/img/logo_new.jpeg"
+          src="../static/img/logo_new.jpg"
         />
       </view>
       <view class="from">

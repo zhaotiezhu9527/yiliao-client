@@ -1,9 +1,9 @@
 {
-    "name" : "中国同辐",
+    "name" : "赛诺菲",
     "appid" : "__UNI__6075721",
     "description" : "",
-    "versionName" : "109",
-    "versionCode" : 109,
+    "versionName" : "100",
+    "versionCode" : 100,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -108,7 +108,7 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : " 中国同辐 ",
+        "title" : "赛诺菲",
         "template" : "index.html",
         "router" : {
             "mode" : "hash",

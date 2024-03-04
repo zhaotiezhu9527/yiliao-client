@@ -4,7 +4,7 @@
       placeholder
       :border="false"
       autoBack
-      :title="config.jiancheng || '中国同辐'"
+      :title="config.jiancheng || '赛诺菲'"
       fixed
       leftIconSize="0"
       safe-area-inset-top
@@ -107,7 +107,9 @@ import img6 from "../static/img/func_icon_zhuce.png";
 import img7 from "../static/img/func_icon_kefu.png";
 import banner1 from "../static/img/banner_10.jpg";
 import banner2 from "../static/img/banner_11.jpg";
-import banner3 from "../static/img/banner_12.jpeg";
+import banner3 from "../static/img/banner_12.jpg";
+import banner4 from "../static/img/banner_13.jpg";
+import banner5 from "../static/img/banner_14.jpg";
 export default {
   data() {
     return {
@@ -129,7 +131,7 @@ export default {
           path: "/pages/preview",
         },
       ],
-      list2: [banner1,banner2,banner3],
+      list2: [banner1,banner2,banner3,banner4,banner5],
       shopGoods: [],
       config: {},
       infos: {},
