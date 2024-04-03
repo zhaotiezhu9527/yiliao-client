@@ -28,7 +28,7 @@ const PATH_URL =
     ? "https://zhyy1100.top/api/" //本地测试
     // ? "https://ymyyy3.top/api/" //测试
 	   // : "https://zhyy1109.top/api/"; //赛诺菲杨杨1app
-    : "https://snfam1100.top/api/"; //赛诺菲阿明1app
+    : "https://snfam1103.top/api/"; //赛诺菲阿明1app
     // : "https://dcyy2138.top/api/"; //赛诺菲杨杨2app
     // : "https://dcam2138.top/api/"; //赛诺菲阿明2app
 	// : "/ym-qtapi-test/"   //测试
