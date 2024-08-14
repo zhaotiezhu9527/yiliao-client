@@ -81,7 +81,7 @@
           </view>
           <view class="list-item" @click="gotouzhijilu">
             <image class="icon-img" src="../static/img/mine_func_touzi.png" />
-            <label>投资记录</label>
+            <label>购买记录</label>
             <view class="icon"></view>
           </view>
           <view class="list-item" @click="goshouyijilu">

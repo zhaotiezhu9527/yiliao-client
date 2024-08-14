@@ -2,7 +2,7 @@
   <view class="page">
     <u-navbar
       placeholder
-      title="投资记录"
+      title="购买记录"
       :border="false"
       autoBack
       fixed
@@ -18,7 +18,7 @@
       <view class="title">
         <view class="title-remark">项目名称</view>
         <view class="line"></view>
-        <view class="title-amount">投资金额</view>
+        <view class="title-amount">购买金额</view>
         <view class="line"></view>
         <view class="title-time">状态</view>
         <view class="line"></view>

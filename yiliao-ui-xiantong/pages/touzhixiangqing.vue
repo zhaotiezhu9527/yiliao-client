@@ -2,7 +2,7 @@
   <view class="page">
     <u-navbar
       placeholder
-      title="投资详情"
+      title="购买详情"
       :border="false"
       autoBack
       fixed
@@ -39,7 +39,7 @@
               >
             </view>
             <view class="li">
-              <view class="con">投资周期</view>
+              <view class="con">购买周期</view>
               <view class="num"
                 ><text>{{ items.limitTime }}</text
                 >分钟</view
@@ -51,7 +51,7 @@
               <text>分红方式：每日返息，到期还本</text>
               <text>起投金额：{{ items.minAmount }}元</text>
               <text>担保机构：{{ items.guaranteeCompany }}</text>
-              <text>投资零风险：本金保障</text>
+              <text>购买零风险：本金保障</text>
             </view>
           </view>
           <view class="progress">
@@ -66,7 +66,7 @@
         </view>
       </view>
       <view class="tabs">
-        <view class="name">投资详情</view>
+        <view class="name">购买详情</view>
         <u-row class="row">
           <u-col class="col" span="4">项目名称</u-col>
           <u-col class="col" span="8">{{ items.projectName }}</u-col>
@@ -85,7 +85,7 @@
           >
         </u-row>
         <u-row class="row">
-          <u-col class="col" span="4">投资金额:</u-col>
+          <u-col class="col" span="4">购买金额:</u-col>
           <u-col class="col" span="8"
             ><text>最低起投{{ items.minAmount }}元</text></u-col
           >
@@ -109,13 +109,13 @@
         <u-row class="row">
           <u-col class="col" span="4">结算时间:</u-col>
           <u-col class="col" span="8"
-            >当天投资，当天到期自动结算收益(例如在15:00成功投资，则在投资期限到期收到分红和本金)，到期系统会把当日分红和产品本金一起返还到您的账户当中。
+            >当天购买，当天到期自动结算收益(例如在15:00成功购买，则在购买期限到期收到分红和本金)，到期系统会把当日分红和产品本金一起返还到您的账户当中。
           </u-col>
         </u-row>
         <u-row class="row">
           <u-col class="col" span="4">可投金额:</u-col>
           <u-col class="col" span="8"
-            >投资期间只要产品未投满，投资者均可自由投资。</u-col
+            >购买期间只要产品未投满，购买者均可自由购买。</u-col
           >
         </u-row>
         <u-row class="row">
@@ -123,7 +123,7 @@
           <u-col class="col" span="8"
             >{{
               items.guaranteeCompany
-            }}对平台上的每一笔投资提供<text>100%本金保障</text>平台设立风险备用金，对本金承诺全额垫付;
+            }}对平台上的每一笔购买提供<text>100%本金保障</text>平台设立风险备用金，对本金承诺全额垫付;
           </u-col>
         </u-row>
         <u-row class="row">
@@ -132,7 +132,7 @@
             ><text
               >本项目筹集资金{{
                 items.projectAmount
-              }}元人民币，所筹集资金用于该项目直投运作作为投资者分红固定且无任何风险。
+              }}元人民币，所筹集资金用于该项目直投运作作为购买者分红固定且无任何风险。
             </text></u-col
           >
         </u-row>
@@ -140,7 +140,7 @@
     </view>
     <view class="btn">
       <u-button color="#4b80af" class="btn-class" block @click="change">
-        马上投资
+        马上购买
       </u-button>
     </view>
   </view>

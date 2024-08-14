@@ -2,7 +2,7 @@
   <view class="page">
     <u-navbar
       placeholder
-      title="项目投资"
+      title="项目购买"
       :border="false"
       autoBack
       fixed
@@ -40,7 +40,7 @@
                     <text>{{ item.limitTime }}</text>
                     分钟
                   </view>
-                  <view class="con">投资期限</view></view
+                  <view class="con">期限</view></view
                 >
                 <view class="li">
                   <view class="num"
@@ -55,7 +55,7 @@
                   <text>项目规模：{{ item.projectAmount }}元</text>
                   <text>每日返息：到期还本</text>
                 </view>
-                <view class="btn">立即投资</view>
+                <view class="btn">立即购买</view>
               </view>
               <view class="progress">
                 <view class="txt">项目进度：</view>

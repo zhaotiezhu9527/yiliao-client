@@ -2,7 +2,7 @@
   <view class="page">
     <u-navbar
       placeholder
-      title="投资详情"
+      title="购买详情"
       :border="false"
       autoBack
       fixed
@@ -16,9 +16,9 @@
     </u-navbar>
     <view class="wrap">
       <view class="details-text">
-        <view> 投资金额：{{ detailsData.amount }}元 </view>
+        <view> 购买金额：{{ detailsData.amount }}元 </view>
         <view> 预期收益：{{ detailsData.forecastReturnAmount }}元 </view>
-        <view> 投资时间：{{ detailsData.orderTime }} </view>
+        <view> 购买时间：{{ detailsData.orderTime }} </view>
         <view> 到期时间：{{ detailsData.forecastReturnTime }} </view>
         <view> 收益方式：每日返息，到期还本 </view>
       </view>

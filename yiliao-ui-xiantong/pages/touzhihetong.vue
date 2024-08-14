@@ -2,7 +2,7 @@
   <view class="page">
     <u-navbar
       placeholder
-      title="投资合同"
+      title="购买合同"
       :border="false"
       autoBack
       fixed
@@ -15,10 +15,10 @@
     >
     </u-navbar>
     <view class="wrap">
-      <view class="title">{{ detailsData.ourCompany }}投资合同书</view>
+      <view class="title">{{ detailsData.ourCompany }}购买合同书</view>
       <view class="number">合同编号：{{ detailsData.orderNo }}</view>
       <view class="name">
-        甲方（投资方）：
+        甲方（购买方）：
         <label>{{ detailsData.realName }}</label>
       </view>
       <view class="name">
@@ -33,22 +33,22 @@
         >甲乙丙双方经友好协商，本着平等自愿、诚实信用的原则，就甲方使用乙方提供的本网站所有服务的</view
       >
       <view class="name">有关事项达成如下协议：</view>
-      <view class="name">一、理财投资明细</view>
+      <view class="name">一、理财购买明细</view>
       <table class="table-data">
         <tr>
           <td>产品名称</td>
           <td width="50%">{{ detailsData.projectName }}</td>
         </tr>
         <tr>
-          <td>投资人姓名</td>
+          <td>购买人姓名</td>
           <td>{{ detailsData.realName }}</td>
         </tr>
         <tr>
-          <td>投资人身份证</td>
+          <td>购买人身份证</td>
           <td width="50%">{{ detailsData.IdCardNo }}</td>
         </tr>
         <tr>
-          <td>投入本金数额（下称“甲方投资本金”）</td>
+          <td>投入本金数额（下称“甲方购买本金”）</td>
           <td>{{ detailsData.amount }}元</td>
         </tr>
         <tr>

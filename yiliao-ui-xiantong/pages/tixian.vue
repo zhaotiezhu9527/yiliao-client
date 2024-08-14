@@ -91,15 +91,15 @@ export default {
     return {
       columns: [
         [
-          { text: "提现到USDT钱包", value: 2 },
           { text: "提现到银行卡", value: 1 },
+          { text: "提现到USDT钱包", value: 2 },
         ],
       ],
       show: false,
-      type: 2,
+      type: 1,
       amount: undefined,
       pwd: "",
-      title: "提现到USDT钱包",
+      title: "提现到银行卡",
       infos: {},
       loading: false,
     };

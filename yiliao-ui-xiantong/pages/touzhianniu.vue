@@ -2,7 +2,7 @@
   <view class="page">
     <u-navbar
       placeholder
-      title="立即投资"
+      title="立即购买"
       :border="false"
       autoBack
       fixed
@@ -35,7 +35,7 @@
         >
       </view>
       <view class="li">
-        <view class="name">投资金额</view>
+        <view class="name">购买金额</view>
         <view class="txt images">
           <image
             class="img"
@@ -71,7 +71,7 @@
       >元，加一次为<text>{{ items.minAmount }}</text
       >元,<text class="other">一键全投</text>即将账户可用余额<text>
         {{ infos.balance }} </text
-      >元的倍数进行投资。
+      >元的倍数进行购买。
     </view>
     <view class="input">
       <view>支付密码</view>
@@ -90,7 +90,7 @@
       block
       @click="xiangmutouzhi"
     >
-      立即投资
+      立即购买
     </u-button>
   </view>
 </template>
@@ -153,7 +153,7 @@ export default {
         .order_execute(this.form)
         .then(({ data }) => {
           if (data.code == 0) {
-            this.$base.show("投资成功~");
+            this.$base.show("购买成功~");
             this.form = {
               amount: "",
               pwd: "",

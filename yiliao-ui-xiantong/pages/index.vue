@@ -63,7 +63,7 @@
                   <text>{{ item.limitTime }}</text>
                   分钟
                 </view>
-                <view class="con">投资期限</view></view
+                <view class="con">期限</view></view
               >
               <view class="li">
                 <view class="num"
@@ -78,7 +78,7 @@
                 <text>项目规模：{{ item.projectAmount }}元</text>
                 <text>每日返息：到期还本</text>
               </view>
-              <view class="btn">立即投资</view>
+              <view class="btn">立即购买</view>
             </view>
             <view class="progress">
               <view class="txt">项目进度：</view>
@@ -112,7 +112,7 @@ export default {
   data() {
     return {
       list: [
-        { name: "投资项目", img: img0, path: "/pages/xiangmutouzhi" },
+        { name: "购买项目", img: img0, path: "/pages/xiangmutouzhi" },
         { name: "关于我们", img: img1, path: "/pages/guanyu" },
         { name: "计算器", img: img2 },
         { name: "每日签到", img: img3 },
@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     change({ name, path, url }) {
-      if (["投资项目", "关于我们"].includes(name)) {
+      if (["购买项目", "关于我们"].includes(name)) {
         uni.switchTab({
           url: path,
         });

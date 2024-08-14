@@ -104,7 +104,7 @@
         "pagePath": "pages/xiangmutouzhi",
         "iconPath": "static/img/money1.png",
         "selectedIconPath": "static/img/money.png",
-        "text": "投资"
+        "text": "购买"
       },
       {
         "pagePath": "pages/guanyu",
