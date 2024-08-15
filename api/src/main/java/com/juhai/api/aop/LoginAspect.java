@@ -101,6 +101,7 @@ public class LoginAspect {
             String nowIpShengfen = getShengFen(nowIpDetail);
             if (!StringUtils.equals(loginShengfen, nowIpShengfen)) {
                 log.error("用户名:{},登录省份:{}-{},API请求省份:{}-{}", jwtUserPhone, loginIpDetail, loginIp, nowIpDetail,nowIp);
+                redisTemplate.delete(RedisKeyUtil.UserTokenKey(jwtUserPhone));
                 return R.error(ResultEnum.INVALID_TOKEN.getCode(),MsgUtil.get("system.token.invalid"));
             }
         }
