@@ -49,6 +49,12 @@
             <version>${jwt.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
         <!-- 注册中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

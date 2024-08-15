@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.juhai.api.controller.request.*;
 import com.juhai.api.utils.DataDesensitizeUtils;
+import com.juhai.api.utils.IpUtil;
 import com.juhai.api.utils.JwtUtils;
 import com.juhai.commons.constants.Constant;
 import com.juhai.commons.entity.*;
@@ -320,11 +321,12 @@ public class UserController {
                         .set(User::getLastTime, now)
         );
 
+        String ipDetail = IpUtil.getIpDetail(clientIP);
         // 登录日志
         UserLog log = new UserLog();
         log.setUserName(user.getUserName());
         log.setIp(clientIP);
-        log.setIpDetail(null);
+        log.setIpDetail(ipDetail);
         log.setLoginTime(new Date());
         userLogService.save(log);
 
@@ -334,6 +336,7 @@ public class UserController {
         map.put("userName", user.getUserName());
         map.put("userIp", clientIP);
         map.put("random", RandomUtil.randomString(6));
+        map.put("ipDetail", ipDetail);
         String token = JwtUtils.getToken(map);
         redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, expire, TimeUnit.MINUTES);
 

@@ -1,8 +1,10 @@
 package com.juhai.api.aop;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.juhai.api.utils.IpUtil;
 import com.juhai.api.utils.JwtUtils;
 import com.juhai.commons.enums.ResultEnum;
 import com.juhai.commons.utils.MsgUtil;
@@ -88,6 +90,20 @@ public class LoginAspect {
             return R.error(ResultEnum.INVALID_TOKEN.getCode(),MsgUtil.get("system.token.invalid"));
         }
 
+        String loginIp = jwt.getClaim("userIp").asString();
+        String loginIpDetail = jwt.getClaim("ipDetail").asString();
+        // 跨省校验
+        String nowIp = ServletUtil.getClientIPByHeader(request, "x-original-forwarded-for");
+        if (!StringUtils.equals(loginIp, nowIp)) {
+            // 如果两次IP不匹配 校验是否跨省 跨省直接登出
+            String loginShengfen = getShengFen(loginIpDetail);
+            String nowIpDetail = IpUtil.getIpDetail(nowIp);
+            String nowIpShengfen = getShengFen(nowIpDetail);
+            if (!StringUtils.equals(loginShengfen, nowIpShengfen)) {
+                log.info("登录省份:{},API请求省份:{}", loginShengfen, nowIpShengfen);
+                return R.error(ResultEnum.INVALID_TOKEN.getCode(),MsgUtil.get("system.token.invalid"));
+            }
+        }
         // token续期
         redisTemplate.expireAt(tokenKey, DateUtil.offsetMinute(new Date(), expire));
 //        redisTemplate.expireAt(tokenKey, DateUtil.offsetDay(new Date(), RedisKeyUtil.USER_TOKEN_EXPIRE));
@@ -97,5 +113,15 @@ public class LoginAspect {
     @AfterReturning(value = "loginAsp()", returning="returnValue")
     public void logMethodCall(JoinPoint jp, Object returnValue) throws Throwable {
         log.info("请求响应:{}", JSONUtil.toJsonStr(returnValue));
+    }
+
+    private String getShengFen(String ipDetail) {
+        if (StringUtils.isNotBlank(ipDetail)) {
+            String[] split = ipDetail.split("\\|");
+            if (split.length >= 3) {
+                return split[2];
+            }
+        }
+        return "未知";
     }
 }
