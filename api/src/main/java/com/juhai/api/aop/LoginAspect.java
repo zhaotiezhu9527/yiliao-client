@@ -100,7 +100,7 @@ public class LoginAspect {
             String nowIpDetail = IpUtil.getIpDetail(nowIp);
             String nowIpShengfen = getShengFen(nowIpDetail);
             if (!StringUtils.equals(loginShengfen, nowIpShengfen)) {
-                log.info("登录省份:{},API请求省份:{}", loginShengfen, nowIpShengfen);
+                log.info("用户名:{},登录省份:{}-{},API请求省份:{}-{}", jwtUserPhone, loginShengfen, loginIp, nowIpShengfen,nowIpDetail);
                 return R.error(ResultEnum.INVALID_TOKEN.getCode(),MsgUtil.get("system.token.invalid"));
             }
         }
