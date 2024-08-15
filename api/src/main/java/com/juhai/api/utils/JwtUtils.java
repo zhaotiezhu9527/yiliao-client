@@ -84,6 +84,14 @@ public class JwtUtils {
         return null;
     }
 
+    public static void main(String[] args) {
+        DecodedJWT jwt = JwtUtils.verify("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyYW5kb20iOiI1bnYxbmgiLCJ1c2VySXAiOiIxMjAuMjM1LjcwLjkzIiwidXNlck5hbWUiOiJzaDE5ODEwNiJ9.b_No9rE3gCG_vC-jbDkUipmRXycU68ViUwedD8S6FBg");
+        String jwtUserPhone = jwt.getClaim("userName").asString();
+        System.out.println(jwtUserPhone);
+        String userIp = jwt.getClaim("userIp").asString();
+        System.out.println(userIp);
+    }
+
     public static String getUserName(HttpServletRequest request) {
         String token = request.getHeader("token");
         if (StringUtils.isBlank(token)) {

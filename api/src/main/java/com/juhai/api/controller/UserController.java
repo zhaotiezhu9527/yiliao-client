@@ -247,11 +247,12 @@ public class UserController {
         user.setModifyTime(new Date());
         userService.save(user);
 
+        String ipDetail = IpUtil.getIpDetail(clientIP);
         // 登录日志
         UserLog log = new UserLog();
         log.setUserName(user.getUserName());
         log.setIp(clientIP);
-        log.setIpDetail(null);
+        log.setIpDetail(ipDetail);
         log.setLoginTime(new Date());
         userLogService.save(log);
 
@@ -260,6 +261,7 @@ public class UserController {
         map.put("userName", user.getUserName());
         map.put("userIp", clientIP);
         map.put("random", RandomUtil.randomString(6));
+        map.put("ipDetail", ipDetail);
         String token = JwtUtils.getToken(map);
         redisTemplate.opsForValue().set(RedisKeyUtil.UserTokenKey(user.getUserName()), token, RedisKeyUtil.USER_TOKEN_EXPIRE, TimeUnit.MINUTES);
         return R.ok().put("token", token);
