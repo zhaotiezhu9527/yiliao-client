@@ -13,8 +13,8 @@ public class IpUtil {
     public static Map<String, String> IP_DETAIL_CACHE = new HashMap<>();
 
     static {
-        BUFF = HttpUtil.downloadBytes("https://juhaijituan.oss-ap-southeast-1.aliyuncs.com/gs/ip2region.xdb");
-        IP_DETAIL_CACHE.put("0:0:0:0:0:0:0:1", "本地");
+//        BUFF = HttpUtil.downloadBytes("https://juhaijituan.oss-ap-southeast-1.aliyuncs.com/gs/ip2region.xdb");
+//        IP_DETAIL_CACHE.put("0:0:0:0:0:0:0:1", "本地");
     }
 
     public static String getIpDetail(String ip) {
