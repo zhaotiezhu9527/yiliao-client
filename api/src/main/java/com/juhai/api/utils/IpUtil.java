@@ -31,7 +31,7 @@ public class IpUtil {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-
+        System.out.printf("测试");
         IP_DETAIL_CACHE.put(ip, "未知");
         return "未知";
     }
