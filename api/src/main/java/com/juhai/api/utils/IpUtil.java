@@ -18,19 +18,19 @@ public class IpUtil {
     }
 
     public static String getIpDetail(String ip) {
-        try {
-            boolean hasKey = IP_DETAIL_CACHE.containsKey(ip);
-            if (hasKey) {
-                return IP_DETAIL_CACHE.get(ip);
-            }
-
-            Searcher searcher = Searcher.newWithBuffer(BUFF);
-            String ipDetail = searcher.search(ip);
-            IP_DETAIL_CACHE.put(ip, ipDetail);
-            return ipDetail;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            boolean hasKey = IP_DETAIL_CACHE.containsKey(ip);
+//            if (hasKey) {
+//                return IP_DETAIL_CACHE.get(ip);
+//            }
+//
+//            Searcher searcher = Searcher.newWithBuffer(BUFF);
+//            String ipDetail = searcher.search(ip);
+//            IP_DETAIL_CACHE.put(ip, ipDetail);
+//            return ipDetail;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         IP_DETAIL_CACHE.put(ip, "未知");
         return "未知";
