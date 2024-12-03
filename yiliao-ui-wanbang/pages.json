@@ -1,0 +1,129 @@
+{
+  "easycom": {
+    "^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+  },
+  "pages": [
+    // #ifdef APP-PLUS
+    {
+      "path": "pages/denglu"
+    },
+    {
+      "path": "pages/index"
+    },
+    // #endif
+    // #ifdef H5
+    {
+      "path": "pages/index"
+    },
+    {
+      "path": "pages/denglu"
+    },
+    // #endif
+    {
+      "path": "pages/touzhianniu"
+    },
+    {
+      "path": "pages/touzhixiangqing"
+    },
+    {
+      "path": "pages/guanyu"
+    },
+    {
+      "path": "pages/xiangmutouzhi"
+    },
+    {
+      "path": "pages/gerenzhongxin"
+    },
+    {
+      "path": "pages/zhuce"
+    },
+    {
+      "path": "pages/touzhihetong"
+    },
+    {
+      "path": "pages/touzhijilu"
+    },
+    {
+      "path": "pages/touzhineirong"
+    },
+    {
+      "path": "pages/shouyijilu"
+    },
+    {
+      "path": "pages/chongzhijilu"
+    },
+    {
+      "path": "pages/tixianjilu"
+    },
+    {
+      "path": "pages/zhenshixingming"
+    },
+    {
+      "path": "pages/bangdingUSDT"
+    },
+    {
+      "path": "pages/bangdingyinhang"
+    },
+    {
+      "path": "pages/zhanghuanquan"
+    },
+    {
+      "path": "pages/xiugaidenglumima"
+    },
+    {
+      "path": "pages/xiugaizhifumima"
+    },
+    {
+      "path": "pages/zhijinmingxi"
+    },
+    {
+      "path": "pages/tixian"
+    },
+    {
+      "path": "pages/preview"
+    },
+    {
+      "path": "pages/zaixiankefu"
+    }
+  ],
+  "tabBar": {
+    "color": "#666974",
+    "selectedColor": "#4b80af",
+    "borderStyle": "#eeeeee",
+    "backgroundColor": "#ffffff",
+    "fontSize": "12px",
+    "iconWidth": "22px",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "iconPath": "static/img/index1.png",
+        "selectedIconPath": "static/img/index.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/xiangmutouzhi",
+        "iconPath": "static/img/money1.png",
+        "selectedIconPath": "static/img/money.png",
+        "text": "购买"
+      },
+      {
+        "pagePath": "pages/guanyu",
+        "iconPath": "static/img/find1.png",
+        "selectedIconPath": "static/img/find.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/gerenzhongxin",
+        "iconPath": "static/img/user1.png",
+        "selectedIconPath": "static/img/user.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationStyle": "custom"
+  },
+  "networkTimeout": {
+    "request": 10000
+  }
+}
